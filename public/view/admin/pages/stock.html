@@ -32,8 +32,13 @@
               </tr>
               <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
                     <td>
+<<<<<<< HEAD
+                    <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-edit"  ng-click="changeItem()"></span></a>
+=======
                     <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItem(item)"></span></a>
                     <a ><span class="glyphicon glyphicon-edit"></span></a>
+>>>>>>> origin/master
                     </td>
                     <td>{{ item.index }}</td>
                     <td>{{ item.name }}</td>

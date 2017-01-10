@@ -62,6 +62,52 @@ angular.element(document.querySelector('#addModal')).modal('hide');
 $scope.reset();
 };
 
+
+$scope.changeItem=function(item){
+// use $.param jQuery function to serialize data from JSON 
+            var data = $.param({
+                name : item.name,
+                category : item.category,
+                subCategory : item.subCategory,
+                description : item.description,
+                location : item.location,
+            });
+        
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+
+            $http.post('/itemCtrlServer/changeItem', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                console.log("Succeed post Item");
+                $scope.items.push(data);
+            })
+            .error(function (data, status, header, config) {
+            	console.log("Error: "+data);
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+
+	 console.log("addItem function"+ item.name+item.location);
+	 $scope.master = angular.copy(item);
+/*
+	 $http.get('/itemCtrlServer/addItem')
+         .success(function(data){
+             $scope.items = data;
+             console.log("Succeed loading");
+            })
+          .error(function(data){
+             console.log("Error: "+data);
+         });
+ */
+$scope.reset();
+};
+
 $scope.deleteItem = function(item){
             var data = $.param({
                 name : item.name,

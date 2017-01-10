@@ -5,6 +5,7 @@ router.get('/showAllItems', showAllItems);
 router.post('/addItem', addItem);
 router.post('/deleteItem', deleteItem);
 router.post('/countItem', countItem);
+router.post('/changeItem', changeItem);
 
 var Item = require('../models/Item');
 var path = require('path');
@@ -129,7 +130,32 @@ function deleteItem(req,res) {
 		});
 };
 
-function changeItem(res,item,key,value) {
+function changeItem(req,res) {
+	console.log("in changeItem");
+	var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+        var POST = qs.parse(body);
+		Item.findOneAndUpdate({name : POST.name }, {$set: {category : POST.category,subCategory :  POST.subCategory , description : POST.description, location : POST.location }}, function(err, doc){
+		if(err){
+            throw err;
+        }
+        console.log(doc);
+		console.log("הפריט עודכן");
+		res.send(Item);
+    });
+	});
+}
+
+
+/*function changeItem(res,item,key,value) {
 	console.log("in changeItem");
     Item.findOneAndUpdate({index: item.index}, {$set: {category: value}}, function(err, doc){
         if(err){
@@ -157,7 +183,7 @@ function changeCategoryOfItem(req,res,item) {
 	changeItem(res,item,key,value);
 }
 
-
+*/
 
 
 
