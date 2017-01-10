@@ -4,6 +4,7 @@ var router = express.Router();
 router.get('/showAllItems', showAllItems);
 router.post('/addItem', addItem);
 router.post('/deleteItem', deleteItem);
+router.post('/countItem', countItem);
 
 var Item = require('../models/Item');
 var path = require('path');
@@ -55,6 +56,34 @@ function addItem(req,res) {
         res.send(newItem);
         //showAllItems(req,res);
         });
+}
+
+function countItem(req,res) {   
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+        var POST = qs.parse(body); 
+		Item.find({ category : POST.category,name : POST.name}, (err, result) => {
+        if (err) {
+            res.status(404);
+            res.send('Items not found!');
+        }
+        else{
+            res.send(result);
+        }      
+        console.log("in countItem");
+		console.log(result);
+		});
+		});
+  
 }
 
 function checkQuantity (req,res){

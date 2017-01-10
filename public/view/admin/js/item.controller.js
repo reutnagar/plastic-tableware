@@ -86,10 +86,34 @@ $scope.deleteItem = function(item){
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
-	 $scope.master = angular.copy(item);
-	 
-	 $scope.reset();
 };
+
+$scope.countItem = function(item){
+	alert("count");
+            var data = $.param({
+                name : item.name,
+                category : item.category,
+            });
+	var config = {
+    headers : {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		}
+	}
+            $http.post('/itemCtrlServer/countItem', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                console.log("Succeed post countItem");
+                $scope.items.push(data);
+            })
+            .error(function (data, status, header, config) {
+            	console.log("Error: "+data);
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+};
+
 
 $scope.reset = function(form) {
     if (form) {
