@@ -18,7 +18,6 @@ $scope.master = {};
 
 $scope.addItem=function(item){
 // use $.param jQuery function to serialize data from JSON 
-            alert("it ok????");
             var data = $.param({
                 name : item.name,
                 category : item.category,
@@ -63,7 +62,6 @@ $scope.reset();
 };
 
 $scope.deleteItem = function(item){
-	alert("Are you sure that you want to delete this item?");
             var data = $.param({
                 name : item.name,
                 category : item.category,
@@ -76,8 +74,9 @@ $scope.deleteItem = function(item){
             $http.post('/itemCtrlServer/deleteItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
-                console.log("Succeed post deleteItem");
-                $scope.items.push(data);
+                console.log("Succeed");
+                //$scope.items.push(data);
+
             })
             .error(function (data, status, header, config) {
             	console.log("Error: "+data);
@@ -85,7 +84,7 @@ $scope.deleteItem = function(item){
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
-            });
+            });            
 };
 
 $scope.countItem = function(item){
