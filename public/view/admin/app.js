@@ -1,6 +1,4 @@
-var app = angular.module("adminApp", ["ngRoute"]);
 
-//routing
             app.config(function ($routeProvider) {
                 $routeProvider
                   .when('/', {
@@ -19,6 +17,11 @@ var app = angular.module("adminApp", ["ngRoute"]);
                         controller: 'itemCtrl'
 
                     })
+                    .when('/main', {
+                    templateUrl: 'pages/dashboard.html',
+                    controller: 'mainController'
+
+                    })
                   .when('/newItem', {
                       templateUrl: 'pages/new_item.html'
                   })
@@ -32,13 +35,7 @@ var app = angular.module("adminApp", ["ngRoute"]);
                   .otherwise({ redirectTo: 'pages/dashboard.html' });
             });
 
-app.controller('mainController',function($scope, $http) {
-	//$scope.formData = {};
 
-    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
-    options.async = true;
-});
-    });
 //app.controller("signInController", ["$scope", "$routeParams", "$http", signInController]);//calling the login controller
-app.controller("itemCtrl", ["$scope", "$http", itemCtrl]);
+//app.controller("itemCtrl", ["$scope", "$http", itemCtrl]);
 
