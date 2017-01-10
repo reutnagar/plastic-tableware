@@ -51,8 +51,7 @@ function addItem(req,res) {
         req.on('end', function () {
         var POST = qs.parse(body); 
         var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description, location : POST.location });
-        newItem.save();
-        //console.log(newItem);            
+        newItem.save();           
         res.send(newItem);
         //showAllItems(req,res);
         });
