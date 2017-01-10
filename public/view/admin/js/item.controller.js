@@ -58,7 +58,7 @@ $scope.addItem=function(item){
              console.log("Error: "+data);
          });
  */
-angular.element(document.querySelector('#addModal')).modal('hide');
+/*angular.element(document.querySelector('#addModal')).modal('hide');*/
 $scope.reset();
 };
 
@@ -166,4 +166,4 @@ $scope.reset = function(form) {
     }
     $scope.item = angular.copy($scope.master);
   };
-};
+};	
