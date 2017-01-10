@@ -2,8 +2,8 @@ var express = require('express');
 var qs = require('querystring');
 var router = express.Router();
 router.get('/showAllItems', showAllItems);
-
 router.post('/addItem', addItem);
+router.post('/deleteItem', deleteItem);
 
 var Item = require('../models/Item');
 var path = require('path');
@@ -29,21 +29,16 @@ function showAllItems(req,res) {
         }
         else{
             res.json(stock);
-            //console.log(stock);
-            //res.render(path.join(__dirname , '../public/view/admin/index.html'));
-            //res.render('index.html');
         }      
-        console.log("hi");
-        //console.log(stock);
-		//deleteAllItems(req,res);
+        console.log("in showAllItems");
+		console.log(stock);
   });
   
 }
 
 function addItem(req,res) {
-	//app.get('/api/users', function(req, res) {
-console.log("get post request in server side");  
-      var body = '';
+	console.log("get post request in server side");  
+    var body = '';
         req.on('data', function (data) {
             body += data;
             // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
@@ -53,16 +48,13 @@ console.log("get post request in server side");
             }
         });   
         req.on('end', function () {
-         var POST = qs.parse(body); 
-         var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description, location : POST.location });
-         newItem.save();
-         //console.log(newItem);            
-         res.send(newItem);
-         //showAllItems(req,res);
+        var POST = qs.parse(body); 
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description, location : POST.location });
+        newItem.save();
+        //console.log(newItem);            
+        res.send(newItem);
+        //showAllItems(req,res);
         });
-         
-
-	
 }
 
 function checkQuantity (req,res){
@@ -87,14 +79,27 @@ function deleteAllItems(req,res) {
 }
 
 function deleteItem(req,res) {
-	Item.remove ({quantity:5,minQuantity:5},function(err, result) {
-	if (err) {
-	  throw err;
-	}
-	console.log(result);
-	res.json(result);
-	});
-}
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+        var POST = qs.parse(body); 
+        Item.remove({ category:POST.category , name:POST.name},function(err, result) {
+		if (err) {
+			throw err;
+		}
+		//res.send(Item);
+		//showAllItems(req,res);
+        });
+		});
+};
 
 function changeItem(res,item,key,value) {
 	console.log("in changeItem");

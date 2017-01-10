@@ -62,6 +62,34 @@ $scope.addItem=function(item){
 $scope.reset();
 };
 
+$scope.deleteItem = function(item){
+	alert("Are you sure that you want to delete this item?");
+            var data = $.param({
+                name : item.name,
+                category : item.category,
+            });
+	var config = {
+    headers : {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		}
+	}
+            $http.post('/itemCtrlServer/deleteItem', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                console.log("Succeed post deleteItem");
+                $scope.items.push(data);
+            })
+            .error(function (data, status, header, config) {
+            	console.log("Error: "+data);
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+	 $scope.master = angular.copy(item);
+	 
+	 $scope.reset();
+};
 
 $scope.reset = function(form) {
     if (form) {
