@@ -123,8 +123,8 @@ function deleteItem(req,res) {
 		if (err) {
 			throw err;
 		}
-		//res.send(Item);
-		//showAllItems(req,res);
+		res.send("success");
+		//;
         });
 		});
 };
