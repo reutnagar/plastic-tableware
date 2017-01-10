@@ -58,6 +58,7 @@ $scope.addItem=function(item){
              console.log("Error: "+data);
          });
  */
+angular.element(document.querySelector('#addModal')).modal('hide');
 $scope.reset();
 };
 
