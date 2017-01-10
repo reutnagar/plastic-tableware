@@ -121,8 +121,6 @@ $scope.deleteItem = function(item){
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed");
-                //$scope.items.push(data);
-
             })
             .error(function (data, status, header, config) {
             	console.log("Error: "+data);
