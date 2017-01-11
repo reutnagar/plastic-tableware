@@ -11,7 +11,7 @@ var Color = new Schema({
 module.exports = mongoose.model('Item',{
     category: String,
 	subCategory: String,
-	index: String,
+	index: Number,
 	name: String,
 	description: String,
 	location: String,

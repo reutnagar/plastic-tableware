@@ -149,7 +149,7 @@ function changeItem(req,res) {
         }
         console.log("thid is the doc variable: "+doc);
 		console.log("updated");
-		res.send("Item");
+		//res.json("Item");
     });
 	});
 }
