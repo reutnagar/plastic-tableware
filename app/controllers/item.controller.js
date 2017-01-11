@@ -9,7 +9,7 @@ router.post('/changeItem', changeItem);
 
 var Item = require('../models/Item');
 var path = require('path');
-
+var counter = 0;
 /*
 module.exports = {
   showAllItems: showAllItems,
@@ -51,7 +51,7 @@ function addItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body); 
-        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description, location : POST.location });
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description, location : POST.location, index: counter++ });
         newItem.save();           
         res.send(newItem);
         //showAllItems(req,res);
@@ -143,13 +143,13 @@ function changeItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body);
-		Item.findOneAndUpdate({name : POST.name }, {$set: {category : POST.category,subCategory :  POST.subCategory , description : POST.description, location : POST.location }}, function(err, doc){
+		Item.findOneAndUpdate({index : POST.index }, {$set: {category : POST.category,subCategory :  POST.subCategory , description : POST.description, location : POST.location, name : POST.name }}, function(err, doc){
 		if(err){
             throw err;
         }
-        console.log(doc);
-		console.log("הפריט עודכן");
-		res.send(Item);
+        console.log("thid is the doc variable: "+doc);
+		console.log("updated");
+		res.send("Item");
     });
 	});
 }

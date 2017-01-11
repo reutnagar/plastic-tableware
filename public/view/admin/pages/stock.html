@@ -32,23 +32,48 @@
               </tr>
               <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
                     <td>
-                    <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItem(item)"></span></a>
-                    <a ><span class="glyphicon glyphicon-edit" ng-click="changeItem()"></span></a>
+                    <div ng-show="showMe[item.index]">
+                      <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItem(item)"></span></a>
+                      <a ><span class="glyphicon glyphicon-edit" ng-click="showAndHide(item);modify(item)"></span></a>
+                    </div>
+                    <div ng-hide="showMe[item.index]" ng-click="showAndHide(item)">
+                      <a><i class="fa fa-times" ng-click="update(item)"></i></a> 
+                      <a><i class="fa fa-check" ng-click="changeItem(item)"></i></a>
+                    </div>
+                    </td>            
+                    <td>
+                    <div>{{ item.index }}</div>
                     </td>
-                    <td>{{ item.index }}</td>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.category }}</td>
-                    <td>{{ item.subCategory }}</td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.location }}</td>
-                    <td>{{ item.colors }}</td>
+                    <td>
+                    <div ng-hide="editItem[item.index]">{{ item.name }}</div>
+                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.name" /></div>
+                    </td>
+                    <td>
+                    <div ng-hide="editItem[item.index]">{{ item.category }}</div>
+                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.category" /></div>
+                    </td>
+                    <td>
+                    <div ng-hide="editItem[item.index]">{{ item.subCategory }}</div>
+                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.subCategory" /></div>
+                    </td>
+                    <td>
+                    <div ng-hide="editItem[item.index]">{{ item.description }}</div>
+                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.description" /></div>
+                    </td>
+                    <td>
+                    <div ng-hide="editItem[item.index]">{{ item.location }}</div>
+                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.location" /></div>
+                    </td>
+                    <td>
+                    <div ng-hide="editItem[item.index]">{{ item.colors }}</div>
+                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.colors" /></div>
+                    </td>
               </tr>
               </table>    
             </div>
           </div>
       </div>
    </div>
-
 <!-- Modal for adding item -->
 <div class="modal fade" id="addModal" role="dialog">
   <div class="modal-dialog modal-lg">
