@@ -28,7 +28,6 @@ var connection = mongoose.createConnection("mongodb://test:1234qwer@ds054619.mla
  
 autoIncrement.initialize(connection);
  
- 
 var itemSchema = new Schema({
     category: String,
 	subCategory: String,
