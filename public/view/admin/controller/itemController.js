@@ -121,10 +121,12 @@ $scope.reset();
             };
             $scope.modify = function(item){
                 $scope.editItem[item.index] = true;
+
             };
 
             $scope.update = function(item){
                 $scope.editItem[item.index] = false;
+                $scope.showAllItems();
             };
 $scope.deleteItem = function(item){
             var data = $.param({
@@ -147,7 +149,8 @@ $scope.deleteItem = function(item){
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
-            });            
+            });  
+            $scope.showAllItems();
 };
 
 $scope.countItem = function(item){
