@@ -1,7 +1,10 @@
 const express      = require('express'),
   router           = express.Router(),
   mainController   = require('./controllers/main.controller'),
+   /*userController = require('./controllers/user.controller'),*/
   itemsController = require('./controllers/item.controller');
+ 
+  
 var path = require('path');
 
 router.use(express.static(path.join(__dirname , '../public/view/admin')));
@@ -17,6 +20,11 @@ router.get('/addItem', itemsController.addItem);
 router.get('/checkQuantity', itemsController.checkQuantity);
 router.get('/deleteItem', itemsController.deleteItem);
 router.get('/deleteAllItem', itemsController.deleteAllItem);
+router.post('/signIn',userController.signIn);------------------
+router.post('/signOut',userController.signOut);--------------
+router.post('/getSessionInfo',userController.getSessionInfo);--------------
+router.use('/userManage',require('./Controllers/userServerController'));----------
+
 
 
 /*router.get('*', function(req,res){
