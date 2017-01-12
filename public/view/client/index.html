@@ -34,6 +34,11 @@
 		<!--[if IE 7]>
 			<link rel="stylesheet" href="css/fontello-ie7.css">
 		<![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.min.js"></script>
+        <script src="app.js"></script>
         
     </head>
     
@@ -55,51 +60,51 @@
 							
 							<nav id="top-navigation" class="col-lg-7 col-md-7 col-sm-7">
 								<ul class="pull-left">
-									<li><a href="create_an_account.html">My Account</a></li>
-									<li><a href="orders_list.html">List Order</a></li>
-									<li><a href="order_info.html">Checkout</a></li>
-									<li><a href="text_page.html">About Us</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="create_an_account.html">החשבון שלי</a></li>
+									<li><a href="orders_list.html">רשימת הזמנות</a></li>
+									<li><a href="order_info.html">סיום הזמנה</a></li>
+									<li><a href="text_page.html">אודות החברה</a></li>
+									<li><a href="contact.html">צור קשר</a></li>
 								</ul>
 							</nav>
 							
 							<nav class="col-lg-5 col-md-5 col-sm-5">
 								<ul class="pull-right">
-									<li class="purple"><a href="#"><i class="icons icon-user-3"></i> Login</a>
+									<li class="purple"><a href="#"><i class="icons icon-user-3"></i> כניסת משתמש</a>
 										<ul id="login-dropdown" class="box-dropdown">
 											<li>
                                             	<div class="box-wrapper">
-                                                    <h4>LOGIN</h4>
+                                                    <h4>כניסת משתמש</h4>
                                                     <div class="iconic-input">
-                                                        <input type="text" placeholder="Username">
+                                                        <input type="text" placeholder="שם משתמש">
                                                         <i class="icons icon-user-3"></i>
                                                     </div>
                                                     <div class="iconic-input">
-                                                        <input type="text" placeholder="Password">
+                                                        <input type="text" placeholder="סיסמה">
                                                         <i class="icons icon-lock"></i>
                                                     </div>
-                                                    <input type="checkbox" id="loginremember"> <label for="loginremember">Remember me</label>
+                                                    <input type="checkbox" id="loginremember"> <label for="loginremember">זכור אותי</label>
                                                     <br>
                                                     <br>
                                                     <div class="pull-left">
                                                         <input type="submit" class="orange" value="Login">
                                                     </div>
                                                     <div class="pull-right">
-                                                        <a href="#">Forgot your password?</a>
+                                                        <a href="#">שכחת סיסמה?</a>
                                                         <br>
-                                                        <a href="#">Forgot your username?</a>
+                                                        <a href="#">שכחת שם משתמש?</a>
 														<br>
                                                     </div>
                                                     <br class="clearfix">
                                                 </div>
 												<div class="footer">
-													<h4 class="pull-left">NEW CUSTOMER?</h4>
-													<a class="button pull-right" href="create_an_account.html">Create an account</a>
+													<h4 class="pull-left">לקוח חדש?</h4>
+													<a class="button pull-right" href="create_an_account.html">יצירת חשבון</a>
 												</div>
 											</li>
 										</ul>
 									</li>
-									<li><a href="#"><i class="icons icon-lock"></i> Create an Account</a></li>
+									<li><a href="#"><i class="icons icon-lock"></i> יצירת חשבון</a></li>
 								</ul>
 							</nav>
 							
@@ -131,40 +136,40 @@
                                     	<ul id="cart-dropdown" class="box-dropdown parent-arrow">
 											<li>
                                             	<div class="box-wrapper parent-border">
-                                                    <p>Recently added item(s)</p>
+                                                    <p>נוסף לאחרונה</p>
                                                     
                                                     <table class="cart-table">
                                                     	<tr>
                                                     		<td><img src="img/products/sample1.jpg" alt="product"></td>
                                                             <td>
-                                                                <h6>Lorem ipsum dolor</h6>
-                                                                <p>Product code PSBJ3</p>
+                                                                <h6>צלחות קטנות</h6>
+                                                                <p>צבע אדום</p>
                                                             </td>
                                                             <td>
                                                             	<span class="quantity"><span class="light">1 x</span> $79.00</span>
-                                                                <a href="#" class="parent-color">Remove</a>
+                                                                <a href="#" class="parent-color">הסר</a>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                     		<td><img src="img/products/sample1.jpg" alt="product"></td>
                                                             <td>
-                                                                <h6>Lorem ipsum dolor</h6>
-                                                                <p>Product code PSBJ3</p>
+                                                                <h6>צלחות קטנות</h6>
+                                                                <p>צבע אדום</p>
                                                             </td>
                                                             <td>
                                                             	<span class="quantity"><span class="light">1 x</span> $79.00</span>
-                                                                <a href="#" class="parent-color">Remove</a>
+                                                                <a href="#" class="parent-color">הסר</a>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                     		<td><img src="img/products/sample1.jpg" alt="product"></td>
                                                             <td>
-                                                                <h6>Lorem ipsum dolor</h6>
-                                                                <p>Product code PSBJ3</p>
+                                                                <h6>צלחות קטנות</h6>
+                                                                <p>צבע אדום</p>
                                                             </td>
                                                             <td>
                                                             	<span class="quantity"><span class="light">1 x</span> $79.00</span>
-                                                                <a href="#" class="parent-color">Remove</a>
+                                                                <a href="#" class="parent-color">הסר</a>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -205,7 +210,7 @@
                                                         	<td class="flag"><span class="english-flag"></span></td>
                                                             <td class="country"><a href="#">English</a></td>
                                                         </tr>
-                                                        <tr>
+                                                        <!-- <tr>
                                                         	<td class="flag"><span class="german-flag"></span></td>
                                                             <td class="country"><a href="#">German</a></td>
                                                         </tr>
@@ -220,14 +225,14 @@
                                                         <tr>
                                                         	<td class="flag"><span class="spanish-flag"></span></td>
                                                             <td class="country"><a href="#">Spanish</a></td>
-                                                        </tr>
+                                                        </tr> -->
                                                     </table>
                                                 </div>
 											</li>
 										</ul>
                                     	
                                     </li>
-									<li><a href="#"><i class="icons icon-dollar"></i>US Dollar</a>
+									<!-- <li><a href="#"><i class="icons icon-dollar"></i>US Dollar</a>
                                     	<ul class="box-dropdown parent-arrow">
 											<li>
                                             	<div class="box-wrapper no-padding parent-border">
@@ -245,7 +250,7 @@
                                                 </div>
 											</li>
 										</ul>
-                                    </li>
+                                    </li> -->
 								</ul>
 							</nav>
 							
@@ -262,36 +267,36 @@
 							<li class="home-green current-item">
 								<a>
 									<i class="icons icon-shop-1"></i>
-									<span class="nav-caption">Home</span>
-									<span class="nav-description">Variety of Layouts</span>
+									<span class="nav-caption">עמוד הבית</span>
+									<!-- <span class="nav-description">Variety of Layouts</span> -->
 								</a>
 								
 								<ul class="normal-dropdown normalAnimation">
-									<li><a href="#">Layouts <i class="icons icon-right-dir"></i></a>
+									<li><a href="#">עריכות שולחן <i class="icons icon-right-dir"></i></a>
 										<ul class="normal-dropdown normalAnimation">
 											<li>
-												<a href="home_v1.html">Layout 1</a>
-												<ul class="normalAnimation">
+												<a href="home_v1.html">עיצוב חגיגי</a>
+												<!-- <ul class="normalAnimation">
 													<li><a href="#">Link in third level</a></li>
 													<li><a href="#">Link in third level</a></li>
 													<li><a href="#">Link in third level</a></li>
-												</ul>
+												</ul> -->
 											</li>
-											<li><a href="home_v2.html">Layout 2</a></li>
-											<li><a href="home_v3.html">Layout 3</a></li>
+											<li><a href="home_v2.html">עיצוב עתיק</a></li>
+											<li><a href="home_v3.html">עיצוב יומולדת</a></li>
 										</ul>
 									</li>
-									<li><a href="#">Headers <i class="icons icon-right-dir"></i></a>
-										<ul class="normalAnimation">
+									<li><a href="#">פרטי משלוח <i class="icons icon-right-dir"></i></a>
+										<!-- <ul class="normalAnimation">
 											<li><a href="home_v1.html">Header 1</a></li>
 											<li><a href="home_v2.html">Header 2</a></li>
 											<li><a href="home_v3.html">Header 3</a></li>
 											<li><a href="category_v1.html">Header 4</a></li>
 											<li><a href="category_v2.html">Header 5</a></li>
 											<li><a href="products_page_v1.html">Header 6</a></li>
-										</ul>
+										</ul> -->
 									</li>
-									<li><a href="#">Footers <i class="icons icon-right-dir"></i></a>
+									<!-- <li><a href="#">Footers <i class="icons icon-right-dir"></i></a>
 										<ul class="normalAnimation">
 											<li><a href="home_v1.html#footer">Footer 1</a></li>
 											<li><a href="home_v2.html#footer">Footer 2</a></li>
@@ -307,42 +312,42 @@
 											<li><a href="home_v2.html">IOS Slider</a></li>
 											<li><a href="home_v3.html">Flex Slider</a></li>
 										</ul>
-									</li>
+									</li> -->
 								</ul>
 							</li>
 							
 							<li class="red">
 								<a href="category_v1.html">
 									<i class="icons icon-camera-7"></i>
-									<span class="nav-caption">Cameras</span>
-									<span class="nav-description">Photo & Video</span>
+									<span class="nav-caption"> מוצרים בסיסיים</span>
+									<!-- <span class="nav-description">Photo & Video</span> -->
 								</a>
 								
 								<ul class="wide-dropdown normalAniamtion">
 									<li>
 										<ul>
-											<li><span class="nav-caption">Digital Cameras</span></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Digital SLR</a></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Point &amp; Shoot</a></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Spy, Miniature</a></li>
+											<li><span class="nav-caption">צלחות</span></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> קרטון</a></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> פלסטיק</a></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> קשיחים</a></li>
 										</ul>
 									</li>
 									<li>
 										<ul>
-											<li><span class="nav-caption">Digital Cameras</span></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Background Material</a></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Continuous Lighting</a></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Flash Lighting</a></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Light Meters</a></li>
+											<li><span class="nav-caption">כוסות</span></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> פלסטיק שקוף</a></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> לשתיה חמה</a></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> פלסטיק צבעוני</a></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> כוסות יין</a></li>
 										</ul>
 									</li>
 									<li>
 										<ul>
-											<li><span class="nav-caption">Digital Cameras</span></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Batteries</a></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Cables &amp; Adapters</a></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Camcorder Tapes &amp; Discs</a></li>
-											<li><a href="#"><i class="icons icon-right-dir"></i> Cases, Bags &amp; Covers</a></li>
+											<li><span class="nav-caption">מפות</span></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> רנרים</a></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> קלאסיים</a></li>
+											<!-- <li><a href="#"><i class="icons icon-right-dir"></i> Camcorder Tapes &amp; Discs</a></li>
+											<li><a href="#"><i class="icons icon-right-dir"></i> Cases, Bags &amp; Covers</a></li> -->
 										</ul>
 									</li>
 								</ul>
@@ -352,7 +357,7 @@
 							<li class="blue">
 								<a href="category_v2.html">
 									<i class="icons icon-desktop-3"></i>
-									<span class="nav-caption">Computers</span>
+									<span class="nav-caption">מוצרי נוי</span>
 									<span class="nav-description">Laptops & Tablets</span>
 								</a>
 							</li>
@@ -360,24 +365,24 @@
 							<li class="orange">
 								<a href="category_v1.html">
 									<i class="icons icon-mobile-6"></i>
-									<span class="nav-caption">Cell phones</span>
-									<span class="nav-description">Phones & Accessories</span>
+									<span class="nav-caption">מבצעים חמים</span>
+									<!-- <span class="nav-description">Phones & Accessories</span> -->
 								</a>
 							</li>
 							
-							<li class="green">
+							<!-- <li class="green">
 								<a href="blog.html">
 									<i class="icons icon-pencil-7"></i>
 									<span class="nav-caption">Blog</span>
 									<span class="nav-description">News & Reviews</span>
 								</a>
-							</li>
+							</li> -->
 							
 							<li class="purple">
 								<a href="contact.html">
 									<i class="icons icon-location-7"></i>
-									<span class="nav-caption">Contact</span>
-									<span class="nav-description">Store Locations</span>
+									<span class="nav-caption">עזרה ותמיכה</span>
+									<!-- <span class="nav-description">Store Locations</span> -->
 								</a>
 							</li>
 							

@@ -24,14 +24,18 @@
 		<link rel="stylesheet" href="css/chosen.css">
 		<link rel="stylesheet" href="css/rtl.css">
         
-        <!--[if lt IE 9]>
+		<!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<link rel="stylesheet" href="css/ie.css">
         <![endif]-->
 		<!--[if IE 7]>
 			<link rel="stylesheet" href="css/fontello-ie7.css">
 		<![endif]-->
-        
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.min.js"></script>
+        <script src="app.js"></script>
     </head>
     
     
@@ -52,51 +56,51 @@
 							
 							<nav id="top-navigation" class="col-lg-7 col-md-7 col-sm-7">
 								<ul class="pull-left">
-									<li><a href="create_an_account.html">My Account</a></li>
-									<li><a href="orders_list.html">List Order</a></li>
-									<li><a href="order_info.html">Checkout</a></li>
-									<li><a href="text_page.html">About Us</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="create_an_account.html">החשבון שלי</a></li>
+									<li><a href="orders_list.html">רשימת הזמנות</a></li>
+									<li><a href="order_info.html">סיום הזמנה</a></li>
+									<li><a href="text_page.html">אודות החברה</a></li>
+									<li><a href="contact.html">צור קשר</a></li>
 								</ul>
 							</nav>
 							
 							<nav class="col-lg-5 col-md-5 col-sm-5">
 								<ul class="pull-right">
-									<li class="purple"><a href="#"><i class="icons icon-user-3"></i> Login</a>
+									<li class="purple"><a href="#"><i class="icons icon-user-3"></i> כניסת משתמש</a>
 										<ul id="login-dropdown" class="box-dropdown">
 											<li>
                                             	<div class="box-wrapper">
-                                                    <h4>LOGIN</h4>
+                                                    <h4>כניסת משתמש</h4>
                                                     <div class="iconic-input">
-                                                        <input type="text" placeholder="Username">
+                                                        <input type="text" placeholder="שם משתמש">
                                                         <i class="icons icon-user-3"></i>
                                                     </div>
                                                     <div class="iconic-input">
-                                                        <input type="text" placeholder="Password">
+                                                        <input type="text" placeholder="סיסמה">
                                                         <i class="icons icon-lock"></i>
                                                     </div>
-                                                    <input type="checkbox" id="loginremember"> <label for="loginremember">Remember me</label>
+                                                    <input type="checkbox" id="loginremember"> <label for="loginremember">זכור אותי</label>
                                                     <br>
                                                     <br>
                                                     <div class="pull-left">
                                                         <input type="submit" class="orange" value="Login">
                                                     </div>
                                                     <div class="pull-right">
-                                                        <a href="#">Forgot your password?</a>
+                                                        <a href="#">שכחת סיסמה?</a>
                                                         <br>
-                                                        <a href="#">Forgot your username?</a>
+                                                        <a href="#">שכחת שם משתמש?</a>
 														<br>
                                                     </div>
                                                     <br class="clearfix">
                                                 </div>
 												<div class="footer">
-													<h4 class="pull-left">NEW CUSTOMER?</h4>
-													<a class="button pull-right" href="create_an_account.html">Create an account</a>
+													<h4 class="pull-left">לקוח חדש?</h4>
+													<a class="button pull-right" href="create_an_account.html">יצירת חשבון</a>
 												</div>
 											</li>
 										</ul>
 									</li>
-									<li><a href="#"><i class="icons icon-lock"></i> Create an Account</a></li>
+									<li><a href="#"><i class="icons icon-lock"></i> יצירת חשבון</a></li>
 								</ul>
 							</nav>
 							
@@ -419,97 +423,310 @@
 				
                 <div class="col-lg-12 col-md-12 col-sm-12">
                 	<div class="breadcrumbs">
-                    	<p><a href="#">Home</a> <i class="icons icon-right-dir"></i> Orders List</p>
+                    	<p><a href="#">Home</a> <i class="icons icon-right-dir"></i> Create an account</p>
                     </div>
                 </div>
                 
 				<!-- Main Content -->
 				<section class="main-content col-lg-9 col-md-9 col-sm-9">
-					
-                    <div class="row">
-                    
-                        <!-- Heading -->
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            
-                            <div class="carousel-heading">
-                                <h4>Orders List</h4>
-                                <div class="carousel-arrows">
-									<a href="#"><i class="icons icon-reply"></i></a>
-								</div>
-                            </div>
-                            
-                        </div>
-                        <!-- /Heading -->
-                        
-					</div>	
                     
                     
                     <div class="row">
                     	
                         <div class="col-lg-12 col-md-12 col-sm-12">
                         	
-							<table class="order-table">
-                            	
-								<tr>
-									<th>Order Number</th>
-									<th>Order Date</th>
-									<th class="order-status">Order Status</th>
-									<th>Total</th>
-								</tr>
-								
-								<tr>
-									<td class="order-number"><p><a href="#">0123264</a></p></td>
-									<td><p>2013-07-21</p></td>
-									<td><p>Confirmed by shopper</p></td>
-									<td><span class="price">$280.00</span></td>
-								</tr>   
-								
-								<tr>
-									<td class="order-number"><p><a href="#">0123264</a></p></td>
-									<td><p>2013-07-21</p></td>
-									<td><p>Confirmed by shopper</p></td>
-									<td><span class="price">$280.00</span></td>
-								</tr>  
-								
-								<tr>
-									<td class="order-number"><p><a href="#">0123264</a></p></td>
-									<td><p>2013-07-21</p></td>
-									<td><p>Confirmed by shopper</p></td>
-									<td><span class="price">$280.00</span></td>
-								</tr>  
-								
-								<tr>
-									<td class="order-number"><p><a href="#">0123264</a></p></td>
-									<td><p>2013-07-21</p></td>
-									<td><p>Confirmed by shopper</p></td>
-									<td><span class="price">$280.00</span></td>
-								</tr>  
-								
-								<tr>
-									<td class="order-number"><p><a href="#">0123264</a></p></td>
-									<td><p>2013-07-21</p></td>
-									<td><p>Confirmed by shopper</p></td>
-									<td><span class="price">$280.00</span></td>
-								</tr>  
-								
-								<tr>
-									<td class="order-number"><p><a href="#">0123264</a></p></td>
-									<td><p>2013-07-21</p></td>
-									<td><p>Confirmed by shopper</p></td>
-									<td><span class="price">$280.00</span></td>
-								</tr>  
-								
-								<tr>
-									<td class="order-number"><p><a href="#">0123264</a></p></td>
-									<td><p>2013-07-21</p></td>
-									<td><p>Confirmed by shopper</p></td>
-									<td><span class="price">$280.00</span></td>
-								</tr>                               
-								
-							</table>
-								
-                        </div>
-                        
+                            <div class="carousel-heading no-margin">
+                                <h4>Your account details</h4>
+                            </div>
+                            
+                            <div class="page-content">
+                            	<p>If you are already registered please login directly here</p>
+                                <div class="row">
+                                	<div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="iconic-input">
+                                            <input type="text" placeholder="Username">
+                                            <i class="icons icon-user-3"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="iconic-input">
+                                            <input type="text" placeholder="Password">
+                                            <i class="icons icon-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <input type="checkbox" id="login-remember-2"> <label for="login-remember-2">Remember me</label>
+                                <br/><br/>
+                                <div class="row">
+                                	<div class="col-lg-6 col-md-6 col-sm-6 align-left">
+                                    	<input type="submit" class="orange" value="Login">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 align-right">
+                                        <small>
+											<a class="align-right" href="#">Forgot your password?</a>
+											<br>
+											<a class="align-right" href="#">Forgot your username?</a>
+											<br>
+										</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    	</div>
+                          
+                    </div>
+                    
+                    
+                    
+                    <div class="row">
+                    	
+                        <div class="col-lg-12 col-md-12 col-sm-12 register-account">
+                        	
+                            <div class="carousel-heading no-margin">
+                                <h4>Register</h4>
+                            </div>
+                            
+                            <div class="page-content">
+                            	<div class="row">
+                                	
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                    	<p><strong>Shopper information</strong></p>
+                                    </div>
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>E-Mail*</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Username*</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Displayed name*</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Password</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Confirm Password</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>I agree to the terms of service</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="checkbox" id="i-agree-to-terms"><label for="i-agree-to-terms"></label>
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                    	<p><strong>Bill to</strong></p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Company Name</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Title</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<select class="chosen-select">
+                                        	<option>Mr</option>
+                                            <option>Mrs</option>
+                                        </select>
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>First name</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Middle Name</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Last Name</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Address 1</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Address 2</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>ZIP / Postal Code</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>City</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Country</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>State / Province / Region</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Phone</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>Mobile Phone</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                    	<p>FAX</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                    	<input type="text">
+                                    </div>	
+                                    
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                    	<input class="big" type="submit" value="Register">
+                                        <input class="big" type="reset" value="Cancel">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                    	</div>
+                          
                     </div>
                         
                     
@@ -568,6 +785,116 @@
 							
 					</div>
 					<!-- /Categories -->
+                    
+                    
+                    
+                    <!-- Compare Products -->
+					<div class="row sidebar-box blue">
+						
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							
+							<div class="sidebar-box-heading">
+                            	<i class="icons icon-docs"></i>
+								<h4>Compare Products</h4>
+							</div>
+							<div class="sidebar-box-content">
+                                <table class="compare-table">
+                                    
+                                    <tr>
+                                        <td class="product-thumbnail"><img src="img/products/sample1.jpg" alt="Product1"></td>
+                                        <td class="product-info">
+                                            <p><a href="#">Lorem ipsum dolor sit amet</a></p>
+                                            <a class="remove">Remove</a>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                                <div class="padding-box">
+                                	<a class="button grey">Go to compare</a>
+                                </div>
+							</div>
+						</div>
+						
+					</div>
+					<!-- /Compare Products -->
+					
+					
+					<!-- Carousel -->
+					<div class="row sidebar-box">
+						
+						<div class="col-lg-12 col-md-12 col-sm-12 sidebar-carousel">
+							
+							<!-- Slider -->
+							<section class="sidebar-slider">
+								<div class="sidebar-flexslider">
+									<ul class="slides">
+										<li>
+											<a href="#"><img src="img/sidebar-slide1.jpg" alt="Slide1"/></a>
+										</li>
+										<li>
+											<a href="#"><img src="img/sidebar-slide2.jpg" alt="Slide1"/></a>
+										</li>
+										<li>
+											<a href="#"><img src="img/sidebar-slide3.jpg" alt="Slide1"/></a>
+										</li>
+									</ul>
+								</div>
+								<div class="slider-nav"></div>
+							</section>
+							<!-- /Slider -->
+                            
+						</div>
+						
+					</div>
+					<!-- /Carousel -->
+					
+					
+					<!-- Bestsellers -->
+					<div class="row sidebar-box red">
+						
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							
+							<div class="sidebar-box-heading">
+                            <i class="icons icon-award-2"></i>
+								<h4>Bestsellers</h4>
+							</div>
+							
+							<div class="sidebar-box-content">
+								<table class="bestsellers-table">
+									
+									<tr>
+										<td class="product-thumbnail"><a href="#"><img src="img/products/sample1.jpg" alt="Product1"></a></td>
+										<td class="product-info">
+											<p><a href="#">Lorem ipsum dolor sit amet</a></p>
+											<span class="price">$550.00</span>
+										</td>
+									</tr>
+									
+									<tr>
+										<td class="product-thumbnail"><a href="#"><img src="img/products/sample2.jpg" alt="Product1"></a></td>
+										<td class="product-info">
+											<p><a href="#">Lorem ipsum dolor sit amet</a></p>
+											<span class="price">$550.00</span>
+										</td>
+									</tr>
+									
+									<tr>
+										<td class="product-thumbnail"><a href="#"><img src="img/products/sample3.jpg" alt="Product1"></a></td>
+										<td class="product-info">
+											<p><a href="#">Lorem ipsum dolor sit amet</a></p>
+                                            <div class="rating readonly-rating" data-score="4"></div>
+											<span class="price"><del>$650.00</del> $550.00</span>
+										</td>
+									</tr>
+									
+								</table>
+							</div>
+							
+						</div>
+						
+					</div>
+					<!-- /Bestsellers -->
+					
                     
 				</aside>
                 <!-- /Sidebar -->
