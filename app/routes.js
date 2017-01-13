@@ -6,9 +6,10 @@ const express      = require('express'),
  
   
 var path = require('path');
-
-router.use(express.static(path.join(__dirname , '../public/view/admin')));
 router.use(express.static(path.join(__dirname , '../public/view/client')));
+router.use(express.static(path.join(__dirname , '../public/view/admin')));
+
+
 
 // export router
 module.exports = router;
