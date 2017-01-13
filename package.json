@@ -11,7 +11,8 @@
     "express-session": "^1.14.2",
     "mongoose": "^4.7.4",
     "mongoose-auto-increment": "^5.0.1",
-    "path": "*"
+    "path": "*",
+    "querystring": "*"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
