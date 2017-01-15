@@ -10,7 +10,6 @@ router.use(express.static(path.join(__dirname , '../public/view/client')));
 router.use(express.static(path.join(__dirname , '../public/view/admin')));
 
 
-
 // export router
 module.exports = router;
 
