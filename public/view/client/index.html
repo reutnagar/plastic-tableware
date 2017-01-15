@@ -42,6 +42,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.min.js"></script>
         <script src="app.js"></script>
         <script src="controller/mainController.js"></script>
+        <script src="controller/categoryController.js"></script>
     </head>
     
     
@@ -443,46 +444,32 @@
 				<aside class="sidebar col-lg-3 col-md-3 col-sm-3  col-lg-pull-9 col-md-pull-9 col-sm-pull-9">
 					
 					<!-- Categories -->
-					<div class="row sidebar-box purple">
+					<div ng-controller="categoryCtrl" class="row sidebar-box purple">
 						
 						<div class="col-lg-12 col-md-12 col-sm-12">
 							
 							<div class="sidebar-box-heading">
 								<i class="icons icon-folder-open-empty"></i>
-								<h4>Categories</h4>
+								<h4>קטגוריות</h4>
 							</div>
 							
-							<div class="sidebar-box-content">
+							<div class="sidebar-box-content" data-ng-repeat="category in categorys" data-ng-model = "categorys">
 								<ul>
-									<li><a href="#category_page">Cameras &amp; Photography <i class="icons icon-right-dir"></i></a></li>
-									<li><a href="#category_page">Computers &amp; Tablets <i class="icons icon-right-dir"></i></a></li>
-									<li><a href="#category_page">Cell Phones &amp; Accessories <i class="icons icon-right-dir"></i></a>
+									<li><a href="#category_page">{{ category }}<i class="icons icon-right-dir"></i></a>
                                     	<ul class="sidebar-dropdown">
                                         	<li>
                                             	<ul>
-                                                	<li><a href="#category_page">Cell phones &amp; Smartphone</a></li>
-                                                    <li><a href="#category_page">Cell Phone Accessories</a></li>
-                                                    <li><a href="#category_page">Headsets</a></li>
-                                                    <li><a href="#category_page">Cases, Covers & Skins</a></li>
-                                                    <li><a href="#category_page">Screen Protectors</a></li>
+                                                	<li><a href="#category_page">{{ subCategory }}</a></li>
                                                 </ul>
                                             </li>
                                             <li>
                                             	<ul>
-                                                	<li><a href="#">Chargers & Cradles</a></li>
-                                                    <li><a href="#">Batteries</a></li>
-                                                    <li><a href="#">Cables & Adapters</a></li>
-                                                    <li><a href="#">All About Smartphones</a></li>
+                                                	<li><a href="#">{{ subCategory }}</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
-									<li><a href="#">TV, Audio &amp; Surveillance <i class="icons icon-right-dir"></i></a></li>
-									<li><a href="#">Video Games &amp; Consoles <i class="icons icon-right-dir"></i></a></li>
-									<li><a href="#">Car Audio, Video &amp; GPS <i class="icons icon-right-dir"></i></a></li>
-									<li><a href="#">Best Sellers <i class="icons icon-right-dir"></i></a></li>
-									<li><a href="#">Shop by Brands <i class="icons icon-right-dir"></i></a></li>
-									<li><a class="purple" href="#">All Categories</a></li>
+                                    </li>								
+									<li><a class="purple" href="#">כל הקטגוריות</a></li>
 								</ul>
 							</div>
 							
