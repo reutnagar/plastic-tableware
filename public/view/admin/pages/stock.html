@@ -22,51 +22,56 @@
             <div class="box-body" >
               <table id="example2" class="table table-bordered table-hover">
               <tr>  <th></th>
-                    <th><p><input ng-model="search.index"></p>קוד</th>
+                    <th><p><input ng-model="search.id"></p>קוד</th>
                     <th><p><input ng-model="search.name"></p>שם</th>
                     <th><p><input ng-model="search.category"></p>קטגוריה</th>
                     <th><p><input ng-model="search.subCategory"></p>תת-קטגוריה</th>
                     <th><p><input ng-model="search.description"></p>תאור</th>
+					<th><p><input ng-model="search.price"></p>מחיר</th>
                     <th><p><input ng-model="search.location"></p>מיקום</th>
                     <th><p><input ng-model="search.colors"></p>צבע</th>
               </tr>
               <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
                     <td>
-                    <div ng-show="showMe[item.index]">
+                    <div ng-show="showMe[item.id]">
                       <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItem(item)"></span></a>
                       <a ><span class="glyphicon glyphicon-edit" ng-click="showAndHide(item);modify(item)"></span></a>
                     </div>
-                    <div ng-hide="showMe[item.index]" ng-click="showAndHide(item)">
+                    <div ng-hide="showMe[item.id]" ng-click="showAndHide(item)">
                       <a><i class="fa fa-times" ng-click="update(item)"></i></a> 
                       <a><i class="fa fa-check" ng-click="changeItem(item)"></i></a>
                     </div>
                     </td>            
                     <td>
-                    <div>{{ item.index }}</div>
+                    <div>{{ item.id }}</div>
                     </td>
                     <td>
-                    <div ng-hide="editItem[item.index]">{{ item.name }}</div>
-                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.name" /></div>
+                    <div ng-hide="editItem[item.id]">{{ item.name }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.name" /></div>
                     </td>
                     <td>
-                    <div ng-hide="editItem[item.index]">{{ item.category }}</div>
-                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.category" /></div>
+                    <div ng-hide="editItem[item.id]">{{ item.category }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.category" /></div>
                     </td>
                     <td>
-                    <div ng-hide="editItem[item.index]">{{ item.subCategory }}</div>
-                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.subCategory" /></div>
+                    <div ng-hide="editItem[item.id]">{{ item.subCategory }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.subCategory" /></div>
                     </td>
                     <td>
-                    <div ng-hide="editItem[item.index]">{{ item.description }}</div>
-                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.description" /></div>
+                    <div ng-hide="editItem[item.id]">{{ item.description }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.description" /></div>
+                    </td>
+					<td>
+                    <div ng-hide="editItem[item.id]">{{ item.price }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.price" /></div>
                     </td>
                     <td>
-                    <div ng-hide="editItem[item.index]">{{ item.location }}</div>
-                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.location" /></div>
+                    <div ng-hide="editItem[item.id]">{{ item.location }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.location" /></div>
                     </td>
                     <td>
-                    <div ng-hide="editItem[item.index]">{{ item.colors }}</div>
-                    <div ng-show="editItem[item.index]"><input type="text" ng-model="item.colors" /></div>
+                    <div ng-hide="editItem[item.id]">{{ item.colors }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.colors" /></div>
                     </td>
               </tr>
               </table>    
@@ -108,6 +113,10 @@
                 <div class="form-group col-xs-12 ">
                   <label for="exampleTextarea">תיאור</label>
                   <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="item.description" name="description" required ></textarea>
+              </div>
+			  <div class="form-group col-xs-12 ">
+                  <label for="exampleTextarea">מחיר</label>
+                  <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="item.price" name="price" required ></textarea>
               </div>
                 <div class="form-group col-xs-12 ">
                   <label for="exampleTextarea">מיקום</label>

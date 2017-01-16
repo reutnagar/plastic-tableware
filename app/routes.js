@@ -3,11 +3,13 @@ const express      = require('express'),
   mainController   = require('./controllers/main.controller'),
    /*userController = require('./controllers/user.controller'),*/
   itemsController = require('./controllers/item.controller');
+  categoriesController = require('./controllers/category.controller');
  
   
 var path = require('path');
 router.use(express.static(path.join(__dirname , '../public/view/client')));
 router.use(express.static(path.join(__dirname , '../public/view/admin')));
+
 
 router.get('/admin/showAllItems', itemsController.showAllItems);
 router.get('/admin', function(req,res){
@@ -17,6 +19,7 @@ router.post('/admin/addItem', itemsController.addItem);
 router.post('/admin/deleteItem', itemsController.deleteItem);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
+
 
 // export router
 module.exports = router;
