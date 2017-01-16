@@ -1,10 +1,12 @@
-app.controller('itemCtrl',function($scope, $http) {
+app.controller('categoryCtrl',function($scope, $http) {
 	
 	
   $scope.master = {}; 
-	
+	$scope.subCategories={};
+    $scope.categories={};
 	$scope.showAllCategories=function(){
-    $http.get('/itemCtrlServer/showAllCategories')
+        console.log("in the showAllCategories function");
+    $http.get('showAllCategories')
                     .success(function(data){
                         $scope.categories = data;
                         console.log("Succeed loading");
@@ -14,7 +16,7 @@ app.controller('itemCtrl',function($scope, $http) {
 					});
 	}
 	
-}
+
 
 	$scope.showAllSubCategory=function(category){
 	// use $.param jQuery function to serialize data from JSON 
@@ -26,7 +28,7 @@ app.controller('itemCtrl',function($scope, $http) {
                 }
             }
 
-            $http.post('/itemCtrlServer/showAllSubCategory', data, config)
+            $http.post('/showAllSubCategory', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post showAllSubCategory");
@@ -44,3 +46,5 @@ app.controller('itemCtrl',function($scope, $http) {
      $scope.master = angular.copy(subCategory);
 
 };
+
+});

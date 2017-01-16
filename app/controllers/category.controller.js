@@ -1,16 +1,14 @@
 
-var express = require('express');
 var qs = require('querystring');
-var router = express.Router();
-router.get('/showAllCategories', showAllCategories);
-router.post('/showAllSubCategories', showAllSubCategories);
-
 var Item = require('../models/Item');
-var path = require('path');
 
-module.exports = router;
+module.exports = {
+    showAllCategories: showAllCategories,
+    showAllSubCategories: showAllSubCategories
+};
 
 function showAllCategories(req,res) {    
+    console.log("in the showAllCategories");
 	Item.find({}).select('category').exec(function(err, category){
         if (err) {
             res.status(404);

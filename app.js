@@ -1,5 +1,5 @@
 //modules
-var express = require('express');
+var     express     = require('express');
 const  	app 		= express(),
 		bodyParser  = require('body-parser'),
 		port        = process.env.PORT || 8000,
@@ -18,21 +18,28 @@ app.use(session({
 }));
 
 // set the routes 
-app.use(require('./app/routes'));
+//app.use(require('./app/routes'));
 
 //get json content from client
 app.use(bodyParser.json());
 //=========================================================
 
+
 app.use('/itemCtrlServer',require('./app/controllers/item.controller'));
 app.use('/userManage',require('./app/controllers/user.controller'));
+
+app.use(require('./app/routes.js'));
+
 
 
 
 // connect to databasein mLab
 //for local DB use: "mongodb://localhost:27017/TestDB"
-//"mongodb://test:1234qwer@ds054619.mlab.com:54619/plastic-tableware"
-mongoose.connect("mongodb://localhost:27017/TestDB", function (err, db) {
+
+
+
+mongoose.connect("mongodb://test:1234qwer@ds054619.mlab.com:54619/plastic-tableware", function (err, db) {
+
     if (!err) {
         console.log("we are connected to mongo");
     }

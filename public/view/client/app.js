@@ -25,7 +25,9 @@ var app = angular.module("clientApp", ["ngRoute"]);
                   .when('/category_page', {
                       templateUrl: 'pages/category_v1.html'
                   })
-                  
+                  .when('/payment', {
+                      templateUrl: 'pages/payment.html'
+                  })
                  /*  .otherwise({ redirectTo: 'pages/dashboard.html' }); */
             });
 
