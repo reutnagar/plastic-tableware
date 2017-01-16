@@ -1,14 +1,14 @@
 const express      = require('express'),
   router           = express.Router(),
   mainController   = require('./controllers/main.controller'),
-   /*userController = require('./controllers/user.controller'),*/
+   userController = require('./controllers/user.controller'),
   itemsController = require('./controllers/item.controller');
   categoriesController = require('./controllers/category.controller');
  
   
 var path = require('path');
-router.use(express.static(path.join(__dirname , '../public/view/client')));
 router.use(express.static(path.join(__dirname , '../public/view/admin')));
+router.use(express.static(path.join(__dirname , '../public/view/client')));
 
 
 // export router

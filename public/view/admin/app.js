@@ -3,8 +3,7 @@
                 $routeProvider
                   .when('/', {
                         templateUrl: 'pages/login.html',
-                        controller: 'login.Controller.js',
-                        controllerAs: 'vm',
+                        controller: 'signInController',
                     })
                     .when('/dashboard', {
                         templateUrl: 'pages/dashboard.html'
