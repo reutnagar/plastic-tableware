@@ -2,8 +2,8 @@ const express      = require('express'),
   router           = express.Router(),
   mainController   = require('./controllers/main.controller'),
   categoryController = require('./controllers/category.controller'),
-  itemsController = require('./controllers/item.controller');
-  categoriesController = require('./controllers/category.controller');
+  itemsController = require('./controllers/item.controller'),
+  paymentController = require('./controllers/payment.controller');
  
   
 var path = require('path');
@@ -23,7 +23,7 @@ router.post('/admin/changeItem', itemsController.changeItem);
 
 router.get('/showAllCategories', categoryController.showAllCategories);
 router.post('/showAllSubCategories', categoryController.showAllSubCategories);
-
+router.post('/processPayment', paymentController.processPayment);
 // export router
 module.exports = router;
 

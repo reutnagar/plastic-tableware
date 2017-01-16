@@ -36,7 +36,7 @@ function payWithStripe(e) {
     /* Visual feedback */
     $form.find('.subscribe').html('Validating <i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
 
-    var PublishableKey = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'; // Replace with your API publishable key
+    var PublishableKey = 'pk_test_BhOjkKLIAI0WnFdiStLTRHG2 '; // Replace with your API publishable key
     Stripe.setPublishableKey(PublishableKey);
     
     /* Create token */
