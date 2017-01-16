@@ -11,6 +11,7 @@ var path = require('path');
 module.exports = router;
 
 function showAllCategories(req,res) {    
+    console.log("in the showAllCategories");
 	Item.find({}).select('category').exec(function(err, category){
         if (err) {
             res.status(404);
