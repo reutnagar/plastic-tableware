@@ -12,7 +12,7 @@ app.controller('itemCtrl',function($scope, $http) {
                         $scope.items = data;
                         console.log("Succeed loading");
                         for (var i = 0, length = $scope.items.length; i < length; i++) {
-                        $scope.showMe[$scope.items[i].index] = true;
+                        $scope.showMe[$scope.items[i].id] = true;
             }
                     })
                     .error(function(data){
@@ -70,9 +70,10 @@ $scope.reset();
 $scope.changeItem=function(item){
     console.log("in change item in the client side");
     for (var i = 0, length = $scope.items.length; i < length; i++) {
-              $scope.editItem[$scope.items[i].index] = false;
+              $scope.editItem[$scope.items[i].id] = false;
             }
             var data = $.param({
+				id : item.id,
                 name : item.name,
                 category : item.category,
                 subCategory : item.subCategory,
@@ -116,18 +117,18 @@ $scope.update(item);
 $scope.reset();
 };
             $scope.showAndHide = function(item){
-                console.log( "showMe[item.index] before: "+$scope.showMe[item.index]);
-                $scope.showMe[item.index] = !$scope.showMe[item.index];
-                console.log( "showMe[item.index] after: "+ $scope.showMe[item.index]);
+                console.log( "showMe[item.id] before: "+$scope.showMe[item.id]);
+                $scope.showMe[item.id] = !$scope.showMe[item.id];
+                console.log( "showMe[item.id] after: "+ $scope.showMe[item.id]);
 
             };
             $scope.modify = function(item){
-                $scope.editItem[item.index] = true;
+                $scope.editItem[item.id] = true;
 
             };
 
             $scope.update = function(item){
-                $scope.editItem[item.index] = false;
+                $scope.editItem[item.id] = false;
                 $scope.showAllItems();
             };
 $scope.deleteItem = function(item){
