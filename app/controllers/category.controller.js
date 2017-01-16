@@ -3,6 +3,7 @@ var express = require('express');
 var qs = require('querystring');
 var router = express.Router();
 router.get('/showAllCategories', showAllCategories);
+router.post('/showAllSubCategories', showAllSubCategories);
 
 var Item = require('../models/Item');
 var path = require('path');
@@ -50,4 +51,5 @@ function showAllSubCategories(req,res) {
 		console.log(subCategory);
   });
   
+});
 }

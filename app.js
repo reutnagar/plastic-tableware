@@ -3,7 +3,7 @@ var express = require('express');
 const  	app 		= express(),
 		bodyParser  = require('body-parser'),
 		port        = process.env.PORT || 8000,
-		mongoose	   = require('mongoose'),
+		mongoose	= require('mongoose'),
 		session     = require('express-session');
 
 //middleware (files in app/services)=============================

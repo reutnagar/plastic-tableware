@@ -26,6 +26,7 @@ $scope.addItem=function(item){
                 category : item.category,
                 subCategory : item.subCategory,
                 description : item.description,
+				price : item.price,
                 location : item.location,
             });
         
@@ -76,6 +77,7 @@ $scope.changeItem=function(item){
                 category : item.category,
                 subCategory : item.subCategory,
                 description : item.description,
+				price : item.price,
                 location : item.location,
             });
         

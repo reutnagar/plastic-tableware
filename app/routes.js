@@ -3,6 +3,7 @@ const express      = require('express'),
   mainController   = require('./controllers/main.controller'),
    /*userController = require('./controllers/user.controller'),*/
   itemsController = require('./controllers/item.controller');
+  categoriesController = require('./controllers/category.controller');
  
   
 var path = require('path');
