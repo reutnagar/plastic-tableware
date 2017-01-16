@@ -1,7 +1,7 @@
 const express      = require('express'),
   router           = express.Router(),
   mainController   = require('./controllers/main.controller'),
-   /*userController = require('./controllers/user.controller'),*/
+  categoryController = require('./controllers/category.controller'),
   itemsController = require('./controllers/item.controller');
   categoriesController = require('./controllers/category.controller');
  
@@ -20,6 +20,9 @@ router.post('/admin/deleteItem', itemsController.deleteItem);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
 
+
+router.get('/showAllCategories', categoryController.showAllCategories);
+router.post('/showAllSubCategories', categoryController.showAllSubCategories);
 
 // export router
 module.exports = router;
