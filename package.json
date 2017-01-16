@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
-  }
+  },
   "scripts": {
     "start": "node app.js"
   }
