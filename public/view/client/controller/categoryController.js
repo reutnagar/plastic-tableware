@@ -1,4 +1,4 @@
-app.controller('itemCtrl',function($scope, $http) {
+app.controller('categoryCtrl',function($scope, $http) {
 	
 	
   $scope.master = {}; 
