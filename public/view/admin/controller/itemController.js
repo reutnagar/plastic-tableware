@@ -1,5 +1,7 @@
-app.controller('itemCtrl',function($scope, $http) {
-  
+app.controller('itemCtrl',function($scope, $http) {  
+    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+    options.async = true;
+});
 
   $scope.master = {}; 
   $scope.editItem = {};
@@ -7,7 +9,8 @@ app.controller('itemCtrl',function($scope, $http) {
 
 
  $scope.showAllItems=function(){
-    $http.get('/itemCtrlServer/showAllItems')
+     console.log("request all items");
+    $http.get('/admin/showAllItems')
                     .success(function(data){
                         $scope.items = data;
                         console.log("Succeed loading");
@@ -35,7 +38,7 @@ $scope.addItem=function(item){
                 }
             }
 
-            $http.post('/itemCtrlServer/addItem', data, config)
+            $http.post('/admin/addItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post addItem");
@@ -85,7 +88,7 @@ $scope.changeItem=function(item){
                 }
             }
 
-            $http.post('/itemCtrlServer/changeItem', data, config)
+            $http.post('/admin/changeItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed changeItem Item");
@@ -138,7 +141,7 @@ $scope.deleteItem = function(item){
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }
     }
-            $http.post('/itemCtrlServer/deleteItem', data, config)
+            $http.post('/admin/deleteItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed");
@@ -164,7 +167,7 @@ $scope.countItem = function(item){
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }
     }
-            $http.post('/itemCtrlServer/countItem', data, config)
+            $http.post('/admin/countItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post countItem");
