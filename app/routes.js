@@ -6,6 +6,10 @@ const express      = require('express'),
 
   categoryController = require('./controllers/category.controller'),
 
+
+  // itemsController = require('./controllers/item.controller'),
+  // categoriesController = require('./controllers/category.controller');
+
   itemsController = require('./controllers/item.controller'),
   paymentController = require('./controllers/payment.controller');
 
