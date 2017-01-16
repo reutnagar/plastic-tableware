@@ -4,5 +4,12 @@ app.controller('mainController',function($scope, $http) {
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     options.async = true;
    
-});
     });
+    $scope.shoppingCart = {
+        totalPrice: 0,
+        tax: 0,
+        items: [],
+    };
+    
+    
+});

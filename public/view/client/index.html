@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 
@@ -182,23 +182,19 @@
 												<div class="footer">
 													<table class="checkout-table pull-right">
                                                     	<tr>
-                                                        	<td class="align-right">Tax:</td>
-                                                            <td>$0.00</td>
+                                                        	<td class="align-right">מס:</td>
+                                                            <td>{{shoppingCart.tax}} שח</td>
                                                         </tr>
                                                         <tr>
-                                                        	<td class="align-right">Discount:</td>
-                                                            <td>$37.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                        	<td class="align-right"><strong>Total:</strong></td>
-                                                            <td><strong class="parent-color">$999.00</strong></td>
+                                                        	<td class="align-right"><strong>לתשלום:</strong></td>
+                                                            <td><strong class="parent-color">{{shoppingCart.totalPrice}} שח</strong></td>
                                                         </tr>
                                                     </table>
 												</div>
                                                 
                                                 <div class="box-wrapper no-border">
-                                                	<a class="button pull-right parent-background" href="#">Checkout</a>
-													<a class="button pull-right" href="order_info.html">View Cart</a>
+                                                	<a class="button pull-right parent-background" href="#payment">לתשלום</a>
+													<a class="button pull-right" href="#order_info">הצג סל</a>
                                                 </div>
 											</li>
 										</ul>
