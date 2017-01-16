@@ -6,7 +6,7 @@ app.controller('categoryCtrl',function($scope, $http) {
     $scope.categories={};
 	$scope.showAllCategories=function(){
         console.log("in the showAllCategories function");
-    $http.get('categoryCtrlClient/showAllCategories')
+    $http.get('showAllCategories')
                     .success(function(data){
                         $scope.categories = data;
                         console.log("Succeed loading");
@@ -28,7 +28,7 @@ app.controller('categoryCtrl',function($scope, $http) {
                 }
             }
 
-            $http.post('/categoryCtrlClient/showAllSubCategory', data, config)
+            $http.post('/showAllSubCategory', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post showAllSubCategory");
