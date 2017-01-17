@@ -1,4 +1,4 @@
-/*var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Color = new Schema({
@@ -11,16 +11,17 @@ var Color = new Schema({
 module.exports = mongoose.model('Item',{
     category: String,
 	subCategory: String,
-	index: String,
+	id: Number,
 	name: String,
 	description: String,
 	location: String,
+	price: Number,
 	quantity: Number,
 	minQuantity: Number,
 	colors:   [Color]    
-});*/
+});
 
-var mongoose = require('mongoose'),
+/*var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     autoIncrement = require('mongoose-auto-increment');
  
@@ -47,12 +48,12 @@ var indexSchema = new mongoose.Schema({
 module.exports = mongoose.model('Item',itemSchema);
 //module.exports = mongoose.model('index',indexSchema);
  
-/*itemSchema.plugin(autoIncrement.plugin, 'Item');
-var Item = connection.model('Item', itemSchema);
-indexSchema.plugin(autoIncrement.plugin, 'index');*/
+//itemSchema.plugin(autoIncrement.plugin, 'Item');
+//var Item = connection.model('Item', itemSchema);
+//indexSchema.plugin(autoIncrement.plugin, 'index');
 itemSchema.plugin(autoIncrement.plugin, {
     model: 'Item',
     field: 'itemId',
     startAt: 100,
     incrementBy: 100
-});
+});*/

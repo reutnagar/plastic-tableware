@@ -1,3 +1,4 @@
+var app = angular.module("adminApp", ["ngRoute"]);
 app.config(function ($routeProvider) {
                 $routeProvider
                   .when('/', {
@@ -33,8 +34,3 @@ app.config(function ($routeProvider) {
                   
                   .otherwise({ redirectTo: 'pages/dashboard.html' });
             });
-
-
-//app.controller("signInController", ["$scope", "$routeParams", "$http", signInController]);//calling the login controller
-//app.controller("itemCtrl", ["$scope", "$http", itemCtrl]);
-

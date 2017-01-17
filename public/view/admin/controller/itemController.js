@@ -1,21 +1,27 @@
+app.controller('itemCtrl',function($scope, $http) {  
+    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+    options.async = true;
+});
 
-function itemCtrl($scope, $http) {
-	
+  $scope.master = {}; 
+  $scope.editItem = {};
+  $scope.showMe = {};
+
+
  $scope.showAllItems=function(){
- $http.get('/itemCtrlServer/showAllItems')
+     console.log("request all items");
+    $http.get('/admin/showAllItems')
                     .success(function(data){
                         $scope.items = data;
                         console.log("Succeed loading");
+                        for (var i = 0, length = $scope.items.length; i < length; i++) {
+                        $scope.showMe[$scope.items[i].id] = true;
+            }
                     })
                     .error(function(data){
                         console.log("Error: "+data);
          });
 }
-
-
-
-$scope.master = {};
-
 $scope.addItem=function(item){
 // use $.param jQuery function to serialize data from JSON 
             var data = $.param({
@@ -23,6 +29,7 @@ $scope.addItem=function(item){
                 category : item.category,
                 subCategory : item.subCategory,
                 description : item.description,
+				price : item.price,
                 location : item.location,
             });
         
@@ -32,24 +39,24 @@ $scope.addItem=function(item){
                 }
             }
 
-            $http.post('/itemCtrlServer/addItem', data, config)
+            $http.post('/admin/addItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post addItem");
                 $scope.items.push(data);
             })
             .error(function (data, status, header, config) {
-            	console.log("Error: "+data);
+                console.log("Error: "+data);
                 $scope.ResponseDetails = "Data: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
 
-	 console.log("addItem function"+ item.name+item.location);
-	 $scope.master = angular.copy(item);
+     console.log("addItem function"+ item.name+item.location);
+     $scope.master = angular.copy(item);
 /*
-	 $http.get('/itemCtrlServer/addItem')
+     $http.get('/itemCtrlServer/addItem')
          .success(function(data){
              $scope.items = data;
              console.log("Succeed loading");
@@ -64,12 +71,17 @@ $scope.reset();
 
 
 $scope.changeItem=function(item){
-// use $.param jQuery function to serialize data from JSON 
+    console.log("in change item in the client side");
+    for (var i = 0, length = $scope.items.length; i < length; i++) {
+              $scope.editItem[$scope.items[i].id] = false;
+            }
             var data = $.param({
+				id : item.id,
                 name : item.name,
                 category : item.category,
                 subCategory : item.subCategory,
                 description : item.description,
+				price : item.price,
                 location : item.location,
             });
         
@@ -79,24 +91,23 @@ $scope.changeItem=function(item){
                 }
             }
 
-            $http.post('/itemCtrlServer/changeItem', data, config)
+            $http.post('/admin/changeItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
-                console.log("Succeed post Item");
-                $scope.items.push(data);
+                console.log("Succeed changeItem Item");
+                //$scope.items.push(data);
             })
             .error(function (data, status, header, config) {
-            	console.log("Error: "+data);
+                console.log("Error: "+data);
                 $scope.ResponseDetails = "Data: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
 
-	 console.log("addItem function"+ item.name+item.location);
-	 $scope.master = angular.copy(item);
+     console.log("finish to change item"+ item.name+item.location);
 /*
-	 $http.get('/itemCtrlServer/addItem')
+     $http.get('/itemCtrlServer/addItem')
          .success(function(data){
              $scope.items = data;
              console.log("Succeed loading");
@@ -105,52 +116,68 @@ $scope.changeItem=function(item){
              console.log("Error: "+data);
          });
  */
+$scope.update(item);
 $scope.reset();
 };
+            $scope.showAndHide = function(item){
+                console.log( "showMe[item.id] before: "+$scope.showMe[item.id]);
+                $scope.showMe[item.id] = !$scope.showMe[item.id];
+                console.log( "showMe[item.id] after: "+ $scope.showMe[item.id]);
 
+            };
+            $scope.modify = function(item){
+                $scope.editItem[item.id] = true;
+
+            };
+
+            $scope.update = function(item){
+                $scope.editItem[item.id] = false;
+                $scope.showAllItems();
+            };
 $scope.deleteItem = function(item){
             var data = $.param({
                 name : item.name,
                 category : item.category,
             });
-	var config = {
+    var config = {
     headers : {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-		}
-	}
-            $http.post('/itemCtrlServer/deleteItem', data, config)
+        }
+    }
+            $http.post('/admin/deleteItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed");
             })
             .error(function (data, status, header, config) {
-            	console.log("Error: "+data);
+                console.log("Error: "+data);
                 $scope.ResponseDetails = "Data: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
-            });            
+            });  
+            $scope.showAllItems();
 };
 
 $scope.countItem = function(item){
-	alert("count");
+    alert("count");
             var data = $.param({
                 name : item.name,
                 category : item.category,
             });
-	var config = {
+    var config = {
     headers : {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-		}
-	}
-            $http.post('/itemCtrlServer/countItem', data, config)
+        }
+    }
+            $http.post('/admin/countItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post countItem");
                 $scope.items.push(data);
             })
             .error(function (data, status, header, config) {
-            	console.log("Error: "+data);
+                console.log("Error: "+data);
                 $scope.ResponseDetails = "Data: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
@@ -166,4 +193,5 @@ $scope.reset = function(form) {
     }
     $scope.item = angular.copy($scope.master);
   };
-};	
+});
+

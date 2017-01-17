@@ -1,27 +1,31 @@
-var express = require('express');
+//var express = require('express');
 var qs = require('querystring');
-var router = express.Router();
+//var router = express.Router();
+/*
 router.get('/showAllItems', showAllItems);
 router.post('/addItem', addItem);
 router.post('/deleteItem', deleteItem);
 router.post('/countItem', countItem);
 router.post('/changeItem', changeItem);
+*/
 
 var Item = require('../models/Item');
 var path = require('path');
+var counter = 0;
 
-/*
 module.exports = {
   showAllItems: showAllItems,
   addItem: addItem,
+  countItem: countItem,
   checkQuantity: checkQuantity,
-  deleteItem: deleteItem,
   deleteAllItems: deleteAllItems,
-  a: a
+  deleteItem: deleteItem,
+  changeItem: changeItem,
+  deleteAllItems: deleteAllItems
+
 }
 
-}*/
-module.exports = router;
+//module.exports = router;
 
 function showAllItems(req,res) {    
 	Item.find({}, (err, stock) => {
@@ -51,7 +55,7 @@ function addItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body); 
-        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description, location : POST.location });
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location, id: counter++ });
         newItem.save();           
         res.send(newItem);
         //showAllItems(req,res);
@@ -143,13 +147,13 @@ function changeItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body);
-		Item.findOneAndUpdate({name : POST.name }, {$set: {category : POST.category,subCategory :  POST.subCategory , description : POST.description, location : POST.location }}, function(err, doc){
+		Item.findByIdAndUpdate(POST.id, {category : POST.category,subCategory :  POST.subCategory , description : POST.description,price: POST.price, location : POST.location, name : POST.name }, function(err, doc){
 		if(err){
             throw err;
         }
-        console.log(doc);
-		console.log("הפריט עודכן");
-		res.send(Item);
+        console.log("thid is the doc variable: "+doc);
+		console.log("updated");
+		//res.json("Item");
     });
 	});
 }

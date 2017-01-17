@@ -1,6 +1,5 @@
-function signInController($scope, $routeParams, $http) {
-
-    $scope.session = {};
+app.controller('signInController', function ($scope, $routeParams, $http) {
+     $scope.session = {};
 
     $scope.signing = function (user) {
         console.log('in sign in');
@@ -48,4 +47,5 @@ function signInController($scope, $routeParams, $http) {
                 });
         }
     }
-}
+
+});

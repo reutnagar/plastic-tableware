@@ -8,8 +8,11 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
-    "mongoose": "^4.7.4",
-    "mongoose-auto-increment": "^5.0.1"
+    "mongoose": "^4.7.7",
+    "mongoose-auto-increment": "^5.0.1",
+    "path": "*",
+    "querystring": "*",
+    "stripe": "^4.14.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

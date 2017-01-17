@@ -31,6 +31,11 @@
 		<!--[if IE 7]>
 			<link rel="stylesheet" href="css/fontello-ie7.css">
 		<![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.min.js"></script>
+        <script src="app.js"></script>
         
     </head>
     
@@ -52,11 +57,11 @@
 							
 							<nav id="top-navigation" class="col-lg-7 col-md-7 col-sm-7">
 								<ul class="pull-left">
-									<li><a href="create_an_account.html">My Account</a></li>
-									<li><a href="orders_list.html">List Order</a></li>
-									<li><a href="order_info.html">Checkout</a></li>
-									<li><a href="text_page.html">About Us</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="create_an_account.html">החשבון שלי</a></li>
+									<li><a href="orders_list.html">רשימת הזמנות</a></li>
+									<li><a href="order_info.html">סיום הזמנה</a></li>
+									<li><a href="text_page.html">אודות החברה</a></li>
+									<li><a href="contact.html">צור קשר</a></li>
 								</ul>
 							</nav>
 							
@@ -419,7 +424,7 @@
 				
                 <div class="col-lg-12 col-md-12 col-sm-12">
                 	<div class="breadcrumbs">
-                    	<p><a href="#">Home</a> <i class="icons icon-right-dir"></i> Order Info</p>
+                    	<p><a href="#">Home</a> <i class="icons icon-right-dir"></i> Shopping Cart</p>
                     </div>
                 </div>
                 
@@ -431,54 +436,163 @@
                     	
                         <div class="col-lg-12 col-md-12 col-sm-12">
                         	
-                            <div class="carousel-heading">
-                                <h4>Order Information</h4>
-                                <div class="carousel-arrows">
-									<a href="#"><i class="icons icon-reply"></i></a>
-								</div>
+                            <div class="carousel-heading no-margin">
+                                <h4>I am already registered</h4>
                             </div>
                             
-                            <table class="orderinfo-table">
+                            <div class="page-content">
+                            	<p>If you are already registered please login directly here</p>
+                                <div class="row">
+                                	<div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="iconic-input">
+                                            <input type="text" placeholder="Username">
+                                            <i class="icons icon-user-3"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<div class="iconic-input">
+                                            <input type="text" placeholder="Password">
+                                            <i class="icons icon-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <input type="checkbox" id="loginremember2"> <label for="loginremember2">Remember me</label>
+                                <br/><br/>
+                                <div class="row">
+                                	<div class="col-lg-6 col-md-6 col-sm-6 align-left">
+                                    	<input type="submit" class="orange" value="Login">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 align-right">
+                                        <small><a href="#">Forgot your password?</a>
+                                        <br>
+                                        <a href="#">Forgot your username?</a></small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="page-content-footer">
+                            	<h4 class="pull-left">NEW CUSTOMER?</h4>
+								<a class="button pull-right" href="create_an_account.html">Create an account</a>
+                            </div>
+                    	</div>
+                          
+                    </div>
+                    
+                    
+                    
+                    <div class="row">
+                    	
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        	
+                            <div class="carousel-heading no-margin">
+                                <h4>Bill to &amp; SHippment information</h4>
+                            </div>
+                            
+                            <div class="page-content">
+                            	
+                                <div class="row">
+                                	
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<p><strong>Bill to</strong></p>
+                                        <a class="button grey">Add/edit billing address information</a>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    	<p><strong>Ship to</strong><br><br>
+                                        Only in case shipment address is different from billing address,
+click ‹‹ Add/Edit shipment address›› button below </p>
+                                        <a class="button grey">Add/edit shipment address</a>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                    	</div>
+                          
+                    </div>
+                    
+                    
+                    <div class="row">
+                    	
+						
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        	
+							<div class="carousel-heading">
+                                <h4>Shopping Cart</h4>
+                            </div>
+							
+                            <table class="shopping-table">
                             	
                                 <tr>
-                                	<th>Order number</th>
-                                    <td>21512512</td>
+                                	<th colspan="2">Product Image and Name</th>
+                                    <th>SKU</th>
+                                    <th>Price</th>
+                                    <th>Quanitity</th>
+                                    <th>Tax</th>
+                                    <th>Discount</th>
+                                    <th>Total</th>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="image-column"><a href="#"><img src="img/products/sample1.jpg" alt=""></a></td>
+                                    <td><p><a href="#">Lorem ipsum dolor sit amet</a></p></td>
+                                    <td><p>PSU26</p></td>
+                                    <td><p>$281.00</p></td>
+                                    <td class="quantity">
+                                    	<input type="text" value="1">
+                                        <p>
+                                        	<a href="#"><i class="icons icon-ok-3"></i> Update</a><br>
+                                            <a href="#" class="red-hover"><i class="icons icon-cancel-3"></i> Delete</a>
+                                        </p>
+                                    </td>
+                                    <td><p>$22.00</p></td>
+                                    <td><p>$-31.00</p></td>
+                                    <td><p>$121.00</p></td>
                                 </tr> 
                                 
                                 <tr>
-                                	<th>Order date</th>
-                                    <td>2013-07-12</td>
+                                    <td class="image-column"><a href="#"><img src="img/products/sample1.jpg" alt=""></a></td>
+                                    <td><p><a href="#">Lorem ipsum dolor sit amet</a></p></td>
+                                    <td><p>PSU26</p></td>
+                                    <td><p>$281.00</p></td>
+                                    <td class="quantity">
+                                    	<input type="text" value="1">
+                                        <p>
+                                        	<a href="#"><i class="icons icon-ok-3"></i> Update</a><br>
+                                            <a href="#" class="red-hover"><i class="icons icon-cancel-3"></i> Delete</a>
+                                        </p>
+                                    </td>
+                                    <td><p>$22.00</p></td>
+                                    <td><p>$-31.00</p></td>
+                                    <td><p>$121.00</p></td>
                                 </tr>
                                 
                                 <tr>
-                                	<th>Order status</th>
-                                    <td>Confirmed by shopper</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Last updated</th>
-                                    <td>2013-07-12</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Shipment</th>
-                                    <td>--</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Comment</th>
-                                    <td>Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. </td>
-                                </tr>
-                                
+                                    <td class="image-column"><a href="#"><img src="img/products/sample1.jpg" alt=""></a></td>
+                                    <td><p><a href="#">Lorem ipsum dolor sit amet</a></p></td>
+                                    <td><p>PSU26</p></td>
+                                    <td><p>$281.00</p></td>
+                                    <td class="quantity">
+                                    	<input type="text" value="1">
+                                        <p>
+                                        	<a href="#"><i class="icons icon-ok-3"></i> Update</a><br>
+                                            <a href="#" class="red-hover"><i class="icons icon-cancel-3"></i> Delete</a>
+                                        </p>
+                                    </td>
+                                    <td><p>$22.00</p></td>
+                                    <td><p>$-31.00</p></td>
+                                    <td><p>$121.00</p></td>
+                                </tr> 
+
 								<tr>
-                                	<th>Payment</th>
-                                    <td>PayPal</td>
-                                </tr>
-								
-                                <tr>
-                                	<th>Total</th>
-                                    <td><span class="price">$281.00</span></td>
-                                </tr>                    
+									<td class="align-right" colspan="5">Product prices result</td>
+									<td>$56.00</td>
+									<td>$-31.00</td>
+									<td><strong>$358.00</strong></td>	
+								</tr>
                                 
                             </table>
                             
@@ -486,322 +600,133 @@
                         
                     </div>
                     
+                    
+                    
                     <div class="row">
                     	
                         <div class="col-lg-6 col-md-6 col-sm-6">
                         	
-                            <div class="carousel-heading">
-                                <h4>Bill to</h4>
+                            <div class="carousel-heading no-margin">
+                                <h4>Please select a shipment method</h4>
                             </div>
                             
-                            <table class="orderinfo-table">
+                            <div class="page-content">
                             	
-                                <tr>
-                                	<th>Email</th>
-                                    <td>info@companyname.com</td>
-                                </tr> 
+                                <div class="row">
                                 
-                                <tr>
-                                	<th>Company name</th>
-                                    <td>company name</td>
-                                </tr>
+                                	<div class="col-lg-12 col-md-12 col-sm-12">
+                                    
+                                        <p>No shipment selected</p>
+                                        <input type="radio" id="shipmentradio1" name="shipment-radio"><label class="radio-label" for="shipmentradio1">Shipment Name 1</label>
+                                        <br>
+                                        <input type="radio" id="shipmentradio2" name="shipment-radio"><label class="radio-label" for="shipmentradio2">Shipment Name 1</label>
+                                        <br><br>
+                                        <input class="orange big" type="submit" value="Save">
+                                        <input class="big" type="reset" value="Cancel">
+                                        
+                                    </div>
+                                </div>
                                 
-                                <tr>
-                                	<th>Title</th>
-                                    <td>Mr</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>First name</th>
-                                    <td>John</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Middle name</th>
-                                    <td>Allan</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Last name</th>
-                                    <td>Doe</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Address 1</th>
-                                    <td>Marmora Road, 45</td>
-                                </tr>  
-                                
-                                <tr>
-                                	<th>ZIP / Postal code</th>
-                                    <td>8901</td>
-                                </tr> 
-                                
-                                <tr>
-                                	<th>City</th>
-                                    <td>London</td>
-                                </tr> 
-                                
-                                <tr>
-                                	<th>Country</th>
-                                    <td>Great Britain</td>
-                                </tr> 
-                                
-                                <tr>
-                                	<th>State / Province / Region</th>
-                                    <td>-</td>
-                                </tr> 
-                                
-                                <tr>
-                                	<th>Phone</th>
-                                    <td>555-555-555</td>
-                                </tr>                   
-                                
-                            </table>
+                            </div>
                             
-                        </div>
+                    	</div>
                         
                         <div class="col-lg-6 col-md-6 col-sm-6">
                         	
-                            <div class="carousel-heading">
-                                <h4>Ship to</h4>
+                            <div class="carousel-heading no-margin">
+                                <h4>Please select a payment method</h4>
                             </div>
                             
-                            <table class="orderinfo-table">
+                            <div class="page-content">
+                            	
+                                <div class="row">
                                 
-                                <tr>
-                                	<th>Company name</th>
-                                    <td>company name</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>First name</th>
-                                    <td>John</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Middle name</th>
-                                    <td>Allan</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Last name</th>
-                                    <td>Doe</td>
-                                </tr>
-                                
-                                <tr>
-                                	<th>Address 1</th>
-                                    <td>Marmora Road, 45</td>
-                                </tr>  
-                                
-                                <tr>
-                                	<th>ZIP / Postal code</th>
-                                    <td>8901</td>
-                                </tr> 
-                                
-                                <tr>
-                                	<th>City</th>
-                                    <td>London</td>
-                                </tr> 
-                                
-                                <tr>
-                                	<th>Country</th>
-                                    <td>Great Britain</td>
-                                </tr> 
-                                
-                                <tr>
-                                	<th>State / Province / Region</th>
-                                    <td>-</td>
-                                </tr> 
-                                
-                                <tr>
-                                	<th>Phone</th>
-                                    <td>555-555-555</td>
-                                </tr>                   
-                                
-                            </table>
-                            
-                        </div>
-                        
-                         <div class="col-lg-12 col-md-12 col-sm-12">
-							
-							
-							<div class="tabs">
-                            
-                                <div class="tab-heading margin-heading">
-                                    <a href="#tab1" class="button big">Order Items</a>
-                                    <a href="#tab2" class="button big">Order History</a>
+                                	<div class="col-lg-12 col-md-12 col-sm-12">
+                                    
+                                        <p>No payment selected</p>
+                                        <input type="radio" id="paymentradio1" name="payment-radio"><label class="radio-label" for="paymentradio1">Payment Name 1</label>
+                                        <br>
+                                        <input type="radio" id="paymentradio2" name="payment-radio"><label class="radio-label" for="paymentradio2">Payment Name 1</label>
+                                        <br><br>
+                                        <input class="orange big" type="submit" value="Save">
+                                        <input class="big" type="reset" value="Cancel">
+                                        
+                                    </div>
                                 </div>
                                 
-                                <div class="tab-content no-padding">
-                                	
-                                    <div id="tab1">
-									
-                                    	<table class="orderinfo-table">
-                                
-											<tr>
-												<th>SKU</th>
-												<th>Product name</th>
-												<th>Product status</th>
-												<th>Price</th>
-												<th>Qty</th>
-												<th>Tax</th>
-												<th>Discount</th>
-												<th>Total</th>
-											</tr> 
-											
-											<tr>
-												<td>1241254</td>
-												<td>Lorem ipsum dolor sit amet</td>
-												<td>Confirmed by shipper</td>
-												<td>$201.00</td>
-												<td>1</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td>$190.00</td>
-											</tr>
-											
-											<tr>
-												<td>1241254</td>
-												<td>Lorem ipsum dolor</td>
-												<td>Confirmed by shipper</td>
-												<td>$201.00</td>
-												<td>1</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td>$190.00</td>
-											</tr>
-											
-											<tr>
-												<td>1241254</td>
-												<td>Lorem ipsum dolor</td>
-												<td>Confirmed by shipper</td>
-												<td>$201.00</td>
-												<td>1</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td>$190.00</td>
-											</tr>
-											
-											<tr>
-												<td class="align-right" colspan="5">Product prices result</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td><strong>$190.00</strong></td>
-											</tr>
-											
-											<tr>
-												<td class="align-right" colspan="5">Shippment fee</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td><strong>$190.00</strong></td>
-											</tr>
-											
-											<tr>
-												<td class="align-right" colspan="5">Payment fee</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td><strong>$190.00</strong></td>
-											</tr>
-											
-											<tr>
-												<td class="align-right" colspan="5"><span class="price big">Total</span></td>
-												<td><strong>$22.00</strong></td>
-												<td><strong>$-32.00</strong></td>
-												<td><span class="price big">$920.00</span></td>
-											</tr>
-											
-										</table>
-										
-                                    </div>
-									
-									
-									<div id="tab2">
-									
-                                    	<table class="orderinfo-table">
-                                
-											<tr>
-												<th>SKU</th>
-												<th>Product name</th>
-												<th>Product status</th>
-												<th>Price</th>
-												<th>Qty</th>
-												<th>Tax</th>
-												<th>Discount</th>
-												<th>Total</th>
-											</tr> 
-											
-											<tr>
-												<td>1241254</td>
-												<td>Lorem ipsum dolor sit amet</td>
-												<td>Confirmed by shipper</td>
-												<td>$201.00</td>
-												<td>1</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td>$190.00</td>
-											</tr>
-											
-											<tr>
-												<td>1241254</td>
-												<td>Lorem ipsum dolor</td>
-												<td>Confirmed by shipper</td>
-												<td>$201.00</td>
-												<td>1</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td>$190.00</td>
-											</tr>
-											
-											<tr>
-												<td>1241254</td>
-												<td>Lorem ipsum dolor</td>
-												<td>Confirmed by shipper</td>
-												<td>$201.00</td>
-												<td>1</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td>$190.00</td>
-											</tr>
-											
-											<tr>
-												<td class="align-right" colspan="5">Product prices result</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td><strong>$190.00</strong></td>
-											</tr>
-											
-											<tr>
-												<td class="align-right" colspan="5">Shippment fee</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td><strong>$190.00</strong></td>
-											</tr>
-											
-											<tr>
-												<td class="align-right" colspan="5">Payment fee</td>
-												<td>$22.00</td>
-												<td>$-32.00</td>
-												<td><strong>$190.00</strong></td>
-											</tr>
-											
-											<tr>
-												<td class="align-right" colspan="5"><span class="price big">Total</span></td>
-												<td><strong>$22.00</strong></td>
-												<td><strong>$-32.00</strong></td>
-												<td><span class="price big">$920.00</span></td>
-											</tr>
-											
-										</table>
-										
-                                    </div>
-									
-								</div>
-								
-                            
                             </div>
-							
-                        </div>
+                            
+                    	</div>
+                          
+                    </div>
+                    
+                    
+                    
+                     <div class="row">
+                    	
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        	
+                            <div class="carousel-heading no-margin">
+                                <h4>Coupon code</h4>
+                            </div>
+                            
+                            <div class="page-content">
+                            	
+                                <div class="row">
+                                
+                                	<div class="col-lg-12 col-md-12 col-sm-12">
+                                    	
+                                        <table class="coupon-table">
+                                        	<tr>
+                                            	<td><input type="text" placeholder="Enter your coupon code"></td>
+                                                <td class="fit-cell"><input type="submit" class="big green" value="Save"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                    	</div>
+                          
+                    </div>
+                    
+                    
+                    
+                    <div class="row">
+                    	
+                        <div class="col-lg-12 col-md-12 col-sm-12">
                         
+                        	<div class="checkout-form">
+                                <table>
+                                    <tr>
+                                    	<td class="empty-cell"></td>
+                                        <td><span class="price">Total:</span></td>
+                                        <td><strong>$22.00</strong></td>
+                                        <td><strong>$-11.00</strong></td>
+                                        <td><span class="price">$243.00</span></td>
+                                    </tr>
+                                </table>
+                                
+                                <p>Notes and special requests</p>
+                                <textarea></textarea>
+                                <input type="checkbox" id="termscheckbox"><label for="termscheckbox">Click here to read terms of service and check the box to accept them.</label>
+                                <br><br>
+                                <form action="/your-server-side-code" method="POST">
+                                    <script
+                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                        data-key="pk_test_BhOjkKLIAI0WnFdiStLTRHG2"
+                                        data-amount="999"
+                                        data-name="Plastic-Tableware"
+                                        data-description="Widget"
+                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                        data-locale="auto">
+                                    </script>
+                                </form>
+                            </div>
+                            
+                        </div>
+                        	
                     </div>
                         
                     
@@ -860,9 +785,10 @@
 							
 					</div>
 					<!-- /Categories -->
-					
-					
-					<!-- Compare Products -->
+                    
+                    
+                    
+                    <!-- Compare Products -->
 					<div class="row sidebar-box blue">
 						
 						<div class="col-lg-12 col-md-12 col-sm-12">
@@ -878,15 +804,7 @@
                                         <td class="product-thumbnail"><img src="img/products/sample1.jpg" alt="Product1"></td>
                                         <td class="product-info">
                                             <p><a href="#">Lorem ipsum dolor sit amet</a></p>
-                                            <a href="#" class="remove">Remove</a>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class="product-thumbnail"><img src="img/products/sample2.jpg" alt="Product1"></td>
-                                        <td class="product-info">
-                                            <p><a href="#">Lorem ipsum dolor sit amet</a></p>
-                                            <a href="#" class="remove">Remove</a>
+                                            <a class="remove">Remove</a>
                                         </td>
                                     </tr>
                                     
@@ -976,6 +894,95 @@
 						
 					</div>
 					<!-- /Bestsellers -->
+					
+					
+					<!-- Specials -->
+					<div class="row products-row sidebar-box orange">
+						 
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							
+							<!-- Carousel Heading -->
+							<div class="carousel-heading no-margin">
+								
+								<h4><i class="icons icon-magic"></i> Specials</h4>
+								<div class="carousel-arrows">
+									<i class="icons icon-left-dir"></i>
+									<i class="icons icon-right-dir"></i>
+								</div>
+								
+							</div>
+							<!-- /Carousel Heading -->
+							
+                            <!-- Carousel -->
+                            <div class="carousel">
+                                
+                                <div class="flexslider-carousel">
+                                    <ul class="slides">
+                                        
+                                        <!-- Slide -->
+                                        <li>
+                                            <div class="row">
+                                                
+                                              	<!-- Carousel Item -->
+                                                <div class="col-lg-12 col-md-12 col-sm-12 product">
+                                                    
+                                                    <div class="product-image">
+                                                        <img src="img/products/sample6.jpg" alt="Product1">
+                                                        <a href="products_page_v1.html" class="product-hover">
+														<i class="icons icon-eye-1"></i> Quick View
+													</a>
+                                                    </div>
+                                                    
+                                                    <div class="product-info">
+                                                        <h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
+                                                        <span class="price">$281.00</span>
+                                                        <div class="rating readonly-rating" data-score="4"></div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <!-- /Carousel Item -->
+                                                
+                                            </div>
+                                        </li>
+                                        <!-- /Slide -->
+    
+                                        <!-- Slide -->
+                                        <li>
+                                            <div class="row">
+                                             	
+                                                <!-- Carousel Item -->
+                                                <div class="col-lg-12 col-md-12 col-sm-12 product">
+                                                    
+                                                    <div class="product-image">
+                                                        <img src="img/products/sample7.jpg" alt="Product1">
+                                                        <a href="products_page_v1.html" class="product-hover">
+														<i class="icons icon-eye-1"></i> Quick View
+													</a>
+                                                    </div>
+                                                    
+                                                    <div class="product-info">
+                                                        <h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
+                                                        <span class="price">$281.00</span>
+                                                        <div class="rating readonly-rating" data-score="4"></div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <!-- /Carousel Item -->   
+                                                
+                                            </div>
+                                        </li>
+                                        <!-- /Slide -->
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /Carousel -->
+							
+						</div>
+						
+					</div>
+					<!-- /Specials -->
+					
                     
 				</aside>
                 <!-- /Sidebar -->
@@ -1016,8 +1023,6 @@
 				
 			</section>
 			<!-- /Banner -->
-			
-			
 
 			
 			<!-- Footer -->
