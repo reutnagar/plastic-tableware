@@ -1,12 +1,17 @@
 var express = require('express');
-//var router = express.Router();
+var router = express.Router();
 //var config=require('../configFile.json');
 
 var mongoose = require ('mongoose');
 //var db=mongoose.createConnection(config.connectionString);
+router.post('/signIn',signIn);
+router.post('/signOut',signOut);
+router.post('/getSessionInfo',getSessionInfo);
+// router.post('/signUp',signUp);
 
 var userSchema = require('../models/user');
-var User = db.model('User',userSchema);
+module.exports = router;
+//var User = db.model('User',userSchema);
 
 // functions for each different server calls.
 

@@ -1,9 +1,12 @@
-app.controller('signInController', function ($scope, $routeParams, $http) {
+
+app.controller('signInController', function ($scope, $http) {
+    
      $scope.session = {};
-
+alert("hello");
     $scope.signing = function (user) {
+        alert("hello");
         console.log('in sign in');
-
+        alert('in sign in');
         if ($scope.inForm.$valid) {
 
             console.log('after validation');

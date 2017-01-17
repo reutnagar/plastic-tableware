@@ -16,5 +16,20 @@
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
-  }
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reutnagar/plastic-tableware.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reutnagar/plastic-tableware/issues"
+  },
+  "homepage": "https://github.com/reutnagar/plastic-tableware#readme"
 }

@@ -1,31 +1,27 @@
-//var express = require('express');
+var express = require('express');
 var qs = require('querystring');
-//var router = express.Router();
-/*
+var router = express.Router();
 router.get('/showAllItems', showAllItems);
 router.post('/addItem', addItem);
 router.post('/deleteItem', deleteItem);
 router.post('/countItem', countItem);
 router.post('/changeItem', changeItem);
-*/
 
 var Item = require('../models/Item');
 var path = require('path');
 var counter = 0;
-
+/*
 module.exports = {
   showAllItems: showAllItems,
   addItem: addItem,
-  countItem: countItem,
   checkQuantity: checkQuantity,
-  deleteAllItems: deleteAllItems,
   deleteItem: deleteItem,
-  changeItem: changeItem,
-  deleteAllItems: deleteAllItems
-
+  deleteAllItems: deleteAllItems,
+  a: a
 }
 
-//module.exports = router;
+}*/
+module.exports = router;
 
 function showAllItems(req,res) {    
 	Item.find({}, (err, stock) => {

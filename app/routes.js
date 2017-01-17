@@ -1,9 +1,18 @@
 const express      = require('express'),
   router           = express.Router(),
   mainController   = require('./controllers/main.controller'),
+
+   userController = require('./controllers/user.controller'),
+
   categoryController = require('./controllers/category.controller'),
-  itemsController = require('./controllers/item.controller');
-  categoriesController = require('./controllers/category.controller');
+
+
+  // itemsController = require('./controllers/item.controller'),
+  // categoriesController = require('./controllers/category.controller');
+
+  itemsController = require('./controllers/item.controller'),
+  paymentController = require('./controllers/payment.controller');
+
  
   
 var path = require('path');
@@ -20,10 +29,14 @@ router.post('/admin/deleteItem', itemsController.deleteItem);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
 
+// router.post('/signIn',userController.signIn);
+// router.post('/signOut',userController.signOut);
+// router.post('/getSessionInfo',userController.getSessionInfo);
+
 
 router.get('/showAllCategories', categoryController.showAllCategories);
 router.post('/showAllSubCategories', categoryController.showAllSubCategories);
-
+router.post('/processPayment', paymentController.processPayment);
 // export router
 module.exports = router;
 
@@ -45,9 +58,7 @@ router.get('/addItem', itemsController.addItem);
 router.get('/checkQuantity', itemsController.checkQuantity);
 router.get('/deleteItem', itemsController.deleteItem);
 router.get('/deleteAllItem', itemsController.deleteAllItem);
-router.post('/signIn',userController.signIn);------------------
-router.post('/signOut',userController.signOut);--------------
-router.post('/getSessionInfo',userController.getSessionInfo);--------------
+
 router.use('/userManage',require('./Controllers/userServerController'));----------
 
 
