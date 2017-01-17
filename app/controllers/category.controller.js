@@ -9,7 +9,8 @@ module.exports = {
 
 function showAllCategories(req,res) {    
     console.log("in the showAllCategories");
-	Item.find({},{ category:1, _id: 0 }).exec(function(err, category){
+	//Item.find({},{ category:1, _id: 0 }).exec(function(err, category){
+		Item.find({}).distinct('category').exec(function(err, category){
         if (err) {
             res.status(404);
             res.send('categories not found!');
@@ -40,7 +41,8 @@ function showAllSubCategories(req,res) {
             }
         });   
         req.on('end', function () {
-		Item.find({category: body },{ subCategory:1, _id: 0 }).exec(function(err, subCategory){
+		Item.find({category: body}).distinct('subCategory').exec(function(err, subCategory) {
+		//Item.find({category: body },{ subCategory:1, _id: 0 }).exec(function(err, subCategory){
         if (err) {
             res.status(404);
             res.send('subCategories not found!');
