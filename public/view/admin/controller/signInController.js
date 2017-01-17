@@ -1,6 +1,6 @@
 
 app.controller('signInController', function ($scope, $http) {
-    
+    console.log("signInController");
      $scope.session = {};
 alert("hello");
     $scope.signing = function (user) {
