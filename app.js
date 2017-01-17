@@ -25,9 +25,6 @@ app.use(bodyParser.json());
 //=========================================================
 
 
-app.use('/itemCtrlServer',require('./app/controllers/item.controller'));
-app.use('/userManage',require('./app/controllers/user.controller'));
-
 app.use(require('./app/routes.js'));
 
 

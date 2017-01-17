@@ -29,6 +29,9 @@ router.post('/admin/deleteItem', itemsController.deleteItem);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
 
+router.post('/admin/signIn',userController.signIn);
+router.post('/admin/signOut',userController.signOut);
+router.post('/admin/getSessionInfo',userController.getSessionInfo);
 // router.post('/signIn',userController.signIn);
 // router.post('/signOut',userController.signOut);
 // router.post('/getSessionInfo',userController.getSessionInfo);

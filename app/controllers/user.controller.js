@@ -1,16 +1,12 @@
-var express = require('express');
-var router = express.Router();
-//var config=require('../configFile.json');
 
-var mongoose = require ('mongoose');
-//var db=mongoose.createConnection(config.connectionString);
-router.post('/signIn',signIn);
-router.post('/signOut',signOut);
-router.post('/getSessionInfo',getSessionInfo);
-// router.post('/signUp',signUp);
 
 var userSchema = require('../models/user');
-module.exports = router;
+module.exports = {
+    signIn: signIn,
+    signOut: signOut,
+    getSessionInfo: getSessionInfo
+    
+}
 //var User = db.model('User',userSchema);
 
 // functions for each different server calls.
@@ -96,4 +92,3 @@ function getSessionInfo(req, res) {         //check if user is logged in or not?
 }
 
 
-//module.exports = router;

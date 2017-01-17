@@ -12,7 +12,7 @@ alert("hello");
             console.log('after validation');
             $scope.user = angular.copy(user);
 
-            $http.post('/userManage/signIn', $scope.user)
+            $http.post('/admin/signIn', $scope.user)
                 .success(function (response) {
 
                     $scope.result = response;
