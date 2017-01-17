@@ -9,7 +9,7 @@ module.exports = {
 
 function showAllCategories(req,res) {    
     console.log("in the showAllCategories");
-	Item.find({}).select('category').exec(function(err, category){
+	Item.find({},{ category:1, _id: 0 }).exec(function(err, category){
         if (err) {
             res.status(404);
             res.send('categories not found!');
@@ -22,6 +22,10 @@ function showAllCategories(req,res) {
   });
   
 }
+	
+	/*var a = _.map(res, function (element) {
+		return element.category;
+*/
 
 function showAllSubCategories(req,res) { 
 
@@ -37,7 +41,7 @@ function showAllSubCategories(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body);    
-		Item.find({category: POST.category }).select('subCategory').exec(function(err, subCategory){
+		Item.find({category: POST.category },{ subCategory:1, _id: 0 }).exec(function(err, subCategory){
         if (err) {
             res.status(404);
             res.send('subCategories not found!');

@@ -4,6 +4,7 @@ app.controller('categoryCtrl',function($scope, $http) {
   $scope.master = {}; 
 	$scope.subCategories={};
     $scope.categories={};
+
 	$scope.showAllCategories=function(){
         console.log("in the showAllCategories function");
     $http.get('showAllCategories')
