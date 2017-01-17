@@ -41,7 +41,7 @@ function showAllSubCategories(req,res) {
             }
         });   
         req.on('end', function () {
-		Item.find({category: body}).distinct('subCategory').exec(function(err, subCategory) {
+		Item.find().distinct('subCategory').exec(function(err, subCategory) {
 		//Item.find({category: body },{ subCategory:1, _id: 0 }).exec(function(err, subCategory){
         if (err) {
             res.status(404);
