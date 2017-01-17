@@ -2,11 +2,11 @@
 app.controller('signInController', function ($scope, $http) {
     console.log("signInController");
      $scope.session = {};
-alert("hello");
+
     $scope.signing = function (user) {
-        alert("hello");
+       
         console.log('in sign in');
-        alert('in sign in');
+        
         if ($scope.inForm.$valid) {
 
             console.log('after validation');
@@ -14,7 +14,7 @@ alert("hello");
 
             $http.post('/admin/signIn', $scope.user)
                 .success(function (response) {
-
+                    
                     $scope.result = response;
                     if (response.in == true) {
 
