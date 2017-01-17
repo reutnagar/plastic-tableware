@@ -40,14 +40,14 @@ function showAllSubCategories(req,res) {
             }
         });   
         req.on('end', function () {
-        var POST = qs.parse(body);    
-		Item.find({category: POST.category },{ subCategory:1, _id: 0 }).exec(function(err, subCategory){
+		Item.find({category: body },{ subCategory:1, _id: 0 }).exec(function(err, subCategory){
         if (err) {
             res.status(404);
             res.send('subCategories not found!');
         }
         else{
-            res.send(subCategory);
+            console.log("subCategory",subCategory);
+            res.json(subCategory);
         }      
         console.log("in showAllSubCategories");
 		console.log(subCategory);

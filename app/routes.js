@@ -38,7 +38,7 @@ router.post('/admin/getSessionInfo',userController.getSessionInfo);
 
 
 router.get('/showAllCategories', categoryController.showAllCategories);
-router.post('/showAllSubCategories', categoryController.showAllSubCategories);
+router.post('/showAllSubCategory', categoryController.showAllSubCategories);
 router.post('/processPayment', paymentController.processPayment);
 // export router
 module.exports = router;
