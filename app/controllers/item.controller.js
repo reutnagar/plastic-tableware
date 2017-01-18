@@ -9,8 +9,9 @@ module.exports = {
   checkQuantity: checkQuantity,
   deleteItem: deleteItem,
   deleteAllItems: deleteAllItems,
-    changeItem: changeItem,
-    getProductDetails:getProductDetails
+  changeItem: changeItem,
+  getProductDetails:getProductDetails,
+  getProductsOfSubCategory:getProductsOfSubCategory
 }
 
 
@@ -173,7 +174,33 @@ function getProductDetails(req,res) {
 		});
 }
 	
+function getProductsOfSubCategory (req,res) {
+	console.log("in getProductsOfSubCategory");
+	var body = '';
+        req.on('data', function (data) {
+            body += data;
+			console.log('body',body)
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });  
+		req.on('end', function () {
+			console.log('body',body);	
+			Item.find({subCategory:body}, (err, items) => {
+				if (err) {
+					res.status(404);
+					res.send('items not found!');
+				}
+				else{
+					res.json(items);
+				}      
+				console.log(items);
+			});
+		});
 	
+}	
 
 
 
