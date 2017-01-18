@@ -6,7 +6,6 @@ const express      = require('express'),
 
   categoryController = require('./controllers/category.controller'),
 
-
   // itemsController = require('./controllers/item.controller'),
   // categoriesController = require('./controllers/category.controller');
 
@@ -40,6 +39,7 @@ router.post('/admin/getSessionInfo',userController.getSessionInfo);
 router.get('/showAllCategories', categoryController.showAllCategories);
 router.post('/showAllSubCategory', categoryController.showAllSubCategories);
 router.post('/processPayment', paymentController.processPayment);
+router.post('/getProductDetails', itemsController.getProductDetails);
 // export router
 module.exports = router;
 

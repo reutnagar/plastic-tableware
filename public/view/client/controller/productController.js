@@ -4,7 +4,7 @@ app.controller('productCtrl',function($scope, $http) {
 	//$scope.master = {};
 	$scope.oneItem = {};
 	
-	$scope.showItem=function(id){
+	$scope.getProductDetails=function(id){
         console.log("showItem function");
             console.log("id",id);
 			var data = id;

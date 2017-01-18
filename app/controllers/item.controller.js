@@ -9,7 +9,8 @@ module.exports = {
   checkQuantity: checkQuantity,
   deleteItem: deleteItem,
   deleteAllItems: deleteAllItems,
-    changeItem: changeItem
+    changeItem: changeItem,
+    getProductDetails:getProductDetails
 }
 
 
@@ -144,8 +145,8 @@ function changeItem(req,res) {
 	});
 }
 
-function showItem(req,res) {
-	console.log("in showItem");
+function getProductDetails(req,res) {
+	console.log("in getProductDetails");
 	console.log("get post request in server side");  
     var body = '';
         req.on('data', function (data) {

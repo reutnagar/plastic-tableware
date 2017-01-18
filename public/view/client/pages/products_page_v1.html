@@ -7,7 +7,7 @@
                 
                 
 				<!-- Main Content -->
-				<section class="main-content col-lg-9 col-md-9 col-sm-9" data-ng-init="showItem(1)">
+				<section class="main-content col-lg-9 col-md-9 col-sm-9" data-ng-init="getProductDetails(1)">
 					
 					
                     <div id="product-single" ng-controller="productCtrl">
@@ -83,7 +83,7 @@
 										</tr>
 										<tr>
 											<td>זמינות</td>
-											<td><span class="green">במלאי</span>ן{{ product.quantity }}</td>
+											<td><span class="green"> במלאי </span>{{ product.quantity }}</td>
 										</tr>
 										<tr>
 											<td>קוד מוצר</td>
