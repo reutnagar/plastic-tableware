@@ -5,6 +5,7 @@ app.controller('productCtrl',function($scope, $http) {
 	$scope.oneItem = {};
 	
 	$scope.showItem=function(id){
+        console.log("showItem function");
             console.log("id",id);
 			var data = id;
             var config = {
