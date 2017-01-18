@@ -440,7 +440,7 @@
 				<section class="main-content col-lg-9 col-md-9 col-sm-9">
 					
 					
-                    <div id="product-single">
+                    <div id="product-single" ng-controller="productCtrl">
 					
 						<!-- Product -->
 						<div class="product-single">
@@ -453,8 +453,8 @@
 									<div id="product-slider">
 										<ul class="slides">
 											<li>
-												<img class="cloud-zoom" src="img/products/single1.jpg" data-large="img/products/sample1.jpg" alt="" />
-												<a class="fullscreen-button" href="img/products/single1.jpg">
+												<img class="cloud-zoom" src="img/products/{{  product.img }}" data-large="img/products/sample1.jpg" alt="" />
+												<a class="fullscreen-button" href="img/products/{{  product.img }}">
 													<div class="product-fullscreen">
 														<i class="icons icon-resize-full-1"></i>
 													</div>
@@ -462,8 +462,9 @@
 											</li>
 										</ul>
 									</div>
+
 									<div id="product-carousel">
-										<ul class="slides">
+										<!--<ul class="slides">
 											<li>
 												<a class="fancybox" rel="product-images" href="img/products/single1.jpg"></a>
 												<img src="img/products/single1.jpg" data-large="img/products/single1.jpg" alt=""/>
@@ -484,7 +485,7 @@
 												<a class="fancybox" rel="product-images" href="img/products/single5.jpg"></a>
 												<img src="img/products/single5.jpg" data-large="img/products/single5.jpg" alt="" />
 											</li>
-										</ul>
+										</ul>-->
 										<div class="product-arrows">
 											<div class="left-arrow">
 												<i class="icons icon-left-dir"></i>
@@ -500,54 +501,46 @@
 								
 								<div class="col-lg-7 col-md-7 col-sm-7 product-single-info">
 									
-									<h2>Lorem ipsum dolor sit amet</h2>
+									<h2>{{ product.name }}</h2>
 									<div class="rating-box">
 										<div class="rating readonly-rating" data-score="4"></div>
 										<span>3 Review(s)</span>
 									</div>
 									<table>
 										<tr>
-											<td>Manufacturer</td>
-											<td><a href="#">Manufacturer 1</a></td>
+											<td>קטגוריה</td>
+											<td><a href="#">{{ product.category }}</a></td>
 										</tr>
 										<tr>
-											<td>Availability</td>
-											<td><span class="green">in stock</span> 20 items</td>
+											<td>זמינות</td>
+											<td><span class="green">במלאי</span>ן{{ product.quantity }}</td>
 										</tr>
 										<tr>
-											<td>Product code</td>
-											<td>PBS173</td>
+											<td>קוד מוצר</td>
+											<td>{{ product.id }}</td>
 										</tr>
 									</table>
 									
-									<strong>Product Dimensions</strong>
+									<strong>תאור מוצר</strong>
 									<table>
 										<tr>
-											<td>Product Width</td>
-											<td>10.00000M</td>
-										</tr>
-										<tr>
-											<td>Product Length</td>
-											<td>10.00000M</td>
+											<td>{{ product.description }}</td>
 										</tr>
 									</table>
 									
-									<span class="price"><del>$381.00</del> $281.00</span>
+									<span class="price"><del>{{ product.price +20 }}</del>{{ product.price }}</span>
 									
 									<table class="product-actions-single">
 										<tr>
-											<td>Color:</td>
+											<td>צבעים:</td>
 											<td>
-												<select class="chosen-select">
-													<option>Red +$25.00</option>
-													<option>Red +$25.00</option>
-													<option>Red +$25.00</option>
-													<option>Red +$25.00</option>
+												<select class="chosen-select" data-ng-repeat="color in colors">
+													<option>{{ item.color }}</option>
 												</select>
 											</td>
 										</tr>
 										<tr>
-											<td>Quantity:</td>
+											<td>כמות:</td>
 											<td>
 												<div class="numeric-input">
 													<input type="text" value="1">
@@ -558,7 +551,7 @@
 													<span class="add-to-cart">
 														<span class="action-wrapper">
 															<i class="icons icon-basket-2"></i>
-															<span class="action-name">Add to cart</span>
+															<span class="action-name">הוסף לעגלה</span>
 														</span >
 													</span>
 												</a>
@@ -587,753 +580,13 @@
 										</span>
 									</div>
 									
-									<div class="social-share">
-											<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" style="border:none; overflow:hidden; height:21px; width:100px;"></iframe>
-											
-											<iframe 
-			src="https://platform.twitter.com/widgets/tweet_button.html"
-			style="width:100px; height:20px;"></iframe>
-			
-											<!-- Place this tag where you want the +1 button to render. -->
-											<div class="g-plusone" data-size="medium"></div>
-											
-											<!-- Place this tag after the last +1 button tag. -->
-											<script type="text/javascript">
-											  (function() {
-												var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-												po.src = 'https://apis.google.com/js/platform.js';
-												var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-											  })();
-											</script>
-											
-											
-											<a href="//www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=http%3A%2F%2Ftest.ratkosolar.com%2Fhomeshop%2F15-blog_post.html&description=Next%20stop%3A%20Pinterest" data-pin-do="buttonPin" data-pin-config="beside" class="pinterest"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
-											<!-- Please call pinit.js only once per page -->
-											<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
-											
-										</div>
-									
 								</div>
 								
 							</div>
 							
 						</div>
 						<!-- /Product -->
-						
-						
-						<!-- Product Tabs -->
-						<div class="row">
-							
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								
-								<div class="tabs">
-								
-									<div class="tab-heading">
-										<a href="#tab1" class="button big">Description</a>
-										<a href="#tab2" class="button big">Reviews</a>
-										<a href="#tab3" class="button big">Comments</a>
-									</div>
-									
-									<div class="page-content tab-content">
-										
-										<div id="tab1">
-											<p>Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque. Vivamus eget nibh. Etiam cursus leo vel metus. Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sollicitudin velit sed leo. </p>
-											
-											<p><strong>Specifications:</strong></p>
-											<ul>
-												<li><i class="icons icon-right-dir"></i> Speaker type: Hi-Definition MicroSpeaker</li>
-												<li><i class="icons icon-right-dir"></i> Frequency range: 25Hz-18.5kHz</li>
-												<li><i class="icons icon-right-dir"></i> Impedance (1kHz): 26 Ohms</li>
-												<li><i class="icons icon-right-dir"></i> Sensitivity (1mW): 114 dB SPL/mW</li>
-												<li><i class="icons icon-right-dir"></i> Cable length (with extension): 18.0 in./45.0 cm (54.0 in./137.1 cm)</li>
-											</ul>
-											
-											<p>Ut pharetra augue nec augue. Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. <br><br>
-	Ut pharetra augue nec augue. Nam elit agna,endrerit sit amet, tincidunt ac, viverra sed, nulla. Donec porta diam eu massa. Quisque diam lorem, interdum vitae,dapibus ac, scelerisque vitae, pede. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus. </p>
-											<p class="tags home-green"><strong>Tags:</strong> <a href="#" class="tag-item">digital camera</a>
-											<a href="#" class="tag-item">lorem</a>
-											<a href="#" class="tag-item">gps</a></p>
-										</div>
-										
-										<div id="tab2">
-											
-											<div class="row">
-												
-												<div class="col-lg-6 col-md-6 col-sm-6">
-													<div class="category-results">
-														<p>Results 1-6 of 6</p>
-													</div>
-												</div>
-												
-												<div class="col-lg-6 col-md-6 col-sm-6">
-													<div class="pagination">
-														<a href="#"><div class="previous"><i class="icons icon-left-dir"></i></div></a>
-														<a href="#"><div class="page-button">1</div></a>
-														<a href="#"><div class="page-button">2</div></a>
-														<a href="#"><div class="page-button">3</div></a>
-														<a href="#"><div class="next"><i class="icons icon-right-dir"></i></div></a>
-													</div>
-												</div>
-											
-											</div>
-											
-											<ul class="comments">
-												<li>
-													<p><strong><a href="#">Anna Doe</a></strong></p>
-													<span class="date">2013-10-09 09:23</span>
-													<i class="icons green icon-thumbs-up-alt"></i>
-													<i class="icons sum no-pointer green-sum">1</i>
-													<i class="icons red icon-thumbs-down-alt"></i>
-													<i class="icons icon-reply"></i>
-													<div class="rating-box">
-														<div class="rating readonly-rating" data-score="4"></div>
-													</div>
-													<br>
-													<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-													
-												</li>
-												<li>
-													<p><strong><a href="#">Anna Doe</a></strong></p>
-													<span class="date">2013-10-09 09:23</span>
-													<i class="icons green icon-thumbs-up-alt"></i>
-													<i class="icons sum no-pointer">0</i>
-													<i class="icons red icon-thumbs-down-alt"></i>
-													<i class="icons icon-reply"></i>
-													<div class="rating-box">
-														<div class="rating readonly-rating" data-score="4"></div>
-													</div>
-													<br>
-													<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-													
-													<ul>
-														<li>
-															<p><strong><a href="#">Anna Doe</a></strong></p>
-															<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<p><strong><a href="#">Anna Doe</a></strong></p>
-													<span class="date">2013-10-09 09:23</span>
-													<i class="icons green icon-thumbs-up-alt"></i>
-													<i class="icons sum no-pointer red-sum">-2</i>
-													<i class="icons red icon-thumbs-down-alt"></i>
-													<i class="icons icon-reply"></i>
-													<div class="rating-box">
-														<div class="rating readonly-rating" data-score="4"></div>
-													</div>
-													<br>
-													<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-													
-												</li>
-											</ul>
-											
-											<h3>WRITE A REVIEW</h3>
-											<p>Now please write a (short) review....(min. 200, max. 2000 characters)</p>
-											<textarea id="review-textarea"></textarea>
-											<p>First: Rate the product. Please select a rating between 0 (poorest) and 5 stars (best)</p>
-											<div class="rating-box">
-												Rating: 
-												<div class="rating rate" data-score="3"></div>
-											</div>
-											<div class="char-counter">
-												<label>Characters written</label>
-												<input data-target="#review-textarea" type="text">
-											</div>
-											<br>
-											<input type="submit" class="dark-blue big" value="Submit a review">
-											
-											
-										</div>
-										
-										<div id="tab3">
-											<ul class="comments">
-												<li>
-													<p><strong><a href="#">Anna Doe</a></strong></p>
-													<span class="date">2013-10-09 09:23</span>
-													<i class="icons icon-reply"></i>
-													<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-													
-												</li>
-												<li>
-													<p><strong><a href="#">Anna Doe</a></strong></p>
-													<span class="date">2013-10-09 09:23</span>
-													<i class="icons icon-reply"></i>
-													<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-													
-													<ul>
-														<li>
-															<p><strong><a href="#">Anna Doe</a></strong></p>
-															<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<p><strong><a href="#">Anna Doe</a></strong></p>
-													<span class="date">2013-10-09 09:23</span>
-													<i class="icons icon-reply"></i>
-													<p>Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Integer rutrum ante eu lacus.Vestibulum libero nisl, porta vel, scelerisque eget, malesuada at, neque.</p>
-												</li>
-											</ul>
-											<a href="#" class="button home-green"><i class="icons icon-spinner"></i> Refresh comments list</a>
-											<a href="#" class="button orange"><i class="icons icon-rss"></i> RSS feed for comments to this post</a>
-											<br/><br/>
-											<div class="row">
-												
-												<div class="col-lg-6 col-md-6 col-sm-8">
-													<h3>ADD A COMMENT</h3>
-													<label>Name (required)</label>
-													<input type="text">
-													<br><br>
-													<label>E-mail (required, but will not display)</label>
-													<input type="text">
-													<br><br>
-													<label>Website (required)</label>
-													<input type="text">
-													<br><br>
-													<label>Comment (required)</label>
-													<textarea></textarea>
-													<br><br>
-													<input id="comments-checkbox" type="checkbox"><label for="comments-checkbox">Notify me of follow-up comments</label>
-													<br><br>
-													<img src="img/captcha.jpg" alt="">
-													<br><br>
-													<div class="row">
-														
-														<div class="col-lg-6 col-md-6 col-sm-6">
-															<label><a href="#">Refresh</a></label>
-															<input type="text">
-														</div>
-														
-													</div>
-													<br>
-													<input type="submit" value="Submit comment" class="dark-blue big">
-													
-												</div>
-												
-											</div>
-											
-										</div>
-										
-									</div>
-									
-								</div>
-								
-							</div>
-							
-						</div>
-						<!-- /Product Tabs -->
-					
-					</div>
-                    
-                    
-					<!-- New Collection -->
-					<div class="products-row row">
-						
-						<!-- Carousel Heading -->
-						<div class="col-lg-12 col-md-12 col-sm-12">
-							
-							<div class="carousel-heading">
-								<h4>Related Products</h4>
-								<div class="carousel-arrows">
-									<i class="icons icon-left-dir"></i>
-									<i class="icons icon-right-dir"></i>
-								</div>
-							</div>
-							
-						</div>
-						<!-- /Carousel Heading -->
-						
-						<!-- Carousel -->
-						<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
-							
-							<div class="owl-carousel" data-max-items="3">
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample1.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<span class="price">$281.00</span>
-												<div class="rating readonly-rating" data-score="4"></div>
-											</div>
-											
-											<div class="product-actions">
-												<span class="add-to-cart">
-													<span class="action-wrapper">
-														<i class="icons icon-basket-2"></i>
-														<span class="action-name">Add to cart</span>
-													</span >
-												</span>
-												<span class="add-to-favorites">
-													<span class="action-wrapper">
-														<i class="icons icon-heart-empty"></i>
-														<span class="action-name">Add to wishlist</span>
-													</span>
-												</span>
-												<span class="add-to-compare">
-													<span class="action-wrapper">
-														<i class="icons icon-docs"></i>
-														<span class="action-name">Add to Compare</span>
-													</span>
-												</span>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<span class="product-tag">Sale</span>
-												<img src="img/products/sample2.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<span class="price">$281.00</span>
-												<div class="rating readonly-rating" data-score="4"></div>
-											</div>
-											
-											<div class="product-actions">
-												<span class="add-to-cart">
-													<span class="action-wrapper">
-														<i class="icons icon-basket-2"></i>
-														<span class="action-name">Add to cart</span>
-													</span >
-												</span>
-												<span class="add-to-favorites">
-													<span class="action-wrapper">
-														<i class="icons icon-heart-empty"></i>
-														<span class="action-name">Add to wishlist</span>
-													</span>
-												</span>
-												<span class="add-to-compare">
-													<span class="action-wrapper">
-														<i class="icons icon-docs"></i>
-														<span class="action-name">Add to Compare</span>
-													</span>
-												</span>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample3.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<span class="price">$281.00</span>
-												<div class="rating readonly-rating" data-score="4"></div>
-											</div>
-											
-											<div class="product-actions">
-												<span class="add-to-cart">
-													<span class="action-wrapper">
-														<i class="icons icon-basket-2"></i>
-														<span class="action-name">Add to cart</span>
-													</span >
-												</span>
-												<span class="add-to-favorites">
-													<span class="action-wrapper">
-														<i class="icons icon-heart-empty"></i>
-														<span class="action-name">Add to wishlist</span>
-													</span>
-												</span>
-												<span class="add-to-compare">
-													<span class="action-wrapper">
-														<i class="icons icon-docs"></i>
-														<span class="action-name">Add to Compare</span>
-													</span>
-												</span>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample1.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<span class="price">$281.00</span>
-												<div class="rating readonly-rating" data-score="4"></div>
-											</div>
-											
-											<div class="product-actions">
-												<span class="add-to-cart">
-													<span class="action-wrapper">
-														<i class="icons icon-basket-2"></i>
-														<span class="action-name">Add to cart</span>
-													</span >
-												</span>
-												<span class="add-to-favorites">
-													<span class="action-wrapper">
-														<i class="icons icon-heart-empty"></i>
-														<span class="action-name">Add to wishlist</span>
-													</span>
-												</span>
-												<span class="add-to-compare">
-													<span class="action-wrapper">
-														<i class="icons icon-docs"></i>
-														<span class="action-name">Add to Compare</span>
-													</span>
-												</span>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample2.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<span class="price">$281.00</span>
-												<div class="rating readonly-rating" data-score="4"></div>
-											</div>
-											
-											<div class="product-actions">
-												<span class="add-to-cart">
-													<span class="action-wrapper">
-														<i class="icons icon-basket-2"></i>
-														<span class="action-name">Add to cart</span>
-													</span >
-												</span>
-												<span class="add-to-favorites">
-													<span class="action-wrapper">
-														<i class="icons icon-heart-empty"></i>
-														<span class="action-name">Add to wishlist</span>
-													</span>
-												</span>
-												<span class="add-to-compare">
-													<span class="action-wrapper">
-														<i class="icons icon-docs"></i>
-														<span class="action-name">Add to Compare</span>
-													</span>
-												</span>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample3.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<span class="price">$281.00</span>
-												<div class="rating readonly-rating" data-score="4"></div>
-											</div>
-											
-											<div class="product-actions">
-												<span class="add-to-cart">
-													<span class="action-wrapper">
-														<i class="icons icon-basket-2"></i>
-														<span class="action-name">Add to cart</span>
-													</span >
-												</span>
-												<span class="add-to-favorites">
-													<span class="action-wrapper">
-														<i class="icons icon-heart-empty"></i>
-														<span class="action-name">Add to wishlist</span>
-													</span>
-												</span>
-												<span class="add-to-compare">
-													<span class="action-wrapper">
-														<i class="icons icon-docs"></i>
-														<span class="action-name">Add to Compare</span>
-													</span>
-												</span>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-							</div>
-						</div>
-						<!-- /Carousel -->
-						
-					</div>
-					<!-- /New Collection -->
-					
 
-
-
-					
-					<!-- Recently Viewed Products -->
-					<div class="products-row row">
-						
-						<!-- Carousel Heading -->
-						<div class="col-lg-12 col-md-12 col-sm-12">
-							
-							<div class="carousel-heading">
-								<h4>Recently Viewed Products</h4>
-								<div class="carousel-arrows">
-									<i class="icons icon-left-dir"></i>
-									<i class="icons icon-right-dir"></i>
-								</div>
-							</div>
-							
-						</div>
-						<!-- /Carousel Heading -->
-						
-						
-						<!-- Carousel -->
-						<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
-							
-							<div class="owl-carousel" data-max-items="3">
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample4.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<p class="product-categories"><a href="#">Computers &amp; Tablets</a></p>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample5.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<p class="product-categories"><a href="#">Computers &amp; Tablets</a></p>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample6.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<p class="product-categories"><a href="#">Computers &amp; Tablets</a></p>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample7.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<p class="product-categories"><a href="#">Computers &amp; Tablets</a></p>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample8.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<p class="product-categories"><a href="#">Computers &amp; Tablets</a></p>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-									
-									
-									
-									<!-- Slide -->
-									<div>
-										<!-- Carousel Item -->
-										<div class="product">
-											
-											<div class="product-image">
-												<img src="img/products/sample9.jpg" alt="Product1">
-												<a href="products_page_v1.html" class="product-hover">
-													<i class="icons icon-eye-1"></i> Quick View
-												</a>
-											</div>
-											
-											<div class="product-info">
-												<h5><a href="products_page_v1.html">Lorem ipsum dolor sit amet</a></h5>
-												<p class="product-categories"><a href="#">Computers &amp; Tablets</a></p>
-											</div>
-											
-										</div>
-										<!-- /Carousel Item -->
-									</div>
-									<!-- /Slide -->
-									
-									
-							</div>
-						</div>
-						<!-- /Carousel -->
-						
-						
-					</div>
-					<!-- /Recently Viewed Products -->
-					
-					
-					
-					<!-- Product Buttons -->
-					<div class="row button-row">
-						
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<a class="button grey regular" href="#"><i class="icons icon-reply"></i> BACK TO: Computers &amp; Tablets</a>
-						</div>
-						
-						<div class="col-lg-7 col-md-7 col-sm-7 align-right">
-							<a class="button grey regular" href="#"><i class="icons icon-left-dir"></i> PREVIOUS PRODUCT</a>
-							<a class="button grey regular right-icon" href="#">NEXT PRODUCT <i class="icons icon-right-dir"></i></a>
-						</div>
-					
-					</div>
-					<!-- /Product Buttons -->
-					
-					
 				</section>
 				<!-- /Main Content -->
 				
@@ -1721,11 +974,11 @@
 							
 							
 							
-							<!-- Like us on Facebook -->
+							<!-- Like us on Facebook 
 							<div class="col-lg-3 col-md-3 col-sm-6 facebook-iframe">
 								<h4>Like us on Facebook</h4>
                                 <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FFacebookDevelopers&amp;width=270&amp;height=250&amp;colorscheme=light&amp;header=false&amp;show_faces=true&amp;stream=false&amp;show_border=false" style="border:none; overflow:hidden; width:260px; height:290px;"></iframe>
-							</div>
+							</div>-->
 							<!-- /Like us on Facebook -->
 							
 							
