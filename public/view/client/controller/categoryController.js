@@ -15,26 +15,24 @@ app.controller('categoryCtrl',function($scope, $http) {
                         console.log("Error: "+data);
 					});
 	}
-	
-
 
 	$scope.showAllSubCategory=function(category){
-            //console.log("category",category);
+            console.log("category",category);
+			var data = category;
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             }
-
-            $http.post('/showAllSubCategory', category, config)
-            .success(function (subCategory, status, headers, config) {
+            $http.post('/showAllSubCategory', data, config)
+            .success(function (data, status, headers, config) {
                 console.log("Succeed post showAllSubCategory");
-                $scope.subCategories=subCategory;
-                //console.log("category from ", subCategory);
+                $scope.subCategories=data;
+                console.log("category from ", data);
             })
-            .error(function (subCategory, status, header, config) {
-                console.log("Error: "+ subCategory);
-                $scope.ResponseDetails = "category: " + subCategory +
+            .error(function (data, status, header, config) {
+                console.log("Error: "+ data);
+                $scope.ResponseDetails = "category: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;

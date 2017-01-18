@@ -69,7 +69,6 @@ $scope.addItem=function(item){
 $scope.reset();
 };
 
-
 $scope.changeItem=function(item){
     console.log("in change item in the client side");
     for (var i = 0, length = $scope.items.length; i < length; i++) {

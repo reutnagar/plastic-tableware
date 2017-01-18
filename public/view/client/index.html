@@ -461,11 +461,11 @@
 							
 							<div class="sidebar-box-content" data-ng-repeat="category in categories" data-ng-model="categories">
 								<ul>
-									<li ng-mouseover="showAllSubCategory(category.category)"><a href="#category_page">{{ category }}<i class="icons icon-right-dir"></i></a>
+									<li ng-mouseover="showAllSubCategory(category)"><a href="#category_page">{{ category }}<i class="icons icon-right-dir"></i></a>
                                     	<ul class="sidebar-dropdown">
                                         	<li>
                                             	<ul>
-                                                	<li ng-repeat="subCategories in subCategories" ng-modal="subCategories"><a href="#category_page">{{ subCategories }}</a></li>
+                                                	<li data-ng-repeat="subCategories in subCategories" data-ng-modal="subCategories"><a href="#category_page">{{ subCategories }}</a></li>
                                                 </ul>
                                             </li>
                                         </ul>

@@ -34,14 +34,18 @@ function showAllSubCategories(req,res) {
     var body = '';
         req.on('data', function (data) {
             body += data;
+			console.log('body',body)
             // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
             if (body.length > 1e6) { 
                 // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
                 req.connection.destroy();
             }
+		console.log('data',data);	
         });   
         req.on('end', function () {
-		Item.find().distinct('subCategory').exec(function(err, subCategory) {
+		console.log('body',body);	
+		Item.find({category: body}).distinct('subCategory').exec(function(err, subCategory) {
+		//Item.find({category: "ruty"}).distinct('subCategory').exec(function(err, subCategory) {	
 		//Item.find({category: body },{ subCategory:1, _id: 0 }).exec(function(err, subCategory){
         if (err) {
             res.status(404);
