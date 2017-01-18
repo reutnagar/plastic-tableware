@@ -17,7 +17,7 @@ app.controller('productCtrl',function($scope, $http) {
             .success(function (data, status, headers, config) {
                 console.log("Succeed post showItem");
 				//$scope.PostDataResponse = data;
-                $scope.product=data;
+                $scope.product=data[0];
                 console.log("item", data);
             })
             .error(function (data, status, header, config) {

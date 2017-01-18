@@ -10,8 +10,8 @@
 				<section class="main-content col-lg-9 col-md-9 col-sm-9" >
 					
 					
-                    <div id="product-single" ng-controller="productCtrl" data-ng-init="getProductDetails(1)">
-					
+                    <div id="product-single" ng-controller="productCtrl" data-ng-init="getProductDetails(1)" data-ng-model="product">
+					{{ product.name}}
 						<!-- Product -->
 						<div class="product-single">
 							
