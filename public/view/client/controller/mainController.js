@@ -11,5 +11,6 @@ app.controller('mainController',function($scope, $http) {
         items: [],
     };
     
-    
+    $scope.products = ["product1","product1","product3","product3","product4","product4","product4","product4","product4","product4"];
+
 });

@@ -19,11 +19,14 @@ var app = angular.module("clientApp", ["ngRoute"]);
                   .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html'
                   })
-                  .when('/products_page', {
-                      templateUrl: 'pages/products_page_v1.html'
+                  .when('/singleProduct', {
+                      templateUrl: 'pages/singleProduct.html'
                   })
-                  .when('/category_page', {
-                      templateUrl: 'pages/category_v1.html'
+                  .when('/subCategory', {
+                      templateUrl: 'pages/subCategoryPage.html'
+                  })
+                  .when('/productPage', {
+                      templateUrl: 'pages/productPage.html'
                   })
                   .when('/payment', {
                       templateUrl: 'pages/payment.html'

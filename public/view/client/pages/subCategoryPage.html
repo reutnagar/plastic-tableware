@@ -1,0 +1,30 @@
+	
+					<!-- Featured Products -->needs to get the category from the 
+					<div class="products-row row" ng-controller="categoryCtrl" ng-init="showAllSubCategory("ruty")">	
+						
+						<!-- Carousel -->
+						<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12" >
+
+							<div  data-max-items="3" ng-repeat="category in categories ">
+										<!-- Carousel Item -->
+									<div class="product col-md-4"  >
+											
+											<div class="product-image">
+												<img src="img/products/sample1.jpg" alt="Product1">
+											</div>											
+											<div class="product-actions">
+												<span class="add-to-cart">
+													<span class="action-wrapper">{{ category }}
+														<span class="action-name"></span>
+													</span >
+												</span>
+											</div>
+											
+										</div>
+										<!-- /Carousel Item -->
+
+									<!-- /Slide -->
+									</div>
+								</div>
+							</div>
+						
