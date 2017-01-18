@@ -2,10 +2,10 @@ app.controller('productCtrl',function($scope, $http) {
 
 	console.log("this is the productCtrl!!!!!!!");
 	//$scope.master = {};
-	$scope.oneItem = {};
+	$scope.product = {};
 	
 	$scope.getProductDetails=function(id){
-        console.log("showItem function");
+        console.log("getProductDetails function");
             console.log("id",id);
 			var data = id;
             var config = {
@@ -13,7 +13,7 @@ app.controller('productCtrl',function($scope, $http) {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             }
-            $http.post('/showAllSubCategories', data, config)
+            $http.post('/getProductDetails', data, config)
             .success(function (data, status, headers, config) {
                 console.log("Succeed post showItem");
 				//$scope.PostDataResponse = data;
