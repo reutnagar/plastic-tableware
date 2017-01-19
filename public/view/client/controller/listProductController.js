@@ -1,6 +1,10 @@
 app.controller('listProductCtrl',function($scope, $http,$routeParams,$location) {
 	$scope.subCategory = $routeParams.subCategory;
     //console.log("routeParams subCategory", $scope.subCategory);
+    $scope.goToSingleProducts=function(id){
+    console.log("goToSubCtegory with subCategory variable", subCategory);
+       $location.path("/productPage/"+ subCategory);
+    } 
 	$scope.getProductsOfSubCategory=function(subCategory){
         //console.log("getProductsOfSubCategory function");
         console.log("subCategory",$scope.subCategory);
