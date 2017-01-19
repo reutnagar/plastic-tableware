@@ -19,8 +19,19 @@ module.exports = mongoose.model('Item',{
 	price: Number,
 	//quantity: Number,
 	//minQuantity: Number,
-	colors:   [Color]    
+	colors:   [Color] 
+	
 });
+
+/*Item.method('toClient', function() {
+    var obj = this.toObject();
+
+    //Rename fields
+    obj.id = obj._id;
+    delete obj._id;
+
+    return obj;
+});*/
 
 /*var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
