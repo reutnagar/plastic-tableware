@@ -31,6 +31,7 @@ $scope.addItem=function(item){
                 description : item.description,
 				price : item.price,
                 location : item.location,
+				//colors.name[0]: item.colors.name[0],
             });
         
             var config = {
@@ -68,6 +69,7 @@ $scope.addItem=function(item){
 /*angular.element(document.querySelector('#addModal')).modal('hide');*/
 $scope.reset();
 };
+
 
 $scope.changeItem=function(item){
     console.log("in change item in the client side");

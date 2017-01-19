@@ -43,7 +43,7 @@ function addItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body); 
-        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location, id: counter++ });
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location, id: counter++,"colors":{name:POST.name,quantity:POST.quantity}});
         newItem.save();           
         res.send(newItem);
         //showAllItems(req,res);
