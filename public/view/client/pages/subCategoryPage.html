@@ -1,11 +1,11 @@
-	
-					<!-- Featured Products -->needs to get the category from the 
-					<div class="products-row row" ng-controller="categoryCtrl" ng-init="showAllSubCategory("ruty")">	
+					<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+					<!-- Featured Products -->
+					<div class="products-row row"  ng-init="showAllSubCategory(category)">	
 						
 						<!-- Carousel -->
 						<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12" >
 
-							<div  data-max-items="3" ng-repeat="category in categories ">
+							<div  data-max-items="3" ng-repeat="subCategory in subCategories ">
 										<!-- Carousel Item -->
 									<div class="product col-md-4"  >
 											
@@ -14,7 +14,7 @@
 											</div>											
 											<div class="product-actions">
 												<span class="add-to-cart">
-													<span class="action-wrapper">{{ category }}
+													<span class="action-wrapper">{{ subCategory }}
 														<span class="action-name"></span>
 													</span >
 												</span>
@@ -27,4 +27,4 @@
 									</div>
 								</div>
 							</div>
-						
+						</section>

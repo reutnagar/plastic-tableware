@@ -1,6 +1,6 @@
-var app = angular.module("clientApp", ["ngRoute"]);
+var app = angular.module("clientApp", ['ngRoute']);
 //routing
-            app.config(function ($routeProvider) {
+            app.config(function ($routeProvider,$locationProvider) {
                 $routeProvider
                   .when('/', {
                         templateUrl: 'pages/homePage.html',
@@ -22,8 +22,9 @@ var app = angular.module("clientApp", ["ngRoute"]);
                   .when('/singleProduct', {
                       templateUrl: 'pages/singleProduct.html'
                   })
-                  .when('/subCategory', {
-                      templateUrl: 'pages/subCategoryPage.html'
+                  .when('/subCategory/:category?', {
+                      templateUrl: 'pages/subCategoryPage.html',
+                      controller:"categoryCtrl"
                   })
                   .when('/productPage', {
                       templateUrl: 'pages/productPage.html'

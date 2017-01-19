@@ -1,6 +1,7 @@
-app.controller('categoryCtrl',function($scope, $http) {
-	
-	
+app.controller('categoryCtrl',function($scope, $http,$routeParams) {
+	$scope.category = $routeParams.category;
+    console.log("routeParams", $scope.category);
+	console.log("category controller");
 	$scope.master = {}; 
 	$scope.subCategories={};
     $scope.categories={};

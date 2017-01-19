@@ -39,74 +39,6 @@
 											data-easing="Power4.easeOut"><a class="button big red" href="#">Buy Now</a>
 										</div>
 									</li>
-									<!-- SLIDE  -->
-									<li data-transition="zoomout" data-slotamount="7" data-masterspeed="1000" >
-										<!-- MAIN IMAGE -->
-										<img src="img/slide3.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
-										<!-- LAYERS -->
-										<div class="tp-caption skewfromrightshort fadeout"
-											data-x="40"
-											data-y="60"
-											data-speed="500"
-											data-start="1200"
-											data-easing="Power4.easeOut"><h2><strong>The New Studio<br>Original Headphones</strong></h2>
-										</div>
-										<div class="tp-caption skewfromrightshort fadeout"
-											data-x="40"
-											data-y="190"
-											data-speed="500"
-											data-start="1200"
-											data-easing="Power4.easeOut"><h3>Lorem ipsum dolor</h3>
-										</div>
-										<div class="tp-caption skewfromrightshort fadeout"
-											data-x="40"
-											data-y="300"
-											data-speed="500"
-											data-start="1200"
-											data-easing="Power4.easeOut"><span>Only <span class="price">$399.00</span></span>
-										</div>
-										<div class="tp-caption skewfromrightshort fadeout"
-											data-x="40"
-											data-y="347"
-											data-speed="500"
-											data-start="1200"
-											data-easing="Power4.easeOut"><a class="button big red" href="#">Shop Now</a>
-										</div>
-									</li>
-									<!-- SLIDE  -->
-									<li data-transition="zoomout" data-slotamount="7" data-masterspeed="1000" >
-										<!-- MAIN IMAGE -->
-										<img src="img/slide2.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
-										<!-- LAYERS -->
-										<div class="tp-caption skewfromrightshort fadeout"
-											data-x="40"
-											data-y="60"
-											data-speed="500"
-											data-start="1200"
-											data-easing="Power4.easeOut"><h2>The New <strong>Laptop</strong></h2>
-										</div>
-										<div class="tp-caption skewfromrightshort fadeout"
-											data-x="40"
-											data-y="140"
-											data-speed="500"
-											data-start="1200"
-											data-easing="Power4.easeOut"><h3>All the power in your hands!</h3>
-										</div>
-										<div class="tp-caption skewfromrightshort fadeout"
-											data-x="40"
-											data-y="250"
-											data-speed="500"
-											data-start="1200"
-											data-easing="Power4.easeOut"><span>From <span class="price">$990.00</span></span>
-										</div>
-										<div class="tp-caption skewfromrightshort fadeout"
-											data-x="40"
-											data-y="300"
-											data-speed="500"
-											data-start="1200"
-											data-easing="Power4.easeOut"><a class="button big red" href="#">Buy Now</a>
-										</div>
-									</li>
 								</ul>
 							</div>
 						</div>
@@ -115,14 +47,14 @@
 					
 					
 					<!-- Featured Products -->
-					<div class="products-row row" ng-controller="categoryCtrl" ng-init="showAllCategories()">	
+					<div class="products-row row" ng-controller="categoryCtrl" ng-init="showAllCategories()" >	
 						
 						<!-- Carousel -->
 						<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12" >
 
 							<div  data-max-items="3" ng-repeat="category in categories ">
 										<!-- Carousel Item -->
-									<div class="product col-md-4"  >
+									<div class="product col-md-4"  ng-click="goToSubCtegory(category)">
 											
 											<div class="product-image">
 												<img src="img/products/sample1.jpg" alt="Product1">
