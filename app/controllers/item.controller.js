@@ -14,7 +14,6 @@ module.exports = {
   getProductsOfSubCategory:getProductsOfSubCategory
 }
 
-
 function showAllItems(req,res) {    
 	Item.find({}, (err, stock) => {
         if (err) {
@@ -132,7 +131,8 @@ function changeItem(req,res) {
                 // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
                 req.connection.destroy();
             }
-        });   
+			
+        }); 	
         req.on('end', function () {
         var POST = qs.parse(body);
 		Item.findByIdAndUpdate(POST.id, {category : POST.category,subCategory :  POST.subCategory , description : POST.description,price: POST.price, location : POST.location, name : POST.name }, function(err, doc){
