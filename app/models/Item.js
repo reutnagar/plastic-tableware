@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
 var Color = new Schema({
   name:   String,
   image:  Buffer,

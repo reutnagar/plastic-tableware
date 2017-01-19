@@ -19,15 +19,17 @@ var app = angular.module("clientApp", ['ngRoute']);
                   .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html'
                   })
-                  .when('/singleProduct', {
-                      templateUrl: 'pages/singleProduct.html'
+                  .when('/singleProduct/:id?', {
+                      templateUrl: 'pages/singleProduct.html',
+                      controller:"productCtrl"
                   })
                   .when('/subCategory/:category?', {
                       templateUrl: 'pages/subCategoryPage.html',
-                      controller:"categoryCtrl"
+                      controller:"subCategoryCtrl"
                   })
-                  .when('/productPage', {
-                      templateUrl: 'pages/productPage.html'
+                  .when('/productPage/:subCategory?', {
+                      templateUrl: 'pages/productPage.html',
+                      controller:'listProductCtrl'
                   })
                   .when('/payment', {
                       templateUrl: 'pages/payment.html'
@@ -35,16 +37,5 @@ var app = angular.module("clientApp", ['ngRoute']);
                 .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html'
                   })
-                 /*  .otherwise({ redirectTo: 'pages/dashboard.html' }); */
+                .otherwise({ redirectTo: '/' });
             });
-
-app.controller('mainController',function($scope, $http) {
-	//$scope.formData = {};
-  console.log("in the main mainController in routing page");
-    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
-    options.async = true;
-});
-    });
-	
-
-//app.controller("mainController", ["$scope", "$routeParams", "$http", mainController]);//calling the login controller

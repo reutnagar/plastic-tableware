@@ -1,6 +1,6 @@
-app.controller('productCtrl',function($scope, $http) {
+app.controller('productCtrl',function($scope, $http,$routeParams) {
 
-	console.log("this is the productCtrl!!!!!!!");
+	console.log("$routeParams.id",$routeParams.id);
 	//$scope.master = {};
 	$scope.product = {};
 	$scope.products = {};
@@ -30,29 +30,5 @@ app.controller('productCtrl',function($scope, $http) {
             });
 	};
 	
-	$scope.getProductsOfSubCategory=function(subCategory){
-        console.log("getProductsOfSubCategory function");
-            console.log("subCategory",subCategory);
-			var data = subCategory;
-            var config = {
-                headers : {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            }
-            $http.post('/getProductsOfSubCategory', data, config)
-            .success(function (data, status, headers, config) {
-                console.log("Succeed post getProductsOfSubCategory");
-				//$scope.PostDataResponse = data;
-                $scope.products=data;
-                console.log("items", data);
-            })
-            .error(function (data, status, header, config) {
-                console.log("Error: "+ data);
-                $scope.ResponseDetails = "items: " + data +
-                    "<hr />status: " + status +
-                    "<hr />headers: " + header +
-                    "<hr />config: " + config;
-            });
-	};
-
+	
 });

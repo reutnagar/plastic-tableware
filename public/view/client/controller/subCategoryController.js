@@ -1,11 +1,14 @@
-app.controller('categoryCtrl',function($scope, $http,$routeParams) {
+app.controller('subCategoryCtrl',function($scope, $http,$routeParams,$location) {
 	$scope.category = $routeParams.category;
     console.log("routeParams", $scope.category);
 	console.log("category controller");
 	$scope.master = {}; 
 	$scope.subCategories={};
     $scope.categories={};
-	
+	$scope.goToListProducts=function(subCategory){
+    console.log("goToSubCtegory with subCategory variable", subCategory);
+       $location.path("/productPage/"+ subCategory);
+    } 
 	$scope.showAllCategories=function(){
         console.log("in the showAllCategories function");
     $http.get('showAllCategories')
