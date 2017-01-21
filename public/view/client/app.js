@@ -1,6 +1,6 @@
-var app = angular.module("clientApp", ["ngRoute"]);
+var app = angular.module("clientApp", ['ngRoute']);
 //routing
-            app.config(function ($routeProvider) {
+            app.config(function ($routeProvider,$locationProvider) {
                 $routeProvider
                   .when('/', {
                         templateUrl: 'pages/homePage.html',
@@ -19,11 +19,17 @@ var app = angular.module("clientApp", ["ngRoute"]);
                   .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html'
                   })
-                  .when('/products_page', {
-                      templateUrl: 'pages/products_page_v1.html'
+                  .when('/singleProduct/:id?', {
+                      templateUrl: 'pages/singleProduct.html',
+                      controller:"productCtrl"
                   })
-                  .when('/category_page', {
-                      templateUrl: 'pages/category_v1.html'
+                  .when('/subCategory/:category?', {
+                      templateUrl: 'pages/subCategoryPage.html',
+                      controller:"subCategoryCtrl"
+                  })
+                  .when('/productPage/:subCategory?', {
+                      templateUrl: 'pages/productPage.html',
+                      controller:'listProductCtrl'
                   })
                   .when('/payment', {
                       templateUrl: 'pages/payment.html'
@@ -31,16 +37,5 @@ var app = angular.module("clientApp", ["ngRoute"]);
                 .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html'
                   })
-                 /*  .otherwise({ redirectTo: 'pages/dashboard.html' }); */
+                .otherwise({ redirectTo: '/' });
             });
-
-app.controller('mainController',function($scope, $http) {
-	//$scope.formData = {};
-  console.log("in the main mainController in routing page");
-    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
-    options.async = true;
-});
-    });
-	
-
-//app.controller("mainController", ["$scope", "$routeParams", "$http", mainController]);//calling the login controller

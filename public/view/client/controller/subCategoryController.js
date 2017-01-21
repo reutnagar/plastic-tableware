@@ -1,9 +1,14 @@
-app.controller('categoryCtrl',function($scope, $http) {
-	
-	
-  $scope.master = {}; 
+app.controller('subCategoryCtrl',function($scope, $http,$routeParams,$location) {
+	$scope.category = $routeParams.category;
+    console.log("routeParams", $scope.category);
+	console.log("category controller");
+	$scope.master = {}; 
 	$scope.subCategories={};
     $scope.categories={};
+	$scope.goToListProducts=function(subCategory){
+    console.log("goToSubCtegory with subCategory variable", subCategory);
+       $location.path("/productPage/"+ subCategory);
+    } 
 	$scope.showAllCategories=function(){
         console.log("in the showAllCategories function");
     $http.get('showAllCategories')
@@ -15,30 +20,28 @@ app.controller('categoryCtrl',function($scope, $http) {
                         console.log("Error: "+data);
 					});
 	}
-	
-
 
 	$scope.showAllSubCategory=function(category){
-            //console.log("category",category);
+            console.log("category",category);
+			var data = category;
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             }
-
-            $http.post('/showAllSubCategory', category, config)
-            .success(function (subCategory, status, headers, config) {
+            $http.post('/showAllSubCategory', data, config)
+            .success(function (data, status, headers, config) {
                 console.log("Succeed post showAllSubCategory");
-                $scope.subCategories=subCategory;
-                //console.log("category from ", subCategory);
+                $scope.subCategories=data;
+                console.log("category from ", data);
             })
-            .error(function (subCategory, status, header, config) {
-                console.log("Error: "+ subCategory);
-                $scope.ResponseDetails = "category: " + subCategory +
+            .error(function (data, status, header, config) {
+                console.log("Error: "+ data);
+                $scope.ResponseDetails = "category: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
-};
+	};
 
 });

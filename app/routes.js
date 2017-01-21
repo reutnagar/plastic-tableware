@@ -1,17 +1,13 @@
 const express      = require('express'),
-  router           = express.Router(),
-  mainController   = require('./controllers/main.controller'),
+	router           = express.Router(),
+	mainController   = require('./controllers/main.controller'),
 
-   userController = require('./controllers/user.controller'),
+	userController = require('./controllers/user.controller'),
 
-  categoryController = require('./controllers/category.controller'),
+	categoryController = require('./controllers/category.controller'),
 
-
-  // itemsController = require('./controllers/item.controller'),
-  // categoriesController = require('./controllers/category.controller');
-
-  itemsController = require('./controllers/item.controller'),
-  paymentController = require('./controllers/payment.controller');
+	itemsController = require('./controllers/item.controller'),
+	paymentController = require('./controllers/payment.controller');
 
  
   
@@ -32,43 +28,12 @@ router.post('/admin/changeItem', itemsController.changeItem);
 router.post('/admin/signIn',userController.signIn);
 router.post('/admin/signOut',userController.signOut);
 router.post('/admin/getSessionInfo',userController.getSessionInfo);
-// router.post('/signIn',userController.signIn);
-// router.post('/signOut',userController.signOut);
-// router.post('/getSessionInfo',userController.getSessionInfo);
-
 
 router.get('/showAllCategories', categoryController.showAllCategories);
 router.post('/showAllSubCategory', categoryController.showAllSubCategories);
 router.post('/processPayment', paymentController.processPayment);
+router.post('/getProductDetails', itemsController.getProductDetails);
+router.post('/getProductsOfSubCategory',itemsController.getProductsOfSubCategory);
 // export router
 module.exports = router;
 
-// main routes
-/*
-router.get('/client', mainController.showHome);
-router.get('/admin', itemsController.showAllItems);
-router.get('/checkQuantity', itemsController.checkQuantity);
-router.get('/deleteItem', itemsController.deleteItem);
-router.get('/deleteAllItems', itemsController.deleteAllItems);
-router.get('/addItem', itemsController.addItem);
-router.get('/a', itemsController.a);
-
-*/
- /* // main routes
-router.get('/client', mainController.showHome);
-router.get('/admin', itemsController.showAllItems);
-router.get('/addItem', itemsController.addItem);
-router.get('/checkQuantity', itemsController.checkQuantity);
-router.get('/deleteItem', itemsController.deleteItem);
-router.get('/deleteAllItem', itemsController.deleteAllItem);
-
-router.use('/userManage',require('./Controllers/userServerController'));----------
-
-
-
-/*router.get('*', function(req,res){
-    res.sendFile(path.join(__dirname , '../public','view/admin/index.html'));
-});*/
-
-//router.get('/createItem',itemsController.createItem);
-//router.get('/getAllItems',itemsController.getAllItems);

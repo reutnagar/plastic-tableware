@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
 var Color = new Schema({
   name:   String,
   image:  Buffer,
@@ -16,10 +17,21 @@ module.exports = mongoose.model('Item',{
 	description: String,
 	location: String,
 	price: Number,
-	quantity: Number,
-	minQuantity: Number,
-	colors:   [Color]    
+	//quantity: Number,
+	//minQuantity: Number,
+	colors:   [Color] 
+	
 });
+
+/*Item.method('toClient', function() {
+    var obj = this.toObject();
+
+    //Rename fields
+    obj.id = obj._id;
+    delete obj._id;
+
+    return obj;
+});*/
 
 /*var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
