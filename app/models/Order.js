@@ -3,10 +3,11 @@ var Schema= mongoose.Schema;
 
 var orderedItem= new mongoose.Schema({
 	name: String,
-	quantity: Number
+	quantity: Number,
+	color:String
 });	
 
-module.exports = mongoose.model('order',{
+module.exports = mongoose.model('Order',{
     orderId : String,
     userName: String,
 	status: String,
