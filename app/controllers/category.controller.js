@@ -9,7 +9,8 @@ module.exports = {
 
 function showAllCategories(req,res) {    
     console.log("in the showAllCategories");
-	Item.find({}).select('category').exec(function(err, category){
+	//Item.find({},{ category:1, _id: 0 }).exec(function(err, category){
+		Item.find({}).distinct('category').exec(function(err, category){
         if (err) {
             res.status(404);
             res.send('categories not found!');
@@ -22,6 +23,10 @@ function showAllCategories(req,res) {
   });
   
 }
+	
+	/*var a = _.map(res, function (element) {
+		return element.category;
+*/
 
 function showAllSubCategories(req,res) { 
 
@@ -29,21 +34,26 @@ function showAllSubCategories(req,res) {
     var body = '';
         req.on('data', function (data) {
             body += data;
+			console.log('body',body)
             // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
             if (body.length > 1e6) { 
                 // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
                 req.connection.destroy();
             }
+		console.log('data',data);	
         });   
         req.on('end', function () {
-        var POST = qs.parse(body);    
-		Item.find({category: POST.category }).select('subCategory').exec(function(err, subCategory){
+		console.log('body',body);	
+		Item.find({category: body}).distinct('subCategory').exec(function(err, subCategory) {
+		//Item.find({category: "ruty"}).distinct('subCategory').exec(function(err, subCategory) {	
+		//Item.find({category: body },{ subCategory:1, _id: 0 }).exec(function(err, subCategory){
         if (err) {
             res.status(404);
             res.send('subCategories not found!');
         }
         else{
-            res.send(subCategory);
+            console.log("subCategory",subCategory);
+            res.json(subCategory);
         }      
         console.log("in showAllSubCategories");
 		console.log(subCategory);

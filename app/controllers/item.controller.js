@@ -1,27 +1,18 @@
-var express = require('express');
 var qs = require('querystring');
-var router = express.Router();
-router.get('/showAllItems', showAllItems);
-router.post('/addItem', addItem);
-router.post('/deleteItem', deleteItem);
-router.post('/countItem', countItem);
-router.post('/changeItem', changeItem);
-
 var Item = require('../models/Item');
-var path = require('path');
 var counter = 0;
-/*
+
 module.exports = {
   showAllItems: showAllItems,
   addItem: addItem,
+  countItem: countItem,
   checkQuantity: checkQuantity,
   deleteItem: deleteItem,
   deleteAllItems: deleteAllItems,
-  a: a
+  changeItem: changeItem,
+  getProductDetails:getProductDetails,
+  getProductsOfSubCategory:getProductsOfSubCategory
 }
-
-}*/
-module.exports = router;
 
 function showAllItems(req,res) {    
 	Item.find({}, (err, stock) => {
@@ -51,7 +42,7 @@ function addItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body); 
-        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location, id: counter++ });
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location, id: counter++,"colors":{name:POST.name,quantity:POST.quantity}});
         newItem.save();           
         res.send(newItem);
         //showAllItems(req,res);
@@ -140,7 +131,8 @@ function changeItem(req,res) {
                 // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
                 req.connection.destroy();
             }
-        });   
+			
+        }); 	
         req.on('end', function () {
         var POST = qs.parse(body);
 		Item.findByIdAndUpdate(POST.id, {category : POST.category,subCategory :  POST.subCategory , description : POST.description,price: POST.price, location : POST.location, name : POST.name }, function(err, doc){
@@ -154,36 +146,62 @@ function changeItem(req,res) {
 	});
 }
 
-
-/*function changeItem(res,item,key,value) {
-	console.log("in changeItem");
-    Item.findOneAndUpdate({index: item.index}, {$set: {category: value}}, function(err, doc){
-        if(err){
-            throw err;
-        }
-        console.log(doc);
-		console.log("הפריט עודכן");
-		res.json("הפריט עודכן");
-    });
-
+function getProductDetails(req,res) {
+	console.log("in getProductDetails");
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+			console.log('body',body)
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+			console.log('body',body);	
+			Item.find({id:body}, (err, item) => {
+				if (err) {
+					res.status(404);
+					res.send('item not found!');
+				}
+				else{
+					res.json(item);
+				}      
+				console.log(item);
+			});
+		});
 }
+	
+function getProductsOfSubCategory (req,res) {
+	console.log("in getProductsOfSubCategory");
+	var body = '';
+        req.on('data', function (data) {
+            body += data;
+			console.log('body',body)
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });  
+		req.on('end', function () {
+			console.log('body',body);	
+			Item.find({subCategory:body}, (err, items) => {
+				if (err) {
+					res.status(404);
+					res.send('items not found!');
+				}
+				else{
+					res.json(items);
+				}      
+				console.log(items);
+			});
+		});
+	
+}	
 
-function a(req,res) {
-	console.log("in a");
-	var item = new Item({ category: 'aaaa',subCategory: 'sss' ,index:'1' ,name:'www' ,description: 'this is item a',quantity:4,minQuantity:2 });
-	item.save();
-	changeCategoryOfItem(req,res,item)
-}
-
-function changeCategoryOfItem(req,res,item) {
-	console.log("in changeCategoryOfItem");
-	var key = 'category';
-	var value = "mmmmmm"
-	//var value = item.params.category;
-	changeItem(res,item,key,value);
-}
-
-*/
 
 
 

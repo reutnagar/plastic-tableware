@@ -29,7 +29,8 @@
                     <th><p><input ng-model="search.description"></p>תאור</th>
 					<th><p><input ng-model="search.price"></p>מחיר</th>
                     <th><p><input ng-model="search.location"></p>מיקום</th>
-                    <th><p><input ng-model="search.colors"></p>צבע</th>
+                    <th><p><input ng-model="search.colors.name"></p>צבע</th>
+					<th><p><input ng-model="search.colors.quantity"></p>כמות</th>
               </tr>
               <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
                     <td>
@@ -70,8 +71,12 @@
                     <div ng-show="editItem[item.id]"><input type="text" ng-model="item.location" /></div>
                     </td>
                     <td>
-                    <div ng-hide="editItem[item.id]">{{ item.colors }}</div>
-                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.colors" /></div>
+                    <div ng-hide="editItem[item.id]">{{ item.colors.name }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.colors.name" /></div>
+                    </td>
+					<td>
+					<div ng-hide="editItem[item.id]">{{ item.colors.quantity }}</div>
+                    <div ng-show="editItem[item.id]"><input type="text" ng-model="item.colors.quantity" /></div>
                     </td>
               </tr>
               </table>    
@@ -121,10 +126,18 @@
                 <div class="form-group col-xs-12 ">
                   <label for="exampleTextarea">מיקום</label>
                   <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="item.location" name="location" required ></textarea>
-                </div>        
+                </div>
+			<div class="form-group col-xs-12 ">
+                  <label for="exampleTextarea">צבע</label>
+                  <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="item.colors.color" name="colors.color" required ></textarea>
+                </div>
+			<div class="form-group col-xs-12 ">
+                  <label for="exampleTextarea">כמות</label>
+                  <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="item.colors.quantuty" name="colors.quantuty" required ></textarea>
+                </div>				
               <div class="modal-footer">
                 <div class="form-group">  
-                  <button type="submit" class="btn btn-primary" ng-click="addItem(item)">שמור</button>
+                  <button type="submit"  data-dismiss="modal" class="btn btn-primary" ng-click="addItem(item)">שמור</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">ביטול</button>
                 </div>
             </div>
