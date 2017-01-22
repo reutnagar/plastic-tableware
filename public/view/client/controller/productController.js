@@ -1,13 +1,10 @@
 app.controller('productCtrl',function($scope, $http,$routeParams) {
-console.log("קונטרולר");
-	console.log("$routeParams.id",$routeParams.id);
 	//$scope.master = {};
     $scope.id = $routeParams.id;
 	$scope.product = {};
 	$scope.products = {};
 
 	$scope.getProductDetails=function(id){
-        console.log("getProductDetails function");
             console.log("id",id);
 			var data = id;
             var config = {

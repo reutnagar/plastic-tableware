@@ -4,10 +4,8 @@ app.controller('mainController',function($scope, $http,$location) {
     $scope.subCategories={};
     $scope.categories={};
    $scope.goToSubCtegory=function(category){
-    console.log("goToSubCtegory with category variable",category);
        $location.path("/subCategory/"+category);
     }
-  console.log("in the main mainController in routing page");
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     options.async = true;
    
@@ -20,7 +18,6 @@ app.controller('mainController',function($scope, $http,$location) {
 
     
     $scope.showAllCategories=function(){
-        console.log("in the showAllCategories function");
     $http.get('showAllCategories')
                     .success(function(data){
                         $scope.categories = data;
@@ -29,8 +26,13 @@ app.controller('mainController',function($scope, $http,$location) {
                     .error(function(data){
                         console.log("Error: "+data);
                     });
+                     $scope.initSubCategory();
     }
-
+    $scope.initSubCategory=function(){
+        angular.forEach($scope.categories, function(value,key){
+           console.log("username is thomas",value,key);
+         });
+    };
     $scope.showAllSubCategory=function(category){
             console.log("category",category);
             var data = category;
@@ -53,6 +55,6 @@ app.controller('mainController',function($scope, $http,$location) {
                     "<hr />config: " + config;
             });
     };
-
+   
 
 });
