@@ -1,6 +1,6 @@
 
 
-var userSchema = require('../models/user');
+var User = require('../models/User');
 module.exports = {
     signIn: signIn,
     signOut: signOut,
