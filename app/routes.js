@@ -14,6 +14,7 @@ router.use(express.static(path.join(__dirname , '../public/view/admin')));
 
 router.get('/admin/showAllItems', itemsController.showAllItems);
 router.get('/admin/showAllOrders', ordersController.showAllOrders);
+router.get('/admin/showLastOrders', ordersController.showLastOrders);
 router.get('/showAllCategories', categoryController.showAllCategories);
 router.get('/admin', function(req,res){
     res.sendFile(path.join(__dirname , '../public/view/admin/index.html'));
