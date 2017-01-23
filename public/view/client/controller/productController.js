@@ -4,9 +4,9 @@ app.controller('productCtrl',function($scope, $http,$routeParams) {
 	$scope.product = {};
 	$scope.products = {};
 
-	$scope.getProductDetails=function(_id){
-            console.log("_id",_id);
-			var data = _id;
+	$scope.getProductDetails=function(id){
+            console.log("_id",id);
+			var data = id;
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
