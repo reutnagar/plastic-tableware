@@ -1,4 +1,6 @@
 app.controller('orderCtrl',function($scope, $http) {  
+   console.log("orders controller````````````````"); 
+
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     options.async = true;
 });
@@ -20,7 +22,7 @@ app.controller('orderCtrl',function($scope, $http) {
                     });
 }
 
-
+  });
 
 /*
 
@@ -89,5 +91,5 @@ app.controller('orderCtrl',function($scope, $http) {
     $(".timepicker").timepicker({
       showInputs: false
     });
-  });
+
 </script>*/

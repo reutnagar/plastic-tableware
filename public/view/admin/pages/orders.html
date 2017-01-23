@@ -12,16 +12,10 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" data-ng-init="showAllOrders()">
         <div class="box box-info">
             <div class="box-header with-border">
                 <h3 class="box-title">הזמנות אחרונות</h3>
-
-                <!-- <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div> -->
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -49,18 +43,14 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- /.table-responsive -->
             </div>
-            <!-- /.box-body -->
             <div class="box-footer clearfix">
                 <a href="" ng-show="showMe" class="btn btn-sm btn-info btn-flat pull-right">הצג הזמנות אחרונות</a>
                 <a href="" ng-hide="showMe" class="btn btn-sm btn-default btn-flat pull-right" ng-click="showAllOrders()">  הצג את כל ההזמנות</a>
             </div>
-            <!-- /.box-footer -->
         </div>
-        <!-- /.box -->
-        </div>
-    
+     </div>
+     
       <div class="row">
         <div class="col-md-6">
             <div class="box box-primary">
@@ -104,9 +94,7 @@
                             </div>
                             <input type="text" class="form-control pull-right" id="reservationtime">
                         </div>
-                        <!-- /.input group -->
                     </div>
-                    <!-- /.form group -->
                     <!-- Date and time range -->
                     <div class="form-group">
                         <label>כפתור טווח תאריכים:</label>
@@ -120,77 +108,8 @@
                             </button>
                         </div>
                     </div>
-                    <!-- /.form group -->
-
                 </div>
-                <!-- /.box-body -->
             </div>
-          
-        
         </div>
-        <!-- /.col (left) -->
-          <div class="col-md-6">
-              <div class="box box-info">
-                  <div class="box-header with-border">
-                      <h3 class="box-title">הזמנות מיוחדות</h3>
-
-                      <!-- <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div> -->
-                  </div>
-                  <!-- /.box-header -->
-                  <div class="box-body">
-                      <div class="table-responsive">
-                          <table class="table no-margin">
-                              <thead>
-                                  <tr>
-                                      <th>מספר הזמנה</th>
-                                      
-                                      <th> סטטוס</th>
-                                  
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr>
-                                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                     
-                                      <td><span class="label label-danger">לא הגיע ליעד</span></td>
-                                     
-                                  </tr>
-                                  <tr>
-                                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                    
-                                      <td><span class="label label-warning">חסר פריט #01235</span></td>
-                                      
-                                  </tr>
-
-                              </tbody>
-                          </table>
-                      </div>
-                      <!-- /.table-responsive -->
-                  </div>
-                  <!-- /.box-body -->
-                  <div class="box-footer clearfix">
-                      <!--<a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">ביצועה הזמנה חדשה</a>-->
-                      <!--<a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">  הצג את כל ההזמנות</a>-->
-                  </div>
-                  <!-- /.box-footer -->
-              </div>
-              <!-- /.box -->
-          </div>
-          <!-- /.box -->
-
-          <!-- iCheck -->
-          
-          <!-- /.box -->
-        </div>
-        <!-- /.col (right) -->
-      </div>
-      <!-- /.row -->
-
     </section>
-    <!-- /.content -->
- <!-- Page script -->
 

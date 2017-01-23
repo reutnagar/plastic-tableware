@@ -8,7 +8,8 @@ app.config(function ($routeProvider) {
                         templateUrl: 'pages/dashboard.html'
                     })
                   .when('/orders', {
-                      templateUrl: 'pages/orders.html'
+                      templateUrl: 'pages/orders.html',
+                      controller: 'orderCtrl'
                   })
                     .when('/stock', {
                         templateUrl: 'pages/stock.html',
