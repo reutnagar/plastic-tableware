@@ -10,6 +10,7 @@ var orderedItem= new mongoose.Schema({
 module.exports = mongoose.model('Order',{
     userName: String,
 	status: String,
-	date: Date,
+	date:{type: Date, default: Date.now},
+	// function(){return new Date().getTime()} }
 	orderedItems: [orderedItem]
 });

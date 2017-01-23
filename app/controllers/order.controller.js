@@ -2,7 +2,8 @@
 var order = require('../models/order');
 
 module.exports = {
-  showAllOrders: showAllOrders
+  showAllOrders: showAllOrders,
+  showLastOrders: showLastOrders
  }
 
 function showAllOrders(req,res) {
@@ -36,7 +37,7 @@ function showAllOrders(req,res) {
 }
 
 function showLastOrders(req,res) {
-	var newStartTime; //Start time for class to be created.
+	/*var newStartTime; //Start time for class to be created.
 	var newEndTime;   //End time for class to be created.
 
 	Order.find({$and: [
@@ -53,5 +54,38 @@ function showLastOrders(req,res) {
 		{
 			//Clashing class, handle
 		}
+	});*/
+	//Order.find({}).sort({lastModifiedDate:-1}).limit(10)
+	console.log("in showlastOrders");
+	addOrder(req,res);
+	Order.find({}).sort({date: -1}).limit(10).exec(function(err, orders) { 
+		if (err) {
+            res.status(404);
+            res.send('Orders not found!');
+        }
+        else{
+            res.json(orders);
+			console.log(orders);
+        }      
 	});
+}
+
+function addOrder(req,res) {
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+        var POST = qs.parse(body); 
+        var newOrder = new Order({ userName : "userName",status :  "status"});
+        newItem.save();           
+        res.send(newItem);
+        //showAllItems(req,res);
+        });
 }
