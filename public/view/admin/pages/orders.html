@@ -40,8 +40,8 @@
                 </div>
             </div>
             <div class="box-footer clearfix">
-                <a href="" ng-show="showMe" class="btn btn-sm btn-info btn-flat pull-right">הצג הזמנות אחרונות</a>
-                <a href="" ng-hide="showMe" class="btn btn-sm btn-default btn-flat pull-right" ng-click="showAllOrders()">  הצג את כל ההזמנות</a>
+                <a href="" ng-hide="showMe" class="btn btn-sm btn-info btn-flat pull-right" ng-click="showMe=true; showLastOrders()">הצג הזמנות אחרונות</a>
+                <a href="" ng-show="showMe" class="btn btn-sm btn-default btn-flat pull-right" ng-click="showMe=false; showAllOrders()">  הצג את כל ההזמנות</a>
             </div>
         </div>
      </div>

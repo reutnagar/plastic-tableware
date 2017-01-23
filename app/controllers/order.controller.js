@@ -1,5 +1,5 @@
 
-var order = require('../models/order');
+var order = require('../models/Order');
 
 module.exports = {
   showAllOrders: showAllOrders,
@@ -7,6 +7,7 @@ module.exports = {
  }
 
 function showAllOrders(req,res) {
+    console.log("showAllOrders");
 	/*order.find({}, function(err,orders) {
     var orderMap = {};
 	if (err) {
@@ -23,7 +24,7 @@ function showAllOrders(req,res) {
     });
     res.send(userMap);  
   });*/
-	Order.find({}, (err, order) => {
+	order.find({}, (err, order) => {
         if (err) {
             res.status(404);
             res.send('Orders not found!');
