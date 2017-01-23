@@ -17,7 +17,6 @@ app.controller('orderCtrl', function($scope, $http) {
                     .success(function(data){
                         $scope.orders = data;
                         console.log("Succeed loading",$scope.orders);
-							          $scope.showMe= false;
                     })
                     .error(function(data){
                         console.log("Error: "+data);
@@ -28,9 +27,8 @@ app.controller('orderCtrl', function($scope, $http) {
      console.log("request last orders");
     $http.get('/admin/showLastOrders')
                     .success(function(data){
-                        $scope.lastOrders = data;
+                        $scope.orders = data;
                         console.log("Succeed loading",$scope.lastOrders);
-							          $scope.showMe= false;
                     })
                     .error(function(data){
                         console.log("Error: "+data);
