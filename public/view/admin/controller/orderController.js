@@ -4,7 +4,7 @@ app.controller('orderCtrl',function($scope, $http) {
 });
 
   $scope.master = {}; 
-  $scope.showMe = {};
+  $scope.showMe = true;
 
 
  $scope.showAllOrders=function(){
@@ -13,11 +13,9 @@ app.controller('orderCtrl',function($scope, $http) {
                     .success(function(data){
                         $scope.orders = data;
                         console.log("Succeed loading",$scope.orders);
-                        for (var i = 0, length = $scope.orders.length; i < length; i++) {
-							$scope.showMe[$scope.orders[i]._id] = true;
-						}
+							          $scope.showMe= false;
                     })
                     .error(function(data){
                         console.log("Error: "+data);
-         });
+                    });
 }
