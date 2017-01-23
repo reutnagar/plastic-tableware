@@ -42,7 +42,7 @@ function addItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body); 
-        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location, id: counter++,"colors":{name:POST.name,quantity:POST.quantity}});
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location,"colors":{name:POST.name,quantity:POST.quantity}});
         newItem.save();           
         res.send(newItem);
         //showAllItems(req,res);
@@ -135,7 +135,7 @@ function changeItem(req,res) {
         }); 	
         req.on('end', function () {
         var POST = qs.parse(body);
-		Item.findByIdAndUpdate(POST.id, {category : POST.category,subCategory :  POST.subCategory , description : POST.description,price: POST.price, location : POST.location, name : POST.name }, function(err, doc){
+		Item.findByIdAndUpdate(POST._id, {category : POST.category,subCategory :  POST.subCategory , description : POST.description,price: POST.price, location : POST.location, name : POST.name }, function(err, doc){
 		if(err){
             throw err;
         }
@@ -161,7 +161,7 @@ function getProductDetails(req,res) {
         });   
         req.on('end', function () {
 			console.log('body',body);	
-			Item.find({id:body}, (err, item) => {
+			Item.find({_id:body}, (err, item) => {
 				if (err) {
 					res.status(404);
 					res.send('item not found!');

@@ -4,9 +4,9 @@ app.controller('productCtrl',function($scope, $http,$routeParams) {
 	$scope.product = {};
 	$scope.products = {};
 
-	$scope.getProductDetails=function(id){
-            console.log("id",id);
-			var data = id;
+	$scope.getProductDetails=function(_id){
+            console.log("_id",_id);
+			var data = _id;
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -21,7 +21,7 @@ app.controller('productCtrl',function($scope, $http,$routeParams) {
             })
             .error(function (data, status, header, config) {
                 console.log("Error: "+ data);
-                $scope.ResponseDetails = "id: " + data +
+                $scope.ResponseDetails = "_id: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;

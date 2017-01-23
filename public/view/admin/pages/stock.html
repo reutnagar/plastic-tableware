@@ -22,7 +22,7 @@
             <div class="box-body" >
               <table id="example2" class="table table-bordered table-hover">
               <tr>  <th></th>
-                    <th><p><input ng-model="search.id"></p>קוד</th>
+                    <th><p><input ng-model="search._id"></p>קוד</th>
                     <th><p><input ng-model="search.name"></p>שם</th>
                     <th><p><input ng-model="search.category"></p>קטגוריה</th>
                     <th><p><input ng-model="search.subCategory"></p>תת-קטגוריה</th>
@@ -34,17 +34,17 @@
               </tr>
               <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
                     <td>
-                    <div ng-show="showMe[item.id]">
+                    <div ng-show="showMe[item._id]">
                       <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItem(item)"></span></a>
                       <a ><span class="glyphicon glyphicon-edit" ng-click="showAndHide(item);modify(item)"></span></a>
                     </div>
-                    <div ng-hide="showMe[item.id]" ng-click="showAndHide(item)">
+                    <div ng-hide="showMe[item._id]" ng-click="showAndHide(item)">
                       <a><i class="fa fa-times" ng-click="update(item)"></i></a> 
                       <a><i class="fa fa-check" ng-click="changeItem(item)"></i></a>
                     </div>
                     </td>            
                     <td>
-                    <div>{{ item.id }}</div>
+                    <div>{{ item._id }}</div>
                     </td>
                     <td>
                     <div ng-hide="editItem[item.id]">{{ item.name }}</div>
