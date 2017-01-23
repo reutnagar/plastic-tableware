@@ -1,4 +1,4 @@
-app.controller('orderCtrl',function($scope, $http) {  
+app.controller('orderCtrl', function($scope, $http) {  
    console.log("orders controller````````````````"); 
 
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {

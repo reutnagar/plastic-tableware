@@ -12,15 +12,13 @@
 </section>
 <!-- Main content -->
 <section ng-controller="itemCtrl" class="content"  data-ng-init="showAllItems()">
-  <div class="row">
-    <div>
       <div class="box">
-        <div class="box-header">
-        <!--<h3 class="box-title">טבלת מלאי</h3>-->
-          </div>
-          <!-- /.box-header -->
+          <!-- /.box-header 
             <div class="box-body" >
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="example2" class="table table-bordered table-hover">-->
+          <div class="box-body">
+            <div class="table-responsive">
+              <table class="table no-margin">
               <tr>  <th></th>
                     <th><p><input ng-model="search._id"></p>קוד</th>
                     <th><p><input ng-model="search.name"></p>שם</th>
@@ -82,8 +80,7 @@
               </table>    
             </div>
           </div>
-      </div>
-   </div>
+          </div>
 <!-- Modal for adding item -->
 <div class="modal fade" id="addModal" role="dialog">
   <div class="modal-dialog modal-lg">
