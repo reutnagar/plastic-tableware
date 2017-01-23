@@ -1,5 +1,5 @@
-
-var order = require('../models/Order');
+var qs = require('querystring');
+var Order = require('../models/Order');
 
 module.exports = {
   showAllOrders: showAllOrders,
@@ -24,7 +24,7 @@ function showAllOrders(req,res) {
     });
     res.send(userMap);  
   });*/
-	order.find({}, (err, order) => {
+	םrder.find({}, (err, order) => {
         if (err) {
             res.status(404);
             res.send('Orders not found!');
