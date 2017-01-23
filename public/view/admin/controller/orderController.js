@@ -3,7 +3,9 @@ app.controller('orderCtrl',function($scope, $http) {
     options.async = true;
 });
 
-  $scope.master = {}; 
+  $scope.master = {};
+  //$scope.orders = {};
+  //$scope.lastOrders = {};
   $scope.showMe = true;
 
 
@@ -20,7 +22,18 @@ app.controller('orderCtrl',function($scope, $http) {
                     });
 }
 
-
+ $scope.showLastOrders=function(){
+     console.log("request last orders");
+    $http.get('/admin/showLastOrders')
+                    .success(function(data){
+                        $scope.lastOrders = data;
+                        console.log("Succeed loading",$scope.lastOrders);
+							          $scope.showMe= false;
+                    })
+                    .error(function(data){
+                        console.log("Error: "+data);
+                    });
+}
 
 /*
 
