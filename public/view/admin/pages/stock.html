@@ -13,9 +13,6 @@
 <!-- Main content -->
 <section ng-controller="itemCtrl" class="content"  data-ng-init="showAllItems()">
       <div class="box">
-          <!-- /.box-header 
-            <div class="box-body" >
-              <table id="example2" class="table table-bordered table-hover">-->
           <div class="box-body">
             <div class="table-responsive">
               <table class="table no-margin">
@@ -60,7 +57,7 @@
                     <div ng-hide="editItem[item.id]">{{ item.description }}</div>
                     <div ng-show="editItem[item.id]"><input type="text" ng-model="item.description" /></div>
                     </td>
-					<td>
+					          <td>
                     <div ng-hide="editItem[item.id]">{{ item.price }}</div>
                     <div ng-show="editItem[item.id]"><input type="text" ng-model="item.price" /></div>
                     </td>
