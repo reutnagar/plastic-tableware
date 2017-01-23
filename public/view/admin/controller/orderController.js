@@ -14,8 +14,8 @@ app.controller('orderCtrl',function($scope, $http) {
                         $scope.orders = data;
                         console.log("Succeed loading",$scope.orders);
                         for (var i = 0, length = $scope.orders.length; i < length; i++) {
-                        $scope.showMe[$scope.orders[i].id] = true;
-            }
+							$scope.showMe[$scope.orders[i]._id] = true;
+						}
                     })
                     .error(function(data){
                         console.log("Error: "+data);

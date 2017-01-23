@@ -8,7 +8,6 @@ var orderedItem= new mongoose.Schema({
 });	
 
 module.exports = mongoose.model('Order',{
-    orderId : String,
     userName: String,
 	status: String,
 	date: Date,
