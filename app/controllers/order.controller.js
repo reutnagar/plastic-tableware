@@ -24,7 +24,7 @@ function showAllOrders(req,res) {
     });
     res.send(userMap);  
   });*/
-	םrder.find({}, (err, order) => {
+	Order.find({}, (err, order) => {
         if (err) {
             res.status(404);
             res.send('Orders not found!');
