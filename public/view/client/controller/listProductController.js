@@ -1,5 +1,6 @@
 app.controller('listProductCtrl',function($scope, $http,$routeParams,$location) {
 	$scope.subCategory = $routeParams.subCategory;
+    $scope.image = "";
 	$scope.getProductsOfSubCategory=function(subCategory){
 			var data = $scope.subCategory;
             var config = {
@@ -24,6 +25,9 @@ app.controller('listProductCtrl',function($scope, $http,$routeParams,$location) 
             });
 	};
 
-
+$scope.setImageModal=function (image) {
+  $scope.image ='css/'+image;  
+  console.log("$scope.image",$scope.image);
+}
 
 });
