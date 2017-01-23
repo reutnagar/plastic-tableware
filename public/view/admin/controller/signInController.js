@@ -1,54 +1,46 @@
-
 app.controller('signInController', function ($scope, $http) {
+        $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+    options.async = true;
+});
     console.log("signInController");
-     $scope.session = {};
+  // $scope.session = {};
 
-    $scope.signing = function (user) {
+     $scope.signing = function (user) {
        
         console.log('in sign in');
-        
+
         if ($scope.inForm.$valid) {
 
-            console.log('after validation');
-            $scope.user = angular.copy(user);
-
-            $http.post('/admin/signIn', $scope.user)
-                .success(function (response) {
-                    
-                    $scope.result = response;
-                    if (response.in == true) {
-
-                        $scope.session.user = response.user;
-
-                        alert(response.msg);
-
-                        document.getElementById("name").textContent = $scope.session.user.userName + " | ";
-
-
-                        console.log('after login');
-                        console.log($scope.session.user);
-
-
-                        window.location.replace('#/dashboard');
-
-
+                console.log('after validation');
+         
+                 var data = $.param({
+                userName : user.userName,
+                password : user.password
+            });
+                    var config = {
+                    headers : {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                        }
                     }
-                    else if(response.user == null)
-                    {
-                        alert(response.msg);
-                        window.location.replace('#/dashboard');
-                    }
+            $http.post('/admin/signIn', data, config)
+                          .success(function (data, status, headers, config) {
+                           $scope.PostDataResponse = data;
+                           console.log( data);
+                           console.log('after login');
+                      if(data=="logged in succesfully")
+                             window.location.replace('#/dashboard');
                     else
-                        alert(response.msg);
-
+                      console.log("try again");
+            })
+                            .error(function (data, status, header, config) {
+                                console.log("Error: "+data);
+                                $scope.ResponseDetails = "Data: " + data +
+                                    "<hr />status: " + status +
+                                    "<hr />headers: " + header +
+                                    "<hr />config: " + config;
+                            });  
+         }
                     
-                })
-                .error(function (error) {
-                    console.log('Error: ' + error);
-                    console.log('HTTP: ' + $http);
-
-                });
-        }
     }
 
 });

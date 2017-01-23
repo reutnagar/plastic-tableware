@@ -1,5 +1,5 @@
 
-
+var qs = require('querystring');
 var User = require('../models/User');
 module.exports = {
     signIn: signIn,
@@ -32,38 +32,85 @@ module.exports = {
 // }
 
 function signIn(req, res) {
-    
-        var existUser = new User(req.body);
+    console.log("get post request in server side");  
 
-        console.log("In sign in :",existUser);
 
-        if(req.session.user != null)
-        {
-            res.json({ in: false, msg: "הנך מחובר! התנתק לפני התחברות חוזרת", user: null });
-        }
-        else
-        {
-            User.findOne({  userName: existUser.userName}, function (err, user) {
-                if (user) {
+
+
+        // var existUser = new User(req.body);
+
+        // console.log("In sign in :",existUser);
+
+        // if(req.session.user != null)
+        // {
+        //     res.json({ in: false, msg: "הנך מחובר! התנתק לפני התחברות חוזרת", user: null });
+        // }
+        // else
+        // {
+        //     User.findOne({  userName: existUser.userName}, function (err, user) {
+        //         if (user) {
+
+        //             if(user.password != existUser.password)
+        //             {
+        //                 res.json({ in: false, msg: "הסיסמא שהכנסת שגויה", user: user });
+        //             }
+        //             else
+        //             {
+        //                 req.session.user = user;
+        //                 res.json({ in: true, msg: "התחברת בהצלחה", user: user });
+        //             }
+
+        //         }
+        //         else {
+        //             res.json({ in: false, msg: "משתמש אינו קיים ", user: user });
+
+        //         }
+        //     });
+        // }
+
+  var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+        var POST = qs.parse(body); 
+        var existUser = new User({ userName : POST.userName,password :  POST.password });
+                User.findOne({  userName: existUser.userName}, function (err, user) {
+                  if (user) {
 
                     if(user.password != existUser.password)
                     {
-                        res.json({ in: false, msg: "הסיסמא שהכנסת שגויה", user: user });
+                     
+                           res.send("Incorrect password");
                     }
                     else
                     {
-                        req.session.user = user;
-                        res.json({ in: true, msg: "התחברת בהצלחה", user: user });
+                        // req.session.user = user;
+                        
+                        res.send("logged in succesfully");
                     }
 
-                }
+               }
                 else {
-                    res.json({ in: false, msg: "משתמש אינו קיים ", user: user });
+                    console.log(user);
 
+                    res.send("user doesn't exist!");
                 }
             });
-        }
+
+
+       
+       
+        });
+
 }
+
+
 
 function signOut(req, res) {
     req.session.destroy(function (err) {
