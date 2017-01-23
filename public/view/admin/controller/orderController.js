@@ -36,7 +36,9 @@ app.controller('orderCtrl', function($scope, $http) {
                         console.log("Error: "+data);
                     });
 }
+
  });
+ 
 
 /*
 

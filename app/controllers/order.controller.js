@@ -58,8 +58,8 @@ function showLastOrders(req,res) {
 	});*/
 	//Order.find({}).sort({lastModifiedDate:-1}).limit(10)
 	console.log("in showlastOrders");
-	addOrder(req,res);
-	Order.find({}).sort({date: -1}).limit(10).exec(function(err, orders) { 
+	//addOrder(req,res);
+	Order.find({}).sort({date: -1}).limit(2).exec(function(err, orders) { 
 		if (err) {
             res.status(404);
             res.send('Orders not found!');
@@ -85,8 +85,8 @@ function addOrder(req,res) {
         req.on('end', function () {
         var POST = qs.parse(body); 
         var newOrder = new Order({ userName : "userName",status :  "status"});
-        newItem.save();           
-        res.send(newItem);
+        newOrder.save();           
+        res.send(newOrder);
         //showAllItems(req,res);
         });
 }
