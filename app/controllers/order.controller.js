@@ -34,3 +34,24 @@ function showAllOrders(req,res) {
 		console.log(order);
 	});
 }
+
+function showLastOrders(req,res) {
+	var newStartTime; //Start time for class to be created.
+	var newEndTime;   //End time for class to be created.
+
+	Order.find({$and: [
+	{$or: [{$and: [{start_time: {$lte: newStartTime}}, {end_time: {$gte: newStartTime}}]}, {$and: [{start_time: {$lte: newEndTime}}, {end_time: {$gte: newEndTime}}]}]},
+	{$not: {$or: [{start_time: {$eq: newEndTime}}, {end_time: {$eq: newStartTime}}]}}
+	]}, function (err, results) {
+
+		if (err) {
+			//handle error
+			return;
+		}
+
+		if (results.length > 0)
+		{
+			//Clashing class, handle
+		}
+	});
+}
