@@ -1,6 +1,5 @@
 var qs = require('querystring');
 var Item = require('../models/Item');
-var counter = 0;
 
 module.exports = {
   showAllItems: showAllItems,
@@ -11,7 +10,8 @@ module.exports = {
   deleteAllItems: deleteAllItems,
   changeItem: changeItem,
   getProductDetails:getProductDetails,
-  getProductsOfSubCategory:getProductsOfSubCategory
+  getProductsOfSubCategory:getProductsOfSubCategory,
+  checkIfItemExistsInStock :checkIfItemExistsInStock
 }
 
 function showAllItems(req,res) {    
@@ -160,8 +160,8 @@ function getProductDetails(req,res) {
             }
         });   
         req.on('end', function () {
-			console.log('body',body);	
-			Item.find({_id:body}, (err, item) => {
+			var POST = qs.parse(body);
+			Item.findById(POST._id, function(err, item){
 				if (err) {
 					res.status(404);
 					res.send('item not found!');
@@ -200,6 +200,33 @@ function getProductsOfSubCategory (req,res) {
 			});
 		});
 	
+}
+
+function checkIfItemExistsInStock(req,res){
+	console.log("in checkIfItemExistsInStock");
+	var body = '';
+        req.on('data', function (data) {
+            body += data;
+			console.log('body',body)
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });  
+		req.on('end', function () {
+			console.log('body',body);	
+			Item.find({_id:body}, (err, items) => {
+				if (err) {
+					res.status(404);
+					res.send('items not found!');
+				}
+				else{
+					res.json(items);
+				}      
+				console.log(items);
+			});
+		});
 }	
 
 
