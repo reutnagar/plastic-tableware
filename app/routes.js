@@ -5,7 +5,8 @@ const express      = require('express'),
 	categoryController = require('./controllers/category.controller'),
 	itemsController = require('./controllers/item.controller'),
 	ordersController = require('./controllers/order.controller'),
-	paymentController = require('./controllers/payment.controller');
+	paymentController = require('./controllers/payment.controller'),
+	emailController = require('./controllers/email.controller');
 
 var path = require('path');
 
