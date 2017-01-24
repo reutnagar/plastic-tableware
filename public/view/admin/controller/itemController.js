@@ -142,31 +142,16 @@ $scope.deleteItem = function(item){
             $scope.showAllItems();
 };
 
-	&scope.checkQuantity(item) {
-		var data = $.param({
-                quantity : item.quantity,
-                minQuantity : item.minQuantity,
-            });
-    var config = {
-    headers : {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-        }
-    }
-            $http.post('/admin/checkQuantity', data, config)
-            .success(function (data, status, headers, config) {
-                $scope.PostDataResponse = data;
-                console.log("Succeed post checkQuantity");
-                $scope.items.push(data);
-            })
-            .error(function (data, status, header, config) {
-                console.log("Error: "+data);
-                $scope.ResponseDetails = "Data: " + data +
-                    "<hr />status: " + status +
-                    "<hr />headers: " + header +
-                    "<hr />config: " + config;
-            });
-	};
-
+	&scope.checkQuantity() {
+		 console.log("checkQuantity");
+		$http.get('/admin/checkQuantity')
+						.success(function(data){
+							$scope.quantity = data;
+							console.log("Succeed loading");
+						})
+						.error(function(data){
+							console.log("Error: "+data);
+			 });
 	}
 
 $scope.countItem = function(item){
