@@ -6,7 +6,7 @@ var text = 'I Reut this is an email from Plastic table ware from all the group';
 
 var mailOptions = {
     from: 'plastictableware.cs@gmail.com', // sender address
-    to: 'sarierotenberg@gmail.com ', // list of receivers
+    to: 'plastictableware.cs@gmail.com', // list of receivers
     subject: 'Email Example', // Subject line
     text: text //, // plaintext body
     // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
