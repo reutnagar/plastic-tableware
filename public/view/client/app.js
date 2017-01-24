@@ -19,7 +19,7 @@ var app = angular.module("clientApp", ['ngRoute']);
                   .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html'
                   })
-                  .when('/singleProduct/:id?', {
+                  .when('/singleProduct/:_id?', {
                       templateUrl: 'pages/singleProduct.html',
                       controller:"productCtrl"
                   })
