@@ -12,7 +12,7 @@ var Color = new Schema({
 module.exports = mongoose.model('Item',{
     category: String,
 	subCategory: String,
-	id: Number,
+	//id: Number,
 	name: String,
 	description: String,
 	location: String,

@@ -1,7 +1,5 @@
 app.controller('subCategoryCtrl',function($scope, $http,$routeParams,$location) {
 	$scope.category = $routeParams.category;
-    console.log("routeParams", $scope.category);
-	console.log("category controller");
 	$scope.master = {}; 
 	$scope.subCategories={};
     $scope.categories={};
@@ -10,7 +8,6 @@ app.controller('subCategoryCtrl',function($scope, $http,$routeParams,$location) 
        $location.path("/productPage/"+ subCategory);
     } 
 	$scope.showAllCategories=function(){
-        console.log("in the showAllCategories function");
     $http.get('showAllCategories')
                     .success(function(data){
                         $scope.categories = data;
@@ -22,7 +19,6 @@ app.controller('subCategoryCtrl',function($scope, $http,$routeParams,$location) 
 	}
 
 	$scope.showAllSubCategory=function(category){
-            console.log("category",category);
 			var data = category;
             var config = {
                 headers : {

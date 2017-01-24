@@ -3,13 +3,14 @@ var Schema= mongoose.Schema;
 
 var orderedItem= new mongoose.Schema({
 	name: String,
-	quantity: Number
+	quantity: Number,
+	color:String
 });	
 
-module.exports = mongoose.model('order',{
-    orderId : String,
+module.exports = mongoose.model('Order',{
     userName: String,
 	status: String,
-	date: Date,
+	date:{type: Date, default: Date.now},
+	// function(){return new Date().getTime()} }
 	orderedItems: [orderedItem]
 });
