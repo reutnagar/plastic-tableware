@@ -8,9 +8,9 @@ const express      = require('express'),
 	paymentController = require('./controllers/payment.controller');
 
 var path = require('path');
+
 router.use(express.static(path.join(__dirname , '../public/view/client')));
 router.use(express.static(path.join(__dirname , '../public/view/admin')));
-
 
 router.get('/admin/showAllItems', itemsController.showAllItems);
 router.get('/admin/showAllOrders', ordersController.showAllOrders);
