@@ -1,12 +1,12 @@
 var nodemailer = require("nodemailer");
 //app.controller('sendemailCtrl',function($scope, $http,$routeParams,$location) {
 	console.log("nodemailer");
-var text = 'Hello world from \n\n';
+var text = 'I Reut this is an email from Plastic table ware from all the group';
 //STEP 4: Cre­ate a sim­ple JSON object with the nec­es­sary val­ues for send­ing the email.
 
 var mailOptions = {
     from: 'plastictableware.cs@gmail.com', // sender address
-    to: 'ruty369@gmail.com', // list of receivers
+    to: 'sarierotenberg@gmail.com ', // list of receivers
     subject: 'Email Example', // Subject line
     text: text //, // plaintext body
     // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
