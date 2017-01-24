@@ -21,11 +21,11 @@ router.get('/admin', function(req,res){
     res.sendFile(path.join(__dirname , '../public/view/admin/index.html'));
 });
 
+router.get('/admin/checkQuantity', itemsController.checkQuantity);
 router.post('/admin/addItem', itemsController.addItem);
 router.post('/admin/deleteItem', itemsController.deleteItem);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
-router.post('/admin/checkQuantity', itemsController.checkQuantity);
 router.post('/getProductDetails', itemsController.getProductDetails);
 router.post('/getProductsOfSubCategory',itemsController.getProductsOfSubCategory);
 

@@ -77,25 +77,14 @@ function countItem(req,res) {
 }
 
 function checkQuantity (req,res){
-	console.log("get post request in server side");  
-    var body = '';
-        req.on('data', function (data) {
-            body += data;
-            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-            if (body.length > 1e6) { 
-                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
-                req.connection.destroy();
-            }
-        });   
-        req.on('end', function () {
-        var POST = qs.parse(body); 
-	Item.$where('POST.quantity <= POST.minQuantity').exec(function(err, result) {
+	console.log("in checkQuantity");
+	Item.$where('this.quantity <= this.minQuantity').exec(function(err, result) {
 	if (err) {
 	  throw err;
 	}
-  console.log(result);
-  res.json(result);
-	});
+	console.log(this.quantity);
+	console.log(result);
+	res.json(result);
 	});
 };
 
