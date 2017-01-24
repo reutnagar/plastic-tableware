@@ -26,7 +26,7 @@ router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
 router.post('/getProductDetails', itemsController.getProductDetails);
 router.post('/getProductsOfSubCategory',itemsController.getProductsOfSubCategory);
-
+router.post('/admin/ordersOfUserName',ordersController.ordersOfUserName);
 
 router.post('/admin/signIn',userController.signIn);
 router.post('/admin/signOut',userController.signOut);

@@ -3,7 +3,8 @@ var Order = require('../models/Order');
 
 module.exports = {
   showAllOrders: showAllOrders,
-  showLastOrders: showLastOrders
+  showLastOrders: showLastOrders,
+  ordersOfUserName: ordersOfUserName
  }
 
 function showAllOrders(req,res) {
@@ -89,4 +90,31 @@ function addOrder(req,res) {
         res.send(newOrder);
         //showAllItems(req,res);
         });
+}
+
+function ordersOfUserName(req,res) {
+	console.log("in ordersOfUserName");
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+        var POST = qs.parse(body); 
+		Order.find({userName : POST.userName}).sort({date: -1}).exec(function(err, orders) { 
+		if (err) {
+            res.status(404);
+            res.send('Orders not found!');
+        }
+        else{
+            res.json(orders);
+			console.log(orders);
+        }      
+	});
+});
 }
