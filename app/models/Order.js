@@ -9,6 +9,8 @@ var orderedItem= new mongoose.Schema({
 
 module.exports = mongoose.model('Order',{
     userName: String,
+	email: String,
+	address: String,
 	status: String,
 	date:{type: Date, default: Date.now},
 	// function(){return new Date().getTime()} }
