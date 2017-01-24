@@ -121,9 +121,9 @@ $scope.update(item);
 $scope.reset();
 };
             $scope.showAndHide = function(item){
-                console.log( "showMe[item.id] before: "+$scope.showMe[item._id]);
+                console.log( "showMe[item._id] before: "+$scope.showMe[item._id]);
                 $scope.showMe[item._id] = !$scope.showMe[item._id];
-                console.log( "showMe[item.id] after: "+ $scope.showMe[item._id]);
+                console.log( "showMe[item._id] after: "+ $scope.showMe[item._id]);
 
             };
             $scope.modify = function(item){
