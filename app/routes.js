@@ -25,6 +25,7 @@ router.post('/admin/addItem', itemsController.addItem);
 router.post('/admin/deleteItem', itemsController.deleteItem);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
+router.post('/admin/checkQuantity', itemsController.checkQuantity);
 router.post('/getProductDetails', itemsController.getProductDetails);
 router.post('/getProductsOfSubCategory',itemsController.getProductsOfSubCategory);
 
