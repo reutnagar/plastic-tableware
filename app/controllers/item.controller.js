@@ -1,6 +1,5 @@
 var qs = require('querystring');
 var Item = require('../models/Item');
-var counter = 0;
 
 module.exports = {
   showAllItems: showAllItems,
@@ -78,6 +77,29 @@ function countItem(req,res) {
 }
 
 function checkQuantity (req,res){
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+        var POST = qs.parse(body); 
+	Item.$where('POST.quantity <= POST.minQuantity').exec(function(err, result) {
+	if (err) {
+	  throw err;
+	}
+  console.log(result);
+  res.json(result);
+	});
+	});
+};
+
+/*function checkQuantity (req,res){
 	Item.$where('this.quantity <= this.minQuantity').exec(function(err, result) {
 	if (err) {
 	  throw err;
@@ -86,7 +108,7 @@ function checkQuantity (req,res){
   res.json(result);
 	});
 
-}
+}*/
 
 function deleteAllItems(req,res) {
 	Item.remove ({},function(err, result) {
@@ -110,14 +132,13 @@ function deleteItem(req,res) {
             }
         });   
         req.on('end', function () {
-        var POST = qs.parse(body); 
-        Item.remove({ category:POST.category , name:POST.name},function(err, result) {
-		if (err) {
-			throw err;
-		}
-		res.send("success");
-		//;
-        });
+			var POST = qs.parse(body); 
+			Item.remove({ category:POST.category , name:POST.name},function(err, result) {
+			if (err) {
+				throw err;
+			}
+			res.send("success");
+			});
 		});
 };
 
@@ -134,16 +155,16 @@ function changeItem(req,res) {
 			
         }); 	
         req.on('end', function () {
-        var POST = qs.parse(body);
-		Item.findByIdAndUpdate(POST._id, {category : POST.category,subCategory :  POST.subCategory , description : POST.description,price: POST.price, location : POST.location, name : POST.name }, function(err, doc){
-		if(err){
-            throw err;
-        }
-        console.log("thid is the doc variable: "+doc);
-		console.log("updated");
-		//res.json("Item");
-    });
-	});
+			var POST = qs.parse(body);
+			Item.findByIdAndUpdate(POST._id, {category : POST.category,subCategory :  POST.subCategory , description : POST.description,price: POST.price, location : POST.location, name : POST.name }, function(err, doc){
+			if(err){
+				throw err;
+			}
+			console.log("thid is the doc variable: "+doc);
+			console.log("updated");
+			//res.json("Item");
+			});
+		});
 }
 
 function getProductDetails(req,res) {
@@ -199,9 +220,4 @@ function getProductsOfSubCategory (req,res) {
 				console.log(items);
 			});
 		});
-	
 }	
-
-
-
-
