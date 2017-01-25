@@ -16,7 +16,7 @@ app.controller('itemCtrl',function($scope, $http) {
 							console.log("Succeed loading");
 							for (var i = 0, length = $scope.items.length; i < length; i++) {
 							$scope.showMe[$scope.items[i]._id] = true;
-				}
+							}
 						})
 						.error(function(data){
 							console.log("Error: "+data);
@@ -32,6 +32,7 @@ $scope.addItem=function(item){
 				price : item.price,
                 location : item.location,
 				//colors.name[0]: item.colors.name[0],
+				//colors.quantity[0]: item.colors.quantity[0],
             });
         
             var config = {
@@ -117,6 +118,7 @@ $scope.reset();
                 $scope.editItem[item._id] = false;
                 $scope.showAllItems();
             };
+			
 $scope.deleteItem = function(item){
             var data = $.param({
                 name : item.name,
@@ -141,22 +143,18 @@ $scope.deleteItem = function(item){
             });  
             $scope.showAllItems();
 };
+$scope.deleteItemById = function(_id){
+            var data = _id
 
-	$scope.checkQuantity=function(item) {
-		var data = $.param({
-                quantity : item.quantity,
-                minQuantity : item.minQuantity,
-            });
     var config = {
     headers : {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }
     }
-            $http.post('/admin/checkQuantity', data, config)
+            $http.post('/admin/deleteItemById', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
-                console.log("Succeed post checkQuantity");
-                $scope.items.push(data);
+                console.log("Succeed");
             })
             .error(function (data, status, header, config) {
                 console.log("Error: "+data);
@@ -165,9 +163,20 @@ $scope.deleteItem = function(item){
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
-	};
-
-
+$scope.showAllItems();
+};
+	/*$scope.checkQuantity() = function() {
+		 console.log("checkQuantity");
+		$http.get('/admin/checkQuantity')
+						.success(function(data){
+							$scope.quantity = data;
+							console.log("Succeed loading");
+						})
+						.error(function(data){
+							console.log("Error: "+data);
+			 });
+	}*/
+>>>>>>> origin/master
 
 $scope.countItem = function(item){
     alert("count");
@@ -195,6 +204,32 @@ $scope.countItem = function(item){
             });
 };
 
+/*$scope.checkIfItemExistsInStock = function(item){
+  console.log("in checkIfItemExistsInStock in the client side");
+            var data = $.param({
+				_id : item._id,
+                //colors.quantity: item.colors.quantity;
+            });
+        
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+            $http.post('/checkIfItemExistsInStock', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                console.log("Succeed checkIfItemExistsInStock");
+                //$scope.items.push(data);
+            })
+            .error(function (data, status, header, config) {
+                console.log("Error: "+data);
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+	};*/
 
 $scope.reset = function(form) {
     if (form) {
@@ -203,5 +238,6 @@ $scope.reset = function(form) {
     }
     $scope.item = angular.copy($scope.master);
   };
+  
 });
 
