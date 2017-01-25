@@ -45,10 +45,42 @@ function addItem(req,res) {
         var POST = qs.parse(body); 
 		console.log("add body "+body);
         var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location,"colors":{name:POST.name,quantity:POST.quantity}});
-        newItem.save();           
-        res.send(newItem);
-        //showAllItems(req,res);
+        if(ifItemExsists(newItem)==true)
+		{
+			console.log("this item exsists already");
+			res.send("this item exsists already");
+		}
+		{
+			console.log("in else");
+			newItem.save();           
+			res.send(newItem);
+			//showAllItems(req,res);
+		}
         });
+}
+
+function ifItemExsists(newItem) {
+	//Item.find({this.category:newItem.category,this.subCategory:newItem.subCategory,this.name:newItem.name},function(err,docs){
+	Item.find({}).where('category').equals(newItem.category).exec(function(err,docs){
+		var count = docs.length
+		console.log(newItem.category);
+		if (err) {
+			throw err;
+		}
+		else 
+		{
+			if (count!=0)
+			{
+				console.log("item exsists "+docs);
+				return true;
+			}
+			else 
+			{
+				console.log("item is not Exsists");
+				return false;
+			}
+		}
+	});	
 }
 
 function countItem(req,res) {   
