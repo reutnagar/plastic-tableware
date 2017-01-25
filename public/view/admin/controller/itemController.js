@@ -6,14 +6,8 @@ app.controller('itemCtrl',function($scope, $http) {
 	$scope.master = {}; 
 	$scope.editItem = {};
 	$scope.showMe = {};
-
-$scope.addInput = [];
-
-        $scope.add = function () {
-          $scope.addInput.push({ 
-          });
-        };
-
+    $scope.new_item = { name: "test", quantities: []}
+console.log("new_item",$scope.new_item);
 	$scope.showAllItems=function(){
 		 console.log("request all items");
 		$http.get('/admin/showAllItems')
@@ -28,6 +22,17 @@ $scope.addInput = [];
 							console.log("Error: "+data);
 			 });
 	}
+
+
+        $scope.add = function () {
+          $scope.new_item.quantities.push({
+          name:"",
+          quantity:"",
+          minQuantity:"",
+          image:"" 
+          });
+          console.log($scope.new_item.quantities);
+        };
 $scope.addItem=function(item){
 // use $.param jQuery function to serialize data from JSON 
             var data = $.param({
