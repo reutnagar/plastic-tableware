@@ -82,7 +82,6 @@ function checkQuantity (req,res){
 	if (err) {
 	  throw err;
 	}
-	console.log(this.quantity);
 	console.log(result);
 	res.json(result);
 	});

@@ -35,6 +35,7 @@ app.controller('orderCtrl', function($scope, $http) {
                         console.log("Error: "+data);
                     });
 }
+//do not deleate!!!!!!!!!!!!!!!!!!!
  /*
  //now it from client side, but i think that itws match to admin also...... 
  $scope.ordersOfUserName=function(userName){
