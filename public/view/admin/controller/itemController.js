@@ -16,7 +16,7 @@ app.controller('itemCtrl',function($scope, $http) {
 							console.log("Succeed loading");
 							for (var i = 0, length = $scope.items.length; i < length; i++) {
 							$scope.showMe[$scope.items[i]._id] = true;
-				}
+							}
 						})
 						.error(function(data){
 							console.log("Error: "+data);
@@ -32,6 +32,7 @@ $scope.addItem=function(item){
 				price : item.price,
                 location : item.location,
 				//colors.name[0]: item.colors.name[0],
+				//colors.quantity[0]: item.colors.quantity[0],
             });
         
             var config = {
@@ -117,6 +118,7 @@ $scope.reset();
                 $scope.editItem[item._id] = false;
                 $scope.showAllItems();
             };
+			
 $scope.deleteItem = function(item){
             var data = $.param({
                 name : item.name,
@@ -142,7 +144,28 @@ $scope.deleteItem = function(item){
             $scope.showAllItems();
 };
 
-	&scope.checkQuantity() {
+$scope.deleteItemById = function(_id){
+            var data = _id
+    var config = {
+    headers : {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+    }
+            $http.post('/admin/deleteItemById', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                console.log("Succeed");
+            })
+            .error(function (data, status, header, config) {
+                console.log("Error: "+data);
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });  
+            $scope.showAllItems();
+};
+	/*$scope.checkQuantity() = function() {
 		 console.log("checkQuantity");
 		$http.get('/admin/checkQuantity')
 						.success(function(data){
@@ -152,7 +175,7 @@ $scope.deleteItem = function(item){
 						.error(function(data){
 							console.log("Error: "+data);
 			 });
-	}
+	}*/
 
 $scope.countItem = function(item){
     alert("count");
@@ -188,5 +211,6 @@ $scope.reset = function(form) {
     }
     $scope.item = angular.copy($scope.master);
   };
+  
 });
 

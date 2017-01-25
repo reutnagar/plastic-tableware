@@ -7,6 +7,7 @@ module.exports = {
   countItem: countItem,
   checkQuantity: checkQuantity,
   deleteItem: deleteItem,
+  deleteItemById: deleteItemById,
   deleteAllItems: deleteAllItems,
   changeItem: changeItem,
   getProductDetails:getProductDetails,
@@ -41,6 +42,7 @@ function addItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body); 
+		console.log("add body "+body);
         var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location,"colors":{name:POST.name,quantity:POST.quantity}});
         newItem.save();           
         res.send(newItem);
@@ -87,17 +89,6 @@ function checkQuantity (req,res){
 	});
 };
 
-/*function checkQuantity (req,res){
-	Item.$where('this.quantity <= this.minQuantity').exec(function(err, result) {
-	if (err) {
-	  throw err;
-	}
-  console.log(result);
-  res.json(result);
-	});
-
-}*/
-
 function deleteAllItems(req,res) {
 	Item.remove ({},function(err, result) {
 	if (err) {
@@ -122,6 +113,28 @@ function deleteItem(req,res) {
         req.on('end', function () {
 			var POST = qs.parse(body); 
 			Item.remove({ category:POST.category , name:POST.name},function(err, result) {
+			if (err) {
+				throw err;
+			}
+			res.send("success");
+			});
+		});
+};
+
+
+function deleteItemById(req,res) {
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {			
+			Item.remove({_id:body},function(err, result) {
 			if (err) {
 				throw err;
 			}
