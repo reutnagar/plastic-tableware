@@ -13,30 +13,37 @@ var path = require('path');
 router.use(express.static(path.join(__dirname , '../public/view/client')));
 router.use(express.static(path.join(__dirname , '../public/view/admin')));
 
-router.get('/admin/showAllItems', itemsController.showAllItems);
-router.get('/admin/showAllOrders', ordersController.showAllOrders);
-router.get('/admin/showLastOrders', ordersController.showLastOrders);
-router.get('/showAllCategories', categoryController.showAllCategories);
 router.get('/admin', function(req,res){
     res.sendFile(path.join(__dirname , '../public/view/admin/index.html'));
 });
 
+//itemsController
+router.get('/admin/showAllItems', itemsController.showAllItems);
 router.get('/admin/checkQuantity', itemsController.checkQuantity);
 router.post('/admin/addItem', itemsController.addItem);
 router.post('/admin/deleteItem', itemsController.deleteItem);
-router.post('/admin/deleteItemById', itemsController.deleteItemById);
+router.post('/admin/deleteItemById', itemsController.deleteItem);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
 router.post('/getProductDetails', itemsController.getProductDetails);
 router.post('/getProductsOfSubCategory',itemsController.getProductsOfSubCategory);
+router.post('/checkIfItemExistsInStock',itemsController.checkIfItemExistsInStock);
 
+//ordersControllers
+router.get('/admin/showAllOrders', ordersController.showAllOrders);
+router.get('/admin/showLastOrders', ordersController.showLastOrders);
+router.post('/admin/ordersOfUserName',ordersController.ordersOfUserName);
 
+//userController
 router.post('/admin/signIn',userController.signIn);
 router.post('/admin/signOut',userController.signOut);
 router.post('/admin/getSessionInfo',userController.getSessionInfo);
 
+//categoryController
+router.get('/showAllCategories', categoryController.showAllCategories);
 router.post('/showAllSubCategory', categoryController.showAllSubCategories);
 
+//paymentController
 router.post('/processPayment', paymentController.processPayment);
 
 // export router
