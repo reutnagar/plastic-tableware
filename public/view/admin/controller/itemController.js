@@ -7,6 +7,7 @@ app.controller('itemCtrl',function($scope, $http) {
 	$scope.editItem = {};
 	$scope.showMe = {};
 
+$scope.addInput = [];
 
         $scope.add = function () {
           $scope.addInput.push({ 
