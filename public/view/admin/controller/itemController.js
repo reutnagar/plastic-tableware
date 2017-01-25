@@ -176,8 +176,6 @@ $scope.showAllItems();
 							console.log("Error: "+data);
 			 });
 	}*/
->>>>>>> origin/master
-
 $scope.countItem = function(item){
     alert("count");
             var data = $.param({
