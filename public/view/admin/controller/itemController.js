@@ -8,6 +8,11 @@ app.controller('itemCtrl',function($scope, $http) {
 	$scope.showMe = {};
 
 
+        $scope.add = function () {
+          $scope.addInput.push({ 
+          });
+        };
+
 	$scope.showAllItems=function(){
 		 console.log("request all items");
 		$http.get('/admin/showAllItems')
@@ -165,7 +170,7 @@ $scope.deleteItemById = function(_id){
             });
 $scope.showAllItems();
 };
-$scope.checkQuantity() = function() {
+$scope.checkQuantity = function() {
 	 console.log("checkQuantity");
 	$http.get('/admin/checkQuantity')
 					.success(function(data){
