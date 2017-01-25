@@ -20,6 +20,9 @@ app.use(session({
 // set the routes 
 //app.use(require('./app/routes'));
 
+
+
+
 //get json content from client
 app.use(bodyParser.json());
 //=========================================================

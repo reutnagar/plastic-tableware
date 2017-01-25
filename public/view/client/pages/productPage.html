@@ -1,4 +1,4 @@
-				
+	
                 <div class="col-lg-12 col-md-12 col-sm-12" ng-init="getProductsOfSubCategory()">
                 	<div class="breadcrumbs">
                     	<p><a href="#">Home</a> <i class="icons icon-right-dir"></i> {{ category }} <i class="icons icon-right-dir"></i> {{ subCategory }}</p>
@@ -13,20 +13,20 @@
                         <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12" >
 
                             <div  data-max-items="3" ng-repeat="product in products">
-                            
 
                                         <!-- Carousel Item -->
                                     <div class="product col-md-4"  >
                                             
                                             <div class="product-image">
                                                 <img src="img/products/sample1.jpg" alt="Product1">
-                                                <a href="#singleProduct/{{ product.id }}" class="product-hover">
-                                                    <i class="icons icon-eye-1"></i>View
+                                                <div ng-click="setImageModal(product.image)" data-toggle="modal" data-target="#imageModal"><a href=""   class="product-hover" >
+                                                    <i class="icons icon-eye-1"></i>Quick View
                                                 </a>
+                                                </div>
                                             </div>
                                             
                                             <div class="product-info">
-                                                <h5><a href="products_page_v1.html">{{ product.name }}</a></h5>
+                                                <h5><a href="#singleProduct/{{product._id}}">{{ product.name }}</a></h5>
                                                 <span class="price">{{ product.price }} ש"ח</span>
                                                 <div class="rating readonly-rating" data-score="4"></div>
                                             </div>
@@ -62,3 +62,19 @@
                     </section>
 				<!-- Main Content -->
 				
+  <!-- Modal for delete item -->
+<div class="modal fade" id="imageModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+    <div class="modal-body">
+      <div class="container" style="max-width: 100%;">
+      <img id="#modalImage" ng-src="{{image}}" alt="Product1" style="width: 100%;">
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

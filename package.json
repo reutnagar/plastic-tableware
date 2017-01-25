@@ -10,6 +10,7 @@
     "express-session": "^1.14.2",
     "mongoose": "^4.7.7",
     "mongoose-auto-increment": "^5.0.1",
+    "nodemailer": "^2.7.2",
     "path": "*",
     "querystring": "*",
     "stripe": "^4.14.0"
@@ -19,5 +20,17 @@
   },
   "scripts": {
     "start": "node app.js"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reutnagar/plastic-tableware.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reutnagar/plastic-tableware/issues"
+  },
+  "homepage": "https://github.com/reutnagar/plastic-tableware#readme"
 }

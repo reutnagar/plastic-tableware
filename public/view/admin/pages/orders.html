@@ -23,21 +23,29 @@
                         <thead>
                             <tr>
                                 <th>מספר הזמנה</th>
-                                <th>מספר פריטים</th>
-                                <th> כמות</th>
-                                <th> סטטוס</th>
-                                <th> מחיר</th>
+								<th>שם הלקוח</th>
+								<th>מייל</th>
+								<th>כתובת למשלוח</th>
+								<th>תאריך ביצוע ההזמנה</th>
+                                <th>סה"כ פריטים</th>
+								<th> סה"כ לתשלום</th>
+                                <th> סטטוס הזמנה </th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr data-ng-repeat="order in orders" data-ng-model = "orders">
+                                <td><a href="pages/examples/invoice.html">{{order._id}}</a></td>
                                 <td><a href="pages/examples/invoice.html">{{order.userName}}</a></td>
-                                <td><a href="pages/examples/invoice.html">{{order.num}}</a></td>
+								<td><a href="pages/examples/invoice.html">{{order.email}}</a></td>
+								<td><a href="pages/examples/invoice.html">{{order.address}}</a></td>
+								<td><a href="pages/examples/invoice.html">{{order.date}}</a></td>
                                 <td>{{order.quantity}}</td>
-                                <td><span class="label label-success">{{order.status}}</span></td>
-                                <td>
+								<td>
                                     <div class="sparkbar" data-color="#00a65a" data-height="20">{{order.price}}</div>
                                 </td>
+                                <td><span class="label label-success">{{order.status}}</span></td>
+                                
                             </tr>   
                         </tbody>
                     </table>

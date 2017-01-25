@@ -1,4 +1,5 @@
 var app = angular.module("adminApp", ["ngRoute"]);
+console.log("moduleDef page");
 app.config(function ($routeProvider) {
                 $routeProvider
                   .when('/', {
@@ -7,20 +8,15 @@ app.config(function ($routeProvider) {
                        
                     })
                     .when('/dashboard', {
-                        templateUrl: 'pages/dashboard.html'
+                        templateUrl: 'pages/dashboard.html',
+                        controller:'notificationCtrl'
                     })
                   .when('/orders', {
                       templateUrl: 'pages/orders.html'
                   })
                     .when('/stock', {
                         templateUrl: 'pages/stock.html',
-                        controller: 'itemCtrl'
-
-                    })
-                    .when('/main', {
-                    templateUrl: 'pages/dashboard.html',
-                    controller: 'mainController'
-
+                        controller: 'itemCtrl'   
                     })
                   .when('/newItem', {
                       templateUrl: 'pages/new_item.html'

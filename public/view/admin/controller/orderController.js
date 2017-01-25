@@ -6,6 +6,7 @@ app.controller('orderCtrl', function($scope, $http) {
 });
 
   $scope.master = {};
+  $scope.ordersOfUserName={};
   //$scope.orders = {};
   //$scope.lastOrders = {};
   $scope.showMe = true;
@@ -34,8 +35,38 @@ app.controller('orderCtrl', function($scope, $http) {
                         console.log("Error: "+data);
                     });
 }
+//do not deleate!!!!!!!!!!!!!!!!!!!
+  /*
+ //now it from client side, but i think that itws match to admin also...... 
+ $scope.ordersOfUserName=function(userName){
+			var data = userName;
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+            $http.post('/admin/ordersOfUserName', data, config)
+            .success(function (data, status, headers, config) {
+                console.log("Succeed post ordersOfUserName");
+                $scope.ordersOfUserName=data;
+                console.log("orders of ", data);
+            });
+            .error(function (data, status, header, config) {
+                console.log("Error: "+ data);
+                $scope.ResponseDetails = "orders of " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+	};*/
 
- });
+});
+ 
+
+/*
+
+
+});
  
 
 /*

@@ -12,6 +12,7 @@ var app = angular.module("clientApp", ['ngRoute']);
                     })
                   .when('/order_info', {
                       templateUrl: 'pages/order_info.html'
+                     
                   })
                     .when('/orders_list', {
                         templateUrl: 'pages/orders_list.html'
@@ -19,7 +20,7 @@ var app = angular.module("clientApp", ['ngRoute']);
                   .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html'
                   })
-                  .when('/singleProduct/:id?', {
+                  .when('/singleProduct/:_id?', {
                       templateUrl: 'pages/singleProduct.html',
                       controller:"productCtrl"
                   })

@@ -1,6 +1,6 @@
 app.controller('productCtrl',function($scope, $http,$routeParams) {
 	//$scope.master = {};
-    $scope.id = $routeParams.id;
+    $scope._id = $routeParams._id;
 	$scope.product = {};
 	$scope.products = {};
 
