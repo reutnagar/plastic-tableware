@@ -36,7 +36,7 @@ app.controller('orderCtrl', function($scope, $http) {
                     });
 }
 //do not deleate!!!!!!!!!!!!!!!!!!!
- /*
+  /*
  //now it from client side, but i think that itws match to admin also...... 
  $scope.ordersOfUserName=function(userName){
 			var data = userName;
@@ -59,6 +59,12 @@ app.controller('orderCtrl', function($scope, $http) {
                     "<hr />config: " + config;
             });
 	};*/
+
+});
+ 
+
+/*
+
 
 });
  
