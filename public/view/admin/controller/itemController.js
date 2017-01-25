@@ -42,8 +42,7 @@ $scope.addItem=function(item){
                 description : item.description,
 				price : item.price,
                 location : item.location,
-				//colors.name[0]: item.colors.name[0],
-				//colors.quantity[0]: item.colors.quantity[0],
+				quantities : item.quantities
             });
         
             var config = {
