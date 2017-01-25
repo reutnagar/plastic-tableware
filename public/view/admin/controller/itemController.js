@@ -6,7 +6,15 @@ app.controller('itemCtrl',function($scope, $http) {
 	$scope.master = {}; 
 	$scope.editItem = {};
 	$scope.showMe = {};
-    $scope.new_item = { name: "test", quantities: []}
+       $scope.new_item = { 
+                name : "",
+                category : "",
+                subCategory : "",
+                description : "",
+                price :"",
+                location : "",
+                quantities: []
+            }
 console.log("new_item",$scope.new_item);
 	$scope.showAllItems=function(){
 		 console.log("request all items");
@@ -31,7 +39,7 @@ console.log("new_item",$scope.new_item);
           minQuantity:"",
           image:"" 
           });
-          console.log($scope.new_item.quantities);
+          console.log($scope.new_item);
         };
 $scope.addItem=function(item){
 // use $.param jQuery function to serialize data from JSON 
