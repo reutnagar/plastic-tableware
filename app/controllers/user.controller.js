@@ -80,30 +80,38 @@ function signIn(req, res) {
         req.on('end', function () {
         var POST = qs.parse(body); 
         var existUser = new User({ userName : POST.userName,password :  POST.password });
+                if(req.session.user != null)
+                    {
+                        res.json({ in: false, msg: "הנך מחובר! התנתק לפני התחברות חוזרת", user: null });
+                    }
+
+               else{
                 User.findOne({  userName: existUser.userName}, function (err, user) {
                   if (user) {
 
                     if(user.password != existUser.password)
                     {
-                     
-                           res.send("Incorrect password");
+                           res.json({ in: false, msg: "הסיסמא שהכנסת שגויה", user: user });
+                       
                     }
                     else
                     {
-                        // req.session.user = user;
-                        
-                        res.send("logged in succesfully");
+                         req.session.user = user;
+                       console.log(req.session);
+                        res.json({ in: true, msg: "התחברת בהצלחה", user: user });
+                      
                     }
 
                }
                 else {
-                    console.log(user);
-
-                    res.send("user doesn't exist!");
+                   
+                    
+                    res.json({ in: false, msg: "משתמש אינו קיים ", user: user });
+                    
                 }
             });
 
-
+        }
        
        
         });

@@ -3,8 +3,10 @@ app.controller('signInController', function ($scope, $http) {
     options.async = true;
 });
     console.log("signInController");
-  // $scope.session = {};
-
+     $scope.session = {};
+  $("#navbar-custom-menu1").hide();
+ $("#main-sidebar1").hide();
+ 
      $scope.signing = function (user) {
        
         console.log('in sign in');
@@ -25,12 +27,19 @@ app.controller('signInController', function ($scope, $http) {
             $http.post('/admin/signIn', data, config)
                           .success(function (data, status, headers, config) {
                            $scope.PostDataResponse = data;
-                           console.log( data);
+                           console.log( data.msg);
                            console.log('after login');
-                      if(data=="logged in succesfully")
-                             window.location.replace('#/dashboard');
+                      if(data.msg=="התחברת בהצלחה")
+                            {$scope.session.user =data.user;
+                                  window.location.replace('#/dashboard');
+                              $("#navbar-custom-menu1").show();
+                              $("#main-sidebar1").show();
+                                                    document.getElementById("hidden-xs1").textContent = $scope.session.user.userName;
+}
                     else
-                      console.log("try again");
+                     {   alert(data.msg);
+                                 
+                     }
             })
                             .error(function (data, status, header, config) {
                                 console.log("Error: "+data);
