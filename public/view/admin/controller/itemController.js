@@ -165,17 +165,17 @@ $scope.deleteItemById = function(_id){
             });
 $scope.showAllItems();
 };
-	/*$scope.checkQuantity() = function() {
-		 console.log("checkQuantity");
-		$http.get('/admin/checkQuantity')
-						.success(function(data){
-							$scope.quantity = data;
-							console.log("Succeed loading");
-						})
-						.error(function(data){
-							console.log("Error: "+data);
-			 });
-	}*/
+$scope.checkQuantity() = function() {
+	 console.log("checkQuantity");
+	$http.get('/admin/checkQuantity')
+					.success(function(data){
+						$scope.quantity = data;
+						console.log("Succeed loading");
+					})
+					.error(function(data){
+						console.log("Error: "+data);
+		 });
+}
 $scope.countItem = function(item){
     alert("count");
             var data = $.param({
