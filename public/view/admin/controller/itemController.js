@@ -142,7 +142,7 @@ $scope.deleteItem = function(item){
             $scope.showAllItems();
 };
 
-	&scope.checkQuantity(item) {
+	$scope.checkQuantity=function(item) {
 		var data = $.param({
                 quantity : item.quantity,
                 minQuantity : item.minQuantity,
@@ -167,7 +167,7 @@ $scope.deleteItem = function(item){
             });
 	};
 
-	}
+
 
 $scope.countItem = function(item){
     alert("count");
