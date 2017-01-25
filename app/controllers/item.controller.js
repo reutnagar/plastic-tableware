@@ -50,7 +50,7 @@ function addItem(req,res) {
 			console.log("this item exsists already");
 			res.send("this item exsists already");
 		}
-		if( ifItemExsists(newItem)==false)
+		else  
 		{
 			console.log("in else");
 			newItem.save();           
