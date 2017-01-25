@@ -183,8 +183,8 @@ function changeItem(req,res) {
             }
         });   
         req.on('end', function () {
-			var POST = qs.parse(body);
-			Item.findById(POST._id, function(err, item){
+			console.log('body',body);	
+			Item.find({_id:body}, (err, item) => {
 				if (err) {
 					res.status(404);
 					res.send('item not found!');

@@ -22,7 +22,7 @@ router.get('/admin/showAllItems', itemsController.showAllItems);
 router.get('/admin/checkQuantity', itemsController.checkQuantity);
 router.post('/admin/addItem', itemsController.addItem);
 router.post('/admin/deleteItem', itemsController.deleteItem);
-router.post('/admin/deleteItemById', itemsController.deleteItem);
+router.post('/admin/deleteItemById', itemsController.deleteItemById);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
 router.post('/getProductDetails', itemsController.getProductDetails);
