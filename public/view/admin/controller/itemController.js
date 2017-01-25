@@ -203,6 +203,32 @@ $scope.countItem = function(item){
             });
 };
 
+/*$scope.checkIfItemExistsInStock = function(item){
+  console.log("in checkIfItemExistsInStock in the client side");
+            var data = $.param({
+				_id : item._id,
+                //colors.quantity: item.colors.quantity;
+            });
+        
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+            $http.post('/checkIfItemExistsInStock', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                console.log("Succeed checkIfItemExistsInStock");
+                //$scope.items.push(data);
+            })
+            .error(function (data, status, header, config) {
+                console.log("Error: "+data);
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+	};*/
 
 $scope.reset = function(form) {
     if (form) {
