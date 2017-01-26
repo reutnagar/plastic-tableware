@@ -1,7 +1,7 @@
 
-app.controller('mainController',function($scope, $http) {
+app.controller('mainController',function($scope, $http,$location, $rootScope) {
 	//$scope.formData = {};
-
+ $scope.session = {};
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
         options.async = true;
     });
@@ -28,9 +28,69 @@ $scope.signOut = function () {
                                     "<hr />status: " + status +
                                     "<hr />headers: " + header +
                                     "<hr />config: " + config;
-                            });  
-         
-                    
+                            });                      
     }
+
+  
+                
+
+ 
+
+
+
+    //  $scope.user = userService.user;
+ $scope.$on('$routeChangeStart', function (e, next, current) { 
+      $http.get('/admin/getSessionInfo')
+                          .success(function (data) {
+                           $scope.PostDataResponse = data;
+                           console.log('after session info');
+                           $scope.session =data.session;
+                      })
+                            .error(function (data) {
+                                console.log("Error: "+data);
+                                $scope.ResponseDetails = "Data: " + data ;
+                            });  
+      console.log($scope.session);           
+          
+     if (next.access != undefined && !next.access.allowAnonymous&&!$scope.session ) {
+                $location.path("/");        
+                 alert('You are not logged in!');           
+            }
+        });
+
+             $http.get('/admin/getSessionInfo')
+                          .success(function (data) {
+                           $scope.PostDataResponse = data;
+                           console.log('after session info');
+                           $scope.session =data.session;
+                      })
+                            .error(function (data) {
+                                console.log("Error: "+data);
+                                $scope.ResponseDetails = "Data: " + data ;
+                            });  
+      console.log($scope.session); 
+
+        // $scope.logout = function () {
+        //     authenticationService.logout()
+        //         .success(function (response) {
+                                           
+        //             alert( 'You are logged out.');
+        //         });
+        // };
+
+ $rootScope.$on("$locationChangeStart", function (event, next, current) {
+  for (var i in window.routes) {
+    if (next.indexOf(i) != -1) {
+     if (!window.routes[i].access.allowAnonymous&& !$scope.session ) {
+          alert('You are not logged in!');
+             $location.path("/");                                                 
+                    }
+                }
+            }
+        });
+
+    
+
+
 
 });

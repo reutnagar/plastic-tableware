@@ -6,8 +6,16 @@ app.controller('itemCtrl',function($scope, $http) {
 	$scope.master = {}; 
 	$scope.editItem = {};
 	$scope.showMe = {};
-
-
+       $scope.new_item = { 
+                name : "",
+                category : "",
+                subCategory : "",
+                description : "",
+                price :"",
+                location : "",
+                quantities: []
+            }
+console.log("new_item",$scope.new_item);
 	$scope.showAllItems=function(){
 		 console.log("request all items");
 		$http.get('/admin/showAllItems')
@@ -22,6 +30,17 @@ app.controller('itemCtrl',function($scope, $http) {
 							console.log("Error: "+data);
 			 });
 	}
+
+
+        $scope.add = function () {
+          $scope.new_item.quantities.push({
+          name:"",
+          quantity:"",
+          minQuantity:"",
+          image:"" 
+          });
+          console.log($scope.new_item);
+        };
 $scope.addItem=function(item){
 // use $.param jQuery function to serialize data from JSON 
             var data = $.param({
@@ -31,8 +50,7 @@ $scope.addItem=function(item){
                 description : item.description,
 				price : item.price,
                 location : item.location,
-				//colors.name[0]: item.colors.name[0],
-				//colors.quantity[0]: item.colors.quantity[0],
+				quantities : item.quantities
             });
         
             var config = {
@@ -165,7 +183,7 @@ $scope.deleteItemById = function(_id){
             });
 $scope.showAllItems();
 };
-$scope.checkQuantity() = function() {
+$scope.checkQuantity = function() {
 	 console.log("checkQuantity");
 	$http.get('/admin/checkQuantity')
 					.success(function(data){

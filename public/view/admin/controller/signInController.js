@@ -5,7 +5,7 @@ app.controller('signInController', function ($scope, $http) {
     console.log("signInController");
      $scope.session = {};
 
-  $("#navbar-custom-menu1").hide();
+ // $("#navbar-custom-menu1").hide();
  $("#main-sidebar1").hide();
  
      $scope.signing = function (user) {

@@ -4,28 +4,35 @@ app.config(function ($routeProvider) {
                 $routeProvider
                   .when('/', {
                         templateUrl: 'pages/login.html',
-                        controller: 'signInController'
+                        controller: 'signInController',
+                         access: {allowAnonymous:true} 
                        
                     })
                     .when('/dashboard', {
                         templateUrl: 'pages/dashboard.html',
-                        controller:'notificationCtrl'
+                        controller:'notificationCtrl',
+                         access: {allowAnonymous:false} 
                     })
                   .when('/orders', {
-                      templateUrl: 'pages/orders.html'
+                      templateUrl: 'pages/orders.html',
+                       access: {allowAnonymous:false} 
                   })
                     .when('/stock', {
                         templateUrl: 'pages/stock.html',
-                        controller: 'itemCtrl'   
+                        controller: 'itemCtrl',
+                        access: {allowAnonymous:false} 
                     })
                   .when('/newItem', {
-                      templateUrl: 'pages/new_item.html'
+                      templateUrl: 'pages/new_item.html',
+                       access: {allowAnonymous:false} 
                   })
                   .when('/statistics', {
-                      templateUrl: 'pages/statistics.html'
+                      templateUrl: 'pages/statistics.html',
+                       access: {allowAnonymous:false} 
                   })
                   .when('/users', {
-                      templateUrl: 'pages/users.html'
+                      templateUrl: 'pages/users.html',
+                       access: {allowAnonymous:false} 
                   })
                   
                   .otherwise({ redirectTo: 'pages/dashboard.html' });

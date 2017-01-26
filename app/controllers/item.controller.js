@@ -54,7 +54,7 @@ function addItem(req,res) {
         req.on('end', function () {
         var POST = qs.parse(body); 
 		console.log("add body "+body);
-        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location,"colors":{name:POST.name,quantity:POST.quantity}});
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location,quantities:POST.quantities});
         if(ifItemExsists(newItem)==true)
 		{
 			console.log("this item exsists already");
