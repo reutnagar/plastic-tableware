@@ -49,7 +49,7 @@ app.controller('orderCtrl', function($scope, $http) {
                 console.log("Succeed post ordersOfUserName");
                 $scope.ordersOfUserName=data;
                 console.log("orders of ", data);
-            });
+            })
             .error(function (data, status, header, config) {
                 console.log("Error: "+ data);
                 $scope.ResponseDetails = "orders of " + data +
