@@ -9,9 +9,9 @@ const express      = require('express'),
 	emailController = require('./controllers/email.controller');
 
 var path = require('path');
-
-router.use(express.static(path.join(__dirname , '../public/view/admin')));
 router.use(express.static(path.join(__dirname , '../public/view/client')));
+router.use(express.static(path.join(__dirname , '../public/view/admin')));
+
 
 router.get('/admin', function(req,res){
     res.sendFile(path.join(__dirname , '../public/view/admin/index.html'));
