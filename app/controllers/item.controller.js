@@ -12,10 +12,20 @@ module.exports = {
   changeItem: changeItem,
   getProductDetails:getProductDetails,
   getProductsOfSubCategory:getProductsOfSubCategory,
-  checkIfItemExistsInStock :checkIfItemExistsInStock
+  checkIfItemExistsInStock :checkIfItemExistsInStock, 
+  allow:allow
+}
+function allow(req,res) { 
+if(req.session.user == null)
+                    {
+                       // res.send( "אין גישה");
+						res.redirect('/');
+						return;
+                    }
 }
 
 function showAllItems(req,res) {    
+	
 	Item.find({}, (err, stock) => {
         if (err) {
             res.status(404);
@@ -50,7 +60,7 @@ function addItem(req,res) {
 			console.log("this item exsists already");
 			res.send("this item exsists already");
 		}
-		if( ifItemExsists(newItem)==false)
+		else  
 		{
 			console.log("in else");
 			newItem.save();           
