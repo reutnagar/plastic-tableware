@@ -1,5 +1,4 @@
 var app = angular.module("adminApp", ["ngRoute"]);
-console.log("moduleDef page");
 app.config(function ($routeProvider) {
                 $routeProvider
                   .when('/', {

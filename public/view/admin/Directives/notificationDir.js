@@ -1,4 +1,3 @@
-console.log("notificationDir");
 app.directive('notificationDir', function() {
   return {
     restrict: 'E',
