@@ -14,5 +14,7 @@ module.exports = mongoose.model('Order',{
 	status: String,
 	date:{type: Date, default: Date.now},
 	// function(){return new Date().getTime()} }
+	numItems: Number,
+	payment : Number,
 	orderedItems: [orderedItem]
 });
