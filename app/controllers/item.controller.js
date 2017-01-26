@@ -1,5 +1,6 @@
 var qs = require('querystring');
 var Item = require('../models/Item');
+var Quantity = require('../models/Quantity');
 
 module.exports = {
   showAllItems: showAllItems,
@@ -44,8 +45,14 @@ function addItem(req,res) {
         req.on('end', function () {
         var POST = qs.parse(body); 
 		console.log("add body "+body);
-        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location,quantities:POST.quantities});
-        if(ifItemExsists(newItem)==true)
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location});
+		var newQuantity = new Quantity({quantities: POST.quantities});
+		console.log("POST.quantities: "+POST.quantities);
+		newQuantity.save(function(err, newQuantity){
+			newItem.quantities.push(newQuantity);
+			newItem.save();
+		})	
+		/*if(ifItemExsists(newItem)==true)
 		{
 			console.log("this item exsists already");
 			res.send("this item exsists already");
@@ -56,11 +63,11 @@ function addItem(req,res) {
 			newItem.save();           
 			res.send(newItem);
 			//showAllItems(req,res);
-		}
+		}*/
         });
 }
 
-function ifItemExsists(newItem) {
+/*function ifItemExsists(newItem) {
 	//Item.find({this.category:newItem.category,this.subCategory:newItem.subCategory,this.name:newItem.name},function(err,docs){
 	Item.find({}).where('category').equals(newItem.category).exec(function(err,docs){
 		var count = docs.length
@@ -84,7 +91,7 @@ function ifItemExsists(newItem) {
 			}
 		}
 	});	
-}
+}*/
 
 function countItem(req,res) {   
 	console.log("get post request in server side");  

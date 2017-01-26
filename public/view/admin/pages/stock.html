@@ -124,16 +124,16 @@
                 <div ng-repeat="quantity in new_item.quantities track by $index">
       <div class="form-group col-xs-12 label label-warning">
                   <label for="exampleTextarea">צבע</label>
-                  <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].name" name="colors.name" required placeholder="צבע"></textarea>
+                  <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].name" name="quantities.name" required placeholder="צבע"></textarea>
                   
                   <label for="exampleTextarea">כמות</label>
-                  <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].quantity" name="colors.quantuty" required placeholder="כמות"></textarea>
+                  <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].quantity" name="quantities.quantuty" required placeholder="כמות"></textarea>
                   
                   <label for="exampleTextarea">כמות מינימלית</label>
-                  <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].minQuantity" name="colors.color" required placeholder="כמות מינימלית"></textarea>
+                  <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].minQuantity" name="quantities.color" required placeholder="כמות מינימלית"></textarea>
                   
                   <label for="exampleTextarea">תמונה</label>
-                  <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].image" name="colors.quantuty" required placeholder="תמונה"></textarea>
+                  <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].image" name="quantities.quantuty" required placeholder="תמונה"></textarea>
 
  
                 </div>
