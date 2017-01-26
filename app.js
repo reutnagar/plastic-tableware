@@ -12,7 +12,7 @@ app.use(express.static('/public'));
 
 app.use(session({
   secret: process.env.SECRET || "secret", 
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 60000*60 },
   resave: false,    // forces the session to be saved back to the store
   saveUninitialized: false  // dont save unmodified
 }));
