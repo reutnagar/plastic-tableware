@@ -22,8 +22,9 @@ console.log("new_item",$scope.new_item);
 						.success(function(data){
 							$scope.items = data;
 							console.log("Succeed loading");
+							console.log("data"+data);
 							for (var i = 0, length = $scope.items.length; i < length; i++) {
-							$scope.showMe[$scope.items[i]._id] = true;
+								$scope.showMe[$scope.items[i]._id] = true;
 							}
 						})
 						.error(function(data){
@@ -50,7 +51,10 @@ $scope.addItem=function(item){
                 description : item.description,
 				price : item.price,
                 location : item.location,
-				quantities : item.quantities
+				quantitiesName: item.quantities.name,
+                quantitiesQuantity:item.quantities.quantity,
+                quantitiesMinQuantity:item.quantities.minQuantity,
+                quantitiesImage:item.quantities.image
             });
         
             var config = {
@@ -63,6 +67,7 @@ $scope.addItem=function(item){
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post addItem");
+				console.log("data "+data);
                 $scope.items.push(data);
             })
             .error(function (data, status, header, config) {
@@ -183,17 +188,7 @@ $scope.deleteItemById = function(_id){
             });
 $scope.showAllItems();
 };
-$scope.checkQuantity = function() {
-	 console.log("checkQuantity");
-	$http.get('/admin/checkQuantity')
-					.success(function(data){
-						$scope.quantity = data;
-						console.log("Succeed loading");
-					})
-					.error(function(data){
-						console.log("Error: "+data);
-		 });
-}
+
 $scope.countItem = function(item){
     alert("count");
             var data = $.param({
@@ -256,4 +251,3 @@ $scope.reset = function(form) {
   };
   
 });
-

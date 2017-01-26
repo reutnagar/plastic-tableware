@@ -10,8 +10,8 @@ const express      = require('express'),
 
 var path = require('path');
 
-router.use(express.static(path.join(__dirname , '../public/view/client')));
 router.use(express.static(path.join(__dirname , '../public/view/admin')));
+router.use(express.static(path.join(__dirname , '../public/view/client')));
 
 router.get('/admin', function(req,res){
     res.sendFile(path.join(__dirname , '../public/view/admin/index.html'));
@@ -37,7 +37,7 @@ router.post('/admin/ordersOfUserName',ordersController.ordersOfUserName);
 //userController
 router.post('/admin/signIn',userController.signIn);
 router.post('/admin/signOut',userController.signOut);
-router.post('/admin/getSessionInfo',userController.getSessionInfo);
+router.get('/admin/getSessionInfo',userController.getSessionInfo);
 
 //categoryController
 router.get('/showAllCategories', categoryController.showAllCategories);

@@ -1,4 +1,3 @@
-
 var qs = require('querystring');
 var User = require('../models/User');
 module.exports = {

@@ -1,5 +1,6 @@
 var qs = require('querystring');
 var Item = require('../models/Item');
+var Quantity = require('../models/Quantity');
 
 module.exports = {
   showAllItems: showAllItems,
@@ -12,20 +13,10 @@ module.exports = {
   changeItem: changeItem,
   getProductDetails:getProductDetails,
   getProductsOfSubCategory:getProductsOfSubCategory,
-  checkIfItemExistsInStock :checkIfItemExistsInStock, 
-  allow:allow
-}
-function allow(req,res) { 
-if(req.session.user == null)
-                    {
-                       // res.send( "אין גישה");
-						res.redirect('/');
-						return;
-                    }
+  checkIfItemExistsInStock :checkIfItemExistsInStock
 }
 
 function showAllItems(req,res) {    
-	
 	Item.find({}, (err, stock) => {
         if (err) {
             res.status(404);
@@ -52,10 +43,19 @@ function addItem(req,res) {
             }
         });   
         req.on('end', function () {
-        var POST = qs.parse(body); 
+        var POST = qs.parse(body);
+		//var a=qs.parse(body.quantities);
 		console.log("add body "+body);
-        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location,quantities:POST.quantities});
-        if(ifItemExsists(newItem)==true)
+        var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location});
+		//var newQuantity = new Quantity({quantities: POST.quantities});
+		var newQuantity = new Quantity({name:POST.quantitiesName,quantity: POST.quantitiesQuantity});
+		console.log("POST.quantities: "+POST.quantitiesName);
+		//console.log("a.quantities: "+a.quantities);
+		newQuantity.save(function(err, newQuantity){
+			newItem.quantities.push(newQuantity);
+			newItem.save();
+		})	
+		/*if(ifItemExsists(newItem)==true)
 		{
 			console.log("this item exsists already");
 			res.send("this item exsists already");
@@ -66,11 +66,11 @@ function addItem(req,res) {
 			newItem.save();           
 			res.send(newItem);
 			//showAllItems(req,res);
-		}
+		}*/
         });
 }
 
-function ifItemExsists(newItem) {
+/*function ifItemExsists(newItem) {
 	//Item.find({this.category:newItem.category,this.subCategory:newItem.subCategory,this.name:newItem.name},function(err,docs){
 	Item.find({}).where('category').equals(newItem.category).exec(function(err,docs){
 		var count = docs.length
@@ -94,7 +94,7 @@ function ifItemExsists(newItem) {
 			}
 		}
 	});	
-}
+}*/
 
 function countItem(req,res) {   
 	console.log("get post request in server side");  
@@ -295,4 +295,3 @@ function checkIfItemExistsInStock(req,res){
 			});
 		});
 }	
-
