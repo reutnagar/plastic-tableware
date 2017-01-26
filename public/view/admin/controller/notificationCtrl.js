@@ -7,7 +7,6 @@ console.log("notification controller````````````````");
 	$http.get('/admin/checkQuantity')
 					.success(function(data){
 						$scope.quantity = data;
-						data="";
 						if(data=="")$scope.reduce=false;
 						console.log("Succeed loading");
 					})
