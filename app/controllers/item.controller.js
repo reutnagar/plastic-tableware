@@ -43,11 +43,12 @@ function addItem(req,res) {
             }
         });   
         req.on('end', function () {
-        var POST = qs.parse(body); 
+        var POST = qs.parse(body);
+		//var a=qs.parse(body.quantities);
 		console.log("add body "+body);
         var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location});
-		var newQuantity = new Quantity({quantities: POST.quantities});
-		console.log("POST.quantities: "+POST.quantities);
+		//var newQuantity = new Quantity({quantities: POST.quantities});
+		//console.log("a.quantities: "+a.quantities);
 		newQuantity.save(function(err, newQuantity){
 			newItem.quantities.push(newQuantity);
 			newItem.save();
