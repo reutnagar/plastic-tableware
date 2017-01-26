@@ -58,6 +58,8 @@ function showLastOrders(req,res) {
 	});
 }
 
+
+
 function addOrder(req,res) {
 	console.log("get post request in server side");  
     var body = '';
@@ -91,8 +93,9 @@ function ordersOfUserName(req,res) {
             }
         });   
         req.on('end', function () {
-        var POST = qs.parse(body); 
-		Order.find({userName : POST.userName}).sort({date: -1}).exec(function(err, orders) { 
+       // var POST = qs.parse(body); 
+		//Order.find({userName : POST.userName}).sort({date: -1}).exec(function(err, orders) { 
+		Order.find({userName : body},{userName:0, email:0,address:0,status:0}).sort({date: -1}).exec(function(err, orders) { 
 		if (err) {
             res.status(404);
             res.send('Orders not found!');

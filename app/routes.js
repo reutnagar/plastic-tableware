@@ -32,7 +32,7 @@ router.post('/checkIfItemExistsInStock',itemsController.checkIfItemExistsInStock
 //ordersControllers
 router.get('/admin/showAllOrders', ordersController.showAllOrders);
 router.get('/admin/showLastOrders', ordersController.showLastOrders);
-router.post('/admin/ordersOfUserName',ordersController.ordersOfUserName);
+router.post('/ordersOfUserName',ordersController.ordersOfUserName);
 
 //userController
 router.post('/admin/signIn',userController.signIn);

@@ -35,8 +35,7 @@ app.controller('orderCtrl', function($scope, $http) {
                         console.log("Error: "+data);
                     });
 }
-//do not deleate!!!!!!!!!!!!!!!!!!!
-  /*
+
  //now it from client side, but i think that itws match to admin also...... 
  $scope.ordersOfUserName=function(userName){
 			var data = userName;
@@ -45,7 +44,7 @@ app.controller('orderCtrl', function($scope, $http) {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             }
-            $http.post('/admin/ordersOfUserName', data, config)
+            $http.post('/ordersOfUserName', data, config)
             .success(function (data, status, headers, config) {
                 console.log("Succeed post ordersOfUserName");
                 $scope.ordersOfUserName=data;
@@ -58,7 +57,7 @@ app.controller('orderCtrl', function($scope, $http) {
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
-	};*/
+	};
 
 });
  

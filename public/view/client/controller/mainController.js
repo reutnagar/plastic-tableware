@@ -21,7 +21,6 @@ app.controller('mainController',function($scope, $http,$location) {
     $http.get('showAllCategories')
                     .success(function(data){
                         $scope.categories = data;
-                        console.log("Succeed loading",$scope.categories);
                     })
                     .error(function(data){
                         console.log("Error: "+data);
@@ -34,7 +33,6 @@ app.controller('mainController',function($scope, $http,$location) {
          });
     };
     $scope.showAllSubCategory=function(category){
-            console.log("category",category);
             var data = category;
             var config = {
                 headers : {
@@ -43,9 +41,7 @@ app.controller('mainController',function($scope, $http,$location) {
             }
             $http.post('/showAllSubCategory', data, config)
             .success(function (data, status, headers, config) {
-                console.log("Succeed post showAllSubCategory");
                 $scope.subCategories=data;
-                console.log("category from ", data);
             })
             .error(function (data, status, header, config) {
                 console.log("Error: "+ data);

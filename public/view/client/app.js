@@ -15,7 +15,8 @@ var app = angular.module("clientApp", ['ngRoute']);
                      
                   })
                     .when('/orders_list', {
-                        templateUrl: 'pages/orders_list.html'
+                        templateUrl: 'pages/orders_list.html',
+                        controller: 'orderCtrl'
                     })
                   .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html'
