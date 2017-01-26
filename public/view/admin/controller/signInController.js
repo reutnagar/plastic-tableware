@@ -4,6 +4,7 @@ app.controller('signInController', function ($scope, $http) {
 });
     console.log("signInController");
      $scope.session = {};
+
   $("#navbar-custom-menu1").hide();
  $("#main-sidebar1").hide();
  
@@ -27,7 +28,6 @@ app.controller('signInController', function ($scope, $http) {
             $http.post('/admin/signIn', data, config)
                           .success(function (data, status, headers, config) {
                            $scope.PostDataResponse = data;
-                           console.log( data.msg);
                            console.log('after login');
                       if(data.msg=="התחברת בהצלחה")
                             {$scope.session.user =data.user;
