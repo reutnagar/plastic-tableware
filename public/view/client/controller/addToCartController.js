@@ -1,8 +1,8 @@
 app.controller('cartCtrl',function($scope, $http,$location,$rootScope) {
 	console.log("cartCtrl");
-	$scope.hello="hello";
+	$scope.hello=JSON.parse(localStorage.getItem('myList'));
 	$scope.order =[{num:"1"},{num:"1"},{num:"1"},{num:"1"}];
-	console.log("order~~~~~~~~~~~~~~",$scope.order);
+	console.log("order~~~~~~~~~~~~~~",$scope.hello);
 	console.log("$rootScope.product",$rootScope.products);
 if($rootScope.products==""){$rootScope.products = "no products"}
 	var cart =[];
