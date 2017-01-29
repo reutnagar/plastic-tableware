@@ -16,5 +16,5 @@ module.exports = mongoose.model('Order',{
 	// function(){return new Date().getTime()} }
 	numItems: Number,
 	payment : Number,
-	orderedItems: [orderedItem]
+	orderedItems: [OrderedItem]
 });
