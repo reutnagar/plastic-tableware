@@ -47,9 +47,9 @@ function addItem(req,res) {
 		//var a=qs.parse(body.quantities);
 		console.log("add body "+body);
         var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location});
-		//var newQuantity = new Quantity({quantities: POST.quantities});
-		var newQuantity = new Quantity({name:POST.quantitiesName,quantity: POST.quantitiesQuantity});
-		console.log("POST.quantities: "+POST.quantitiesName);
+		var newQuantity = new Quantity({quantities: POST.quantities});
+		//var newQuantity = new Quantity({name:POST.quantitiesName,quantity: POST.quantitiesQuantity});
+		//console.log("POST.quantities: "+POST.quantitiesName);
 		//console.log("a.quantities: "+a.quantities);
 		newQuantity.save(function(err, newQuantity){
 			newItem.quantities.push(newQuantity);
