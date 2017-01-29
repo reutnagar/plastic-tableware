@@ -8,7 +8,7 @@
                 </div>
                 
 				
-				<section class="main-content col-lg-9 col-md-9 col-sm-9">
+				<section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl">
                     
                   <!--   Main Content 
                     <div class="row">
@@ -114,9 +114,9 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                     <th>סה"כ</th>
                                 </tr>
                                 
-                                <tr>
+                                <tr ng-repeat="product in products track by $index">
                                     <td class="image-column"><a href="#"><img src="img/products/sample1.jpg" alt=""></a></td>
-                                    <td><p><a href="#">Lorem ipsum dolor sit amet</a></p></td>
+                                    <td><p><a href="#">{{ product[$index].name }}Lorem ipsum dolor sit amet</a></p></td>
                                     <td><p>PSU26</p></td>
                                     <td><p>$281.00</p></td>
                                     <td class="quantity">

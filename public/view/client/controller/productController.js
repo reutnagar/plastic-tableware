@@ -1,9 +1,16 @@
-app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope) {
+app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$window) {
 	//$scope.master = {};
     $scope._id = $routeParams._id;
 	$scope.product = {};
-	$scope.products = {};
-
+	$scope.myList = [];
+    $scope.addItem = { 
+                _id:"",
+                name : "",
+                price :"",
+                quantity : "",
+                image: "",
+                color:""
+            }
     $scope.item = { 
                 name : "",
                 category : "",
@@ -11,7 +18,8 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope) {
                 price :"",
                 quantity : "",
                 image: "",
-                _id:""
+                _id:"",
+                color:""
             }
             $scope.quantity="",
              $scope.color="",
@@ -43,7 +51,24 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope) {
 	
 	
     $scope.addToCart = function(){
-        console.log("addToCart", $scope.product,$scope.quantity, $scope.color);
-        $rootScope.product=$scope.product;
+        if($scope.myList==undefined){
+          $scope.myList = [];
+            $scope.myList.push(JSON.parse(localStorage.getItem('myList')));
+            $window.localStorage.setItem('myList', JSON.stringify($scope.myList));
+        }
+         $scope.myList = JSON.parse(localStorage.getItem('myList'));
+        console.log("myList from localStorage",$scope.myList);
+        $scope.addItem=
+            {
+                _id : $scope.product._id,
+                name : $scope.product.name,
+                price : $scope.product.price,
+                quantity : $scope.quantity,
+                image : $scope.product.image,
+                color : $scope.color
+            };
+        $scope.myList.push($scope.addItem);
+         $window.localStorage.setItem('myList', JSON.stringify( $scope.myList));
+        console.log("products that added to cart",$rootScope.products);
     };
 });

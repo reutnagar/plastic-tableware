@@ -1,6 +1,7 @@
-app.controller('mainController',function($scope, $http,$location) {
+app.controller('mainController',function($scope, $http,$location,$rootScope) {
 	//$scope.formData = {}; 
     $scope.master = {}; 
+    $rootScope.products=[];
     $scope.subCategories={};
     $scope.categories={};
    $scope.goToSubCtegory=function(category){
