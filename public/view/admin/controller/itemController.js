@@ -51,10 +51,7 @@ $scope.addItem=function(item){
                 description : item.description,
 				price : item.price,
                 location : item.location,
-				quantitiesName: item.quantities.name,
-                quantitiesQuantity:item.quantities.quantity,
-                quantitiesMinQuantity:item.quantities.minQuantity,
-                quantitiesImage:item.quantities.image
+				quantities: item.quantities
             });
         
             var config = {
