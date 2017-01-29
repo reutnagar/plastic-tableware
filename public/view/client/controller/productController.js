@@ -1,8 +1,21 @@
-app.controller('productCtrl',function($scope, $http,$routeParams) {
+app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope) {
 	//$scope.master = {};
     $scope._id = $routeParams._id;
 	$scope.product = {};
 	$scope.products = {};
+
+    $scope.item = { 
+                name : "",
+                category : "",
+                subCategory : "",
+                price :"",
+                quantity : "",
+                image: "",
+                _id:""
+            }
+            $scope.quantity="",
+             $scope.color="",
+    $scope.order =[{num:"1"},{num:"1"},{num:"1"},{num:"1"}];
 
 	$scope.getProductDetails=function(_id){
             console.log("_id",_id);
@@ -29,4 +42,8 @@ app.controller('productCtrl',function($scope, $http,$routeParams) {
 	};
 	
 	
+    $scope.addToCart = function(){
+        console.log("addToCart", $scope.product,$scope.quantity, $scope.color);
+        $rootScope.product=$scope.product;
+    };
 });

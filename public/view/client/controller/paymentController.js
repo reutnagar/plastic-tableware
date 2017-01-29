@@ -1,4 +1,4 @@
-//add paymeny dependency
+/*//add paymeny dependency
 angular.module("clientApp").requires.push('angularPayments');
 
 //set publish key
@@ -29,3 +29,4 @@ app.controller('paymentCtl', function ($scope, $http, $location) {
         }
     };
 });
+*/

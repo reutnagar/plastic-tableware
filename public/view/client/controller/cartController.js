@@ -1,12 +1,7 @@
+  app.controller('cartCtrl',function($scope, $http,$routeParams,$rootScope) {
+    console.log("cart controller"); 
 
-app.controller('cartCtrl', function($scope, $http) {  
-   console.log("cart controller````````````````"); 
-   
-//????????????????????????
-    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
-    options.async = true;
-});
-
+    console.log("$rootScope.product",$rootScope.product);
     var cart =[];
 	$scope.addToCart=function(_id,color,sum){
 				var data = $.param({

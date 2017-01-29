@@ -73,7 +73,7 @@
 					<h2>{{ product.name }}</h2>
 					<div class="rating-box">
 						<div class="rating readonly-rating" data-score="4"></div>
-						<span>3 Review(s)</span>
+						<span></span>
 					</div>
 					<table>
 						<tr>
@@ -100,21 +100,19 @@
 						<tr>
 							<td>צבעים:</td>
 							<td>
-						    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">בחר צבע
-						    <span class="caret"></span></button>
-						    <ul class="dropdown-menu">
-						      <li data-ng-repeat="color in product"><a href="">{{color}}</a></li>
-						    </ul>
+								<select ng-model="color" data-ng-options="item.num for item in order">
+							      	<option value="">בחר צבע</option>
+							    </select>
 							</td>
 							<td>
-							<span ng-modal="">here will be the choosen color!</span>
+								<span>{{color}}</span>
 							</td>	
 						</tr>
 						<tr>
 							<td>כמות:</td>
 							<td>
 								<div class="numeric-input">
-								<label for="user_lic"></label><input id="user_lic" type="number" min="1" max="30" step="1" value ="1"/> 
+								<label for="user_lic"></label><input id="user_lic" type="number" min="1" max="30" step="1" value="1" ng-model="quantity"/> 
 								</div>
 							</td>
 						</tr>
@@ -122,7 +120,7 @@
 					<table>
 					<tr>
 						<td>
-							<a href="#">
+							<a href="" ng-click="addToCart()">
 									<span class="add-to-cart">
 										<span class="action-wrapper">
 											<i class="icons icon-basket-2"></i>
@@ -134,7 +132,7 @@
 						</td>
 					</tr>
 								
-					</table>
+					</table><!--
 					<div class="product-actions">
 						<span class="add-to-favorites">
 							<span class="action-wrapper">
@@ -155,7 +153,7 @@
 							</span>
 						</span>
 					</div>
-					
+					-->
 				</div>
 				
 			</div>

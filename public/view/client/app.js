@@ -19,7 +19,8 @@ var app = angular.module("clientApp", ['ngRoute']);
                         controller: 'orderCtrl'
                     })
                   .when('/shopping_cart', {
-                      templateUrl: 'pages/shopping_cart.html'
+                      templateUrl: 'pages/shopping_cart.html',
+                      controller : 'cartCtrl'
                   })
                   .when('/singleProduct/:_id?', {
                       templateUrl: 'pages/singleProduct.html',
