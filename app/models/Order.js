@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var Schema= mongoose.Schema;
 
-var orderedItem= new mongoose.Schema({
-	name: String,
-	quantity: Number,
+var OrderedItem= new mongoose.Schema({
+	item_id: String,
+	sum: Number,
 	color:String
 });	
 
