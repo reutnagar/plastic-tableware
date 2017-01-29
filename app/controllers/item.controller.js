@@ -31,6 +31,34 @@ function showAllItems(req,res) {
   
 }
 
+
+function ifItemExsists(newItem) {
+	//Item.find({this.category:newItem.category,this.subCategory:newItem.subCategory,this.name:newItem.name},function(err,docs){
+	Item.find({}).where('category').equals(newItem.category).exec(function(err,docs){
+		var count = docs.length;
+		console.log(newItem.category);
+		if (err) {
+			throw err;
+		}
+		else 
+		{
+			if (count!=0)
+			{
+				console.log("!=0"+docs + "count:" + count);
+				console.log("item exsists "+docs);
+				return true;
+			}
+			else 
+			{
+				console.log("0"+docs +  "count:" + count);
+				console.log("item is not Exsists");
+				return false;
+			}
+		}
+	});
+}
+
+
 function addItem(req,res) {
 	console.log("get post request in server side");  
     var body = '';
@@ -51,50 +79,30 @@ function addItem(req,res) {
 		//var newQuantity = new Quantity({name:POST.quantitiesName,quantity: POST.quantitiesQuantity});
 		//console.log("POST.quantities: "+POST.quantitiesName);
 		//console.log("a.quantities: "+a.quantities);
-		newQuantity.save(function(err, newQuantity){
+		/*newQuantity.save(function(err, newQuantity){
 			newItem.quantities.push(newQuantity);
+			newItem.isNew;
 			newItem.save();
-		})	
-		/*if(ifItemExsists(newItem)==true)
+		})	*/
+		
+		if(ifItemExsists(newItem))
 		{
 			console.log("this item exsists already");
 			res.send("this item exsists already");
 		}
 		else  
 		{
+			var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location});
+			var newQuantity = new Quantity({quantities: POST.quantities});
 			console.log("in else");
-			newItem.save();           
+			newQuantity.save(function(err, newQuantity){
+			newItem.quantities.push(newQuantity);
+			newItem.save();
+			});   
 			res.send(newItem);
-			//showAllItems(req,res);
-		}*/
+		}
         });
 }
-
-/*function ifItemExsists(newItem) {
-	//Item.find({this.category:newItem.category,this.subCategory:newItem.subCategory,this.name:newItem.name},function(err,docs){
-	Item.find({}).where('category').equals(newItem.category).exec(function(err,docs){
-		var count = docs.length
-		console.log(newItem.category);
-		if (err) {
-			throw err;
-		}
-		else 
-		{
-			if (count!=0)
-			{
-				console.log("!=0"+docs + "count:" + count);
-				console.log("item exsists "+docs);
-				return true;
-			}
-			else 
-			{
-				console.log("0"+docs +  "count:" + count);
-				console.log("item is not Exsists");
-				return false;
-			}
-		}
-	});	
-}*/
 
 function countItem(req,res) {   
 	console.log("get post request in server side");  
