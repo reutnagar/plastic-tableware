@@ -1,4 +1,4 @@
-
+/*
 var qs = require('querystring');
 var Item = require('../models/Item');
 var Quantity = require('../models/Quantity');
@@ -95,4 +95,4 @@ function quantity(req,res) {
 		});
 	});
 	
-}
+}*/
