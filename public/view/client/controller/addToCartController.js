@@ -1,6 +1,6 @@
 app.controller('cartCtrl',function($scope, $http,$location,$rootScope) {
 	console.log("cartCtrl");
-	$scope.hello=JSON.parse(localStorage.getItem('myList'));
+	$scope.myList=JSON.parse(localStorage.getItem('myList'));
 	$scope.order =[{num:"1"},{num:"1"},{num:"1"},{num:"1"}];
 	console.log("order~~~~~~~~~~~~~~",$scope.hello);
 	console.log("$rootScope.product",$rootScope.products);

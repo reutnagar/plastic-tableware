@@ -51,12 +51,11 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
 	
 	
     $scope.addToCart = function(){
-        if($scope.myList==undefined){
-          $scope.myList = [];
+        if($scope.myList==""){
             $scope.myList.push(JSON.parse(localStorage.getItem('myList')));
-            $window.localStorage.setItem('myList', JSON.stringify($scope.myList));
+           localStorage.setItem('myList', JSON.stringify($scope.myList));
         }
-         $scope.myList = JSON.parse(localStorage.getItem('myList'));
+        $scope.myList = JSON.parse(localStorage.getItem('myList'));
         console.log("myList from localStorage",$scope.myList);
         $scope.addItem=
             {
@@ -68,7 +67,6 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
                 color : $scope.color
             };
         $scope.myList.push($scope.addItem);
-         $window.localStorage.setItem('myList', JSON.stringify( $scope.myList));
-        console.log("products that added to cart",$rootScope.products);
+         localStorage.setItem('myList', JSON.stringify($scope.myList));
     };
 });
