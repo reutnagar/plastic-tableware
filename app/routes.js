@@ -7,6 +7,7 @@ const express      = require('express'),
 	ordersController = require('./controllers/order.controller'),
 	paymentController = require('./controllers/payment.controller'),
 	emailController = require('./controllers/email.controller');
+	addToCartController= require('./controllers/addToCart.controller');
 
 var path = require('path');
 router.use(express.static(path.join(__dirname , '../public/view/client')));
@@ -45,6 +46,10 @@ router.post('/showAllSubCategory', categoryController.showAllSubCategories);
 
 //paymentController
 router.post('/processPayment', paymentController.processPayment);
+
+
+//addToCartController
+//router.post('/makeAnOrder', addToCartController.makeAnOrder);
 
 // export router
 module.exports = router;
