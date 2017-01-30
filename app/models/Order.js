@@ -30,4 +30,4 @@ module.exports = mongoose.model('Order',{
 	item_id: [Schema.Types.ObjectId],
 	color : [String],
 	sum :[Number]
-}
+});
