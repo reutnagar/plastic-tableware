@@ -223,7 +223,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <p>אמייל</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text">
+                                        <input type="email" class="" ng-model="email.email">
                                     </div>  
                                     
                                 </div>     
@@ -234,7 +234,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <p>שם פרטי</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text">
+                                        <input type="text" ng-model="Username.firstName">
                                     </div>  
                                     
                                 </div>
@@ -246,7 +246,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <p>שם משפחה</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text">
+                                        <input type="text" ng-model="Username.lastName">
                                     </div>  
                                     
                                 </div>
@@ -257,7 +257,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <p>כתובת</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text">
+                                        <input type="text" ng-model="address.street">
                                     </div>  
                                     
                                 </div>
@@ -269,7 +269,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <p>מיקוד</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text">
+                                        <input type="text" ng-model="address.zip">
                                     </div>  
                                     
                                 </div>
@@ -280,7 +280,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <p>עיר</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text">
+                                        <input type="text" ng-model="address.country">
                                     </div>  
                                     
                                 </div>
@@ -291,7 +291,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <p>טלפון</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text">
+                                        <input type="text" ng-model="telephone">
                                     </div>  
                                     
                                 </div>
@@ -302,7 +302,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <p>פלאפון</p>
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text">
+                                        <input type="text" ng-model="pelephone">
                                     </div>  
                                 </div>
                             </div>
@@ -324,6 +324,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                 </table>
                                 <input type="checkbox" id="termscheckbox"><label for="termscheckbox">לחצו כאן לקריאת תנאי השירות וסמן את התיבה כדי לאשר.</label>
                                 <br><br>
+                                <button ng-click="validation()"></button>
                                 <form action="/processPayment" method="POST">
                                     <script
                                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
