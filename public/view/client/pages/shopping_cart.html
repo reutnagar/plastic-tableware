@@ -6,10 +6,16 @@
                     	<p> עגלת קניות <i class="icons icon-right-dir"></i><a href="#">Home</a> </p>
                     </div>
                 </div>
-                
+                <section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl" ng-hide="empty">
+                    <div class="row">
+                    אין מוצרים בסל הקניות שלך!!
+                    </div>
+                    </section>
 				
-				<section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl">
-                    
+				<section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl" ng-show="empty">
+                    <div class="row">
+                        
+
                   <!--   Main Content 
                     <div class="row">
                     	
@@ -110,31 +116,28 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                     <th>מספר קטלוגי</th>
                                     <th>מחיר</th>
                                     <th>כמות</th>
-                                    <th>הנחה</th>
                                     <th>סה"כ</th>
                                 </tr>
                                 
-                                <tr ng-repeat="product in products track by $index">
+                                <tr ng-repeat="item in myList track by $index">
                                     <td class="image-column"><a href="#"><img src="img/products/sample1.jpg" alt=""></a></td>
-                                    <td><p><a href="#">{{ product[$index].name }}Lorem ipsum dolor sit amet</a></p></td>
-                                    <td><p>PSU26</p></td>
-                                    <td><p>$281.00</p></td>
+                                    <td><p><a href="#">{{ item.name }}</a></p></td>
+                                    <td><p>{{item._id }}</p></td>
+                                    <td><p>{{item.price }} ש"ח</p></td>
                                     <td class="quantity">
-                                    	<input type="text" value="1">
+                                    	<input type="text" value="{{item.quantity}}">
                                         <p>
                                         	<a href="#"><i class="icons icon-ok-3"></i> עדכן</a><br>
                                             <a href="#" class="red-hover"><i class="icons icon-cancel-3"></i> מחק</a>
                                         </p>
                                     </td>
-                                    <td><p>$-31.00</p></td>
-                                    <td><p>$121.00</p></td>
+                                    <td ng-init="$parent.total = $parent.total + (item.price * item.quantity)"><p>{{ item.price * item.quantity}}</p></td>
                                 </tr> 
                                 
                               
 								<tr>
 									<td class="align-right" colspan="5">עלות כוללת</td>
-									<td>$-31.00</td>
-									<td><strong>$358.00</strong></td>	
+									<td><strong>{{ total }}</strong></td>	
 								</tr>
                                 
                             </table>
@@ -203,6 +206,108 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                           
                     </div>
                     -->
+                                            <div class="col-lg-12 col-md-12 col-sm-12 register-account">
+                            
+                            <div class="carousel-heading no-margin">
+                                <h4>פרטי משלוח</h4>
+                            </div>
+                            
+                            <div class="page-content">
+                                <div class="row">
+                                    
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <p><strong>פרטים אשיים</strong></p>
+                                    </div>
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>אמייל</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <input type="text">
+                                    </div>  
+                                    
+                                </div>     
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>שם פרטי</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <input type="text">
+                                    </div>  
+                                    
+                                </div>
+
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>שם משפחה</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <input type="text">
+                                    </div>  
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>כתובת</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <input type="text">
+                                    </div>  
+                                    
+                                </div>
+                                
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>מיקוד</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <input type="text">
+                                    </div>  
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>עיר</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <input type="text">
+                                    </div>  
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>טלפון</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <input type="text">
+                                    </div>  
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <p>פלאפון</p>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <input type="text">
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                     	
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -217,9 +322,6 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         <td><span class="price">$243.00</span></td>
                                     </tr>
                                 </table>
-                                
-                                <p>הערות ובקשות מיוחדות</p>
-                                <textarea></textarea>
                                 <input type="checkbox" id="termscheckbox"><label for="termscheckbox">לחצו כאן לקריאת תנאי השירות וסמן את התיבה כדי לאשר.</label>
                                 <br><br>
                                 <form action="/processPayment" method="POST">

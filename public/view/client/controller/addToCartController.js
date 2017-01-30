@@ -1,11 +1,13 @@
 app.controller('cartCtrl',function($scope, $http,$location,$rootScope) {
 	console.log("cartCtrl");
 	$scope.myList=JSON.parse(localStorage.getItem('myList'));
-	$scope.order =[{num:"1"},{num:"1"},{num:"1"},{num:"1"}];
-	console.log("order~~~~~~~~~~~~~~",$scope.hello);
-	console.log("$rootScope.product",$rootScope.products);
-if($rootScope.products==""){$rootScope.products = "no products"}
-	var cart =[];
+
+
+
+if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
+else $scope.empty=true;
+		console.log("order~~~~~~~~~~~~~~",$scope.myList,$scope.empty);
+		var cart =[];
 	$scope.addToCart=function(_id,color,sum){
 				var data = $.param({
 					item_id : _id,
