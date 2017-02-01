@@ -12,6 +12,7 @@ var app = angular.module("clientApp", ['ngRoute']);
                     })
                   .when('/order_info', {
                       templateUrl: 'pages/order_info.html'
+                     // controller:'sendEmailCtrl'
                      
                   })
                     .when('/orders_list', {
