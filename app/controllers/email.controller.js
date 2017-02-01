@@ -1,4 +1,5 @@
 var nodemailer = require("nodemailer");
+//var Order = require('../models/Order');
 
 //module.exports = {
     
@@ -6,11 +7,12 @@ var nodemailer = require("nodemailer");
 //app.controller('sendemailCtrl',function($scope, $http,$routeParams,$location) {
 	
 
+console.log("nodemailer");
 
-	console.log("nodemailer");
+function sendTheEmail (req,res) { 
 //var text = 'hi'+Order.userName+'ure order will be deleverd to'+Order.address;
 var text='hi hi'
-//STEP 4: Cre­ate a sim­ple JSON object with the nec­es­sary val­ues for send­ing the email.
+
 //var emailto = qs.parse(body);
 var mailOptions = {
     from: 'plastictableware.cs@gmail.com', // sender address
@@ -38,7 +40,7 @@ var mailOptions = {
     console.log('Message sent: ' + info.response);
 });
 
-
+};
 
   /*
     transporter.sendMail(mailOptions, function(error, info){
