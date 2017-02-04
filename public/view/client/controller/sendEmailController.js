@@ -1,14 +1,15 @@
-/*app.controller('sendEmailCtrl',function($scope, $http,$routeParams,$rootScope) {
+app.controller('sendEmailCtrl',function($scope, $http,$routeParams,$rootScope) {
     console.log("send email to"); 
 
     console.log("$rootScope.product",$rootScope.product);
+
 	$scope.sendEmail=function(EmailAdres){
 				var data = $.param({
 					Email_Adres : EmailAdres,
 				});
 				var config = {
 					headers : {
-						'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+						'Content-Type':'application/x-www-form-urlencoded;charset=utf-8;'
 					}
 				}
 				$http.post('/sendEmail', data, config)
@@ -28,4 +29,3 @@
 		
 });
 
-*/
