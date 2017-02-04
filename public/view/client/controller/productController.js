@@ -38,6 +38,24 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
                 console.log("Succeed post showItem");
 				//$scope.PostDataResponse = data;
                 $scope.product=data[0];
+                 $scope.product = 
+                    {              
+                                name : "a",
+                                category : "a",
+                                subCategory : "a",
+                                description : "a",
+                                price :"a",
+                                location : "a",
+                                quantities: [ {name:"dddd",
+                                              quantity:"3",
+                                              minQuantity:"3",
+                                              image:"dddd"},
+                                              {name:"aaaaa",
+                                              quantity:"5",
+                                              minQuantity:"3",
+                                              image:"aaaaa"}
+                                              ]
+                 };
                 console.log("item", data);
             })
             .error(function (data, status, header, config) {
@@ -51,6 +69,11 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
 	
 	
     $scope.addToCart = function(){
+        if(!$scope.quantity){
+            //alert("אנא בחר כמות וצבע!")ף
+            console.log("!quantity");
+            return;
+        }
         /*if($scope.myList==""){
             console.log("myList is empty");
 
