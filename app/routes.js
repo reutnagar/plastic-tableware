@@ -47,6 +47,7 @@ router.post('/showAllSubCategory', categoryController.showAllSubCategories);
 //paymentController
 router.post('/processPayment', paymentController.processPayment);
 
+//router.post('/sendEmail', emailController.sendEmail);
 
 //addToCartController
 //router.post('/makeAnOrder', addToCartController.makeAnOrder);
