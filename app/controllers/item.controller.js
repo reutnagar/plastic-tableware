@@ -78,21 +78,25 @@ function addItem(req,res) {
 		//console.log("add body "+body);
         var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location});
 		//console.log("POST.quantities now in json",POST.quantities);
-console.log("first parse:",a[0].name);
-console.log("second parse",a[0]);
+//console.log("first parse:",a[0].name);
+//console.log("second parse",a[0]);
+	var newQuantity = [];
+	for(var i=0; i<a.length;i++)
 
-
-
-		//var newQuantity = new Quantity({quantities: POST.quantities.name});
+	{
+		newQuantity[i] = new Quantity({name: a[i].name,quantity: a[i].quantity,minQuantity: a[i].minQuantity,image: a[i].image});
 		
+
 		//var newQuantity = new Quantity({name:POST.quantitiesName,quantity: POST.quantitiesQuantity});
 		//console.log("POST.quantities: "+POST.quantitiesName);
 		//console.log("a.quantities: "+a.quantities);
-		/*newQuantity.save(function(err, newQuantity){
-			newItem.quantities.push(newQuantity);
-			newItem.isNew;
+		newQuantity[i].save();
+		newItem.quantities.push(newQuantity[i]);}
 			newItem.save();
-		})	*/
+			//}); 
+	//newItem.isNew;
+			/*newItem.save();
+	
 		
 		if(ifItemExsists(newItem))
 		{
@@ -108,8 +112,9 @@ console.log("second parse",a[0]);
 			//newItem.quantities.push(newQuantity);
 			//newItem.save();
 			//});   
-			res.send(newItem);
-		}
+			
+		}*/
+		res.send(newItem);
         });
 }
 

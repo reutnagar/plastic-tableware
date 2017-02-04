@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var QuantitySchema = new Schema({
   name:   String,
-  image:  Buffer,
+ // image:  Buffer,
   quantity: Number,
   minQuantity: Number
 });
