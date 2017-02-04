@@ -40,10 +40,12 @@ console.log("new_item",$scope.new_item);
           minQuantity:"",
           image:"" 
           });
-          console.log($scope.new_item);
+          console.log("angular.toJson(item.quantities)",angular.toJson($scope.new_item.quantities));
         };
 $scope.addItem=function(item){
 // use $.param jQuery function to serialize data from JSON 
+var quant = angular.toJson(item.quantities);
+console.log("angular.toJson(item.quantities)",quant);
             var data = $.param({
                 name : item.name,
                 category : item.category,
@@ -51,7 +53,7 @@ $scope.addItem=function(item){
                 description : item.description,
 				price : item.price,
                 location : item.location,
-				quantities: item.quantities
+				quantities:quant
             });
         
             var config = {
@@ -59,12 +61,12 @@ $scope.addItem=function(item){
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             }
-
+                console.log("data.quantities",data.quantities);
             $http.post('/admin/addItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post addItem");
-				console.log("data "+data);
+				console.log("data"+data);
                 $scope.items.push(data);
             })
             .error(function (data, status, header, config) {

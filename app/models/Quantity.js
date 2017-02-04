@@ -1,4 +1,4 @@
-/*var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var QuantitySchema = new Schema({
@@ -7,4 +7,4 @@ var QuantitySchema = new Schema({
   quantity: Number,
   minQuantity: Number
 });
-module.exports = mongoose.model('Quantity', QuantitySchema);*/
+module.exports = mongoose.model('Quantity', QuantitySchema);
