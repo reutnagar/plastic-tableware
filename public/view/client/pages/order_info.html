@@ -33,12 +33,12 @@
                    <label for="inputUseremail" class="sr-only">email</label>
                      <h3>enter yor email addres for canfermation</h3>
                    <br>
-                   <input id="inputUseremail" ng-model="user.userName" class="form-control" placeholder="email addres" name="userName" required="true" autofocus="" type="name">
+                   <input id="inputUseremail" ng-model="em.EmailAdres" class="form-control" placeholder="email addres" name="em" required="true" autofocus="" type="name">
                 </div>
                 <br>
                 <div class="form-group has-feedback">
                  
-                 <button ng-click="signing(user)" class="btn btn-lg btn-primary btn-block" type="submit">end order</button>
+                 <button ng-click="sendEmail(em.EmailAdres)" class="btn btn-lg btn-primary btn-block" type="submit">end order</button>
                </div>
 									
 							 
