@@ -72,18 +72,31 @@ function addItem(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body);
-		//var a=qs.parse(body.quantities);
-		console.log("add body "+body);
+        //console.log("POST",POST);
+        //console.log("body",body);
+		var a=JSON.parse(POST.quantities);
+		//console.log("add body "+body);
         var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location});
-		var newQuantity = new Quantity({quantities: POST.quantities});
+		//console.log("POST.quantities now in json",POST.quantities);
+//console.log("first parse:",a[0].name);
+//console.log("second parse",a[0]);
+	var newQuantity = [];
+	for(var i=0; i<a.length;i++)
+
+	{
+		newQuantity[i] = new Quantity({name: a[i].name,quantity: a[i].quantity,minQuantity: a[i].minQuantity,image: a[i].image});
+		
+
 		//var newQuantity = new Quantity({name:POST.quantitiesName,quantity: POST.quantitiesQuantity});
 		//console.log("POST.quantities: "+POST.quantitiesName);
 		//console.log("a.quantities: "+a.quantities);
-		/*newQuantity.save(function(err, newQuantity){
-			newItem.quantities.push(newQuantity);
-			newItem.isNew;
+		newQuantity[i].save();
+		newItem.quantities.push(newQuantity[i]);}
 			newItem.save();
-		})	*/
+			//}); 
+	//newItem.isNew;
+			/*newItem.save();
+	
 		
 		if(ifItemExsists(newItem))
 		{
@@ -93,14 +106,15 @@ function addItem(req,res) {
 		else  
 		{
 			var newItem = new Item({ category : POST.category,subCategory :  POST.subCategory ,name : POST.name , description : POST.description,price: POST.price, location : POST.location});
-			var newQuantity = new Quantity({quantities: POST.quantities});
+			//var newQuantity = new Quantity({quantities: POST.quantities});
 			console.log("in else");
-			newQuantity.save(function(err, newQuantity){
-			newItem.quantities.push(newQuantity);
-			newItem.save();
-			});   
-			res.send(newItem);
-		}
+			//newQuantity.save(function(err, newQuantity){
+			//newItem.quantities.push(newQuantity);
+			//newItem.save();
+			//});   
+			
+		}*/
+		res.send(newItem);
         });
 }
 

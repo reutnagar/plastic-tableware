@@ -12,72 +12,95 @@
 </section>
 <!-- Main content -->
 <section ng-controller="itemCtrl" class="content"  data-ng-init="showAllItems()">
-      <div class="box">
-          <div class="box-body">
-            <div class="table-responsive">
-              <table class="table no-margin">
-              <tr>  <th></th>
-                    <th><p><input ng-model="search._id"></p>קוד</th>
-                    <th><p><input ng-model="search.name"></p>שם</th>
-                    <th><p><input ng-model="search.category"></p>קטגוריה</th>
-                    <th><p><input ng-model="search.subCategory"></p>תת-קטגוריה</th>
-                    <th><p><input ng-model="search.description"></p>תאור</th>
-					<th><p><input ng-model="search.price"></p>מחיר</th>
-                    <th><p><input ng-model="search.location"></p>מיקום</th>
-                    <th><p><input ng-model="search.colors.name"></p>צבע</th>
-					<th><p><input ng-model="search.colors.quantity"></p>כמות</th>
-              </tr>
-              <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
+  <div class="box">
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table no-margin">
+          <tr>  <th></th>
+                <th><p><input ng-model="search._id"></p>קוד</th>
+                <th><p><input ng-model="search.name"></p>שם</th>
+                <th><p><input ng-model="search.category"></p>קטגוריה</th>
+                <th><p><input ng-model="search.subCategory"></p>תת-קטגוריה</th>
+                <th><p><input ng-model="search.description"></p>תאור</th>
+			          <th><p><input ng-model="search.price"></p>מחיר</th>
+                <th><p><input ng-model="search.location"></p>מיקום</th>
+                <th><p><input ng-model="search.name"></p>פרטים לפי צבע:</th>
+          </tr>
+          <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
+                <td>
+                <div ng-show="showMe[item._id]">
+                  <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItemById(item._id)"></span></a>
+                  <a ><span class="glyphicon glyphicon-edit" ng-click="showAndHide(item);modify(item)"></span></a>
+                </div>
+                <div ng-hide="showMe[item._id]" ng-click="showAndHide(item)">
+                  <a><i class="fa fa-times" ng-click="update(item)"></i></a> 
+                  <a><i class="fa fa-check" ng-click="changeItem(item)"></i></a>
+                </div>
+                </td>            
+                <td>
+                <div>{{ item._id }}</div>
+                </td>
+                <td>
+                  <div ng-hide="editItem[item._id]">{{ item.name }}</div>
+                  <div ng-show="editItem[item._id]"><input type="text" ng-model="item.name" /></div>
+                </td>
+                <td>
+                  <div ng-hide="editItem[item._id]">{{ item.category }}</div>
+                  <div ng-show="editItem[item._id]"><input type="text" ng-model="item.category" /></div>
+                </td>
+                <td>
+                  <div ng-hide="editItem[item._id]">{{ item.subCategory }}</div>
+                  <div ng-show="editItem[item._id]"><input type="text" ng-model="item.subCategory" /></div>
+                </td>
+                <td>
+                  <div ng-hide="editItem[item._id]">{{ item.description }}</div>
+                  <div ng-show="editItem[item._id]"><input type="text" ng-model="item.description" /></div>
+                </td>
+			          <td>
+                  <div ng-hide="editItem[item._id]">{{ item.price }}</div>
+                  <div ng-show="editItem[item._id]"><input type="text" ng-model="item.price" /></div>
+                </td>
+                <td>
+                  <div ng-hide="editItem[item._id]">{{ item.location }}</div>
+                  <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" /></div>
+                </td>
+                <td>
+                <select ng-model="chosen" data-ng-options="item.name for item in item.quantities">
+                      <option value="">בחר צבע</option>
+                  </select>
+                  <table class="table table-responsive">
+                    <tr>
+                      <th>צבע</th>
+                      <th>כמות</th>
+                      <th>תמונה</th>
+                      <th width="100%">כמות-מינימלית</th>
+                    </tr>
+                    <tr>
                     <td>
-                    <div ng-show="showMe[item._id]">
-                      <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItemById(item._id)"></span></a>
-                      <a ><span class="glyphicon glyphicon-edit" ng-click="showAndHide(item);modify(item)"></span></a>
-                    </div>
-                    <div ng-hide="showMe[item._id]" ng-click="showAndHide(item)">
-                      <a><i class="fa fa-times" ng-click="update(item)"></i></a> 
-                      <a><i class="fa fa-check" ng-click="changeItem(item)"></i></a>
-                    </div>
-                    </td>            
-                    <td>
-                    <div>{{ item._id }}</div>
+                        <div ng-hide="editItem[item._id]">{{ chosen.name }}</div>
+                        <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" />
+                    </td>
+                    <td><div ng-hide="editItem[item._id]">{{ chosen.quantity }}</div>
+                        <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" />
                     </td>
                     <td>
-                    <div ng-hide="editItem[item._id]">{{ item.name }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.name" /></div>
+                    <div ng-hide="editItem[item._id]">{{ chosen.image }}</div>
+                        <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" />
                     </td>
                     <td>
-                    <div ng-hide="editItem[item._id]">{{ item.category }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.category" /></div>
+                    <div ng-hide="editItem[item._id]">{{ chosen.minQuantity }}</div>
+                        <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" />
                     </td>
-                    <td>
-                    <div ng-hide="editItem[item._id]">{{ item.subCategory }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.subCategory" /></div>
-                    </td>
-                    <td>
-                    <div ng-hide="editItem[item._id]">{{ item.description }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.description" /></div>
-                    </td>
-					          <td>
-                    <div ng-hide="editItem[item._id]">{{ item.price }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.price" /></div>
-                    </td>
-                    <td>
-                    <div ng-hide="editItem[item._id]">{{ item.location }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" /></div>
-                    </td>
-                    <td>
-                    <div ng-hide="editItem[item._id]">{{ item.quantities.name }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.colors.name" /></div>
-                    </td>
-					<td>
-					<div ng-hide="editItem[item._id]">{{ item.quantities.quantity }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.colors.quantity" /></div>
-                    </td>
-              </tr>
-              </table>    
-            </div>
-          </div>
-          </div>
+                    </tr>
+                  </table>
+                 <!--<div ng-hide="editItem[item._id]">{{ item.quantities[0].name }}</div>
+                  <div ng-show="editItem[item._id]"><input type="text" ng-model="item.quantities[0].name" /></div>-->
+                </td>
+          </tr>
+          </table>    
+        </div>
+      </div>
+      </div>
 <!-- Modal for adding item -->
 <div class="modal fade" id="addModal" role="dialog">
   <div class="modal-dialog modal-lg">

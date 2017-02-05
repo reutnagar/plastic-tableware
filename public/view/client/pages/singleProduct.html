@@ -82,7 +82,7 @@
 						</tr>
 						<tr>
 							<td><h4>זמינות</h4></td>
-							<td><h4><span class="green"> במלאי </span>{{ product.quantity }}</h4></td>
+							<td><h4><span class="green"> במלאי </span></h4></td>
 						</tr>
 						<tr>
 							<td><h4>קוד מוצר</h4></td>
@@ -100,19 +100,16 @@
 						<tr>
 							<td>צבעים:</td>
 							<td>
-								<select ng-model="color" data-ng-options="item.num for item in order">
-							      	<option value="">בחר צבע</option>
-							    </select>
-							</td>
-							<td>
-								<span>{{color}}</span>
+							<select ng-model="chosen" data-ng-options="item.name for item in product.quantities">
+                      <option value="">בחר צבע</option>
+                  </select>	
 							</td>	
 						</tr>
-						<tr>
+						<tr ng-show="chosen">
 							<td>כמות:</td>
 							<td>
 								<div class="numeric-input">
-								<label for="user_lic"></label><input id="user_lic" type="number" min="1" max="30" step="1" value="1" ng-model="quantity"/> 
+								<label for="user_lic"></label><input id="user_lic" type="number" min="1" max="{{chosen.quantity}}" step="1" value="1" ng-model="quantity"/> 
 								</div>
 							</td>
 						</tr>
@@ -120,7 +117,7 @@
 					<table>
 					<tr>
 						<td>
-							<a href="" ng-click="addToCart()">
+							<a href="" custom ng-click="addToCart()">
 									<span class="add-to-cart">
 										<span class="action-wrapper">
 											<i class="icons icon-basket-2"></i>

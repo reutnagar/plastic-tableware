@@ -1,10 +1,10 @@
-/*var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var QuantitySchema = new Schema({
   name:   String,
-  image:  Buffer,
+ // image:  Buffer,
   quantity: Number,
   minQuantity: Number
 });
-module.exports = mongoose.model('Quantity', QuantitySchema);*/
+module.exports = mongoose.model('Quantity', QuantitySchema);

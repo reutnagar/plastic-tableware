@@ -11,7 +11,8 @@ var app = angular.module("clientApp", ['ngRoute']);
                         templateUrl: 'pages/create_an_account.html'
                     })
                   .when('/order_info', {
-                      templateUrl: 'pages/order_info.html'
+                      templateUrl: 'pages/order_info.html',
+                      controller:'sendEmailCtrl'
                      
                   })
                     .when('/orders_list', {

@@ -15,7 +15,7 @@ app.controller('itemCtrl',function($scope, $http) {
                 location : "",
                 quantities: []
             }
-console.log("new_item",$scope.new_item);
+//console.log("new_item",$scope.new_item);
 	$scope.showAllItems=function(){
 		 console.log("request all items");
 		$http.get('/admin/showAllItems')
@@ -23,6 +23,42 @@ console.log("new_item",$scope.new_item);
 							$scope.items = data;
 							console.log("Succeed loading");
 							console.log("data"+data);
+                            $scope.items=[{              
+                                name : "a",
+                                category : "a",
+                                subCategory : "a",
+                                description : "a",
+                                price :"a",
+                                location : "a",
+                                quantities: [ {name:"dddd",
+                                              quantity:"dddd",
+                                              minQuantity:"dddd",
+                                              image:"dddd"},
+                                              {name:"aaaaa",
+                                              quantity:"aaaaa",
+                                              minQuantity:"aaaaa",
+                                              image:"aaaaa"}
+                                              ]
+                                          },
+                                          {              
+                                name : "a",
+                                category : "a",
+                                subCategory : "a",
+                                description : "a",
+                                price :"a",
+                                location : "a",
+                                quantities: [ {name:"dddd",
+                                              quantity:"dddd",
+                                              minQuantity:"dddd",
+                                              image:"dddd"},
+                                              {name:"aaaaa",
+                                              quantity:"aaaaa",
+                                              minQuantity:"aaaaa",
+                                              image:"aaaaa"}
+                                              ]
+                                          }
+                                          ];
+                                      console.log("item",$scope.items);
 							for (var i = 0, length = $scope.items.length; i < length; i++) {
 								$scope.showMe[$scope.items[i]._id] = true;
 							}
@@ -40,10 +76,12 @@ console.log("new_item",$scope.new_item);
           minQuantity:"",
           image:"" 
           });
-          console.log($scope.new_item);
+          console.log("angular.toJson(item.quantities)",angular.toJson($scope.new_item.quantities));
         };
 $scope.addItem=function(item){
 // use $.param jQuery function to serialize data from JSON 
+var quant = angular.toJson(item.quantities);
+console.log("angular.toJson(item.quantities)",quant);
             var data = $.param({
                 name : item.name,
                 category : item.category,
@@ -51,7 +89,7 @@ $scope.addItem=function(item){
                 description : item.description,
 				price : item.price,
                 location : item.location,
-				quantities: item.quantities
+				quantities:quant
             });
         
             var config = {
@@ -59,12 +97,12 @@ $scope.addItem=function(item){
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
             }
-
+                console.log("data.quantities",data.quantities);
             $http.post('/admin/addItem', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed post addItem");
-				console.log("data "+data);
+				console.log("data"+data);
                 $scope.items.push(data);
             })
             .error(function (data, status, header, config) {
