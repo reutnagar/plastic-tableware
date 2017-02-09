@@ -16,6 +16,29 @@ module.exports = {
   checkIfItemExistsInStock :checkIfItemExistsInStock
 }
 
+function getQuantities(ids){
+	console.log("in getQuantities");
+	var results=[];
+	//Item.quantities.id(_id)
+	for (var i=0;i<ids.length;i++)
+		{
+		Quantity.find({_id:ids[i]},(err, result)=>{
+			if (err) 
+			{
+				return err;
+			}
+			else
+			{
+				console.log("result"+result);
+				results.push(result);
+			}      
+		});
+		}
+		console.log("results"+results);
+		return results;
+
+}
+
 function showAllItems(req,res) {    
 	Item.find({}, (err, stock) => {
         if (err) {
@@ -23,6 +46,13 @@ function showAllItems(req,res) {
             res.send('Items not found!');
         }
         else{
+			for(var i=0;i<stock.length;i++)
+				{
+				getQuantities(stock[i].quantities); 
+				console.log("stock["+i+"]"+stock[i].quantities);
+				//console.log("g"+g);
+				}
+			
             res.json(stock);
         }      
         console.log("in showAllItems");
