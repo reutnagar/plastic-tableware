@@ -1,349 +1,353 @@
 
-			<!-- Content -->
-				
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                	<div class="breadcrumbs">
-                    	<p> עגלת קניות <i class="icons icon-right-dir"></i><a href="#">Home</a> </p>
+<!-- Content -->
+
+<div class="col-lg-12 col-md-12 col-sm-12">
+	<div class="breadcrumbs">
+    	<p> עגלת קניות <i class="icons icon-right-dir"></i><a href="#">Home</a> </p>
+    </div>
+</div>
+<section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl" ng-hide="empty">
+    <div class="row">
+    אין מוצרים בסל הקניות שלך!!
+    </div>
+    </section>
+
+<section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl" ng-show="empty">
+    <div class="row">
+        
+
+  <!--   Main Content 
+    <div class="row">
+    	
+        <div class="col-lg-12 col-md-12 col-sm-12">
+        	
+            <div class="carousel-heading no-margin">
+                <h4>I am already registered</h4>
+            </div>
+            
+            <div class="page-content">
+            	<p>If you are already registered please login directly here</p>
+                <div class="row">
+                	<div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="iconic-input">
+                            <input type="text" placeholder="Username">
+                            <i class="icons icon-user-3"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<div class="iconic-input">
+                            <input type="text" placeholder="Password">
+                            <i class="icons icon-lock"></i>
+                        </div>
                     </div>
                 </div>
-                <section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl" ng-hide="empty">
-                    <div class="row">
-                    אין מוצרים בסל הקניות שלך!!
-                    </div>
-                    </section>
-				
-				<section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl" ng-show="empty">
-                    <div class="row">
-                        
-
-                  <!--   Main Content 
-                    <div class="row">
-                    	
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                        	
-                            <div class="carousel-heading no-margin">
-                                <h4>I am already registered</h4>
-                            </div>
-                            
-                            <div class="page-content">
-                            	<p>If you are already registered please login directly here</p>
-                                <div class="row">
-                                	<div class="col-lg-6 col-md-6 col-sm-6">
-                                    	<div class="iconic-input">
-                                            <input type="text" placeholder="Username">
-                                            <i class="icons icon-user-3"></i>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                    	<div class="iconic-input">
-                                            <input type="text" placeholder="Password">
-                                            <i class="icons icon-lock"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <input type="checkbox" id="loginremember2"> <label for="loginremember2">Remember me</label>
-                                <br/><br/>
-                                <div class="row">
-                                	<div class="col-lg-6 col-md-6 col-sm-6 align-left">
-                                    	<input type="submit" class="orange" value="Login">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 align-right">
-                                        <small><a href="#">Forgot your password?</a>
-                                        <br>
-                                        <a href="#">Forgot your username?</a></small>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="page-content-footer">
-                            	<h4 class="pull-left">NEW CUSTOMER?</h4>
-								<a class="button pull-right" href="create_an_account.html">Create an account</a>
-                            </div>
-                    	</div>
-                          
-                    </div>
-                    
-                    
-                    
-                    <div class="row">
-                    	
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                        	
-                            <div class="carousel-heading no-margin">
-                                <h4>Bill to &amp; SHippment information</h4>
-                            </div>
-                            
-                            <div class="page-content">
-                            	
-                                <div class="row">
-                                	
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                    	<p><strong>Bill to</strong></p>
-                                        <a class="button grey">Add/edit billing address information</a>
-                                    </div>
-                                    
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                    	<p><strong>Ship to</strong><br><br>
-                                        Only in case shipment address is different from billing address,
-click ‹‹ Add/Edit shipment address›› button below </p>
-                                        <a class="button grey">Add/edit shipment address</a>
-                                    </div>
-                                    
-                                </div>
-                                
-                            </div>
-                            
-                    	</div>
-                          
-                    </div>
-                    
-                    -->
-                    <div class="row">
-                    	
-						
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                        	
-							<div class="carousel-heading">
-                                <h4>עגלת קניות</h4>
-                            </div>
-							
-                            <table class="shopping-table">
-                            	
-                                <tr>
-                                	<th colspan="2">שם ותמונת מוצר</th>
-                                    <th>מספר קטלוגי</th>
-                                    <th>מחיר</th>
-                                    <th>כמות</th>
-                                    <th>סה"כ</th>
-                                </tr>
-                                
-                                <tr ng-repeat="item in myList track by $index">
-                                    <td class="image-column"><a href="#"><img src="img/products/sample1.jpg" alt=""></a></td>
-                                    <td><p><a href="#">{{ item.name }}</a></p></td>
-                                    <td><p>{{item._id }}</p></td>
-                                    <td><p>{{item.price }} ש"ח</p></td>
-                                    <td class="quantity">
-                                    	<input type="text" value="{{item.quantity}}" ng-model="item.quantity">
-                                        <p>
-                                        	<a href="" ng-click="updateQuantity($index,item.quantity)"><i class="icons icon-ok-3"></i> עדכן</a><br>
-                                            <a href=""  ng-click="removeItem($index)"class="red-hover"><i class="icons icon-cancel-3"></i> מחק</a>
-                                        </p>
-                                    </td>
-                                    <td ><p>{{ item.price * item.quantity}}</p></td>
-                                </tr> 
-                                
-                              
-								<tr>
-									<td class="align-right" colspan="5">עלות כוללת</td>
-									<td><strong>{{ getTotal() | number: 2 }}</strong></td>	
-								</tr>
-                                
-                            </table>
-                            
-                        </div>
-                        
-                    </div>
-                    
-                    <!--
-                    
-                    <div class="row">
-                    	
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                        	
-                            <div class="carousel-heading no-margin">
-                                <h4>Please select a shipment method</h4>
-                            </div>
-                            
-                            <div class="page-content">
-                            	
-                                <div class="row">
-                                
-                                	<div class="col-lg-12 col-md-12 col-sm-12">
-                                    
-                                        <p>No shipment selected</p>
-                                        <input type="radio" id="shipmentradio1" name="shipment-radio"><label class="radio-label" for="shipmentradio1">Shipment Name 1</label>
-                                        <br>
-                                        <input type="radio" id="shipmentradio2" name="shipment-radio"><label class="radio-label" for="shipmentradio2">Shipment Name 1</label>
-                                        <br><br>
-                                        <input class="orange big" type="submit" value="Save">
-                                        <input class="big" type="reset" value="Cancel">
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            
-                    	</div>
-                        
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                        	
-                            <div class="carousel-heading no-margin">
-                                <h4>Please select a payment method</h4>
-                            </div>
-                            
-                            <div class="page-content">
-                            	
-                                <div class="row">
-                                
-                                	<div class="col-lg-12 col-md-12 col-sm-12">
-                                    
-                                        <p>No payment selected</p>
-                                        <input type="radio" id="paymentradio1" name="payment-radio"><label class="radio-label" for="paymentradio1">Payment Name 1</label>
-                                        <br>
-                                        <input type="radio" id="paymentradio2" name="payment-radio"><label class="radio-label" for="paymentradio2">Payment Name 1</label>
-                                        <br><br>
-                                        <input class="orange big" type="submit" value="Save">
-                                        <input class="big" type="reset" value="Cancel">
-                                        
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            
-                    	</div>
-                          
-                    </div>
-                    -->
-                                            <div class="col-lg-12 col-md-12 col-sm-12 register-account">
-                            
-                            <div class="carousel-heading no-margin">
-                                <h4>פרטי משלוח</h4>
-                            </div>
-                            
-                            <div class="page-content">
-                                <div class="row">
-                                    
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <p><strong>פרטים אשיים</strong></p>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <p>אמייל</p>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="email" class="" ng-model="email.email">
-                                    </div>  
-                                    
-                                </div>     
-                                
-                                <div class="row">
-                                    
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <p>שם פרטי</p>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text" ng-model="Username.firstName">
-                                    </div>  
-                                    
-                                </div>
-
-                                
-                                <div class="row">
-                                    
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <p>שם משפחה</p>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text" ng-model="Username.lastName">
-                                    </div>  
-                                    
-                                </div>
-                                
-                                <div class="row">
-                                    
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <p>כתובת</p>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text" ng-model="address.street">
-                                    </div>  
-                                    
-                                </div>
-                                
-                                
-                                <div class="row">
-                                    
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <p>מיקוד</p>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text" ng-model="address.zip">
-                                    </div>  
-                                    
-                                </div>
-                                
-                                <div class="row">
-                                    
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <p>עיר</p>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text" ng-model="address.country">
-                                    </div>  
-                                    
-                                </div>
-                                
-                                <div class="row">
-                                    
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <p>טלפון</p>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text" ng-model="telephone">
-                                    </div>  
-                                    
-                                </div>
-                                
-                                <div class="row">
-                                    
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <p>פלאפון</p>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <input type="text" ng-model="pelephone">
-                                    </div>  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                    	
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                        
-                        	<div class="checkout-form">
-                                <table>
-                                    <tr>
-                                    	<td class="empty-cell"></td>
-                                        <td><span class="price">סך הכל:</span></td>
-                                        <td><strong>$22.00</strong></td>
-                                        <td><strong>$-11.00</strong></td>
-                                        <td><span class="price">$243.00</span></td>
-                                    </tr>
-                                </table>
-                                <input type="checkbox" id="termscheckbox"><label for="termscheckbox">לחצו כאן לקריאת תנאי השירות וסמן את התיבה כדי לאשר.</label>
-                                <br><br>
-                                <button class="btn" ng-click="validation()">payment</button>
-<!--                                 <form action="/processPayment" method="POST">
-                                    <script
-                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="pk_test_BhOjkKLIAI0WnFdiStLTRHG2"
-                                        data-amount="99"
-                                        data-name="Plastic-Tableware"
-                                        data-description="Widget"
-                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                        data-locale="auto">
-                                    </script>
-                                </form> -->
-                            </div>
-                            
-                        </div>
-                        	
-                    </div>
-                        
-                    
-				</section>
-				<!-- /Main Content -->
                 
- 
+                <input type="checkbox" id="loginremember2"> <label for="loginremember2">Remember me</label>
+                <br/><br/>
+                <div class="row">
+                	<div class="col-lg-6 col-md-6 col-sm-6 align-left">
+                    	<input type="submit" class="orange" value="Login">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 align-right">
+                        <small><a href="#">Forgot your password?</a>
+                        <br>
+                        <a href="#">Forgot your username?</a></small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-content-footer">
+            	<h4 class="pull-left">NEW CUSTOMER?</h4>
+				<a class="button pull-right" href="create_an_account.html">Create an account</a>
+            </div>
+    	</div>
+          
+    </div>
+    
+    
+    
+    <div class="row">
+    	
+        <div class="col-lg-12 col-md-12 col-sm-12">
+        	
+            <div class="carousel-heading no-margin">
+                <h4>Bill to &amp; SHippment information</h4>
+            </div>
+            
+            <div class="page-content">
+            	
+                <div class="row">
+                	
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<p><strong>Bill to</strong></p>
+                        <a class="button grey">Add/edit billing address information</a>
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    	<p><strong>Ship to</strong><br><br>
+                        Only in case shipment address is different from billing address,
+click ‹‹ Add/Edit shipment address›› button below </p>
+                        <a class="button grey">Add/edit shipment address</a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+    	</div>
+          
+    </div>
+    
+    -->
+    <div class="row">
+    	
+		
+        <div class="col-lg-12 col-md-12 col-sm-12">
+        	
+			<div class="carousel-heading">
+                <h4>עגלת קניות</h4>
+            </div>
+			
+            <table class="shopping-table">
+            	
+                <tr>
+                	<th colspan="2">שם ותמונת מוצר</th>
+                    <th>מספר קטלוגי</th>
+                    <th>מחיר</th>
+                    <th>כמות</th>
+                    <th>סה"כ</th>
+                </tr>
+                
+                <tr ng-repeat="item in myList track by $index">
+                    <td class="image-column"><a href="#"><img src="img/products/sample1.jpg" alt=""></a></td>
+                    <td><p><a href="#">{{ item.name }}</a></p></td>
+                    <td><p>{{item._id }}</p></td>
+                    <td><p>{{item.price }} ש"ח</p></td>
+                    <td class="quantity">
+                    	<input type="text" value="{{item.quantity}}" ng-model="item.quantity">
+                        <p>
+                        	<a href="" ng-click="updateQuantity($index,item.quantity)"><i class="icons icon-ok-3"></i> עדכן</a><br>
+                            <a href=""  ng-click="removeItem($index)"class="red-hover"><i class="icons icon-cancel-3"></i> מחק</a>
+                        </p>
+                    </td>
+                    <td ><p>{{ item.price * item.quantity}}</p></td>
+                </tr> 
+                
+              
+				<tr>
+					<td class="align-right" colspan="5">עלות כוללת</td>
+					<td><strong>{{ getTotal() | number: 2 }}</strong></td>	
+				</tr>
+                
+            </table>
+            
+        </div>
+        
+    </div>
+    
+    <!--
+    
+    <div class="row">
+    	
+        <div class="col-lg-6 col-md-6 col-sm-6">
+        	
+            <div class="carousel-heading no-margin">
+                <h4>Please select a shipment method</h4>
+            </div>
+            
+            <div class="page-content">
+            	
+                <div class="row">
+                
+                	<div class="col-lg-12 col-md-12 col-sm-12">
+                    
+                        <p>No shipment selected</p>
+                        <input type="radio" id="shipmentradio1" name="shipment-radio"><label class="radio-label" for="shipmentradio1">Shipment Name 1</label>
+                        <br>
+                        <input type="radio" id="shipmentradio2" name="shipment-radio"><label class="radio-label" for="shipmentradio2">Shipment Name 1</label>
+                        <br><br>
+                        <input class="orange big" type="submit" value="Save">
+                        <input class="big" type="reset" value="Cancel">
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+    	</div>
+        
+        <div class="col-lg-6 col-md-6 col-sm-6">
+        	
+            <div class="carousel-heading no-margin">
+                <h4>Please select a payment method</h4>
+            </div>
+            
+            <div class="page-content">
+            	
+                <div class="row">
+                
+                	<div class="col-lg-12 col-md-12 col-sm-12">
+                    
+                        <p>No payment selected</p>
+                        <input type="radio" id="paymentradio1" name="payment-radio"><label class="radio-label" for="paymentradio1">Payment Name 1</label>
+                        <br>
+                        <input type="radio" id="paymentradio2" name="payment-radio"><label class="radio-label" for="paymentradio2">Payment Name 1</label>
+                        <br><br>
+                        <input class="orange big" type="submit" value="Save">
+                        <input class="big" type="reset" value="Cancel">
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+    	</div>
+          
+    </div>
+    -->
+    <form ng-from="userForm" novalidate name="userForm" >
+
+   <div class="col-lg-12 col-md-12 col-sm-12 register-account">
+    
+    <div class="carousel-heading no-margin">
+        <h4>פרטי משלוח</h4>
+    </div>
+    
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <p><strong>פרטים אשיים</strong></p>
+            </div>
+            <!-- email -->
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*אמייל</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
+                <input class="form-control" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" name="email"  ng-model="user.email" required>
+                <span style="color:red" ng-show="userForm.email.$dirty && userForm.email.$invalid">
+                    <span ng-show="userForm.email.$error.required"> Required!</span>
+                    <span ng-show="userForm.email.$error.pattern">Invalid email address</span>
+                </span>
+            </div>  
+        </div>
+        <!-- user name -->
+        <div class="row">   
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*שם פרטי</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
+                <input class="form-control" ng-pattern ="/^[a-zA-Z\s]*$/" type="text" name="firstName" ng-model="user.Username.firstName" required>
+                <span style="color:red" ng-show="userForm.firstName.$dirty && userForm.firstName.$invalid">
+                <span ng-show="userForm.firstName.$error.required"> Required!</span>
+                </span>
+                    <span class="error" ng-show="userForm.firstName.$error.pattern">Only letters</span>
+            </div>  
+        </div>
+        <!-- last name -->
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*שם משפחה</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <input class="form-control" ng-pattern ="/^[a-zA-Z\s]*$/" type="text" name="lastName" ng-model="user.Username.lastName" required>                   
+                <span style="color:red" ng-show="userForm.lastName.$dirty && userForm.lastName.$invalid">
+                    <span ng-show="userForm.lastName.$error.required"> Required!</span>
+                    <span class="error" ng-show="userForm.lastName.$error.pattern">Only letters</span>
+                </span>
+            </div>  
+        </div>
+        <!-- adress -->
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*כתובת</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+              <input class="form-control" type="text" ng-pattern ="/^[a-zA-Z\s]*$/" name=street ng-model="user.address.street">
+                <span style="color:red" ng-show="userForm.street.$dirty && userForm.street.$invalid">
+                    <span ng-show="userForm.street.$error.required"> Required!</span>
+                    <span class="error" ng-show="userForm.street.$error.pattern">Only letters</span>
+                </span>
+            </div>  
+        </div>
+        <!-- zip -->
+       <div class="row">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*מיקוד</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <input class="form-control" name="zip" type="text" ng-model="user.address.zip" ng-pattern="/^[0-9]{1,5}$/" required>
+                <span style="color:red" ng-show="userForm.zip.$dirty && userForm.zip.$invalid">
+                <span  ng-show="userForm.zip.$error.required"> Required! </span>
+                <span  class="error" ng-show="userForm.zip.$error.pattern">Only Numbers Allowed, Maximum 5 Characters</span>
+                </span>
+            </div>  
+        </div> 
+        <!-- country -->                
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*עיר</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <input class="form-control" name="country" ng-pattern ="/^[a-zA-Z\s]*$/" type="text" ng-model="user.address.country">
+                 <span style="color:red" ng-show="userForm.country.$dirty && userForm.country.$invalid">
+                    <span ng-show="userForm.country.$error.required"> Required!</span>
+                    <span class="error" ng-show="userForm.country.$error.pattern">Only letters</span>
+                </span>
+            </div>  
+            
+        </div>
+                <!-- telephone -->
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*טלפון</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <input class="form-control" name="telephone" type="text" ng-model="user.telephone" ng-pattern="/^[0-9]{9}$/" required>
+                <span style="color:red" ng-show="userForm.telephone.$dirty && userForm.telephone.$invalid">
+                <span ng-show="userForm.telephone.$error.required"> Required! </span>
+                <span ng-show="userForm.telephone.$error.pattern">You need to enter 9 Numbers</span>
+                </span>
+            </div>  
+        </div>
+        <!-- cellphone -->
+        <div class="row">
+            
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*פלאפון</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <input class="form-control" name="cellphone" type="text" ng-model="user.cellephone" ng-pattern="/^[0-9]{10}$/" required>                
+                <span style="color:red" ng-show="userForm.cellphone.$dirty && userForm.cellphone.$invalid">
+                <span  ng-show="userForm.cellphone.$error.required"> Required! </span>
+                <span  ng-show="userForm.cellphone.$error.pattern">You need to enter 10 Numbers</span>
+                </span>
+            </div>  
+        </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+        	<div class="checkout-form">
+                <table>
+                    <tr>
+                    	<td class="empty-cell"></td>
+                        <td><span class="price">סך הכל:</span></td>
+                        <td><span  class="price">{{ getTotal() | number: 2 }}</span></td>
+                    </tr>
+                </table>
+                <input type="checkbox" id="termscheckbox" ng-model="checked"><label for="termscheckbox">לחצו כאן לקריאת תנאי השירות וסמן את התיבה כדי לאשר.</label>
+                <br><br>
+                <button  ng-disabled="userForm.$invalid  || userForm.$pending && !checked" class="btn" ng-click="validation()">payment</button>
+            </div>
+        </div>
+    </div>
+    </form>    
+</section>
+<!-- /Main Content -->
+
