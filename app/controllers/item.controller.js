@@ -13,7 +13,8 @@ module.exports = {
   changeItem: changeItem,
   getProductDetails:getProductDetails,
   getProductsOfSubCategory:getProductsOfSubCategory,
-  checkIfItemExistsInStock :checkIfItemExistsInStock
+  checkIfItemExistsInStock :checkIfItemExistsInStock,
+  getQuantities: getQuantities
 }
 
 function getQuantities(ids){
