@@ -1,4 +1,11 @@
+var qs = require('querystring');
+var Item = require('../models/Item');
+var Quantity = require('../models/Quantity');
 
+module.exports = {
+	quantity: quantity
+}
+	
 /*function addToCart(req,res) {
 	console.log("in addToCart");
 	console.log("get post request in server side");  
@@ -148,13 +155,14 @@ function quantity(req,res) {
         });   
         req.on('end', function () {
 			var POST = qs.parse(body); 
-			Item.find({_id: item_id[i]},function(err,doc){
+			Item.find({_id: POST._id,},function(err,doc){
 						if(err){
 							throw err;
 						}
 					console.log(doc);
-					var colorsDoc = doc.colors;
-					for(var j = 0 ; j < colorsDoc.length ; j++)
+					getQuantities
+					console.log(doc.quanities);
+					for(var j = 0 ; j < quantitiesDoc.length ; j++)
 						if(POST.color==colorsDoc[j])
 						{
 							Item.findOne({_id : POST._id},{ quantities[j]:1}).exec(function(err, quantity) { 
@@ -173,3 +181,45 @@ function quantity(req,res) {
 		});
 	
 }*/
+
+function quantity(req,res) {
+	console.log("in quantity");
+	console.log("get post request in server side");  
+    /*var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });  
+        req.on('end', function () {
+			var POST = qs.parse(body); */
+			Item.find({_id: "589c41f7885f303794df6937"},(err, doc) => {
+				if (err) {
+					res.status(404);
+					res.send('Items not found!');
+				}
+				console.log("doc"+doc);
+				for(var i=0;i<doc[0].quantities.length;i++)
+				{
+					console.log(doc[0].quantities[i]);
+					Quantity.find({_id:doc[0].quantities[i]},(err, result) => {
+					if (err) {
+						throw err;
+					}
+					console.log(result[0].name);
+					if(result[0].name=="green")
+					{
+						console.log("yes");
+						console.log("sum "+result[0].quantity);
+						res.json(result[0].quantity);
+					}
+				
+					});
+				}
+			});
+		//});
+}
+					

@@ -4,6 +4,7 @@ var Quantity = require('../models/Quantity');
 
 module.exports = {
   showAllItems: showAllItems,
+  getQuantities: getQuantities,
   addItem: addItem,
   countItem: countItem,
   checkQuantity: checkQuantity,
@@ -13,8 +14,8 @@ module.exports = {
   changeItem: changeItem,
   getProductDetails:getProductDetails,
   getProductsOfSubCategory:getProductsOfSubCategory,
-  checkIfItemExistsInStock :checkIfItemExistsInStock,
-  getQuantities: getQuantities
+  checkIfItemExistsInStock :checkIfItemExistsInStock
+  
 }
 
 function getQuantities(ids){
