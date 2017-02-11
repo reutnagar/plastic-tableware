@@ -16,9 +16,9 @@ module.exports = {
   checkIfItemExistsInStock :checkIfItemExistsInStock
 }
 
-/*function getQuantities(ids){
+function getQuantities(ids){
 	console.log("in getQuantities");
-	var results=[];
+	var results=[],length=0;
 	//Item.quantities.id(_id)
 	for (var i=0;i<ids.length;i++)
 		{
@@ -31,15 +31,20 @@ module.exports = {
 			{
 				console.log("result"+result);
 				results.push(result);
+				console.log("results"+results);
+				length++;
 			}      
 		});
 		}
-		console.log("results"+results);
-		return results;
+		if(length==ids.length)
+		{
+			console.log("results"+results);
+			res.json(results);
+		}
 
-}*/
+}
 
-function getQuantities(id){
+/*function getQuantities(id){
 	console.log("in getQuantities");
 	
 		Quantity.find({_id:id},(err, result)=>{
@@ -55,31 +60,31 @@ function getQuantities(id){
 		});
 		
 
-}
+}*/
 
-function showAllItems(req,res) {    
+function showAllItems(req,res) { 
+	console.log("in showAllItems");	   
 	Item.find({}, (err, stock) => {
         if (err) {
             res.status(404);
             res.send('Items not found!');
         }
         else{
-			for(var i=0;i<stock.length;i++)
+			/*for(var i=0;i<stock.length;i++)
 				{
 					for (var j=0;j<(stock[i].quantities).length;j++)
 					{
-				stock[i].quantities[j]._id=getQuantities(stock[i].quantities[j]); 
-				
-				//stock[i].quantities[j].name=getQuantities(stock[i].quantities[j].name); 
-				console.log("stock["+i+"]"+stock[i].quantities[j]);
-				//console.log("stock"+stock);
+						stock[i].quantities[j]._id=getQuantities(stock[i].quantities[j]); 
+						//stock[i].quantities[j].name=getQuantities(stock[i].quantities[j].name); 
+						console.log("stock["+i+"]"+stock[i].quantities[j]);
+						//console.log("stock"+stock);
 					}
-				}
-			
+				}*/
+			//getQuantities(stock[10].quantities);
+			console.log(stock);
             res.json(stock);
         }      
-        console.log("in showAllItems");
-		console.log(stock);
+       
   });
   
 }
