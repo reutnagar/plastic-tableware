@@ -135,12 +135,12 @@ function getSessionInfo(req, res) {         //check if user is logged in or not?
     if(req.session.user == null)
     {
         console.log("no session");
-        res.json({signed : false, session : null});
+        res.json({signed : false, session : null,user:null});
     }
     else
     {
         console.log("yes session");
-        res.json({signed: true, session: req.session });
+        res.json({signed: true, session: req.session ,user:req.session.user});
     }
 
 }

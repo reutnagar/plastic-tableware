@@ -1,11 +1,11 @@
-app.controller('signInController', function ($scope, $http) {
+app.controller('signInController', function ($scope, $http,$rootScope) {
         $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
     options.async = true;
 });
     console.log("signInController");
      $scope.session = {};
 //   $("#navbar-custom-menu1").hide();
-//  $("#main-sidebar1").hide();
+     $("#main-sidebar1").hide();
  
      $scope.signing = function (user) {
        
@@ -31,8 +31,9 @@ app.controller('signInController', function ($scope, $http) {
                            console.log('after login');
                       if(data.msg=="התחברת בהצלחה")
                             {$scope.session.user =data.user;
+                                $rootScope.user=data.user;
                                   window.location.replace('#/dashboard');
-                              $("#navbar-custom-menu1").show();
+                          alert("logged in successfully");
                               $("#main-sidebar1").show();
                                                     document.getElementById("hidden-xs1").textContent = $scope.session.user.userName;
 }
