@@ -68,11 +68,11 @@ function showAllItems(req,res) {
 				{
 					for (var j=0;j<(stock[i].quantities).length;j++)
 					{
-						var A=getQuantities(stock[i].quantities[j]);
-				stock[i].quantities[j]=getQuantities(stock[i].quantities[j]); 
+				stock[i].quantities[j]._id=getQuantities(stock[i].quantities[j]); 
+				
 				//stock[i].quantities[j].name=getQuantities(stock[i].quantities[j].name); 
 				console.log("stock["+i+"]"+stock[i].quantities[j]);
-				console.log("stock"+stock);
+				//console.log("stock"+stock);
 					}
 				}
 			
