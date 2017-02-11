@@ -15,8 +15,7 @@ console.log("email",$scope.email);
 
 
 	$scope.validation=function(){
-		console.log("validation")
-		console.log("email",$scope.email.email);
+		console.log("user detailes",$scope.user);
 
 //send to function that checkes if all the item realy exsit
 //if true

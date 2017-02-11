@@ -3094,7 +3094,7 @@ a .banner-item{
 	font-size:14px;	
 }
 
-.page-content input[type="text"], .page-content select{
+.page-content select{
 	width:100%;
 	background:#f7f7f7;
 	font-size:14px;
@@ -4356,7 +4356,7 @@ table.coupon-table td.fit-cell{
     color:#7a8188;
 }
 
-input[type="text"], select{
+/*input[type="text"],*/ select{
 	padding:5px 10px;
 	border:1px solid #e6e6e6;
 	height:40px;
