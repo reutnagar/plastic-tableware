@@ -77,5 +77,29 @@ $scope.makeAnOrder = function(UserName,address,email){
 						"<hr />config: " + config;
 				});
 		};
-		
+
+$scope.updateQuantity = function(index,new_quantity){
+  console.log("indexOf",index);
+    $scope.myList[index].quantity = new_quantity; 
+  console.log("updateQuantity",$scope.myList[index]); 
+  localStorage.setItem('myList', JSON.stringify($scope.myList));
+ };
+
+$scope.removeItem = function(index){
+
+  console.log("index",index);
+  $scope.myList.splice(index, 1); 
+  console.log("removeItem   "+ index+"    "+$scope.myList);   
+   localStorage.setItem('myList', JSON.stringify($scope.myList)); 
+};		
+
+$scope.getTotal = function(){
+    var total = 0;
+    for(var i = 0; i < $scope.myList.length; i++){
+        var product = $scope.myList[i];
+        total += (product.price * product.quantity);
+    }
+    return total;
+}
 });
+

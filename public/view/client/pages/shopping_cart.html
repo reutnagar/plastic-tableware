@@ -125,19 +125,19 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                     <td><p>{{item._id }}</p></td>
                                     <td><p>{{item.price }} ש"ח</p></td>
                                     <td class="quantity">
-                                    	<input type="text" value="{{item.quantity}}">
+                                    	<input type="text" value="{{item.quantity}}" ng-model="item.quantity">
                                         <p>
-                                        	<a href="#"><i class="icons icon-ok-3"></i> עדכן</a><br>
-                                            <a href="#" class="red-hover"><i class="icons icon-cancel-3"></i> מחק</a>
+                                        	<a href="" ng-click="updateQuantity($index,item.quantity)"><i class="icons icon-ok-3"></i> עדכן</a><br>
+                                            <a href=""  ng-click="removeItem($index)"class="red-hover"><i class="icons icon-cancel-3"></i> מחק</a>
                                         </p>
                                     </td>
-                                    <td ng-init="$parent.total = $parent.total + (item.price * item.quantity)"><p>{{ item.price * item.quantity}}</p></td>
+                                    <td ><p>{{ item.price * item.quantity}}</p></td>
                                 </tr> 
                                 
                               
 								<tr>
 									<td class="align-right" colspan="5">עלות כוללת</td>
-									<td><strong>{{ total }}</strong></td>	
+									<td><strong>{{ getTotal() | number: 2 }}</strong></td>	
 								</tr>
                                 
                             </table>
@@ -324,8 +324,8 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                 </table>
                                 <input type="checkbox" id="termscheckbox"><label for="termscheckbox">לחצו כאן לקריאת תנאי השירות וסמן את התיבה כדי לאשר.</label>
                                 <br><br>
-                                <button ng-click="validation()"></button>
-                                <form action="/processPayment" method="POST">
+                                <button class="btn" ng-click="validation()">payment</button>
+<!--                                 <form action="/processPayment" method="POST">
                                     <script
                                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                         data-key="pk_test_BhOjkKLIAI0WnFdiStLTRHG2"
@@ -335,7 +335,7 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                         data-locale="auto">
                                     </script>
-                                </form>
+                                </form> -->
                             </div>
                             
                         </div>
