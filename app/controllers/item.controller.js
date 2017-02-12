@@ -46,24 +46,6 @@ function getQuantities(ids){
 
 }
 
-/*function getQuantities(id){
-	console.log("in getQuantities");
-	
-		Quantity.find({_id:id},(err, result)=>{
-			if (err) 
-			{
-				return err;
-			}
-			else
-			{
-				console.log("result"+result);
-				return result;
-			}      
-		});
-		
-
-}*/
-
 function showAllItems(req,res) { 
 	console.log("in showAllItems");	   
 	Item.find({}, (err, stock) => {
