@@ -54,17 +54,6 @@ function showAllItems(req,res) {
             res.send('Items not found!');
         }
         else{
-			/*for(var i=0;i<stock.length;i++)
-				{
-					for (var j=0;j<(stock[i].quantities).length;j++)
-					{
-						stock[i].quantities[j]._id=getQuantities(stock[i].quantities[j]); 
-						//stock[i].quantities[j].name=getQuantities(stock[i].quantities[j].name); 
-						console.log("stock["+i+"]"+stock[i].quantities[j]);
-						//console.log("stock"+stock);
-					}
-				}*/
-			//getQuantities(stock[10].quantities);
 			console.log(stock);
             res.json(stock);
         }      
@@ -198,6 +187,24 @@ function checkQuantity (req,res){
 	res.json(result);
 	});
 };
+
+/*function checkQuantity (req,res){
+	console.log("in checkQuantity");
+	Quantity.$where('quantity <= minQuantity').exec(function(err, results) {
+	if (err) {
+	  throw err;
+	}
+	console.log(results);
+	for(var i=o;i<results.length;i++)
+	{
+		Item.find({quantities:results[i]._id},(err, doc) => {
+					if (err) {
+						throw err;
+					}
+					console.log("item "+doc+" is going to finish");
+		res.json(results);
+	});
+}*/
 
 function deleteAllItems(req,res) {
 	Item.remove ({},function(err, result) {
