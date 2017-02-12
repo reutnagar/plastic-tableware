@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema= mongoose.Schema;
 
 /*var OrderedItem= new mongoose.Schema({
-	item_id: String,
+	item_id:String,
 	sum: Number,
 	color:String
 });	
@@ -27,7 +27,7 @@ module.exports = mongoose.model('Order',{
 	date:{type: Date, default: Date.now},
 	numItems: Number,
 	payment : Number,
-	item_id: [Schema.Types.ObjectId],
+	orderedItems: [Schema.Types.ObjectId],
 	color : [String],
 	sum :[Number]
 });
