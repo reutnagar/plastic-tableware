@@ -1,13 +1,8 @@
 var mongoose = require('mongoose');
 var Schema= mongoose.Schema;
 
-/*var OrderedItem= new mongoose.Schema({
-	item_id:String,
-	sum: Number,
-	color:String
-});	
 
-module.exports = mongoose.model('Order',{
+var OrderSchema = new Schema({
     userName: String,
 	email: String,
 	address: String,
@@ -16,18 +11,7 @@ module.exports = mongoose.model('Order',{
 	// function(){return new Date().getTime()} }
 	numItems: Number,
 	payment : Number,
-	orderedItems: [OrderedItem]
-});*/
-
-module.exports = mongoose.model('Order',{
-    userName: String,
-	email: String,
-	address: String,
-	status: String,
-	date:{type: Date, default: Date.now},
-	numItems: Number,
-	payment : Number,
-	orderedItems: [Schema.Types.ObjectId],
-	color : [String],
-	sum :[Number]
+	orderedItems: [{ type: Schema.ObjectId, ref: 'OrderedItem'}]
 });
+
+module.exports = mongoose.model('Order',OrderSchema);
