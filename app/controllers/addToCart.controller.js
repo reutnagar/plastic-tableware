@@ -1,6 +1,9 @@
 var qs = require('querystring');
 var Item = require('../models/Item');
 var Quantity = require('../models/Quantity');
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./scratch');
+var myList = new Object();
 
 module.exports = {
 	quantity: quantity,
@@ -167,14 +170,14 @@ function quantity(req,res) {
 	// Retrieve the object from storage
 	var retrievedObject = localStorage.getItem('myList');
 	myList = JSON.parse(retrievedObject);
-	
-	item_id = myList.item_id;
+	var problemsDocs = [];
+	/*item_id = myList.item_id;
 	color = myList.color;
-	sum = myList.sum;
-	
-	for(var j=0;j<item_id.length;j++)
+	sum = myList.sum;*/
+	console.log(myList);
+	for(var j=0;j<myList.length;j++)
 	{
-			Item.find({_id: item_id[j]},(err, doc) => {
+			Item.find({_id: myList[j].item_id},(err, doc) => {
 				if (err) {
 					res.status(404);
 					res.send('Item not found!');
@@ -188,15 +191,15 @@ function quantity(req,res) {
 						throw err;
 					}
 					console.log(result[0].name);
-					if(result[0].name==color[j])
+					if(result[0].name==myList[j].color)
 					{
 						console.log("yes");
 						console.log("sum "+result[0].quantity);
-						if(result[0].quantity<sum[j])
+						if(result[0].quantity < myList[j].sum)
 						{
-							problemsDocs.item+id.push(item_id[j]);
-							problemsDocs.color.push(color[j]);
-							problemsDocs.sum.push(sum[j]);
+							problemsDocs.item_id.push(myList[j].item_id);
+							problemsDocs.color.push(myList[j].color);
+							problemsDocs.sum.push(myList[j].sum);
 							console.log(problemsDocs);
 						}	
 					}
