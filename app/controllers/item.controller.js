@@ -18,32 +18,43 @@ module.exports = {
   
 }
 
-function getQuantities(ids){
+function getQuantities(req,res){
 	console.log("in getQuantities");
-	var results=[],length=0;
-	//Item.quantities.id(_id)
-	for (var i=0;i<ids.length;i++)
-		{
-		Quantity.find({_id:ids[i]},(err, result)=>{
-			if (err) 
-			{
-				return err;
-			}
-			else
-			{
-				console.log("result"+result);
-				results.push(result);
-				console.log("results"+results);
-				length++;
-			}      
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+			var POST = qs.parse(body);
+			var results=[],length=0;
+			for (var i=0;i<POST.quantities.length;i++)
+				{
+				Quantity.find({_id:POST.quantities[i]},(err, result)=>{
+					if (err) 
+					{
+						return err;
+					}
+					else
+					{
+						console.log("result"+result);
+						results.push(result);
+						console.log("results"+results);
+						length++;
+					}      
+				});
+				}
+				if(length==POST.quantities.length)
+				{
+					console.log("results"+results);
+					res.json(results);
+				}
 		});
-		}
-		if(length==ids.length)
-		{
-			console.log("results"+results);
-			res.json(results);
-		}
-
 }
 
 function showAllItems(req,res) { 
@@ -190,19 +201,24 @@ function checkQuantity (req,res){
 
 /*function checkQuantity (req,res){
 	console.log("in checkQuantity");
+	var items = [];
 	Quantity.$where('quantity <= minQuantity').exec(function(err, results) {
-	if (err) {
-	  throw err;
-	}
-	console.log(results);
-	for(var i=o;i<results.length;i++)
-	{
-		Item.find({quantities:results[i]._id},(err, doc) => {
-					if (err) {
-						throw err;
-					}
-					console.log("item "+doc+" is going to finish");
-		res.json(results);
+		if (err) {
+		  throw err;
+		}
+		else {
+		console.log(results);
+		for(var i=o;i<results.length;i++)
+		{
+			Item.find({quantities:results[i]._id},(err, doc) => {
+						if (err) {
+							throw err;
+						}
+						console.log("item "+doc+" is going to finish");
+						items.push(doc);
+			});
+		}
+		res.json(items);
 	});
 }*/
 
