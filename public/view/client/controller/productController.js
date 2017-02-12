@@ -86,9 +86,18 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
             $scope.myList = JSON.parse(localStorage.getItem('myList'));
 
         console.log("myList from localStorage",$scope.myList);
+        for (var i = 0; i < $scope.myList.length; i++) {
+            if($scope.product._id == $scope.myList[i]._id)
+                {
+                    $scope.myList[i].quantity+=$scope.quantity;
+                    localStorage.setItem('myList', JSON.stringify($scope.myList));
+                    return;
+                }
+        }
+       console.log('there isnt the same product');
         $scope.addItem=
             {
-                _id : $scope.product._id,
+                _id :$scope.product._id, 
                 name : $scope.product.name,
                 price : $scope.product.price,
                 quantity : $scope.quantity,

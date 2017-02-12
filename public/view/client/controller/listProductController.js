@@ -34,21 +34,22 @@ $scope.setImageModal=function (image) {
 
     
     $scope.addToCart = function(product){
-        /*if($scope.myList==""){
-            console.log("myList is empty");
-
-           $scope.myList.push(JSON.parse(localStorage.getItem('myList')));
-           localStorage.setItem('myList', JSON.stringify($scope.myList));
-           $scope.myList="";
-                    console.log("myList",$scope.myList);
-                }*/
         if(JSON.parse(localStorage.getItem('myList'))!== null)
             $scope.myList = JSON.parse(localStorage.getItem('myList'));
 
         console.log("myList from localStorage",$scope.myList);
+        for (var i = 0; i < $scope.myList.length; i++) {
+            if(product._id == $scope.myList[i]._id)
+                {
+                    $scope.myList[i].quantity++;
+                    localStorage.setItem('myList', JSON.stringify($scope.myList));
+                    return;
+                }
+        }
+       console.log('there isnt the same product');
         $scope.addItem=
             {
-                _id : product._id,
+                _id :product._id, 
                 name : product.name,
                 price : product.price,
                 quantity : '1',

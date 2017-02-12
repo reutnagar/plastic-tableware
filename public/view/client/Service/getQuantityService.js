@@ -4,7 +4,7 @@ app.factory('quantityService',function ($http,$rootScope){
 
 		quantity:function(_id,name){
 	//console.log("quantity",name,_id);
-				return $http.get('/quantity/'+ _id +"/"+name);
+				return $http.get('/quantity');
 		}
 
 	}

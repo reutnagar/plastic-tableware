@@ -16,12 +16,26 @@ var promise
 	for (var i = 0; i < $scope.myList.length ; i++) {
  	 	product = $scope.myList[i];
  	 console.log(i);
- 	  $scope.quantity = quantityService.quantity(product._id,product.name);
+ 	  quantityService.quantity(product._id,product.name).then(
+          function(payload) { 
+              $scope.quantity = payload.data;
+			console.log("~~~~this is the resualt from itration ~~~~~",i,"~~");
+			console.log($scope.quantity+"---");
+			if(product.quantity > $scope.quantity)
+			 {
+			 	console.log("there is only",quantity ,"and you order",product.quantity);
+			 	return;
+			 }
+			 
+          },
+          function(errordata) {
+              $log.error('failure loading quantity', errordata);
+          });
 
-          if($scope.quantity)
-              $log.error('failure loading quantity');
-			console.log("~~~~this is the resualt~~~~~",$scope.quantity,product.quantity,i);
+
  	 //$scope.Quantity = $scope.quantity(product._id,product.name);
+ 	 
+ 	 
  }
  if(i>0)
 			 {
