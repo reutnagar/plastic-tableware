@@ -50,8 +50,9 @@ router.post('/processPayment', paymentController.processPayment);
 router.post('/sendEmailserver', emailController.sendEmailserver);
 
 //addToCartController
-//router.post('/makeAnOrder', addToCartController.makeAnOrder);
-router.get('/quantity/:_id/:name',addToCartController.quantity);
+router.post('/makeAnOrder', addToCartController.makeAnOrder);
+router.post('/quantity',addToCartController.quantity);
+
 
 // export router
 module.exports = router;
