@@ -9,12 +9,8 @@ module.exports = {
 	
  
 function sendEmailserver(req, res) {
-    console.log("get post request in server side");  
+    console.log("send Mail");  
 
-
-
-
-        
   var body = '';
         req.on('data', function (data) {
             body += data;
@@ -26,45 +22,45 @@ function sendEmailserver(req, res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body); 
-        var email = new Order({ email : POST.email});
-                 //*************
+        var email = POST.email;
+        if(POST.type=="order"){
+          var text='שלום וברכה!'+"\n"+ "אנו שמחים";
+                    var mailOptions = {
+                      from: 'plastictableware.cs@gmail.com', // sender address
+                      to:email,
+          subject: 'הזמנתך התקבלה', // Subject line
+          text: text //, // plaintext body
+          };
+        }
+        else
+        {
+          var mailOptions = {
+                      from: 'plastictableware.cs@gmail.com', // sender address
+                      to:'plastictableware.cs@gmail.com',
+          subject: 'מ פניה'+ email, // Subject line
+          text: POST.content //, // plaintext body
+          };
+        }
+          console.log("mailOptions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",mailOptions);
+          var transporter = nodemailer.createTransport({
+                  service: 'gmail',
+                  auth: {
+                      user: 'plastictableware.cs@gmail.com', // Your email id
+                      pass: 'plastictableware' // Your password
+                  }
+              });
 
-                 
+          transporter.sendMail(mailOptions, function(error, info){
+              if(error){
+                  return console.log(error);
+              }
+              console.log('Message sent: ' + info.response);
+          });
+            res.send('הזמנתך התקבלה!');
             });
 
 
-
-
-        console.log("nodemailer");
-//var text = 'hi'+Order.userName+'ure order will be deleverd to'+Order.address;
-var text='tuhmvmbjbn'
-
-var mailOptions = {
-    from: 'plastictableware.cs@gmail.com', // sender address
-   to:'klugmantova@gmail.com',
-   // to: emailto,
-   // to:'plastictableware.cs@gmail.com', // list of receivers
-   // to:  email,
-    subject: 'Email Example', // Subject line
-    text: text //, // plaintext body
-    
-};
-	console.log("mailOptions",mailOptions);
-
- var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'plastictableware.cs@gmail.com', // Your email id
-            pass: 'plastictableware' // Your password
-        }
-    });
-
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        return console.log(error);
-    }
-    console.log('Message sent: ' + info.response);
-});
+ 
  }
        
        

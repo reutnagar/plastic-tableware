@@ -22,6 +22,7 @@ router.get('/admin', function(req,res){
 router.get('/admin/showAllItems', itemsController.showAllItems);
 router.get('/admin/checkQuantity', itemsController.checkQuantity);
 router.post('/admin/addItem', itemsController.addItem);
+router.post('/admin/getQuantities', itemsController.getQuantities);
 router.post('/admin/deleteItem', itemsController.deleteItem);
 router.post('/admin/deleteItemById', itemsController.deleteItemById);
 router.post('/admin/countItem', itemsController.countItem);

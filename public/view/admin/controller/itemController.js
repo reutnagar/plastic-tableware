@@ -61,6 +61,8 @@ app.controller('itemCtrl',function($scope, $http) {
                                       console.log("item",$scope.items);
 							for (var i = 0, length = $scope.items.length; i < length; i++) {
 								$scope.showMe[$scope.items[i]._id] = true;
+                                $scope.getQuantities($scope.items.quantities);
+                                console.log(i);
 							}
 						})
 						.error(function(data){
@@ -68,6 +70,33 @@ app.controller('itemCtrl',function($scope, $http) {
 			 });
 	}
 
+$scope.getQuantities=function(quantities){
+   console.log(quantities);
+            var data = $.param({
+                quantities : angular.toJson(quantities)
+            });
+        
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+
+            $http.post('/admin/getQuantities', data, config)
+            .success(function (data, status, headers, config) {
+                $scope.PostDataResponse = data;
+                console.log("Succeed getQuantities");
+                //$scope.items.push(data);
+            })
+            .error(function (data, status, header, config) {
+                console.log("Error: "+data);
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+            });
+            console.log($scope.PostDataResponse);
+};
 
         $scope.add = function () {
           $scope.new_item.quantities.push({

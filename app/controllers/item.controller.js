@@ -42,9 +42,9 @@ function getQuantities(req,res){
 					}
 					else
 					{
-						console.log("result"+result);
+						console.log("result~~~~~~~~"+result);
 						results.push(result);
-						console.log("results"+results);
+						console.log("results~~~~~~~"+results);
 						length++;
 					}      
 				});

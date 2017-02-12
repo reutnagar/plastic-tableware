@@ -1,79 +1,48 @@
-app.controller('cartCtrl',function($scope, $http,$location,$rootScope,quantityService,$log) {
+app.controller('cartCtrl',function($scope, $http,$location,$rootScope,quantityService,$log,emailService) {
 
 	$scope.myList=JSON.parse(localStorage.getItem('myList'));
 	var cart =[];
 	var product;
-	var quantity;
+	$scope.user={};
+	$scope.string;
 
 if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
 else $scope.empty=true;
 
-console.log("myList~~~~~~~~~~",$scope.myList);
-		
 $scope.validation=function(){
-	//console.log("user detailes",$scope.user);
-var promise;
-	for (var i = 0; i < $scope.myList.length ; i++) {
- 	 	product = $scope.myList[i];
- 	 console.log(i);
- 	  quantityService.quantity().then(
-          function(data) { 
-              $scope.quantity = data.data;
-			console.log("~~~~this is the resualt from itration ~~~~~",i,"~~");
-			console.log($scope.quantity+"---");
-			if(product.quantity > $scope.quantity)
-			 {
-			 	console.log("there is only",quantity ,"and you order",product.quantity);
-			 	return;
-			 }
-			 
+	console.log($scope.user);
+	var promise = quantityService.quantity();
+ 	        promise.then(
+          function(payload) { 
+              $scope.quantity = payload.data;
+              for (var i = 0; i < $scope.quantity.length ; i++) {
+              	for (var j = 0; j < $scope.myList.length; j++) {
+              		if($scope.myList[j]._id == $scope.quantity._id )
+              			$scope.string+="אין זמינות של מוצר "+$scope.myList.name+" בכמות זאת אלא"+$scope.quantity.quantity+'/n';
+              	}
+              
+ 	 	 	}
+
+
           },
           function(errordata) {
               $log.error('failure loading quantity', errordata);
           });
 
+ 	 	 	if($scope.string != "" || $scope.string != null){
+ 	 	 			alert($scope.string);
+ 	 	 			$scope.string = "";
+ 	 	 		return;
+ 	 	 	} 	 	 
+ 	 	 	else{
+ 	 	 		//$scope.makeAnOrder($scope.user);
+				//var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"order","");
 
- 	 //$scope.Quantity = $scope.quantity(product._id,product.name);
- 	 
- 	 
- }
- if(i>0)
-			 {
-			 	console.log("a product is not validation",i,$scope.myList);
-			 	return;
-			 }
-//send to function that checkes if all the item realy exsit
-//if true
-//update the db
-//$scope.makeAnOrder();
-//SEND EMAIL
+ 	 	 	}
+ 	 	 		
 };	
-// $scope.quantity = function(_id,name){
-// 	console.log("quantity",name,_id);
-// 				var data = $.param({
-// 					_id : _id,
-// 					name : name,
-// 				});
-// 				var config = {
-// 					headers : {
-// 						'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-// 					}
-// 				}
-// 				$http.get('/quantity', data, config)
-// 				.success(function (data, status, headers, config) {
-// 					// console.log("Succeed get quantity");
-// 					// console.log("get quantity ", data);
-// 					$scope.Quantity = data;
-// 				})
-// 				.error(function (data, status, header, config) {
-// 					console.log("Error: "+ data);
-// 					$scope.ResponseDetails = "get quantity " + data +
-// 						"<hr />status: " + status +
-// 						"<hr />headers: " + header +
-// 						"<hr />config: " + config;
-// 				});
-// 		};
-$scope.makeAnOrder = function(UserName,address,email){
+
+$scope.makeAnOrder = function(user){
 	console.log("makeAnOrder",UserName,address,email);
 				var data = $.param({
 					UserName : $scope.UserName,

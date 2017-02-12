@@ -165,9 +165,9 @@ function makeAnOrder(req,res) {
 function quantity(req,res) {
 	console.log("in quantity");
 	// Retrieve the object from storage
-	var retrievedObject = localStorage.getItem('myList');
-	myList = JSON.parse(retrievedObject);
-	
+	// var retrievedObject = localStorage.getItem('myList');
+	// myList = JSON.parse(retrievedObject);
+	var myList = JSON.parse(localStorage.getItem('myList'));
 	item_id = myList.item_id;
 	color = myList.color;
 	sum = myList.sum;
