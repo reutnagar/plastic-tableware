@@ -3,7 +3,8 @@ var Item = require('../models/Item');
 var Quantity = require('../models/Quantity');
 
 module.exports = {
-	quantity: quantity
+	quantity: quantity,
+	makeAnOrder: makeAnOrder
 }
 	
 /*function addToCart(req,res) {
@@ -33,15 +34,15 @@ module.exports = {
 });
 }*/
 
-/*function makeAnOrder(req,res) {
+function makeAnOrder(req,res) {
 	console.log("in makeAnOrder");
-	// Retrieve the object from storage
+	/*// Retrieve the object from storage
 	var retrievedObject = localStorage.getItem('myList');
 	myList = JSON.parse(retrievedObject);
 	
 	item_id = myList._id;
 	color = myList.color;
-	sum = myList.sum;
+	sum = myList.sum;*/
 	
 	console.log("get post request in server side");  
     var body = '';
@@ -54,36 +55,58 @@ module.exports = {
             }
         });   
         req.on('end', function () {
-        var POST = qs.parse(body); 
-		Item.findByIdAndUpdate(POST._id, {quantities.quantity : quantiy-POST.sum}.where(quantities.quantity ).gt(POST.sum).exec(function(err, doc) {
+        var POST = qs.parse(body);
+		var colorId=colorConverterButter(POST._id,POST.name);
+		Quantity.findByIdAndUpdate(colorId, {quantity : POST.sum}).where(quantity ).gt(POST.sum).exec(function(err, doc) {
 			if(err){
 				throw err;
 			}
 			console.log("this is the doc variable: "+doc);
 			console.log("updated");
 		});
-		var newOrder = new Order {{userName:POST.userName,email:POST.email,address:POST.address,status:"התקבלה הזמנה",numItems:POST.numItems,payment:POST.payment});
-		var newOrderedItem = new OrderedItem({item_id:item_id,color:color,sum:sum});
-		newOrderedItem.save(function(err, newOrderedItem){
-		newOrder.quantities.push(newOrderedItem);
+		var newOrder = new Order ({userName:POST.userName,email:POST.email,address:POST.address,status:"התקבלה הזמנה",numItems:POST.numItems,payment:POST.payment});
+		var newOrderedItem = [];
+		var o=JSON.parse(POST.orderedItems);
+		for(var i=0; i<o.length;i++)
+		{
+			newOrderedItem[i] = new OrderedItem({item_id:0[i].item_id,color:o[i].color,sum:o[i].sum});
+			newOrderedItem[i].save();
+			newOrder.orderedItems.push(newOrderedItem[i]);
+		}
 		newOrder.save();
-		}):
+		});
 	
-}*/
+}
 
-
-//do not delete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-/*
-var qs = require('querystring');
-var Item = require('../models/Item');
-var Quantity = require('../models/Quantity');
-
-module.exports = {
-	quantity: quantity,
-	//addToCart:addToCart,
-	makeAnOrder: makeAnOrder
+function colorConverterButter(id,color){
+	for(var i=0;i<size;i++)	
+	{
+		Item.find({id:id},(err, doc) => {
+				if (err) {
+					console.log("doc not found");
+				}
+				console.log("doc"+doc);
+				for(var i=0;i<doc[0].quantities.length;i++)
+				{
+					console.log(doc[0].quantities[i]);
+					Quantity.find({_id:doc[0].quantities[i]},(err, result) => {
+					if (err) {
+						throw err;
+					}
+					console.log(result[0].name);
+					if(result[0].name==color)
+					{
+						console.log("_id of color "+result[0].name+" is: "+result[0]._id);
+						return result[0]._id;
+					}
+					});
+				}
+	});	
+	}	
 }
 	
+//do not delete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/*
 
 function makeAnOrder(req,res) {
 	console.log("in makeAnOrder");
@@ -137,9 +160,7 @@ function makeAnOrder(req,res) {
 		}
 		newOrder.save();
 		}):
-}
-
-
+}*/
 
 function quantity(req,res) {
 	console.log("in quantity");
@@ -152,51 +173,10 @@ function quantity(req,res) {
                 // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
                 req.connection.destroy();
             }
-        });   
-        req.on('end', function () {
-			var POST = qs.parse(body); 
-			Item.find({_id: POST._id,},function(err,doc){
-						if(err){
-							throw err;
-						}
-					console.log(doc);
-					getQuantities
-					console.log(doc.quanities);
-					for(var j = 0 ; j < quantitiesDoc.length ; j++)
-						if(POST.color==colorsDoc[j])
-						{
-							Item.findOne({_id : POST._id},{ quantities[j]:1}).exec(function(err, quantity) { 
-							//Item.findOne({_id : POST._id,'quantities':{name:POST.color}}).where(quantities.quantity).gt(POST.sum).exec(function(err, item) { 
-							if (err) {
-								res.status(404);
-								res.send('item not found!');
-							}
-							else{
-								console.log("quantity: "+quantity);
-								res.send(quantity);
-							} 
-							});
-						}						
-			});
-		});
-	
-}*/
-
-function quantity(req,res) {
-	console.log("in quantity");
-	console.log("get post request in server side");  
-    /*var body = '';
-        req.on('data', function (data) {
-            body += data;
-            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-            if (body.length > 1e6) { 
-                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
-                req.connection.destroy();
-            }
         });  
         req.on('end', function () {
-			var POST = qs.parse(body); */
-			Item.find({_id: "589c41f7885f303794df6937"},(err, doc) => {
+			var POST = qs.parse(body); 
+			Item.find({_id: POST._id},(err, doc) => {
 				if (err) {
 					res.status(404);
 					res.send('Items not found!');
@@ -210,7 +190,7 @@ function quantity(req,res) {
 						throw err;
 					}
 					console.log(result[0].name);
-					if(result[0].name=="green")
+					if(result[0].name==POST.name)
 					{
 						console.log("yes");
 						console.log("sum "+result[0].quantity);
@@ -220,6 +200,6 @@ function quantity(req,res) {
 					});
 				}
 			});
-		//});
+		});
 }
 					

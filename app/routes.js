@@ -50,7 +50,7 @@ router.post('/processPayment', paymentController.processPayment);
 router.post('/sendEmailserver', emailController.sendEmailserver);
 
 //addToCartController
-//router.post('/makeAnOrder', addToCartController.makeAnOrder);
+router.post('/makeAnOrder', addToCartController.makeAnOrder);
 router.get('/quantity',addToCartController.quantity);
 
 // export router
