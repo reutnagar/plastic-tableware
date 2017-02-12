@@ -188,7 +188,7 @@ function countItem(req,res) {
   
 }
 
-function checkQuantity (req,res){
+/*function checkQuantity (req,res){
 	console.log("in checkQuantity");
 	Item.$where('this.quantity <= this.minQuantity').exec(function(err, result) {
 	if (err) {
@@ -197,34 +197,46 @@ function checkQuantity (req,res){
 	console.log(result);
 	res.json(result);
 	});
-};
+};*/
 
-/*function checkQuantity (req,res){
+function checkQuantity (req,res){
 	console.log("in checkQuantity");
-	var items = [];
-	Quantity.$where(quantity <= minQuantity).exec(function(err, results) {
+	var items = [],j=0;
+	Quantity.$where('this.quantity <= this.minQuantity').exec(function(err, results) {
 		if (err) {
 		  throw err;
 		}
 		else {
 		console.log(results);
-		for(var i=o;i<results.length;i++)
-		{
-			var doc = Item.quantities.id(ressults[i]._id);
-		/*	Item.find({quantities:results[i]._id},(err, doc) => {
+		console.log(results.length);
+		//for(var i=0;i<results.length;i++)
+		//{
+		
+			
+			console.log(results[0]._id);
+				Item.find({'quantities._id': results[0]._id},function(err, doc) {
+					//Item.find({ 'quantities': { $elemMatch: { '_id': '589c41f7885f303794df6939'}}}, function(err, doc) {
 						if (err) {
 							throw err;
 						}
+						else{
+							//j++;
 						console.log("item "+doc+" is going to finish");
-						items.push(doc.name);
-			});
+						items.push(doc);
+						
+						}
+				});
+			
+		//}
+		if(j==results.length)
+			{
+			console.log("a");
+			res.json(items);
+			}
 		}
-		res.json(items);*/
-		/*}
-	}
 	});
 }
-*/
+
 function deleteAllItems(req,res) {
 	Item.remove ({},function(err, result) {
 	if (err) {
