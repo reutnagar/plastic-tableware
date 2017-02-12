@@ -199,7 +199,7 @@ function countItem(req,res) {
 	});
 };*/
 
-function checkQuantity (req,res){
+/*function checkQuantity (req,res){
 	console.log("in checkQuantity");
 	var items = [],j=0;
 	Quantity.$where('this.quantity <= this.minQuantity').exec(function(err, results) {
@@ -209,12 +209,12 @@ function checkQuantity (req,res){
 		else {
 		console.log(results);
 		console.log(results.length);
-		//for(var i=0;i<results.length;i++)
-		//{
+		for(var i=0;i<results.length;i++)
+		{
 		
 			
-			console.log(results[0]._id);
-				Item.find({'quantities._id': results[0]._id},function(err, doc) {
+			console.log(results[i]._id);
+				Item.find({'quantities._id': results[i]._id},function(err, doc) {
 					//Item.find({ 'quantities': { $elemMatch: { '_id': '589c41f7885f303794df6939'}}}, function(err, doc) {
 						if (err) {
 							throw err;
@@ -227,12 +227,54 @@ function checkQuantity (req,res){
 						}
 				});
 			
-		//}
+		}
 		if(j==results.length)
 			{
 			console.log("a");
 			res.json(items);
 			}
+		}
+	});
+}*/
+
+function checkQuantity (req,res){
+	console.log("in checkQuantity");
+	var items = [];
+	Quantity.$where('this.quantity <= this.minQuantity').exec(function(err, results) {
+		if (err) {
+		  throw err;
+		}
+		else 
+		{
+			for(var f=0;f<results.length;f++)
+				items[f]=new Object();
+			console.log(results);
+			console.log(results.length);
+			Item.find({}).exec(function(err,docs){
+				for(var i=0;i<docs.length;i++)
+				{
+					for(var j=0;j<docs[i].quantities.length;j++)
+					{
+						console.log(docs[i].quantities[j]);
+						console.log(results[0]._id);
+						for(var k=0;k<results.length;k++)
+						{
+						if(docs[i].quantities[j] != results[k]._id)
+						{
+							
+							console.log("Aaaaaaaaaaaaa");
+							items[k].name=docs[i].name;
+							items[k].color = results[k].name;
+							items[k].quantity=results[k].quantity;
+							console.log(items);
+						}
+						}
+					}
+				}
+				console.log("S"+items);
+			res.json(items);
+			});
+			
 		}
 	});
 }
