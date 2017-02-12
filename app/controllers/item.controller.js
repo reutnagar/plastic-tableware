@@ -49,11 +49,11 @@ function getQuantities(req,res){
 					}      
 				});
 				}
-				if(length==POST.quantities.length)
-				{
-					console.log("results"+results);
-					res.json(results);
-				}
+			if(length==POST.quantities.length)
+			{
+				console.log("results"+results);
+				res.json(results);
+			}
 		});
 }
 
@@ -202,7 +202,7 @@ function checkQuantity (req,res){
 /*function checkQuantity (req,res){
 	console.log("in checkQuantity");
 	var items = [];
-	Quantity.$where('quantity <= minQuantity').exec(function(err, results) {
+	Quantity.$where(quantity <= minQuantity).exec(function(err, results) {
 		if (err) {
 		  throw err;
 		}
@@ -210,18 +210,21 @@ function checkQuantity (req,res){
 		console.log(results);
 		for(var i=o;i<results.length;i++)
 		{
-			Item.find({quantities:results[i]._id},(err, doc) => {
+			var doc = Item.quantities.id(ressults[i]._id);
+		/*	Item.find({quantities:results[i]._id},(err, doc) => {
 						if (err) {
 							throw err;
 						}
 						console.log("item "+doc+" is going to finish");
-						items.push(doc);
+						items.push(doc.name);
 			});
 		}
-		res.json(items);
+		res.json(items);*/
+		/*}
+	}
 	});
-}*/
-
+}
+*/
 function deleteAllItems(req,res) {
 	Item.remove ({},function(err, result) {
 	if (err) {

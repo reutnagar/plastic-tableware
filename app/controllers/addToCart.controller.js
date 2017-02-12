@@ -56,7 +56,7 @@ function makeAnOrder(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body);
-		var colorId=colorConverterButter(POST._id,POST.name);
+		var colorId=colorConverterId(POST._id,POST.name);
 		Quantity.findByIdAndUpdate(colorId, {quantity : POST.sum}).where(quantity ).gt(POST.sum).exec(function(err, doc) {
 			if(err){
 				throw err;
@@ -78,7 +78,7 @@ function makeAnOrder(req,res) {
 	
 }
 
-function colorConverterButter(id,color){
+function colorConverterId(id,color){
 	for(var i=0;i<size;i++)	
 	{
 		Item.find({id:id},(err, doc) => {
@@ -164,22 +164,20 @@ function makeAnOrder(req,res) {
 
 function quantity(req,res) {
 	console.log("in quantity");
-	console.log("get post request in server side");  
-    var body = '';
-        req.on('data', function (data) {
-            body += data;
-            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-            if (body.length > 1e6) { 
-                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
-                req.connection.destroy();
-            }
-        });  
-        req.on('end', function () {
-			var POST = qs.parse(body); 
-			Item.find({_id: POST._id},(err, doc) => {
+	// Retrieve the object from storage
+	var retrievedObject = localStorage.getItem('myList');
+	myList = JSON.parse(retrievedObject);
+	
+	item_id = myList.item_id;
+	color = myList.color;
+	sum = myList.sum;
+	
+	for(var j=0;j<item_id.length;j++)
+	{
+			Item.find({_id: item_id[j]},(err, doc) => {
 				if (err) {
 					res.status(404);
-					res.send('Items not found!');
+					res.send('Item not found!');
 				}
 				console.log("doc"+doc);
 				for(var i=0;i<doc[0].quantities.length;i++)
@@ -190,16 +188,27 @@ function quantity(req,res) {
 						throw err;
 					}
 					console.log(result[0].name);
-					if(result[0].name==POST.name)
+					if(result[0].name==color[j])
 					{
 						console.log("yes");
 						console.log("sum "+result[0].quantity);
-						res.json(result[0].quantity);
+						if(result[0].quantity<sum[j])
+						{
+							problemsDocs.item+id.push(item_id[j]);
+							problemsDocs.color.push(color[j]);
+							problemsDocs.sum.push(sum[j]);
+							console.log(problemsDocs);
+						}	
 					}
 				
 					});
 				}
 			});
-		});
+	}
+	if(j==item_id.length)
+	{
+		console.log(problemsDocs);
+		res.json(problemsDocs);
+	}
 }
 					
