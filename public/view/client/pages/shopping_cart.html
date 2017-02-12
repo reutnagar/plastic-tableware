@@ -342,8 +342,8 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                     </tr>
                 </table>
                 <input type="checkbox" id="termscheckbox" ng-model="checked"><label for="termscheckbox">לחצו כאן לקריאת תנאי השירות וסמן את התיבה כדי לאשר.</label>
-                <br><br>
-                <button  ng-disabled="userForm.$invalid  || userForm.$pending && !checked" class="btn" ng-click="validation()">payment</button>
+                <br><br><!-- ng-disabled="userForm.$invalid  || userForm.$pending && !checked" -->
+                <button   class="btn" ng-click="validation()">payment</button>
             </div>
         </div>
     </div>

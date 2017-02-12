@@ -1,29 +1,64 @@
-app.controller('cartCtrl',function($scope, $http,$location,$rootScope) {
-	console.log("cartCtrl");
-	$scope.myList=JSON.parse(localStorage.getItem('myList'));
-	$scope.UserName="";
-	$scope.address="";
-	$scope.email="";
+app.controller('cartCtrl',function($scope, $http,$location,$rootScope,quantityService,$log) {
 
+	$scope.myList=JSON.parse(localStorage.getItem('myList'));
+	var cart =[];
+	var product;
+	var quantity;
 
 if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
 else $scope.empty=true;
-		console.log("order~~~~~~~~~~~~~~",$scope.myList,$scope.empty);
-		var cart =[];
 
-console.log("email",$scope.email);
+console.log("myList~~~~~~~~~~",$scope.myList);
+		
+$scope.validation=function(){
+	//console.log("user detailes",$scope.user);
+var promise
+	for (var i = 0; i < $scope.myList.length ; i++) {
+ 	 	product = $scope.myList[i];
+ 	 console.log(i);
+ 	  $scope.quantity = quantityService.quantity(product._id,product.name);
 
-
-	$scope.validation=function(){
-		console.log("user detailes",$scope.user);
-
+          if($scope.quantity)
+              $log.error('failure loading quantity');
+			console.log("~~~~this is the resualt~~~~~",$scope.quantity,product.quantity,i);
+ 	 //$scope.Quantity = $scope.quantity(product._id,product.name);
+ }
+ if(i>0)
+			 {
+			 	console.log("a product is not validation",i,$scope.myList);
+			 	return;
+			 }
 //send to function that checkes if all the item realy exsit
 //if true
 //update the db
 //$scope.makeAnOrder();
 //SEND EMAIL
-	};	
-
+};	
+// $scope.quantity = function(_id,name){
+// 	console.log("quantity",name,_id);
+// 				var data = $.param({
+// 					_id : _id,
+// 					name : name,
+// 				});
+// 				var config = {
+// 					headers : {
+// 						'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+// 					}
+// 				}
+// 				$http.get('/quantity', data, config)
+// 				.success(function (data, status, headers, config) {
+// 					// console.log("Succeed get quantity");
+// 					// console.log("get quantity ", data);
+// 					$scope.Quantity = data;
+// 				})
+// 				.error(function (data, status, header, config) {
+// 					console.log("Error: "+ data);
+// 					$scope.ResponseDetails = "get quantity " + data +
+// 						"<hr />status: " + status +
+// 						"<hr />headers: " + header +
+// 						"<hr />config: " + config;
+// 				});
+// 		};
 $scope.makeAnOrder = function(UserName,address,email){
 	console.log("makeAnOrder",UserName,address,email);
 				var data = $.param({

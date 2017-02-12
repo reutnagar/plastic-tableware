@@ -23,41 +23,41 @@ app.controller('itemCtrl',function($scope, $http) {
 							$scope.items = data;
 							console.log("Succeed loading");
 							console.log("data"+data);
-                            $scope.items=[{              
-                                name : "a",
-                                category : "a",
-                                subCategory : "a",
-                                description : "a",
-                                price :"a",
-                                location : "a",
-                                quantities: [ {name:"dddd",
-                                              quantity:"dddd",
-                                              minQuantity:"dddd",
-                                              image:"dddd"},
-                                              {name:"aaaaa",
-                                              quantity:"aaaaa",
-                                              minQuantity:"aaaaa",
-                                              image:"aaaaa"}
-                                              ]
-                                          },
-                                          {              
-                                name : "a",
-                                category : "a",
-                                subCategory : "a",
-                                description : "a",
-                                price :"a",
-                                location : "a",
-                                quantities: [ {name:"dddd",
-                                              quantity:"dddd",
-                                              minQuantity:"dddd",
-                                              image:"dddd"},
-                                              {name:"aaaaa",
-                                              quantity:"aaaaa",
-                                              minQuantity:"aaaaa",
-                                              image:"aaaaa"}
-                                              ]
-                                          }
-                                          ];
+                            // $scope.items=[{              
+                            //     name : "a",
+                            //     category : "a",
+                            //     subCategory : "a",
+                            //     description : "a",
+                            //     price :"a",
+                            //     location : "a",
+                            //     quantities: [ {name:"dddd",
+                            //                   quantity:"dddd",
+                            //                   minQuantity:"dddd",
+                            //                   image:"dddd"},
+                            //                   {name:"aaaaa",
+                            //                   quantity:"aaaaa",
+                            //                   minQuantity:"aaaaa",
+                            //                   image:"aaaaa"}
+                            //                   ]
+                            //               },
+                            //               {              
+                            //     name : "a",
+                            //     category : "a",
+                            //     subCategory : "a",
+                            //     description : "a",
+                            //     price :"a",
+                            //     location : "a",
+                            //     quantities: [ {name:"dddd",
+                            //                   quantity:"dddd",
+                            //                   minQuantity:"dddd",
+                            //                   image:"dddd"},
+                            //                   {name:"aaaaa",
+                            //                   quantity:"aaaaa",
+                            //                   minQuantity:"aaaaa",
+                            //                   image:"aaaaa"}
+                            //                   ]
+                            //               }
+                            //               ];
                                       console.log("item",$scope.items);
 							for (var i = 0, length = $scope.items.length; i < length; i++) {
 								$scope.showMe[$scope.items[i]._id] = true;
