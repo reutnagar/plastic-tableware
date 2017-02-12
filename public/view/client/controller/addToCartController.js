@@ -10,12 +10,11 @@ if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
 else $scope.empty=true;
 
 $scope.validation=function(){
-	var myList = angular.toJson($scope.myList);
-
-	var promise = quantityService.quantity(myList);
+	console.log($scope.user);
+	var promise = quantityService.quantity($scope.myList);
  	        promise.then(
-          function(payload) { 
-              $scope.quantity = payload.data;
+          function(data) { 
+              $scope.quantity = data.data;
               for (var i = 0; i < $scope.quantity.length ; i++) {
               	for (var j = 0; j < $scope.myList.length; j++) {
               		if($scope.myList[j]._id == $scope.quantity._id )
