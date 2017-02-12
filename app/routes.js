@@ -54,7 +54,7 @@ router.post('/sendEmailserver', emailController.sendEmailserver);
 
 //addToCartController
 router.post('/makeAnOrder', addToCartController.makeAnOrder);
-router.get('/quantity',addToCartController.quantity);
+router.get('/quantity/:myList',addToCartController.quantity);
 
 
 // export router

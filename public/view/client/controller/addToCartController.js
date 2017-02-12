@@ -10,8 +10,9 @@ if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
 else $scope.empty=true;
 
 $scope.validation=function(){
-	console.log($scope.user);
-	var promise = quantityService.quantity();
+	var myList = angular.toJson($scope.myList);
+
+	var promise = quantityService.quantity(myList);
  	        promise.then(
           function(payload) { 
               $scope.quantity = payload.data;
