@@ -12,13 +12,13 @@ console.log("myList~~~~~~~~~~",$scope.myList);
 		
 $scope.validation=function(){
 	//console.log("user detailes",$scope.user);
-var promise
+var promise;
 	for (var i = 0; i < $scope.myList.length ; i++) {
  	 	product = $scope.myList[i];
  	 console.log(i);
- 	  quantityService.quantity(product._id,product.name).then(
-          function(payload) { 
-              $scope.quantity = payload.data;
+ 	  quantityService.quantity().then(
+          function(data) { 
+              $scope.quantity = data.data;
 			console.log("~~~~this is the resualt from itration ~~~~~",i,"~~");
 			console.log($scope.quantity+"---");
 			if(product.quantity > $scope.quantity)
