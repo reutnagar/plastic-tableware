@@ -1,6 +1,9 @@
 var qs = require('querystring');
 var Item = require('../models/Item');
 var Quantity = require('../models/Quantity');
+var Order = require('../models/Order');
+var OrderedItem = require('../models/OrderedItem');
+
 var LocalStorage = require('node-localstorage').LocalStorage,
 localStorage = new LocalStorage('./scratch');
 var myList = new Object();
@@ -174,17 +177,29 @@ function quantity(req,res) {
 // 	var myList = JSON.parse(localStorage.getItem('myList'));
 // 	item_id = myList.item_id;
 // =======
-	var retrievedObject = localStorage.getItem('myList');
-	myList = JSON.parse(retrievedObject);
+	/*var retrievedObject = localStorage.getItem('myList');
+	myList = JSON.parse(retrievedObject);*/
 	var problemsDocs = [];
 	/*item_id = myList.item_id;
 >>>>>>> origin/master
 	color = myList.color;
 	sum = myList.sum;*/
-	console.log(myList);
-	for(var j=0;j<myList.length;j++)
-	{
-			Item.find({_id: myList[j].item_id},(err, doc) => {
+	//console.log(myList);
+	console.log("get post request in server side");  
+    var body = '';
+        req.on('data', function (data) {
+            body += data;
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) { 
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                req.connection.destroy();
+            }
+        });   
+        req.on('end', function () {
+        var POST = qs.parse(body); 
+		for(var j=0;j<POST.items.length;j++)
+		{
+			Item.find({_id: POST[j]._id},(err, doc) => {
 				if (err) {
 					res.status(404);
 					res.send('Item not found!');
@@ -198,15 +213,15 @@ function quantity(req,res) {
 						throw err;
 					}
 					console.log(result[0].name);
-					if(result[0].name==myList[j].color)
+					if(result[0].name==POST[j].name)
 					{
 						console.log("yes");
 						console.log("sum "+result[0].quantity);
-						if(result[0].quantity < myList[j].sum)
+						if(result[0].quantity < POST[j].quantity)
 						{
-							problemsDocs.item_id.push(myList[j].item_id);
-							problemsDocs.color.push(myList[j].color);
-							problemsDocs.sum.push(myList[j].sum);
+							problemsDocs._id.push(POST[j]._id);
+							problemsDocs.name.push(POST[j].name);
+							problemsDocs.quantity.push(POST[j].quantity);
 							console.log(problemsDocs);
 						}	
 					}
@@ -214,11 +229,12 @@ function quantity(req,res) {
 					});
 				}
 			});
-	}
-	if(j==item_id.length)
-	{
-		console.log(problemsDocs);
-		res.json(problemsDocs);
-	}
+		}
+		if(j==item_id.length)
+		{
+			console.log(problemsDocs);
+			res.json(problemsDocs);
+		}
+	});
 }
 					
