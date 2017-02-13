@@ -4,6 +4,7 @@ $scope.sendEmail = function(user){
 		console.log("contact  controller",user);
 		var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"contact",user.content);
 	console.log("contact  controller");
+$location.path("/");
 }
 
 	 
