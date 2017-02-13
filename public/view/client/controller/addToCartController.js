@@ -30,14 +30,13 @@ $scope.validation=function(){
           function(errordata) {
               $log.error('failure loading quantity', errordata);
           });
-$scope.string = "aaaaaaaaaaa";
  	 	 	if($scope.string != "" && $scope.string != null){
  	 	 			alert($scope.string);
  	 	 			$scope.string = "";
  	 	 		return false;
  	 	 	} 	 	 
  	 	 	else{
- 	 	 		//$scope.makeAnOrder($scope.user);
+ 	 	 		$scope.makeAnOrder($scope.user);
  	 	 		console.log("true");
 				var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"order","");
 
@@ -46,7 +45,7 @@ $scope.string = "aaaaaaaaaaa";
 };	
 
 $scope.makeAnOrder = function(user){
-	console.log("makeAnOrder",UserName,address,email);
+	console.log("user",user);
 				var data = $.param({
 					UserName : $scope.UserName,
 					address :$scope.address,
