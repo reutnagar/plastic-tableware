@@ -37,7 +37,7 @@ function sendEmailserver(req, res) {
           var mailOptions = {
           from: 'plastictableware.cs@gmail.com', // sender address
           to:'plastictableware.cs@gmail.com',
-          subject: 'מ פניה'+ email, // Subject line
+          subject: '   מ פניה    '+ email, // Subject line
           text: POST.content //, // plaintext body
           };
         }
