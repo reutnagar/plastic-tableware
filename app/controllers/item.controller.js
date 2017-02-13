@@ -33,12 +33,13 @@ function getQuantities(req,res){
         req.on('end', function () {
 			var POST = qs.parse(body);
 			var results=[],length=0;
-			for (var i=0;i<POST.quantities.length;i++)
-				{
-				Quantity.find({_id:POST.quantities[i]},(err, result)=>{
+			//for (var i=0;i<POST.quantities.length;i++)
+				//{
+				//Quantity.find({_id:POST.quantities[i]},(err, result)=>{
+				Quantity.find({_id: {$in:POST.quantities}},(err, result)=>{
 					if (err) 
 					{
-						return err;
+						console.log("err");
 					}
 					else
 					{
@@ -48,7 +49,7 @@ function getQuantities(req,res){
 						length++;
 					}      
 				});
-				}
+				
 			if(length==POST.quantities.length)
 			{
 				console.log("results"+results);
@@ -188,7 +189,7 @@ function countItem(req,res) {
   
 }
 
-/*function checkQuantity (req,res){
+function checkQuantity (req,res){
 	console.log("in checkQuantity");
 	Item.$where('this.quantity <= this.minQuantity').exec(function(err, result) {
 	if (err) {
@@ -197,7 +198,7 @@ function countItem(req,res) {
 	console.log(result);
 	res.json(result);
 	});
-};*/
+};
 
 /*function checkQuantity (req,res){
 	console.log("in checkQuantity");
@@ -237,7 +238,7 @@ function countItem(req,res) {
 	});
 }*/
 
-function checkQuantity (req,res){
+/*function checkQuantity (req,res){
 	console.log("in checkQuantity");
 	var items = [];
 	Quantity.$where('this.quantity <= this.minQuantity').exec(function(err, results) {
@@ -259,11 +260,11 @@ function checkQuantity (req,res){
 						console.log(results[0]._id);
 						for(var k=0;k<results.length;k++)
 						{
-						if(docs[i].quantities[j] != results[k]._id)
+						if(docs[i].quantities[j] == results[k]._id)
 						{
 							
-							console.log("Aaaaaaaaaaaaa");
-							items[k].name=docs[i].name;
+							console.log("aaaaaaaaaaaa");
+							items[k].name = docs[i].name;
 							items[k].color = results[k].name;
 							items[k].quantity=results[k].quantity;
 							console.log(items);
@@ -277,7 +278,7 @@ function checkQuantity (req,res){
 			
 		}
 	});
-}
+}*/
 
 function deleteAllItems(req,res) {
 	Item.remove ({},function(err, result) {
@@ -323,7 +324,8 @@ function deleteItemById(req,res) {
                 req.connection.destroy();
             }
         });   
-        req.on('end', function () {			
+        req.on('end', function () {	
+			//removeSubSchema(body);
 			Item.remove({_id:body},function(err, result) {
 			if (err) {
 				throw err;
@@ -332,6 +334,15 @@ function deleteItemById(req,res) {
 			});
 		});
 };
+
+/*function removeSubSchema(id){
+	Item.find({_id:id},function(err,doc){
+		for(var i=0;i<doc[0].quantities.length;i++)
+		{
+			Quantity.find({_id:doc[0].quantities[i]},function(err,result){
+				
+function */				
+				
 
 function changeItem(req,res) {
 	console.log("in changeItem");
