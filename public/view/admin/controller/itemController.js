@@ -59,10 +59,9 @@ app.controller('itemCtrl',function($scope, $http) {
                             //               }
                             //               ];
                                       console.log("item",$scope.items);
-							for (var i = 0, length = $scope.items.length; i < length; i++) {
+							for (var i = 10, length = $scope.items.length; i < length; i++) {
 								$scope.showMe[$scope.items[i]._id] = true;
-                                $scope.data = $scope.getQuantities($scope.items[i].quantities);
-                                console.log($scope.data,"**return***",i);
+                                $scope.getQuantities($scope.items[i].quantities,i);
 							}
 						})
 						.error(function(data){
@@ -70,32 +69,36 @@ app.controller('itemCtrl',function($scope, $http) {
 			 });
 	}
 
-$scope.getQuantities=function(quantities){
-   console.log("*******in getQuantities*******",quantities);
+$scope.getQuantities=function(quantities,i){
+   
+            quantities = angular.toJson(quantities);
+            //console.log("*******in getQuantities*******",quantities);
             var data = $.param({
-                quantities : angular.toJson(quantities)
+                quantities : quantities
             });
         
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
                 }
-            }
+            };
 
             $http.post('/admin/getQuantities', data, config)
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed getQuantities");
-                //$scope.items.push(data);
+                        console.log("~~~~~~~for",quantities,"---",$scope.PostDataResponse);
+$scope.items[i].quantities=$scope.PostDataResponse;
+console.log("~~~~~~~for",i,"---",$scope.items[i]);
+
             })
             .error(function (data, status, header, config) {
-                console.log("Error: "+data);
+                console.log("Error: "+ data);
                 $scope.ResponseDetails = "Data: " + data +
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
             });
-            console.log($scope.PostDataResponse);
 };
 
         $scope.add = function () {

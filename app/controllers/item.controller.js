@@ -32,29 +32,39 @@ function getQuantities(req,res){
         });   
         req.on('end', function () {
 			var POST = qs.parse(body);
+		var POST=JSON.parse(POST.quantities);
+		console.log("POST~~~~~~~~",POST);
+		console.log("POST.quantities~~~~~",POST[0]);
+	// 	console.log("POST[0]~~~~~~",POST.quantities[0]);
+	// 	var POST = qs.parse(POST.quantities);
+	// 	console.log(" POST ~~~~~ after parse 2~~~",POST);
+	// console.log("POST[0]~~~~~~",POST[0]);
+	// 	console.log("POST parse~~~~~~~~",POST);
+	// 		console.log("POST parse~~~~~~~~",POST);
 			var results=[],length=0;
-			//for (var i=0;i<POST.quantities.length;i++)
-				//{
-				//Quantity.find({_id:POST.quantities[i]},(err, result)=>{
-				Quantity.find({_id: {$in:POST.quantities}},(err, result)=>{
+			// for (var i=0;i<POST.length;i++)
+			// 	{
+					console.log("POST~~~~~~~~",POST.length);
+				Quantity.find({_id:{$in:POST}},(err, results)=>{
 					if (err) 
 					{
-						console.log("err");
+						return err;
 					}
 					else
 					{
-						console.log("result~~~~~~~~"+result);
-						results.push(result);
-						console.log("results~~~~~~~"+results);
-						length++;
+						res.json(results);
+						console.log("result~~~~~~~~"+results);
+						// results.push(result);
+						// console.log("results~~~~~~~"+results);
+						// length++;
 					}      
 				});
+				// }
+			// if(length==POST.length-1)
+			// {
+			// 	console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~results~~~~~~~~~~~~~~~");
 				
-			if(length==POST.quantities.length)
-			{
-				console.log("results"+results);
-				res.json(results);
-			}
+			//}
 		});
 }
 
@@ -189,7 +199,7 @@ function countItem(req,res) {
   
 }
 
-function checkQuantity (req,res){
+/*function checkQuantity (req,res){
 	console.log("in checkQuantity");
 	Item.$where('this.quantity <= this.minQuantity').exec(function(err, result) {
 	if (err) {
@@ -198,7 +208,7 @@ function checkQuantity (req,res){
 	console.log(result);
 	res.json(result);
 	});
-};
+};*/
 
 /*function checkQuantity (req,res){
 	console.log("in checkQuantity");
@@ -238,7 +248,7 @@ function checkQuantity (req,res){
 	});
 }*/
 
-/*function checkQuantity (req,res){
+function checkQuantity (req,res){
 	console.log("in checkQuantity");
 	var items = [];
 	Quantity.$where('this.quantity <= this.minQuantity').exec(function(err, results) {
@@ -260,11 +270,11 @@ function checkQuantity (req,res){
 						console.log(results[0]._id);
 						for(var k=0;k<results.length;k++)
 						{
-						if(docs[i].quantities[j] == results[k]._id)
+						if(docs[i].quantities[j] != results[k]._id)
 						{
 							
-							console.log("aaaaaaaaaaaa");
-							items[k].name = docs[i].name;
+							console.log("Aaaaaaaaaaaaa");
+							items[k].name=docs[i].name;
 							items[k].color = results[k].name;
 							items[k].quantity=results[k].quantity;
 							console.log(items);
@@ -278,7 +288,7 @@ function checkQuantity (req,res){
 			
 		}
 	});
-}*/
+}
 
 function deleteAllItems(req,res) {
 	Item.remove ({},function(err, result) {
@@ -324,8 +334,7 @@ function deleteItemById(req,res) {
                 req.connection.destroy();
             }
         });   
-        req.on('end', function () {	
-			//removeSubSchema(body);
+        req.on('end', function () {			
 			Item.remove({_id:body},function(err, result) {
 			if (err) {
 				throw err;
@@ -334,15 +343,6 @@ function deleteItemById(req,res) {
 			});
 		});
 };
-
-/*function removeSubSchema(id){
-	Item.find({_id:id},function(err,doc){
-		for(var i=0;i<doc[0].quantities.length;i++)
-		{
-			Quantity.find({_id:doc[0].quantities[i]},function(err,result){
-				
-function */				
-				
 
 function changeItem(req,res) {
 	console.log("in changeItem");
