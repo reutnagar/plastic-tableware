@@ -61,8 +61,8 @@ app.controller('itemCtrl',function($scope, $http) {
                                       console.log("item",$scope.items);
 							for (var i = 0, length = $scope.items.length; i < length; i++) {
 								$scope.showMe[$scope.items[i]._id] = true;
-                                $scope.getQuantities($scope.items.quantities);
-                                console.log(i);
+                                $scope.data = $scope.getQuantities($scope.items[i].quantities);
+                                console.log($scope.data,"**return***",i);
 							}
 						})
 						.error(function(data){
@@ -71,7 +71,7 @@ app.controller('itemCtrl',function($scope, $http) {
 	}
 
 $scope.getQuantities=function(quantities){
-   console.log(quantities);
+   console.log("*******in getQuantities*******",quantities);
             var data = $.param({
                 quantities : angular.toJson(quantities)
             });

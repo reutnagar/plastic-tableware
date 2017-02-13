@@ -22,7 +22,7 @@ app.factory('emailService',function ($http){
 						})
 						.error(function (data, status, header, config) {
 							console.log("Error: "+ data);
-							var ResponseDetails = "sendEmailserver" + email +
+							var ResponseDetails = "sendEmailserver" + EmailAdres +
 								"<hr />status: " + status +
 								"<hr />headers: " + header +
 								"<hr />config: " + config;

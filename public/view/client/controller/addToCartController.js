@@ -60,7 +60,8 @@ $scope.makeAnOrder = function(user){
 	myList = angular.toJson($scope.myList);			
 				var data = $.param({
 					user : user,
-					myList : myList
+					myList : myList,
+					total : $scope.getTotal()
 				});
 				var config = {
 					headers : {
