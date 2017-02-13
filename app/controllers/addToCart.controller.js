@@ -49,9 +49,9 @@ var problemsDocs = [];
 });
 }*/
 
-	function cutShoppingCartItem(res) {
+function cutShoppingCartItem(res) {
   		var shopingCartItem = myList.shift(); //removes the first from the array, and stores in variable 'url'
-  		getItemById(shopingCartItem, getQuantityByColor, iterateOverShoppingCartItems,res);
+  		findItemById(shopingCartItem, findQuantityIdByColor, iterateOverShoppingCartItems,res);
   	};
 
   	function iterateOverShoppingCartItems(res) {
@@ -61,71 +61,50 @@ var problemsDocs = [];
 		 }
 		 else
 		 {
-		 	//console.log("***problemsDocs1111****"+problemsDocs);
-		 	res.json("aaa");
+		 	console.log("***updated***");
+		 	res.send("goodd");
 		 }
 
 		}
 
 
-function makeAnOrder(req,res) {
-	console.log("in makeAnOrder");
-	console.log("get post request in server side");  
-	var body = '';
-	req.on('data', function (data) {
-		body += data;
+		function makeAnOrder(req,res) {
+			console.log("in makeAnOrder");
+			console.log("get post request in server side");  
+			var body = '';
+			req.on('data', function (data) {
+				body += data;
             // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
             if (body.length > 1e6) { 
                 // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
                 req.connection.destroy();
             }
         });   
-	req.on('end', function () {
-		var POST = qs.parse(body);
-		console.log("body",body);
-		console.log("POST",POST);
-		var user = JSON.parse(POST.user);
-		console.log("POST.total",POST.total);
-		 myList = JSON.parse(POST.myList);
+			req.on('end', function () {
+				var POST = qs.parse(body);
+				console.log("body",body);
+				console.log("POST",POST);
+				var user = JSON.parse(POST.user);
+				console.log("POST.total",POST.total);
+				myList = JSON.parse(POST.myList);
+				cutShoppingCartItem(res);
 
-        cutShoppingCartItem(res);
-
-
-		myList.forEach(function (value, index) {
-			console.log("-----------------------------------------");
-			//console.log(myList[index].quantity,"name~~~~~~",myList[index].color);
-			colorConverterId(myList[index]._id,myList.color);
-			// setTimeout( function(){
-			// 	console.log("----waiting---");
-   //      },6000 );
-			
-			console.log("------colorId----",colorId);
-
-			//Quantity.findOneAndUpdate({_id:58a1829387d3762a40784d0a,name:myList.color}, {$set:{quantity : 3}}).exec(function(err, doc) {
-			Quantity.findOneAndUpdate({_id:colorId}, {$set:{quantity : 3}}).exec(function(err, doc) {
-				if(err){
-					throw err;
+				var newOrder = new Order ({firstName:user.firstName,lastName:user.lastName,street:user.street,country:user.country,zip:user.zip , email : user.email ,telephone : user.telephone, cellphone : user.cellphone,payment:POST.total });
+				var newOrderedItem = [];
+				for(var i=0; i<myList.length;i++)
+				{
+					newOrderedItem[i] = new OrderedItem({item_id:myList[i].item_id,color:myList[i].color,sum:myList[i].sum});
+					newOrderedItem[i].save();
+					newOrder.orderedItems.push(newOrderedItem[i]);
 				}
-				console.log("this is the doc variable: "+doc,index);
-				console.log("updated");
+				newOrder.save();
 			});
-			var newOrder = new Order ({firstName:user.firstName,lastName:user.lastName,street:user.street,country:user.country,zip:user.zip , email : user.email ,telephone : user.telephone, cellphone : user.cellphone,payment:POST.total });
-			var newOrderedItem = [];
-			for(var i=0; i<myList.length;i++)
-			{
-				newOrderedItem[i] = new OrderedItem({item_id:myList[i].item_id,color:myList[i].color,sum:myList[i].sum});
-				newOrderedItem[i].save();
-				newOrder.orderedItems.push(newOrderedItem[i]);
-			}
-			newOrder.save();
-		});
 
-	});
-}
+		}
 
 
 
-function getItemById(shopingCartItem, callback ,globalCallback,res){
+		function findItemById(shopingCartItem, callback ,globalCallback,res){
 		//console.log("In getItemById")
 		var id = shopingCartItem._id;
 
@@ -134,10 +113,11 @@ function getItemById(shopingCartItem, callback ,globalCallback,res){
 				res.status(404);
 				res.send('Item not found!');
 			}
-			callback(err, doc, shopingCartItem, compare,globalCallback,res);
+			callback(err, doc, shopingCartItem, updateQuantity , globalCallback , res);
 		});
 	}
-function getQuantityIdByColor(err, item, shopingCartItem, callback,globalCallback,res){
+
+	function findQuantityIdByColor(err, item, shopingCartItem, callback, globalCallback,res){
 	//console.log("In getQuantityByColor")
 
 	if(err) {
@@ -150,7 +130,7 @@ function getQuantityIdByColor(err, item, shopingCartItem, callback,globalCallbac
 		if (err) {
 			throw err;
 		}
-		callback(err, result,shopingCartItem,globalCallback,res);
+		callback(err, result[0],shopingCartItem,globalCallback,res);
 	});
 }
 
@@ -158,12 +138,25 @@ function getQuantityIdByColor(err, item, shopingCartItem, callback,globalCallbac
 
 
 
-function updateQuantity(err, item, quantity , shopingCartItem,globalCallback,res) {
-			//console.log("in compare");
+function updateQuantity(err,quantity,shopingCartItem,globalCallback,res) {
 			if (err) {
-				//console.log("ERROR getting times")
-			} else {
-				Quantity.findOne({ _id: quantity._id }).update({$set: { quantity: quantity.quantity-shopingCartItem.quantity }});
+				console.log("ERROR getting times")
+			} else {			console.log("in updateQuantity");
+
+				new_quantity = quantity.quantity-shopingCartItem.quantity;
+				console.log("in updateQuantity````````````````",quantity.quantity,shopingCartItem.quantity);
+				Quantity.findOne({ _id: quantity._id }).update({$set: { quantity: new_quantity }}).exec(function(err,result){
+					if(err)
+					{
+										console.log("ERROR getting times");
+
+					}
+					else {
+										console.log("result",result);
+
+					}
+				});
+			
 			}
 			globalCallback(res);
 		}
