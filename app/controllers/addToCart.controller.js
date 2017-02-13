@@ -42,14 +42,6 @@ module.exports = {
 
 function makeAnOrder(req,res) {
 	console.log("in makeAnOrder");
-	/*// Retrieve the object from storage
-	var retrievedObject = localStorage.getItem('myList');
-	myList = JSON.parse(retrievedObject);
-	
-	item_id = myList._id;
-	color = myList.color;
-	sum = myList.sum;*/
-	
 	console.log("get post request in server side");  
     var body = '';
         req.on('data', function (data) {
@@ -62,32 +54,32 @@ function makeAnOrder(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body);
-        console.log("body",body)
-
-        console.log("POST",POST)
+        console.log("body",body);
+        console.log("POST",POST);
         var user = JSON.parse(POST.user);
-         console.log("user.userName",user.UserName);
+        console.log("user.userName",user.firstName);
         var myList = JSON.parse(POST.myList);
-		var colorId=colorConverterId(POST._id,POST.name);
-		Quantity.findByIdAndUpdate(colorId, {quantity : POST.sum}).where(quantity ).gt(POST.sum).exec(function(err, doc) {
-			if(err){
-				throw err;
+		myList.forEach(function (value, index) {
+			var colorId=colorConverterId(mylist[index]._id,myList.name);
+			Quantity.findByIdAndUpdate(colorId, {quantity : POST.sum}).where(quantity ).gt(POST.sum).exec(function(err, doc) {
+				if(err){
+					throw err;
+				}
+				console.log("this is the doc variable: "+doc);
+				console.log("updated");
+			});
+			var newOrder = new Order ({userName:POST.userName,email:POST.email,address:POST.address,status:"התקבלה הזמנה",numItems:POST.numItems,payment:POST.payment});
+			var newOrderedItem = [];
+			var o=JSON.parse(POST.orderedItems);
+			for(var i=0; i<o.length;i++)
+			{
+				newOrderedItem[i] = new OrderedItem({item_id:0[i].item_id,color:o[i].color,sum:o[i].sum});
+				newOrderedItem[i].save();
+				newOrder.orderedItems.push(newOrderedItem[i]);
 			}
-			console.log("this is the doc variable: "+doc);
-			console.log("updated");
+			newOrder.save();
+			});
 		});
-		var newOrder = new Order ({userName:POST.userName,email:POST.email,address:POST.address,status:"התקבלה הזמנה",numItems:POST.numItems,payment:POST.payment});
-		var newOrderedItem = [];
-		var o=JSON.parse(POST.orderedItems);
-		for(var i=0; i<o.length;i++)
-		{
-			newOrderedItem[i] = new OrderedItem({item_id:0[i].item_id,color:o[i].color,sum:o[i].sum});
-			newOrderedItem[i].save();
-			newOrder.orderedItems.push(newOrderedItem[i]);
-		}
-		newOrder.save();
-		});
-	
 }
 
 function colorConverterId(id,color){
