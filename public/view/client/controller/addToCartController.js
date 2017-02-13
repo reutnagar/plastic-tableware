@@ -47,7 +47,7 @@ $scope.validation=function(){
 				else{
 					alert("falid to conect to make your order try agian later");
 				}
-				$location.path("/");
+				//$location.path("/");
  	 	 	}
  	 	 		
 };	

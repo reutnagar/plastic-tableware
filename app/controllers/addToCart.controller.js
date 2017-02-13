@@ -62,6 +62,12 @@ function makeAnOrder(req,res) {
         });   
         req.on('end', function () {
         var POST = qs.parse(body);
+        console.log("body",body)
+
+        console.log("POST",POST)
+        var user = JSON.parse(POST.user);
+         console.log("user.userName",user.UserName);
+        var myList = JSON.parse(POST.myList);
 		var colorId=colorConverterId(POST._id,POST.name);
 		Quantity.findByIdAndUpdate(colorId, {quantity : POST.sum}).where(quantity ).gt(POST.sum).exec(function(err, doc) {
 			if(err){
