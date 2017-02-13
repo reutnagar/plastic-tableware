@@ -36,10 +36,17 @@ $scope.validation=function(){
  	 	 		return false;
  	 	 	} 	 	 
  	 	 	else{
- 	 	 		$scope.makeAnOrder($scope.user);
+ 	 	 		var flag = $scope.makeAnOrder($scope.user);
  	 	 		console.log("true");
-				var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"order","");
-
+ 	 	 		if(flag)
+				{
+					var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"order","");
+					alert("הזמנתך התקבלה!"+'\n'+"תודה שקניתה אצלנו");
+				}
+				else{
+					alert("falid to conect to make your order try agian later");
+				}
+				$location.path("/");
  	 	 	}
  	 	 		
 };	
@@ -57,7 +64,7 @@ $scope.makeAnOrder = function(user){
 						'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
 					}
 				}
-				$http.post('/makeAnOrder', data, config)
+				return $http.post('/makeAnOrder', data, config)
 				.success(function (data, status, headers, config) {
 					console.log("Succeed post addToCart");
 					console.log("makeAnOrder ", data);
