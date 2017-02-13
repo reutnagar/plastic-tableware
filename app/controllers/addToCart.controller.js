@@ -179,7 +179,14 @@ function quantity(req,res) {
 // =======
 	/*var retrievedObject = localStorage.getItem('myList');
 	myList = JSON.parse(retrievedObject);*/
-	var problemsDocs = [];
+	var obj = {
+			_id : "",
+			color : "",
+			quantity : ""
+	}
+	var problemsDocs = []; 
+
+
 	/*item_id = myList.item_id;
 >>>>>>> origin/master
 	color = myList.color;
@@ -196,45 +203,59 @@ function quantity(req,res) {
             }
         });   
         req.on('end', function () {
+        	var l =0;
+        		
+
         var POST = qs.parse(body); 
-		for(var j=0;j<POST.items.length;j++)
-		{
-			Item.find({_id: POST[j]._id},(err, doc) => {
+console.log("POST 0",POST);
+		myList=JSON.parse(POST.myList);
+// console.log("POST 1",myList);
+// console.log("POST 2",myList[0]);
+		for(var j=0;j<myList.length;j++)
+		{console.log("myList[]",myList[j]);
+			Item.find({_id: myList[j]._id},(err, doc) => {
 				if (err) {
 					res.status(404);
 					res.send('Item not found!');
 				}
-				console.log("doc"+doc);
+				console.log("doc~~~~~~~~~~~"+doc[0].quantities);
 				for(var i=0;i<doc[0].quantities.length;i++)
 				{
-					console.log(doc[0].quantities[i]);
+					console.log("~~~~~~~~~~~~~"+i+doc[0].quantities[i]);
 					Quantity.find({_id:doc[0].quantities[i]},(err, result) => {
 					if (err) {
 						throw err;
 					}
-					console.log(result[0].name);
-					if(result[0].name==POST[j].name)
+					
+					if(result[0].name==myList[l].color)
 					{
+						
+						console.log("~~~~~~~~~~~~~"+myList[l].color);
 						console.log("yes");
 						console.log("sum "+result[0].quantity);
-						if(result[0].quantity < POST[j].quantity)
+						if(result[0].quantity < myList[l].quantity)
 						{
-							problemsDocs._id.push(POST[j]._id);
-							problemsDocs.name.push(POST[j].name);
-							problemsDocs.quantity.push(POST[j].quantity);
-							console.log(problemsDocs);
-						}	
+							obj._id = myList[l]._id;
+							obj.color = myList[l].color;
+							obj.quantity = result[0].quantity;
+							problemsDocs.push(obj);
+							console.log("//////////////"+obj._id);
+						}
+						l++;
+						if(l==myList.length)
+		{
+
+			res.json(problemsDocs);	
+		}	
+						console.log("l"+l);
 					}
 				
 					});
 				}
 			});
 		}
-		if(j==item_id.length)
-		{
-			console.log(problemsDocs);
-			res.json(problemsDocs);
-		}
+
 	});
+
 }
 					

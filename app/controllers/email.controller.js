@@ -25,18 +25,18 @@ function sendEmailserver(req, res) {
         var email = POST.email;
         if(POST.type=="order"){
           var text='שלום וברכה!'+"\n"+ "אנו שמחים";
-                    var mailOptions = {
-                      from: 'plastictableware.cs@gmail.com', // sender address
-                      to:email,
-          subject: 'הזמנתך התקבלה', // Subject line
-          text: text //, // plaintext body
+          var mailOptions = {
+            from: 'plastictableware.cs@gmail.com', // sender address
+            to:email,
+            subject: 'הזמנתך התקבלה', // Subject line
+            text: text //, // plaintext body
           };
         }
         else
         {
           var mailOptions = {
-                      from: 'plastictableware.cs@gmail.com', // sender address
-                      to:'plastictableware.cs@gmail.com',
+          from: 'plastictableware.cs@gmail.com', // sender address
+          to:'plastictableware.cs@gmail.com',
           subject: 'מ פניה'+ email, // Subject line
           text: POST.content //, // plaintext body
           };

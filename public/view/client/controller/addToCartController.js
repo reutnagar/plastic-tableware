@@ -4,7 +4,7 @@ app.controller('cartCtrl',function($scope, $http,$location,$rootScope,quantitySe
 	var cart =[];
 	var product;
 	$scope.user={};
-	$scope.string;
+	$scope.string="";
 
 if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
 else $scope.empty=true;
@@ -15,10 +15,12 @@ $scope.validation=function(){
  	        promise.then(
           function(data) { 
               $scope.quantity = data.data;
-              for (var i = 0; i < $scope.quantity.length ; i++) {
-              	for (var j = 0; j < $scope.myList.length; j++) {
-              		if($scope.myList[j]._id == $scope.quantity._id )
-              			$scope.string+="אין זמינות של מוצר "+$scope.myList.name+" בכמות זאת אלא"+$scope.quantity.quantity+'/n';
+              console.log($scope.quantity);
+              for (var j = 0; j < $scope.myList.length; j++){
+              	for (var i = 0; i < $scope.quantity.length ; i++) 
+              	 {
+              		if($scope.myList[j]._id == $scope.quantity[i]._id )
+              			$scope.string+="אין זמינות של מוצר "+$scope.myList[j].name+" בכמות זאת אלא"+$scope.quantity[i].quantity+'\n';
               	}
               
  	 	 	}
@@ -28,15 +30,16 @@ $scope.validation=function(){
           function(errordata) {
               $log.error('failure loading quantity', errordata);
           });
-
- 	 	 	if($scope.string != "" || $scope.string != null){
+$scope.string = "aaaaaaaaaaa";
+ 	 	 	if($scope.string != "" && $scope.string != null){
  	 	 			alert($scope.string);
  	 	 			$scope.string = "";
- 	 	 		return;
+ 	 	 		return false;
  	 	 	} 	 	 
  	 	 	else{
  	 	 		//$scope.makeAnOrder($scope.user);
-				//var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"order","");
+ 	 	 		console.log("true");
+				var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"order","");
 
  	 	 	}
  	 	 		

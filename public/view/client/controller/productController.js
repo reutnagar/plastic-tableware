@@ -46,7 +46,7 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
                                 description : "a",
                                 price :"a",
                                 location : "a",
-                                quantities: [ {name:"dddd",
+                                quantities: [ {name:"red",
                                               quantity:"3",
                                               minQuantity:"3",
                                               image:"dddd"},
@@ -102,7 +102,7 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
                 price : $scope.product.price,
                 quantity : $scope.quantity,
                 image : $scope.product.image,
-                color : $scope.color
+                color : 'white'
             };
         $scope.myList.push($scope.addItem);
          localStorage.setItem('myList', JSON.stringify($scope.myList));

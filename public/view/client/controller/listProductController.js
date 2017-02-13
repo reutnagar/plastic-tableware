@@ -54,7 +54,7 @@ $scope.setImageModal=function (image) {
                 price : product.price,
                 quantity : '1',
                 image : product.image,
-                //color : color
+                color : "white"
             };
         $scope.myList.push($scope.addItem);
          localStorage.setItem('myList', JSON.stringify($scope.myList));

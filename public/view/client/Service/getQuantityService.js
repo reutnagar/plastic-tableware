@@ -20,7 +20,7 @@ app.factory('quantityService',function ($http){
 				})
 				.error(function (data, status, header, config) {
 					console.log("Error: "+ data);
-					$scope.ResponseDetails = "quantity " + data +
+					var ResponseDetails = "quantity " + data +
 						"<hr />status: " + status +
 						"<hr />headers: " + header +
 						"<hr />config: " + config;
