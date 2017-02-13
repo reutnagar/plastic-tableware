@@ -168,15 +168,7 @@ function makeAnOrder(req,res) {
 
 function quantity(req,res) {
 	console.log("in quantity");
-	// Retrieve the object from storage
-// <<<<<<< HEAD
-// 	// var retrievedObject = localStorage.getItem('myList');
-// 	// myList = JSON.parse(retrievedObject);
-// 	var myList = JSON.parse(localStorage.getItem('myList'));
-// 	item_id = myList.item_id;
-// =======
-	/*var retrievedObject = localStorage.getItem('myList');
-	myList = JSON.parse(retrievedObject);*/
+
 	var obj = {
 			_id : "",
 			color : "",
@@ -184,12 +176,6 @@ function quantity(req,res) {
 	}
 	var problemsDocs = []; 
 
-
-	/*item_id = myList.item_id;
->>>>>>> origin/master
-	color = myList.color;
-	sum = myList.sum;*/
-	//console.log(myList);
 	console.log("get post request in server side");  
     var body = '';
         req.on('data', function (data) {
