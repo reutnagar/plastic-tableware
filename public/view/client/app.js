@@ -20,10 +20,10 @@ var app = angular.module("clientApp", ['ngRoute']);
                         controller: 'orderCtrl'
                     })
 
-                    //  .when('/home_v2', {
-                    //     templateUrl: 'pages/home_v2.html',
-                    //     //controller: 'orderCtrl'
-                    // })
+                     .when('/home_v2', {
+                        templateUrl: 'pages/home_v2.html',
+                        //controller: 'orderCtrl'
+                    })
 
 
                   .when('/text_page', {
