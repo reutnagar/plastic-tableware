@@ -11,25 +11,25 @@ else $scope.empty=true;
 
 $scope.validation=function(){
 	console.log($scope.user);
-	var promise = quantityService.quantity($scope.myList);
- 	        promise.then(
-          function(data) { 
-              $scope.quantity = data.data;
-              console.log($scope.quantity);
-              for (var j = 0; j < $scope.myList.length; j++){
-              	for (var i = 0; i < $scope.quantity.length ; i++) 
-              	 {
-              		if($scope.myList[j]._id == $scope.quantity[i]._id )
-              			$scope.string+="אין זמינות של מוצר "+$scope.myList[j].name+" בכמות זאת אלא"+$scope.quantity[i].quantity+'\n';
-              	}
+	// var promise = quantityService.quantity($scope.myList);
+ // 	        promise.then(
+ //          function(data) { 
+ //              $scope.quantity = data.data;
+ //              console.log($scope.quantity);
+ //              for (var j = 0; j < $scope.myList.length; j++){
+ //              	for (var i = 0; i < $scope.quantity.length ; i++) 
+ //              	 {
+ //              		if($scope.myList[j]._id == $scope.quantity[i]._id )
+ //              			$scope.string+="אין זמינות של מוצר "+$scope.myList[j].name+" בכמות זאת אלא"+$scope.quantity[i].quantity+'\n';
+ //              	}
               
- 	 	 	}
+ // 	 	 	}
 
 
-          },
-          function(errordata) {
-              $log.error('failure loading quantity', errordata);
-          });
+ //          },
+ //          function(errordata) {
+ //              $log.error('failure loading quantity', errordata);
+ //          });
  	 	 	if($scope.string != "" && $scope.string != null){
  	 	 			alert($scope.string);
  	 	 			$scope.string = "";
@@ -46,10 +46,11 @@ $scope.validation=function(){
 
 $scope.makeAnOrder = function(user){
 	console.log("user",user);
+		user = angular.toJson(user);			
+	myList = angular.toJson($scope.myList);			
 				var data = $.param({
-					UserName : $scope.UserName,
-					address :$scope.address,
-					email : $scope.email
+					user : user,
+					myList : myList
 				});
 				var config = {
 					headers : {
