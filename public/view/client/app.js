@@ -19,6 +19,18 @@ var app = angular.module("clientApp", ['ngRoute']);
                         templateUrl: 'pages/orders_list.html',
                         controller: 'orderCtrl'
                     })
+
+                    //  .when('/home_v2', {
+                    //     templateUrl: 'pages/home_v2.html',
+                    //     //controller: 'orderCtrl'
+                    // })
+
+
+                  .when('/text_page', {
+                      templateUrl: 'pages/text_page.html',
+                      controller:'contactCtrl'
+                     
+                  })  
                   .when('/shopping_cart', {
                       templateUrl: 'pages/shopping_cart.html',
                       controller : 'cartCtrl'
