@@ -3,13 +3,17 @@ var Schema= mongoose.Schema;
 
 
 var OrderSchema = new Schema({
-    userName: String,
+    firsName: String,
+    lastName: String,
+	street: String,
+	country: String,
+	zip: Number,
 	email: String,
-	address: String,
-	status: String,
+	telephone: Number,
+	cellphone : Number,
 	date:{type: Date, default: Date.now},
-	// function(){return new Date().getTime()} }
-	numItems: Number,
+	status: String,
+	//numItems: Number,
 	payment : Number,
 	orderedItems: [{ type: Schema.ObjectId, ref: 'OrderedItem'}]
 });
