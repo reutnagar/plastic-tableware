@@ -5,6 +5,7 @@ app.controller('cartCtrl',function($scope, $http,$location,$rootScope,quantitySe
 	var product;
 	$scope.user={};
 	$scope.string="";
+	$scope.total=0;
 
 if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
 else $scope.empty=true;
@@ -126,6 +127,7 @@ $scope.getTotal = function(){
         var product = $scope.myList[i];
         total += (product.price * product.quantity);
     }
+	$scope.total=total;
     return total;
 }
 });
