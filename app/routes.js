@@ -11,15 +11,7 @@ const express      = require('express'),
 
 var path = require('path');
 router.use(express.static(path.join(__dirname , '../public/view/client')));
-
 router.use(express.static(path.join(__dirname , '../public/view/admin')));
-
-
-
-
-
-
-
 
 
 router.get('/admin', function(req,res){
