@@ -6,6 +6,7 @@ app.controller('cartCtrl',function($scope, $http,$location,$rootScope,quantitySe
 	$scope.user={};
 	$scope.string="";
 	$scope.total=0;
+	$scope.flag=false;
 
 if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
 else $scope.empty=true;
@@ -38,6 +39,7 @@ $scope.validation=function(){
  	 	 	} 	 	 
  	 	 	else{
  	 	 		var flag = $scope.makeAnOrder($scope.user);
+				   $scope.flag=flag;
  	 	 		console.log("true");
  	 	 		if(flag)
 				{
