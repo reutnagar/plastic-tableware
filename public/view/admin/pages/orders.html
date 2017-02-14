@@ -7,7 +7,7 @@
 </section>
 
 <!-- Main content -->
-<section class="content" ng-controller="orderCtrl" data-ng-init="showAllOrders()">
+<section class="content" ng-controller="ordersCtrl" data-ng-init="showAllOrders()">
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title">הזמנות אחרונות</h3>
@@ -54,65 +54,5 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="box box-primary">
-            <div class="box-header">
-                <h3 class="box-title">תאריכון</h3>
-            </div>
-            <div class="box-body">
-                <!-- Date -->
-                <div class="form-group">
-                    <label>תאריך:</label>
-
-                    <div class="input-group date">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="text" class="form-control pull-right" id="datepicker">
-                    </div>
-                    <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-                <!-- Date range -->
-                <div class="form-group">
-                    <label>טווח תאריכים:</label>
-
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="text" class="form-control pull-right" id="reservation">
-                    </div>
-                    <!-- /.input group -->
-                </div>
-                <!-- /.form group -->
-                <!-- Date and time range -->
-                <div class="form-group">
-                    <label>טווח תאריכים + שעות:</label>
-
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-clock-o"></i>
-                        </div>
-                        <input type="text" class="form-control pull-right" id="reservationtime">
-                    </div>
-                </div>
-                <!-- Date and time range -->
-                <div class="form-group">
-                    <label>כפתור טווח תאריכים:</label>
-
-                    <div class="input-group">
-                        <button type="button" class="btn btn-default pull-right" id="daterange-btn">
-                            <span>
-                                <i class="fa fa-calendar"></i> תאריכון
-                            </span>
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
