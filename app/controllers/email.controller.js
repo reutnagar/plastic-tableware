@@ -6,7 +6,6 @@ module.exports = {
  sendEmailserver: sendEmailserver,
 };
 //app.controller('sendemailCtrl',function($scope, $http,$routeParams,$location) {
-	
  
   function sendEmailserver(req, res) {
     console.log("send Mail");  
@@ -24,7 +23,12 @@ module.exports = {
       var POST = qs.parse(body); 
       var email = POST.email;
       if(POST.type=="order"){
-        var text='שלום וברכה!'+"\n"+ "אנו שמחים";
+        var text='שלום וברכה!'+"\n"
+        + "אנו שמחים שקניתה אצלינו"+"\n"
+        +"הזמנתך תגיע בעוד כשלושה ימים"+"\n"
+        +"נשמח לעמוד לשירותך תמיד"+"\n"
+        +"צוות plastictableware" ;
+        console.log(text);
         var mailOptions = {
             from: 'plastictableware.cs@gmail.com', // sender address
             to:email,

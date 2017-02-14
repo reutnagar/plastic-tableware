@@ -16,6 +16,7 @@ app.config(function ($routeProvider) {
   })
   .when('/orders', {
     templateUrl: 'pages/orders.html',
+    controller:'ordersCtrl',
     resolve: {
       factory: checkRouting
     }

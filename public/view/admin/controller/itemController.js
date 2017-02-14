@@ -17,60 +17,25 @@ app.controller('itemCtrl',function($scope, $http) {
     }
 //console.log("new_item",$scope.new_item);
 $scope.showAllItems=function(){
- console.log("request all items");
- $http.get('/admin/showAllItems')
- .success(function(data){
-     $scope.items = data;
-     console.log("Succeed loading");
-     console.log("data"+data);
-                            // $scope.items=[{              
-                            //     name : "a",
-                            //     category : "a",
-                            //     subCategory : "a",
-                            //     description : "a",
-                            //     price :"a",
-                            //     location : "a",
-                            //     quantities: [ {name:"dddd",
-                            //                   quantity:"dddd",
-                            //                   minQuantity:"dddd",
-                            //                   image:"dddd"},
-                            //                   {name:"aaaaa",
-                            //                   quantity:"aaaaa",
-                            //                   minQuantity:"aaaaa",
-                            //                   image:"aaaaa"}
-                            //                   ]
-                            //               },
-                            //               {              
-                            //     name : "a",
-                            //     category : "a",
-                            //     subCategory : "a",
-                            //     description : "a",
-                            //     price :"a",
-                            //     location : "a",
-                            //     quantities: [ {name:"dddd",
-                            //                   quantity:"dddd",
-                            //                   minQuantity:"dddd",
-                            //                   image:"dddd"},
-                            //                   {name:"aaaaa",
-                            //                   quantity:"aaaaa",
-                            //                   minQuantity:"aaaaa",
-                            //                   image:"aaaaa"}
-                            //                   ]
-                            //               }
-                            //               ];
-                            console.log("item",$scope.items);
-                            for (var i = 0, length = $scope.items.length; i < length; i++) {
-                                $scope.showMe[$scope.items[i]._id] = true;
-                                $scope.getQuantities($scope.items[i].quantities,i);
-                            }
-                        })
- .error(function(data){
-     console.log("Error: "+data);
- });
+   console.log("request all items");
+   $http.get('/admin/showAllItems')
+   .success(function(data){
+       $scope.items = data;
+       console.log("Succeed loading");
+       // console.log("data"+data);
+       // console.log("item",$scope.items);
+       for (var i = 0, length = $scope.items.length; i < length; i++) {
+        $scope.showMe[$scope.items[i]._id] = true;
+        $scope.getQuantities($scope.items[i].quantities,i);
+    }
+})
+   .error(function(data){
+       console.log("Error: "+data);
+   });
 }
 
 $scope.getQuantities=function(quantities,i){
- 
+
     quantities = angular.toJson(quantities);
             //console.log("*******in getQuantities*******",quantities);
             var data = $.param({
@@ -87,9 +52,7 @@ $scope.getQuantities=function(quantities,i){
             .success(function (data, status, headers, config) {
                 $scope.PostDataResponse = data;
                 console.log("Succeed getQuantities");
-                console.log("~~~~~~~for",quantities,"---",$scope.PostDataResponse);
                 $scope.items[i].quantities=$scope.PostDataResponse;
-                console.log("~~~~~~~for",i,"---",$scope.items[i]);
 
             })
             .error(function (data, status, header, config) {
