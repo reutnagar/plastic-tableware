@@ -310,6 +310,7 @@ function deleteItem(req,res) {
 
 
 function deleteItemById(req,res) {
+	console.log("-----------------------------------in deleteItemById");
 	console.log("get post request in server side");  
 	var body = '';
 	req.on('data', function (data) {
@@ -323,9 +324,11 @@ function deleteItemById(req,res) {
 	req.on('end', function () {			
 		Item.remove({_id:body},function(err, result) {
 			if (err) {
-				throw err;
+				console.log("err");
 			}
 			else {
+				console.log("-----------in else",result);
+				console.log("---------------deleteSubSchema(result)",deleteSubSchema(result));
 			if(deleteSubSchema(result));	
 				res.send("success");
 			}
@@ -333,15 +336,16 @@ function deleteItemById(req,res) {
 	});
 };
 
-function deleteSubSchema(item) { 
-	Quantity.find({_id:{$in:item}},(err, results)=>{
+function deleteSubSchema(item) {
+	console.log("----------------------in deleteSubSchema");
+	Quantity.find({_id:{$in:item.quantities}},(err, results)=>{
 		if(err)
 		{
-			console.log(err);
+			console.log("----------err");
 			return false;
 		}
 		else {
-			console.log(results);
+			console.log("-----------",results);
 			return true;
 		}
 	});		
