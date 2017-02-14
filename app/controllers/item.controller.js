@@ -35,15 +35,8 @@ function getQuantities(req,res){
 		var POST=JSON.parse(POST.quantities);
 		console.log("POST~~~~~~~~",POST);
 		console.log("POST.quantities~~~~~",POST[0]);
-	// 	console.log("POST[0]~~~~~~",POST.quantities[0]);
-	// 	var POST = qs.parse(POST.quantities);
-	// 	console.log(" POST ~~~~~ after parse 2~~~",POST);
-	// console.log("POST[0]~~~~~~",POST[0]);
-	// 	console.log("POST parse~~~~~~~~",POST);
-	// 		console.log("POST parse~~~~~~~~",POST);
 	var results=[],length=0;
-			// for (var i=0;i<POST.length;i++)
-			// 	{
+			
 				console.log("POST~~~~~~~~",POST.length);
 				Quantity.find({_id:{$in:POST}},(err, results)=>{
 					if (err) 
@@ -54,17 +47,10 @@ function getQuantities(req,res){
 					{
 						res.json(results);
 						console.log("result~~~~~~~~"+results);
-						// results.push(result);
-						// console.log("results~~~~~~~"+results);
-						// length++;
+						
 					}      
 				});
-				// }
-			// if(length==POST.length-1)
-			// {
-			// 	console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~results~~~~~~~~~~~~~~~");
 			
-			//}
 		});
 }
 
@@ -339,10 +325,27 @@ function deleteItemById(req,res) {
 			if (err) {
 				throw err;
 			}
-			res.send("success");
+			else {
+			if(deleteSubSchema(result));	
+				res.send("success");
+			}
 		});
 	});
 };
+
+function deleteSubSchema(item) { 
+	Quantity.find({_id:{$in:item}},(err, results)=>{
+		if(err)
+		{
+			console.log(err);
+			return false;
+		}
+		else {
+			console.log(results);
+			return true;
+		}
+	});		
+}
 
 function changeItem(req,res) {
 	console.log("in changeItem");
