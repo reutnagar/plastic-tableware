@@ -22,6 +22,7 @@
                 <table class="table no-margin">
                     <thead>
                         <tr>
+                            <th> סטטוס הזמנה </th>
                             <th>מספר הזמנה</th>
                             <th>שם הלקוח</th>
                             <th>מייל</th>
@@ -29,22 +30,24 @@
                             <th>תאריך ביצוע ההזמנה</th>
                             <th>סה"כ פריטים</th>
                             <th> סה"כ לתשלום</th>
-                            <th> סטטוס הזמנה </th>
                             
                         </tr>
                     </thead>
                     <tbody>
                         <tr data-ng-repeat="order in orders" data-ng-model = "orders">
-                            <td><a href="pages/examples/invoice.html">{{order._id}}</a></td>
-                            <td><a href="pages/examples/invoice.html">{{order.userName}}</a></td>
-                            <td><a href="pages/examples/invoice.html">{{order.email}}</a></td>
-                            <td><a href="pages/examples/invoice.html">{{order.address}}</a></td>
-                            <td><a href="pages/examples/invoice.html">{{order.date}}</a></td>
+                            <td><span class="label label-success">נשלח</span></td>
+                            <td>{{order._id}}</td>
+                            <td>{{order.lastName}}</td>
+                            <td>{{order.email}}</td>
+                            <td>עיר: {{order.country  }} <br>
+                                רחוב: {{order.street }} <br>
+                                מיקוד: {{ order.zip  }} <br>
+                                </td>
+                            <td>{{order.date}}</td>
                             <td>{{order.quantity}}</td>
                             <td>
-                                <div class="sparkbar" data-color="#00a65a" data-height="20">{{order.price}}</div>
+                                <div class="sparkbar" data-color="#00a65a" data-height="20">{{order.payment}}</div>
                             </td>
-                            <td><span class="label label-success">{{order.status}}</span></td>
                             
                         </tr>   
                     </tbody>
@@ -55,4 +58,7 @@
 </div>
 
 </section>
+
+
+
 
