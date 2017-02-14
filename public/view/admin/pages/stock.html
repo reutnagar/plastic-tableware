@@ -29,7 +29,7 @@
           <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
             <td>
               <div ng-show="showMe[item._id]">
-                <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItemById(item._id)"></span></a>
+                <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItemById(item)"></span></a>
                 <a ><span class="glyphicon glyphicon-edit" ng-click="showAndHide(item);modify(item)"></span></a>
               </div>
               <div ng-hide="showMe[item._id]" ng-click="showAndHide(item)">
