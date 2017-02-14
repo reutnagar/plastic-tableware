@@ -196,8 +196,8 @@ $scope.deleteItem = function(item){
     });  
     $scope.showAllItems();
 };
-$scope.deleteItemById = function(item){
-    var data =angular.toJson(item); 
+$scope.deleteItemById = function(_id){
+    var data = _id
 
     var config = {
         headers : {

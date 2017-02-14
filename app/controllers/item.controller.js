@@ -183,7 +183,56 @@ for(var i=0; i<a.length;i++)
 			});
 		});
 		
-}
+	}
+
+/*function checkQuantity (req,res){
+	console.log("in checkQuantity");
+	Item.$where('this.quantity <= this.minQuantity').exec(function(err, result) {
+	if (err) {
+	  throw err;
+	}
+	console.log(result);
+	res.json(result);
+	});
+};*/
+
+/*function checkQuantity (req,res){
+	console.log("in checkQuantity");
+	var items = [],j=0;
+	Quantity.$where('this.quantity <= this.minQuantity').exec(function(err, results) {
+		if (err) {
+		  throw err;
+		}
+		else {
+		console.log(results);
+		console.log(results.length);
+		for(var i=0;i<results.length;i++)
+		{
+		
+			
+			console.log(results[i]._id);
+				Item.find({'quantities._id': results[i]._id},function(err, doc) {
+					//Item.find({ 'quantities': { $elemMatch: { '_id': '589c41f7885f303794df6939'}}}, function(err, doc) {
+						if (err) {
+							throw err;
+						}
+						else{
+							//j++;
+						console.log("item "+doc+" is going to finish");
+						items.push(doc);
+						
+						}
+				});
+			
+		}
+		if(j==results.length)
+			{
+			console.log("a");
+			res.json(items);
+			}
+		}
+	});
+}*/
 
 function checkQuantity (req,res){
 	console.log("in checkQuantity");
@@ -231,6 +280,33 @@ function checkQuantity (req,res){
 	});
 }
 
+/*function checkQuantity (req,res){
+	console.log("in checkQuantity");
+	var items = [];
+	Quantity.$where('this.quantity <= this.minQuantity').exec(function(err, results) {
+		if (err) {
+			throw err;
+		}
+		else 
+		{
+			for(var f=0;f<results.length;f++)
+				items[f]=new Object();
+			console.log(results);
+			console.log(results.length);
+			for(var i=0;i<results.length;i++)
+			{
+				quantityIds[i]=results[i]._id
+			}
+			Item.find({quantitis: {$in:quantityIds}}).exec(function(err,docs){
+				if(err)
+				{
+					console.log("err");
+				}
+				else 
+				{
+				}
+}*/
+
 function deleteAllItems(req,res) {
 	Item.remove ({},function(err, result) {
 		if (err) {
@@ -276,46 +352,31 @@ function deleteItemById(req,res) {
                 req.connection.destroy();
             }
         });   
-	req.on('end', function () {	
-	var POST = qs.parse(body);	
-					console.log("~~~~~~~~~~",body);
-
-	var POST=JSON.parse(POST.quantities);
-						console.log("~~~~~~~~~~",POST);
-
-		Item.remove({_id:POST._id},function(err, result) {
+	req.on('end', function () {			
+		Item.remove({_id:body},function(err, result) {
 			if (err) {
 				console.log("err");
 			}
-			else 
-			{
-				console.log("-----------in else",POST,_id);
-				console.log("---------------deleteSubSchema(item)",deleteSubSchema(POST.quantities));
-				if(deleteSubSchema(POST.quantities));
-				{	
-					console.log("sucsses");				
-					res.send("success");
-				}
-				/*else
-				{
-					console.log("failed");
-					res.send("failed");
-				}*/
+			else {
+			// 	console.log("-----------in else",result);
+			// 	console.log("---------------deleteSubSchema(result)",deleteSubSchema(result));
+			// if(deleteSubSchema(result));	
+				res.send("success");
 			}
 		});
 	});
 };
 
-function deleteSubSchema(quantities) {
+function deleteSubSchema(item) {
 	console.log("----------------------in deleteSubSchema");
-	Quantity.remove({_id:{$in:quantities}},(err, results)=>{
+	Quantity.find({_id:{$in:item.quantities}},(err, results)=>{
 		if(err)
 		{
 			console.log("----------err");
 			return false;
 		}
 		else {
-			console.log("-----------sucsses");
+			console.log("-----------",results);
 			return true;
 		}
 	});		
