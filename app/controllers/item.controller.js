@@ -263,7 +263,7 @@ function checkQuantity (req,res){
 								console.log("results[k]._id",results[k]._id);
 								console.log("-------------i---------"+i);
 								console.log("Aaaaaaaaaaaaa");
-								items[k].name=docs[i].name;
+								items[k].name=docs[k].name;
 								items[k].color = results[k].name;
 								items[k].quantity=results[k].quantity;
 								//numItemsGoingToFinish++;
