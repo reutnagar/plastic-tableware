@@ -13,7 +13,7 @@ var OrderSchema = new Schema({
 	cellphone : Number,
 	date:{type: Date, default: Date.now},
 	status: String,
-	//numItems: Number,
+	numItems: Number,
 	payment : Number,
 	orderedItems: [{ type: Schema.ObjectId, ref: 'OrderedItem'}]
 });

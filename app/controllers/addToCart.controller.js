@@ -59,7 +59,7 @@ function makeAnOrder(req,res) {
 		myList = JSON.parse(POST.myList);
 		cutShoppingCartItem(res);
 
-		var newOrder = new Order ({firstName:user.firstName,lastName:user.lastName,street:user.street,country:user.country,zip:user.zip , email : user.email ,telephone : user.telephone, cellphone : user.cellphone,payment:POST.total });
+		var newOrder = new Order ({firstName:user.firstName,lastName:user.lastName,street:user.street,country:user.country,zip:user.zip , email : user.email ,telephone : user.telephone, cellphone : user.cellphone,numItems:myList.length,payment:POST.total });
 		var newOrderedItem = [];
 		for(var i=0; i<myList.length;i++)
 		{
