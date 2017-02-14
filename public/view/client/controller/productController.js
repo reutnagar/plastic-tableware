@@ -71,6 +71,8 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
                 $scope.product.quantities=$scope.PostDataResponse;
                 console.log("Succeed getQuantities",$scope.product);
                 $scope.chosen = $scope.product.quantities[0];
+                console.log("myList from localStorage~~~~~",  $scope.chosen.name);
+
 
             })
             .error(function (data, status, header, config) {
@@ -108,6 +110,8 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
                         return;
                     }
                 }
+                                console.log("myList from localStorage~~~~~",  $scope.chosen.color);
+
                 console.log('there isnt the same product');
                 $scope.addItem=
                 {
@@ -116,7 +120,7 @@ app.controller('productCtrl',function($scope, $http,$routeParams,$rootScope,$win
                     price : $scope.product.price,
                     quantity : $scope.quantity,
                     image : $scope.product.image,
-                    color : $scope.product.quantities.name
+                    color : $scope.chosen.name
                 };
                 $scope.myList.push($scope.addItem);
                 localStorage.setItem('myList', JSON.stringify($scope.myList));

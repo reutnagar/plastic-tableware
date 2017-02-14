@@ -199,6 +199,7 @@ function getQuantityByColor(err, item, shopingCartItem, callback,globalCallback,
 		{
 			throw err;
 		}
+		console.log("!~~~~~~~~~~~~",result[0],quantityIds,shopingCartItem);
 		callback(err, result,shopingCartItem,globalCallback,res);
 	});
 }
