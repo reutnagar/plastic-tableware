@@ -8,126 +8,126 @@ app.controller('cartCtrl',function($scope, $http,$location,$rootScope,quantitySe
 	$scope.total=0;
 	$scope.flag=false;
 
-if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
-else $scope.empty=true;
+	if($scope.myList==null){ $scope.myList = "no products";	$scope.empty=false;}
+	else $scope.empty=true;
 
-$scope.validation=function(){
-	console.log($scope.user);
-	var promise = quantityService.quantity($scope.myList);
- 	        promise.then(
-          function(data) { 
-              $scope.quantity = data.data;
-              console.log($scope.quantity);
-              for (var j = 0; j < $scope.myList.length; j++){
-              	for (var i = 0; i < $scope.quantity.length ; i++) 
-              	 {
-              		if($scope.myList[j]._id == $scope.quantity[i]._id )
-              			$scope.string+="אין זמינות של מוצר "+$scope.myList[j].name+" בכמות זאת אלא"+$scope.quantity[i].quantity+'\n';
-              	}
-            
-	 	 	 	}
-	  			if($scope.string != "" && $scope.string != null && $scope.string != undefined){
-	 	 	 			alert($scope.string);
-	 	 	 			$scope.string = "";
-	 	 	 		return;
-	 	 	 	} 	 	 
-	 	 	 	else{
-	 	 	 		alert("string if all is good , now I call makeAnOrder",$scope.string);
-	 	 	 		$scope.makeAnOrder($scope.user);
-	 	 	 	}
-          },
-          function(errordata) {
-              $log.error('failure loading quantity', errordata);
-          });
-
- 	 	 		
-};	
-
-$scope.makeAnOrder = function(user){
-	console.log("user",user);
-		user = angular.toJson(user);			
-	myList = angular.toJson($scope.myList);			
-				var data = $.param({
-					user : user,
-					myList : myList,
-					total : $scope.getTotal()
-				});
-				var config = {
-					headers : {
-						'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+	$scope.validation=function(){
+		console.log($scope.user);
+		var promise = quantityService.quantity($scope.myList);
+		promise.then(
+			function(data) { 
+				$scope.quantity = data.data;
+				console.log($scope.quantity);
+				for (var j = 0; j < $scope.myList.length; j++){
+					for (var i = 0; i < $scope.quantity.length ; i++) 
+					{
+						if($scope.myList[j]._id == $scope.quantity[i]._id )
+							$scope.string+="אין זמינות של מוצר "+$scope.myList[j].name+" בכמות זאת אלא  "+$scope.quantity[i].quantity+'\n';
 					}
-				};
-				 $http.post('/makeAnOrder', data, config)
-				.success(function (data, status, headers, config) {
-					console.log("Succeed post addToCart");
-					console.log("makeAnOrder ", data);
-					$scope.flag=true;
-					console.log("true");
-					var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"order","");
-					alert("הזמנתך התקבלה!"+'\n'+"תודה שקניתה אצלנו");
 					
-					//$location.path("/");
-					})
-				.error(function (data, status, header, config) {
-					console.log("Error: "+ data);
-					alert("falid to conect to make your order try agian later");
-					$scope.ResponseDetails = "makeAnOrder " + data +
-						"<hr />status: " + status +
-						"<hr />headers: " + header +
-						"<hr />config: " + config;
-				});
-		};
+				}
+				if($scope.string != "" && $scope.string != null && $scope.string != undefined){
+					alert($scope.string);
+					$scope.string = "";
+					return;
+				} 	 	 
+				else{
+					alert("string if all is good , now I call makeAnOrder",$scope.string);
+					$scope.makeAnOrder($scope.user);
+				}
+			},
+			function(errordata) {
+				$log.error('failure loading quantity', errordata);
+			});
+
 		
+	};	
+
+	$scope.makeAnOrder = function(user){
+		console.log("user",user);
+		user = angular.toJson(user);			
+		myList = angular.toJson($scope.myList);			
+		var data = $.param({
+			user : user,
+			myList : myList,
+			total : $scope.getTotal()
+		});
+		var config = {
+			headers : {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+			}
+		};
+		$http.post('/makeAnOrder', data, config)
+		.success(function (data, status, headers, config) {
+			console.log("Succeed post addToCart");
+			console.log("makeAnOrder ", data);
+			$scope.flag=true;
+			console.log("true");
+			var SEND_EMAIL  = emailService.sendEmail($scope.user.email,"order","");
+			alert("הזמנתך התקבלה!"+'\n'+"תודה שקניתה אצלנו");
+			
+					//$location.path("/");
+				})
+		.error(function (data, status, header, config) {
+			console.log("Error: "+ data);
+			alert("falid to conect to make your order try agian later");
+			$scope.ResponseDetails = "makeAnOrder " + data +
+			"<hr />status: " + status +
+			"<hr />headers: " + header +
+			"<hr />config: " + config;
+		});
+	};
+	
 
 	$scope.addToCart=function(_id,color,sum){
-				var data = $.param({
-					item_id : _id,
-					color : color,
-					sum : sum
-				});
-				var config = {
-					headers : {
-						'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-					}
-				}
-				$http.post('/addToCart', data, config)
-				.success(function (data, status, headers, config) {
-					console.log("Succeed post addToCart");
-					cart.push (data);
-					console.log("addToCart ", data);
-				})
-				.error(function (data, status, header, config) {
-					console.log("Error: "+ data);
-					$scope.ResponseDetails = "addToCart " + data +
-						"<hr />status: " + status +
-						"<hr />headers: " + header +
-						"<hr />config: " + config;
-				});
-		};
+		var data = $.param({
+			item_id : _id,
+			color : color,
+			sum : sum
+		});
+		var config = {
+			headers : {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+			}
+		}
+		$http.post('/addToCart', data, config)
+		.success(function (data, status, headers, config) {
+			console.log("Succeed post addToCart");
+			cart.push (data);
+			console.log("addToCart ", data);
+		})
+		.error(function (data, status, header, config) {
+			console.log("Error: "+ data);
+			$scope.ResponseDetails = "addToCart " + data +
+			"<hr />status: " + status +
+			"<hr />headers: " + header +
+			"<hr />config: " + config;
+		});
+	};
 
-$scope.updateQuantity = function(index,new_quantity){
-  console.log("indexOf",index);
-    $scope.myList[index].quantity = new_quantity; 
-  console.log("updateQuantity",$scope.myList[index]); 
-  localStorage.setItem('myList', JSON.stringify($scope.myList));
- };
+	$scope.updateQuantity = function(index,new_quantity){
+		console.log("indexOf",index);
+		$scope.myList[index].quantity = new_quantity; 
+		console.log("updateQuantity",$scope.myList[index]); 
+		localStorage.setItem('myList', JSON.stringify($scope.myList));
+	};
 
-$scope.removeItem = function(index){
+	$scope.removeItem = function(index){
 
-  console.log("index",index);
-  $scope.myList.splice(index, 1); 
-  console.log("removeItem   "+ index+"    "+$scope.myList);   
-   localStorage.setItem('myList', JSON.stringify($scope.myList)); 
-};		
+		console.log("index",index);
+		$scope.myList.splice(index, 1); 
+		console.log("removeItem   "+ index+"    "+$scope.myList);   
+		localStorage.setItem('myList', JSON.stringify($scope.myList)); 
+	};		
 
-$scope.getTotal = function(){
-    var total = 0;
-    for(var i = 0; i < $scope.myList.length; i++){
-        var product = $scope.myList[i];
-        total += (product.price * product.quantity);
-    }
-	$scope.total=total;
-    return total;
-}
+	$scope.getTotal = function(){
+		var total = 0;
+		for(var i = 0; i < $scope.myList.length; i++){
+			var product = $scope.myList[i];
+			total += (product.price * product.quantity);
+		}
+		$scope.total=total;
+		return total;
+	}
 });
 

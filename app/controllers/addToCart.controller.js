@@ -109,27 +109,27 @@ function iterateOverShoppingCartItems(res) {
 
 
 function updateQuantity(err,quantity,shopingCartItem,globalCallback,res) {
-			if (err) {
-				console.log("ERROR getting times")
-			} else {			console.log("in updateQuantity");
+	if (err) {
+		console.log("ERROR getting times")
+	} else {			console.log("in updateQuantity");
 
-				new_quantity = quantity.quantity-shopingCartItem.quantity;
-				console.log("in updateQuantity````````````````",quantity.quantity,shopingCartItem.quantity);
-				Quantity.findOne({ _id: quantity._id }).update({$set: { quantity: new_quantity }}).exec(function(err,result){
-					if(err)
-					{
-										console.log("ERROR getting times");
+	new_quantity = quantity.quantity-shopingCartItem.quantity;
+	console.log("in updateQuantity````````````````",quantity.quantity,shopingCartItem.quantity);
+	Quantity.findOne({ _id: quantity._id }).update({$set: { quantity: new_quantity }}).exec(function(err,result){
+		if(err)
+		{
+			console.log("ERROR getting times");
 
-					}
-					else {
-										console.log("result",result);
-
-					}
-				});
-			
-			}
-			globalCallback(res);
 		}
+		else {
+			console.log("result",result);
+
+		}
+	});
+	
+}
+globalCallback(res);
+}
 
 
 

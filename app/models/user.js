@@ -3,6 +3,6 @@ var Schema= mongoose.Schema;
 
 module.exports = mongoose.model('User',{
 
-    userName : String,
-    password : String
+	userName : String,
+	password : String
 });

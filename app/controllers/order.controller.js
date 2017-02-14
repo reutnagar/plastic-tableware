@@ -5,11 +5,11 @@ module.exports = {
   showAllOrders: showAllOrders,
   showLastOrders: showLastOrders,
   ordersOfUserName: ordersOfUserName
- }
+}
 
 function showAllOrders(req,res) {
     console.log("showAllOrders");
-	Order.find({}, (err, order) => {
+    Order.find({}, (err, order) => {
         if (err) {
             res.status(404);
             res.send('Orders not found!');
@@ -18,8 +18,8 @@ function showAllOrders(req,res) {
             res.json(order);
         }      
         console.log("in showAllOrders");
-		console.log(order);
-	});
+        console.log(order);
+    });
 }
 
 function showLastOrders(req,res) {
@@ -53,9 +53,9 @@ function showLastOrders(req,res) {
         }
         else{
             res.json(orders);
-			console.log(orders);
+            console.log(orders);
         }      
-	});
+    });
 }
 
 
@@ -63,47 +63,47 @@ function showLastOrders(req,res) {
 function addOrder(req,res) {
 	console.log("get post request in server side");  
     var body = '';
-        req.on('data', function (data) {
-            body += data;
+    req.on('data', function (data) {
+        body += data;
             // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
             if (body.length > 1e6) { 
                 // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
                 req.connection.destroy();
             }
         });   
-        req.on('end', function () {
+    req.on('end', function () {
         var POST = qs.parse(body); 
         var newOrder = new Order({ userName : "userName",status :  "status"});
         newOrder.save();           
         res.send(newOrder);
         //showAllItems(req,res);
-        });
+    });
 }
 
 function ordersOfUserName(req,res) {
 	console.log("in ordersOfUserName");
 	console.log("get post request in server side");  
     var body = '';
-        req.on('data', function (data) {
-            body += data;
+    req.on('data', function (data) {
+        body += data;
             // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
             if (body.length > 1e6) { 
                 // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
                 req.connection.destroy();
             }
         });   
-        req.on('end', function () {
+    req.on('end', function () {
        // var POST = qs.parse(body); 
 		//Order.find({userName : POST.userName}).sort({date: -1}).exec(function(err, orders) { 
-		Order.find({userName : body},{userName:0, email:0,address:0,status:0}).sort({date: -1}).exec(function(err, orders) { 
-		if (err) {
-            res.status(404);
-            res.send('Orders not found!');
-        }
-        else{
-            res.json(orders);
-			console.log(orders);
-        }      
-	});
-});
+          Order.find({userName : body},{userName:0, email:0,address:0,status:0}).sort({date: -1}).exec(function(err, orders) { 
+              if (err) {
+                res.status(404);
+                res.send('Orders not found!');
+            }
+            else{
+                res.json(orders);
+                console.log(orders);
+            }      
+        });
+      });
 }

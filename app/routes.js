@@ -1,13 +1,13 @@
 const express      = require('express'),
-	router           = express.Router(),
-	mainController   = require('./controllers/main.controller'),
-	userController = require('./controllers/user.controller'),
-	categoryController = require('./controllers/category.controller'),
-	itemsController = require('./controllers/item.controller'),
-	ordersController = require('./controllers/order.controller'),
-	paymentController = require('./controllers/payment.controller'),
-	emailController = require('./controllers/email.controller');
-	addToCartController= require('./controllers/addToCart.controller');
+router           = express.Router(),
+mainController   = require('./controllers/main.controller'),
+userController = require('./controllers/user.controller'),
+categoryController = require('./controllers/category.controller'),
+itemsController = require('./controllers/item.controller'),
+ordersController = require('./controllers/order.controller'),
+paymentController = require('./controllers/payment.controller'),
+emailController = require('./controllers/email.controller');
+addToCartController= require('./controllers/addToCart.controller');
 
 var path = require('path');
 router.use(express.static(path.join(__dirname , '../public/view/client')));
@@ -15,7 +15,7 @@ router.use(express.static(path.join(__dirname , '../public/view/admin')));
 
 
 router.get('/admin', function(req,res){
-    res.sendFile(path.join(__dirname , '../public/view/admin/index.html'));
+	res.sendFile(path.join(__dirname , '../public/view/admin/index.html'));
 });
 
 //itemsController

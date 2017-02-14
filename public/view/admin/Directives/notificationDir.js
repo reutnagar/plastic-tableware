@@ -3,10 +3,10 @@ app.directive('notificationDir', function() {
     restrict: 'E',
     require: '^ngModel',
     scope: {
-		ngModel: '=',
-		checkQuantity:'&'
+      ngModel: '=',
+      checkQuantity:'&'
     },
     controller: 'notificationCtrl',
-	templateUrl: 'pages/notificationPage.html'
+    templateUrl: 'pages/notificationPage.html'
   }
 });

@@ -1,66 +1,66 @@
 app.controller('orderCtrl', function($scope, $http) {  
-   console.log("orders controller````````````````"); 
+ console.log("orders controller````````````````"); 
 
-    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
-    options.async = true;
+ $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+  options.async = true;
 });
 
-  $scope.master = {};
-  $scope.ordersOfUserName={};
+ $scope.master = {};
+ $scope.ordersOfUserName={};
   //$scope.orders = {};
   //$scope.lastOrders = {};
   $scope.showMe = true;
 
 
- $scope.showAllOrders=function(){
-     console.log("request all orders");
-    $http.get('/admin/showAllOrders')
-                    .success(function(data){
-                        $scope.orders = data;
-                        console.log("Succeed loading",$scope.orders);
-                    })
-                    .error(function(data){
-                        console.log("Error: "+data);
-                    });
-}
+  $scope.showAllOrders=function(){
+   console.log("request all orders");
+   $http.get('/admin/showAllOrders')
+   .success(function(data){
+    $scope.orders = data;
+    console.log("Succeed loading",$scope.orders);
+  })
+   .error(function(data){
+    console.log("Error: "+data);
+  });
+ }
 
  $scope.showLastOrders=function(){
-     console.log("request last orders");
-    $http.get('/admin/showLastOrders')
-                    .success(function(data){
-                        $scope.orders = data;
-                        console.log("Succeed loading",$scope.lastOrders);
-                    })
-                    .error(function(data){
-                        console.log("Error: "+data);
-                    });
-}
+   console.log("request last orders");
+   $http.get('/admin/showLastOrders')
+   .success(function(data){
+    $scope.orders = data;
+    console.log("Succeed loading",$scope.lastOrders);
+  })
+   .error(function(data){
+    console.log("Error: "+data);
+  });
+ }
 
  //now it from client side, but i think that itws match to admin also...... 
  $scope.ordersOfUserName=function(userName){
-			var data = userName;
-            var config = {
-                headers : {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-                }
-            }
-            $http.post('/ordersOfUserName', data, config)
-            .success(function (data, status, headers, config) {
-                console.log("Succeed post ordersOfUserName");
-                $scope.ordersOfUserName=data;
-                console.log("orders of ", data);
-            })
-            .error(function (data, status, header, config) {
-                console.log("Error: "+ data);
-                $scope.ResponseDetails = "orders of " + data +
-                    "<hr />status: " + status +
-                    "<hr />headers: " + header +
-                    "<hr />config: " + config;
-            });
-	};
+   var data = userName;
+   var config = {
+    headers : {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+    }
+  }
+  $http.post('/ordersOfUserName', data, config)
+  .success(function (data, status, headers, config) {
+    console.log("Succeed post ordersOfUserName");
+    $scope.ordersOfUserName=data;
+    console.log("orders of ", data);
+  })
+  .error(function (data, status, header, config) {
+    console.log("Error: "+ data);
+    $scope.ResponseDetails = "orders of " + data +
+    "<hr />status: " + status +
+    "<hr />headers: " + header +
+    "<hr />config: " + config;
+  });
+};
 
 });
- 
+
 
 /*
 

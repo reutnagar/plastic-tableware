@@ -9,24 +9,24 @@ module.exports = {
 
 function processPayment(req,res){
     console.log(req.body.stripeToken);
-   
+    
     // Token is created using Stripe.js or Checkout!
 // Get the payment token submitted by the form:
     var token = req.body.stripeToken; // Using Express
 
 // Charge the user's card:
-    var charge = stripe.charges.create({
-        amount: 99,
-        currency: "usd",
-        description: "Example charge",
-        source: token,
-    }, function(err, charge) {
-        if(!err){
-            console.log("user is successfully charged!");
-            res.send('success');
-        }
-        else
-            console.log(err);
-    });
-   
+var charge = stripe.charges.create({
+    amount: 99,
+    currency: "usd",
+    description: "Example charge",
+    source: token,
+}, function(err, charge) {
+    if(!err){
+        console.log("user is successfully charged!");
+        res.send('success');
+    }
+    else
+        console.log(err);
+});
+
 }

@@ -3,8 +3,8 @@ var Schema= mongoose.Schema;
 
 
 var OrderSchema = new Schema({
-    firsName: String,
-    lastName: String,
+	firsName: String,
+	lastName: String,
 	street: String,
 	country: String,
 	zip: Number,
