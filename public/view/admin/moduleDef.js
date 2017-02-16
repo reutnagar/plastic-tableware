@@ -47,7 +47,7 @@ app.config(function ($routeProvider) {
     } 
   })
   
-  .otherwise({ redirectTo: 'pages/dashboard.html' });
+  .otherwise({ redirectTo: '/dashboard' });
 });
 
 
