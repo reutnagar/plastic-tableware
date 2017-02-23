@@ -1,4 +1,3 @@
-//triggering first build...
 language: ruby
 rvm: 2.2
 before_script: gem install awesome_bot
