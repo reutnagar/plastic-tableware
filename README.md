@@ -34,7 +34,7 @@ This project is developed as part of the requirements for a [software engineerin
 Please visit our wiki for furthur project info: 
 
 ### [User Manual](https://github.com/reutnagar/plastic-tableware/wiki/user-manual) 
-###[Developer Manual](https://github.com/reutnagar/plastic-tableware/wiki/Developer-manual)
+###[Developer Manual](https://github.com/reutnagar/plastic-tableware/wiki/Developer-Manual)
 ### [Team Page](../../wiki/team)
 
 ### Project Documents
