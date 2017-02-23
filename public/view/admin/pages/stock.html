@@ -1,223 +1,264 @@
- 
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>
+    <h1>
    טבלת מלאי
  </h1>
- <div  class="edit-btn">
-  <button type="button" ng-click="" class="btn btn-danger" data-toggle="modal" data-target="#addModal"  data-backdrop="false">הוספה</button>
-  <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#quantityModal">ספירת מלאי</button>-->
-  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#deleteModal">מחיקה</button>  
-</div>
+    <div class="edit-btn">
+        <button type="button" ng-click="" class="btn btn-danger" data-toggle="modal" data-target="#addModal" data-backdrop="false">הוספה</button>
+        <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#quantityModal">ספירת מלאי</button>-->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#deleteModal">מחיקה</button>
+    </div>
 </section>
 <!-- Main content -->
-<section ng-controller="itemCtrl" class="content"  data-ng-init="showAllItems()">
-  <div class="box">
-    <div class="box-body">
-      <div class="table-responsive">
-        <table class="table no-margin">
-          <tr>  <th></th>
-            <th><p><input ng-model="search._id"></p>קוד</th>
-            <th><p><input ng-model="search.name"></p>שם</th>
-            <th><p><input ng-model="search.category"></p>קטגוריה</th>
-            <th><p><input ng-model="search.subCategory"></p>תת-קטגוריה</th>
-            <th><p><input ng-model="search.description"></p>תאור</th>
-            <th><p><input ng-model="search.price"></p>מחיר</th>
-            <th><p><input ng-model="search.location"></p>מיקום</th>
-            <th><p><input ng-model="search.name"></p>פרטים לפי צבע:</th>
-          </tr>
-          <tr data-ng-repeat="item in items | filter:search" data-ng-model = "items">
-            <td>
-              <div ng-show="showMe[item._id]">
-                <a ><span class="glyphicon glyphicon-trash" ng-click="deleteItemById(item._id)"></span></a>
-                <a ><span class="glyphicon glyphicon-edit" ng-click="showAndHide(item);modify(item)"></span></a>
-              </div>
-              <div ng-hide="showMe[item._id]" ng-click="showAndHide(item)">
-                <a><i class="fa fa-times" ng-click="update(item)"></i></a> 
-                <a><i class="fa fa-check" ng-click="changeItem(item)"></i></a>
-              </div>
-            </td>            
-            <td>
-              <div>{{ item._id }}</div>
-            </td>
-            <td>
-              <div ng-hide="editItem[item._id]">{{ item.name }}</div>
-              <div ng-show="editItem[item._id]"><input type="text" ng-model="item.name" /></div>
-            </td>
-            <td>
-              <div ng-hide="editItem[item._id]">{{ item.category }}</div>
-              <div ng-show="editItem[item._id]"><input type="text" ng-model="item.category" /></div>
-            </td>
-            <td>
-              <div ng-hide="editItem[item._id]">{{ item.subCategory }}</div>
-              <div ng-show="editItem[item._id]"><input type="text" ng-model="item.subCategory" /></div>
-            </td>
-            <td>
-              <div ng-hide="editItem[item._id]">{{ item.description }}</div>
-              <div ng-show="editItem[item._id]"><input type="text" ng-model="item.description" /></div>
-            </td>
-            <td>
-              <div ng-hide="editItem[item._id]">{{ item.price }}</div>
-              <div ng-show="editItem[item._id]"><input type="text" ng-model="item.price" /></div>
-            </td>
-            <td>
-              <div ng-hide="editItem[item._id]">{{ item.location }}</div>
-              <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" /></div>
-            </td>
-            <td>
-              <select ng-model="chosen" data-ng-options="item.name for item in item.quantities">
-                <option value="">בחר צבע</option>
-              </select>
-              <table class="table table-responsive">
-                <tr>
-                  <th>צבע</th>
-                  <th>כמות</th>
-                  <th>תמונה</th>
-                  <th width="100%">כמות-מינימלית</th>
-                </tr>
-                <tr>
-                  <td>
-                    <div ng-hide="editItem[item._id]">{{ chosen.name }}</div>
-                    <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" />
-                    </td>
-                    <td><div ng-hide="editItem[item._id]">{{ chosen.quantity }}</div>
-                      <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" />
-                      </td>
-                      <td>
-                        <div ng-hide="editItem[item._id]">{{ chosen.image }}</div>
-                        <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" />
+<section ng-controller="itemCtrl" class="content" data-ng-init="showAllItems()">
+    <div class="box">
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table no-margin">
+                    <tr>
+                        <th></th>
+                        <th>
+                            <p>
+                                <input ng-model="search._id">
+                            </p>קוד</th>
+                        <th>
+                            <p>
+                                <input ng-model="search.name">
+                            </p>שם</th>
+                        <th>
+                            <p>
+                                <input ng-model="search.category">
+                            </p>קטגוריה</th>
+                        <th>
+                            <p>
+                                <input ng-model="search.subCategory">
+                            </p>תת-קטגוריה</th>
+                        <th>
+                            <p>
+                                <input ng-model="search.description">
+                            </p>תאור</th>
+                        <th>
+                            <p>
+                                <input ng-model="search.price">
+                            </p>מחיר</th>
+                        <th>
+                            <p>
+                                <input ng-model="search.location">
+                            </p>מיקום</th>
+                        <th>
+                            <p>
+                                <input ng-model="search.name">
+                            </p>פרטים לפי צבע:</th>
+                    </tr>
+                    <tr data-ng-repeat="item in items | filter:search" data-ng-model="items">
+                        <td>
+                            <div ng-show="showMe[item._id]">
+                                <a><span class="glyphicon glyphicon-trash" ng-click="deleteItemById(item._id)"></span></a>
+                                <a><span class="glyphicon glyphicon-edit" ng-click="showAndHide(item);modify(item)"></span></a>
+                            </div>
+                            <div ng-hide="showMe[item._id]" ng-click="showAndHide(item)">
+                                <a><i class="fa fa-times" ng-click="update(item)"></i></a>
+                                <a><i class="fa fa-check" ng-click="changeItem(item)"></i></a>
+                            </div>
                         </td>
                         <td>
-                          <div ng-hide="editItem[item._id]">{{ chosen.minQuantity }}</div>
-                          <div ng-show="editItem[item._id]"><input type="text" ng-model="item.location" />
-                          </td>
-                        </tr>
-                      </table>
-                 <!--<div ng-hide="editItem[item._id]">{{ item.quantities[0].name }}</div>
+                            <div>{{ item._id }}</div>
+                        </td>
+                        <td>
+                            <div ng-hide="editItem[item._id]">{{ item.name }}</div>
+                            <div ng-show="editItem[item._id]">
+                                <input type="text" ng-model="item.name" />
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-hide="editItem[item._id]">{{ item.category }}</div>
+                            <div ng-show="editItem[item._id]">
+                                <input type="text" ng-model="item.category" />
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-hide="editItem[item._id]">{{ item.subCategory }}</div>
+                            <div ng-show="editItem[item._id]">
+                                <input type="text" ng-model="item.subCategory" />
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-hide="editItem[item._id]">{{ item.description }}</div>
+                            <div ng-show="editItem[item._id]">
+                                <input type="text" ng-model="item.description" />
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-hide="editItem[item._id]">{{ item.price }}</div>
+                            <div ng-show="editItem[item._id]">
+                                <input type="text" ng-model="item.price" />
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-hide="editItem[item._id]">{{ item.location }}</div>
+                            <div ng-show="editItem[item._id]">
+                                <input type="text" ng-model="item.location" />
+                            </div>
+                        </td>
+                        <td>
+                            <select ng-model="chosen" data-ng-options="item.name for item in item.quantities">
+                                <option value="">בחר צבע</option>
+                            </select>
+                            <table class="table table-responsive">
+                                <tr>
+                                    <th>צבע</th>
+                                    <th>כמות</th>
+                                    <th>תמונה</th>
+                                    <th width="100%">כמות-מינימלית</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div ng-hide="editItem[item._id]">{{ chosen.name }}</div>
+                                        <div ng-show="editItem[item._id]">
+                                            <input type="text" ng-model="item.location" />
+                                    </td>
+                                    <td>
+                                        <div ng-hide="editItem[item._id]">{{ chosen.quantity }}</div>
+                                        <div ng-show="editItem[item._id]">
+                                            <input type="text" ng-model="item.location" />
+                                    </td>
+                                    <td>
+                                        <div ng-hide="editItem[item._id]">{{ chosen.image }}</div>
+                                        <div ng-show="editItem[item._id]">
+                                            <input type="text" ng-model="item.location" />
+                                    </td>
+                                    <td>
+                                        <div ng-hide="editItem[item._id]">{{ chosen.minQuantity }}</div>
+                                        <div ng-show="editItem[item._id]">
+                                            <input type="text" ng-model="item.location" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--<div ng-hide="editItem[item._id]">{{ item.quantities[0].name }}</div>
                  <div ng-show="editItem[item._id]"><input type="text" ng-model="item.quantities[0].name" /></div>-->
-               </td>
-             </tr>
-           </table>    
-         </div>
-       </div>
-     </div>
-     <!-- Modal for adding item -->
-     <div class="modal fade" id="addModal" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"הוספת פריט</h4>
-            </div>
-            <div class="modal-body">
-              <div class="container" style="max-width: 100%;">
-                <form  name="form" class="css-form" >
-                  <div class="col-xs-offset-4">
-                    <div class="form-group row">
-                      <div class="col-xs-6">
-                        <label for="ex2">שם</label>
-                        <input class="form-control" id="ex2" type="text" ng-model="new_item.name" name="name"  required >
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="col-xs-6">
-                        <label for="ex2">קטגוריה</label>
-                        <input class="form-control" id="ex2" type="text" ng-model="new_item.category" name="category" required >
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="col-xs-6">
-                        <label for="ex2">תת-קטגוריה</label>
-                        <input class="form-control" id="ex2" type="text" ng-model="new_item.subCategory" name="subCategory" required >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group col-xs-12 ">
-                    <label for="exampleTextarea">תיאור</label>
-                    <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="new_item.description" name="description" required ></textarea>
-                  </div>
-                  <div class="form-group col-xs-12 ">
-                    <label for="exampleTextarea">מחיר</label>
-                    <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="new_item.price" name="price" required ></textarea>
-                  </div>
-                  <div class="form-group col-xs-12 ">
-                    <label for="exampleTextarea">מיקום</label>
-                    <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="new_item.location" name="location" required ></textarea>
-                  </div>     
-                  <div ng-repeat="quantity in new_item.quantities track by $index">
-                    <div class="form-group col-xs-12 label label-warning">
-                      <label for="exampleTextarea">צבע</label>
-                      <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].name" name="quantities.name" required placeholder="צבע"></textarea>
-                      
-                      <label for="exampleTextarea">כמות</label>
-                      <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].quantity" name="quantities.quantuty" required placeholder="כמות"></textarea>
-                      
-                      <label for="exampleTextarea">כמות מינימלית</label>
-                      <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].minQuantity" name="quantities.color" required placeholder="כמות מינימלית"></textarea>
-                      
-                      <label for="exampleTextarea">תמונה</label>
-                      <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].image" name="quantities.quantuty" required placeholder="תמונה"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                </div>
+                </div>
+                <!-- Modal for adding item -->
+                <div class="modal fade" id="addModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" הוספת פריט</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container" style="max-width: 100%;">
+                                    <form name="form" class="css-form">
+                                        <div class="col-xs-offset-4">
+                                            <div class="form-group row">
+                                                <div class="col-xs-6">
+                                                    <label for="ex2">שם</label>
+                                                    <input class="form-control" id="ex2" type="text" ng-model="new_item.name" name="name" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xs-6">
+                                                    <label for="ex2">קטגוריה</label>
+                                                    <input class="form-control" id="ex2" type="text" ng-model="new_item.category" name="category" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xs-6">
+                                                    <label for="ex2">תת-קטגוריה</label>
+                                                    <input class="form-control" id="ex2" type="text" ng-model="new_item.subCategory" name="subCategory" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-xs-12 ">
+                                            <label for="exampleTextarea">תיאור</label>
+                                            <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="new_item.description" name="description" required></textarea>
+                                        </div>
+                                        <div class="form-group col-xs-12 ">
+                                            <label for="exampleTextarea">מחיר</label>
+                                            <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="new_item.price" name="price" required></textarea>
+                                        </div>
+                                        <div class="form-group col-xs-12 ">
+                                            <label for="exampleTextarea">מיקום</label>
+                                            <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="new_item.location" name="location" required></textarea>
+                                        </div>
+                                        <div ng-repeat="quantity in new_item.quantities track by $index">
+                                            <div class="form-group col-xs-12 label label-warning">
+                                                <label for="exampleTextarea">צבע</label>
+                                                <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].name" name="quantities.name" required placeholder="צבע"></textarea>
 
-                      
-                    </div>
-                  </div>
-                  <button type="button" ng-click="add()" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-plus"></span> Plus
-                  </button>
-                  <div class="modal-footer col-xs-12">
-                    <div class="form-group">  
-                      <button type="submit"  data-dismiss="modal" class="btn btn-primary" ng-click="addItem(new_item)">שמור</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">ביטול</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                                                <label for="exampleTextarea">כמות</label>
+                                                <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].quantity" name="quantities.quantuty" required placeholder="כמות"></textarea>
 
-      <!-- Modal for delete item -->
-      <div class="modal fade" id="deleteModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">מחיקה</h4>
-            </div>
-            <div class="modal-body">
-              <div class="container" style="max-width: 100%;">
-                <form>
-                  <div class="col-xs-offset-4">
-                    <div class="form-group row">
-                      <div class="col-xs-6">
-                        <label for="ex2">שם</label>
-                        <input class="form-control" id="ex2" type="text" ng-model="item.name" name="name"  required >
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="col-xs-6">
-                        <label for="ex2">קטגוריה</label>
-                        <input class="form-control" id="ex2" type="text" ng-model="item.category" name="category"  required>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <div class="form-group">  
-                        <button type="submit" class="btn btn-primary" ng-click="deleteItem(item)" value="Reset">מחק</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">ביטול</button>
-                      </div>
-                    </div>  
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                                                <label for="exampleTextarea">כמות מינימלית</label>
+                                                <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].minQuantity" name="quantities.color" required placeholder="כמות מינימלית"></textarea>
+
+                                                <label for="exampleTextarea">תמונה</label>
+                                                <textarea type="text" class="form-control" id="exampleTextarea" rows="1" ng-model="new_item.quantities[$index].image" name="quantities.quantuty" required placeholder="תמונה"></textarea>
 
 
+                                            </div>
+                                        </div>
+                                        <button type="button" ng-click="add()" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-plus"></span> Plus
+                                        </button>
+                                        <div class="modal-footer col-xs-12">
+                                            <div class="form-group">
+                                                <button type="submit" data-dismiss="modal" class="btn btn-primary" ng-click="addItem(new_item)">שמור</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">ביטול</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- Modal for quantityModal item 
+                <!-- Modal for delete item -->
+                <div class="modal fade" id="deleteModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">מחיקה</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container" style="max-width: 100%;">
+                                    <form>
+                                        <div class="col-xs-offset-4">
+                                            <div class="form-group row">
+                                                <div class="col-xs-6">
+                                                    <label for="ex2">שם</label>
+                                                    <input class="form-control" id="ex2" type="text" ng-model="item.name" name="name" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-xs-6">
+                                                    <label for="ex2">קטגוריה</label>
+                                                    <input class="form-control" id="ex2" type="text" ng-model="item.category" name="category" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary" ng-click="deleteItem(item)" value="Reset">מחק</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">ביטול</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Modal for quantityModal item 
   <div class="modal fade" id="quantityModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -258,7 +299,7 @@
 -->
 
 
-<!-- confirmation  
+                <!-- confirmation  
 
 
   <div class="modat fade" id="confirmModal" role="dialog">
@@ -283,4 +324,4 @@
 
 
 </section>
-    <!-- /.content -->
+<!-- /.content -->

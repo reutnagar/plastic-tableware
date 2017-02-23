@@ -1,6 +1,6 @@
-﻿    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
         פרטי הזמנות
         
     </h1>
@@ -30,35 +30,32 @@
                             <th>תאריך ביצוע ההזמנה</th>
                             <th>סה"כ פריטים</th>
                             <th> סה"כ לתשלום</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-ng-repeat="order in orders" data-ng-model = "orders">
+                        <tr data-ng-repeat="order in orders" data-ng-model="orders">
                             <td><span class="label label-success">נשלח</span></td>
                             <td>{{order._id}}</td>
                             <td>{{order.lastName}}</td>
                             <td>{{order.email}}</td>
-                            <td>עיר: {{order.country  }} <br>
-                                רחוב: {{order.street }} <br>
-                                מיקוד: {{ order.zip  }} <br>
-                                </td>
+                            <td>עיר: {{order.country }}
+                                <br> רחוב: {{order.street }}
+                                <br> מיקוד: {{ order.zip }}
+                                <br>
+                            </td>
                             <td>{{order.date}}</td>
                             <td>{{order.quantity}}</td>
                             <td>
                                 <div class="sparkbar" data-color="#00a65a" data-height="20">{{order.payment}}</div>
                             </td>
-                            
-                        </tr>   
+
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 </section>
-
-
-
-
