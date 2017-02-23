@@ -46,9 +46,9 @@ Please visit our wiki for furthur project info:
 ### Iteration Pages
 - [Iteration 0 - ZFR](../../wiki/iter0-zfr)
 - [Iteration 1 - MVP](https://github.com/reutnagar/plastic-tableware/wiki/Iter-1)
-- [Iteration 2](https://github.com/reutnagar/plastic-tableware/wiki/Iter-2)
-- [Iteration 3 - Feature Y]()
-- [Iteration 4 - Feature Z]()
+- [Iteration 2 - Basic Features](https://github.com/reutnagar/plastic-tableware/wiki/Iter-2)
+- [Iteration 3 - Running App](https://github.com/reutnagar/plastic-tableware/wiki/Iter-3)
+- [Iteration 4 - Final Product](https://github.com/reutnagar/plastic-tableware/wiki/Iter-4)
 
 
 
