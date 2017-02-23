@@ -1,21 +1,21 @@
-const express      = require('express'),
-router           = express.Router(),
-mainController   = require('./controllers/main.controller'),
-userController = require('./controllers/user.controller'),
-categoryController = require('./controllers/category.controller'),
-itemsController = require('./controllers/item.controller'),
-ordersController = require('./controllers/order.controller'),
-paymentController = require('./controllers/payment.controller'),
-emailController = require('./controllers/email.controller');
-addToCartController= require('./controllers/addToCart.controller');
+const express = require('express'),
+    router = express.Router(),
+    mainController = require('./controllers/main.controller'),
+    userController = require('./controllers/user.controller'),
+    categoryController = require('./controllers/category.controller'),
+    itemsController = require('./controllers/item.controller'),
+    ordersController = require('./controllers/order.controller'),
+    paymentController = require('./controllers/payment.controller'),
+    emailController = require('./controllers/email.controller');
+addToCartController = require('./controllers/addToCart.controller');
 
 var path = require('path');
-router.use(express.static(path.join(__dirname , '../public/view/client')));
-router.use(express.static(path.join(__dirname , '../public/view/admin')));
+router.use(express.static(path.join(__dirname, '../public/view/client')));
+router.use(express.static(path.join(__dirname, '../public/view/admin')));
 
 
-router.get('/admin', function(req,res){
-	res.sendFile(path.join(__dirname , '../public/view/admin/index.html'));
+router.get('/admin', function (req, res) {
+    res.sendFile(path.join(__dirname, '../public/view/admin/index.html'));
 });
 
 //itemsController
@@ -28,18 +28,18 @@ router.post('/admin/deleteItemById', itemsController.deleteItemById);
 router.post('/admin/countItem', itemsController.countItem);
 router.post('/admin/changeItem', itemsController.changeItem);
 router.post('/getProductDetails', itemsController.getProductDetails);
-router.post('/getProductsOfSubCategory',itemsController.getProductsOfSubCategory);
-router.post('/checkIfItemExistsInStock',itemsController.checkIfItemExistsInStock);
+router.post('/getProductsOfSubCategory', itemsController.getProductsOfSubCategory);
+router.post('/checkIfItemExistsInStock', itemsController.checkIfItemExistsInStock);
 
 //ordersControllers
 router.get('/admin/showAllOrders', ordersController.showAllOrders);
 router.get('/admin/showLastOrders', ordersController.showLastOrders);
-router.post('/ordersOfUserName',ordersController.ordersOfUserName);
+router.post('/ordersOfUserName', ordersController.ordersOfUserName);
 
 //userController
-router.post('/admin/signIn',userController.signIn);
-router.post('/admin/signOut',userController.signOut);
-router.get('/admin/getSessionInfo',userController.getSessionInfo);
+router.post('/admin/signIn', userController.signIn);
+router.post('/admin/signOut', userController.signOut);
+router.get('/admin/getSessionInfo', userController.getSessionInfo);
 
 //categoryController
 router.get('/showAllCategories', categoryController.showAllCategories);
@@ -52,7 +52,7 @@ router.post('/sendEmailserver', emailController.sendEmailserver);
 
 //addToCartController
 router.post('/makeAnOrder', addToCartController.makeAnOrder);
-router.post('/quantity',addToCartController.quantity);
+router.post('/quantity', addToCartController.quantity);
 
 
 // export router
