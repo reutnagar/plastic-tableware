@@ -1,25 +1,25 @@
-	<div class="col-lg-12 col-md-12 col-sm-12">
-    	<div class="breadcrumbs">
-        	<p><a href="#/">עמוד הבית</a> <i class="icons icon-right-dir"></i>{{ category }}</p>
-        </div>
+<div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="breadcrumbs">
+        <p><a href="#/">עמוד הבית</a> <i class="icons icon-right-dir"></i>{{ category }}</p>
     </div>
-		<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
-		<div class="products-row row"  ng-init="showAllSubCategory(category)">	
-			<div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12" >
-				<div  data-max-items="3" ng-repeat="subCategory in subCategories ">
-						<div class="product col-md-4" ng-click="goToListProducts(subCategory)">
-								<div class="product-image">
-									<!--<img src="img/products/sample1.jpg" alt="Product1">-->
-								</div>											
-								<div class="product-actions">
-									<span class="add-to-cart">
+</div>
+<section class="main-content col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+    <div class="products-row row" ng-init="showAllSubCategory(category)">
+        <div class="carousel owl-carousel-wrap col-lg-12 col-md-12 col-sm-12">
+            <div data-max-items="3" ng-repeat="subCategory in subCategories ">
+                <div class="product col-md-4" ng-click="goToListProducts(subCategory)">
+                    <div class="product-image">
+                        <!--<img src="img/products/sample1.jpg" alt="Product1">-->
+                    </div>
+                    <div class="product-actions">
+                        <span class="add-to-cart">
 										<span class="action-wrapper">{{ subCategory }}
 											<span class="action-name"></span>
-										</span >
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,85 +1,80 @@
-
 <div class="col-lg-12 col-md-12 col-sm-12">
-	<div class="breadcrumbs">
-		<p><a href="#">עמוד הבית</a> <i class="icons icon-right-dir"></i>צור קשר</p>
-	</div>
+    <div class="breadcrumbs">
+        <p><a href="#">עמוד הבית</a> <i class="icons icon-right-dir"></i>צור קשר</p>
+    </div>
 </div>
 
 <!-- Main Content -->
-<section  ng-controller="contactCtrl" class="main-content col-lg-9 col-md-9 col-sm-9">
+<section ng-controller="contactCtrl" class="main-content col-lg-9 col-md-9 col-sm-9">
 
 
-	<div class="row">
+    <div class="row">
 
-		<div class="col-lg-12 col-md-12 col-sm-12">
-			<h4>ליצירת קשר מלא את פרטיך ואנו ניצור אתכם קשר בהקדם!</h4>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <h4>ליצירת קשר מלא את פרטיך ואנו ניצור אתכם קשר בהקדם!</h4>
 
-		</div>   
-	</div>
-	<form name="userForm">
-		
-	
+        </div>
+    </div>
+    <form name="userForm">
 
-	<!-- email -->
-	<div class="row"> 
-	<div class="col-lg-4 col-md-4 col-sm-4">
-		<p>*אמייל</p>
-	</div>
-	<div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
-		<input class="form-control" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" name="email"  ng-model="user.email" required>
-		<span style="color:red" ng-show="userForm.email.$dirty && userForm.email.$invalid">
+
+
+        <!-- email -->
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*אמייל</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
+                <input class="form-control" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" name="email" ng-model="user.email" required>
+                <span style="color:red" ng-show="userForm.email.$dirty && userForm.email.$invalid">
 			<span ng-show="userForm.email.$error.required"> Required!</span>
-			<span ng-show="userForm.email.$error.pattern">Invalid email address</span>
-		</span>
-	</div>
-	</div> 
-	<br> 
-	<!-- user name -->
-	<div class="row">   
-		<div class="col-lg-4 col-md-4 col-sm-4">
-			<p>*שם פרטי</p>
-		</div>
-		<div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
-			<input class="form-control" ng-pattern ="/^[a-zA-Z\s]*$/" type="text" name="firstName" ng-model="user.firstName" required>
-			<span style="color:red" ng-show="userForm.firstName.$dirty && userForm.firstName.$invalid">
+                <span ng-show="userForm.email.$error.pattern">Invalid email address</span>
+                </span>
+            </div>
+        </div>
+        <br>
+        <!-- user name -->
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*שם פרטי</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
+                <input class="form-control" ng-pattern="/^[a-zA-Z\s]*$/" type="text" name="firstName" ng-model="user.firstName" required>
+                <span style="color:red" ng-show="userForm.firstName.$dirty && userForm.firstName.$invalid">
 				<span ng-show="userForm.firstName.$error.required"> Required!</span>
-			</span>
-			<span class="error" ng-show="userForm.firstName.$error.pattern">Only letters</span>
-		</div>  
-	</div>
-	<br>
-	<!-- last name -->
-	<div class="row">
-		<div class="col-lg-4 col-md-4 col-sm-4">
-			<p>*שם משפחה</p>
-		</div>
-		<div class="col-lg-8 col-md-8 col-sm-8">
-			<input class="form-control" ng-pattern ="/^[a-zA-Z\s]*$/" type="text" name="lastName" ng-model="user.lastName" required>                   
-			<span style="color:red" ng-show="userForm.lastName.$dirty && userForm.lastName.$invalid">
+                </span>
+                <span class="error" ng-show="userForm.firstName.$error.pattern">Only letters</span>
+            </div>
+        </div>
+        <br>
+        <!-- last name -->
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>*שם משפחה</p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <input class="form-control" ng-pattern="/^[a-zA-Z\s]*$/" type="text" name="lastName" ng-model="user.lastName" required>
+                <span style="color:red" ng-show="userForm.lastName.$dirty && userForm.lastName.$invalid">
 				<span ng-show="userForm.lastName.$error.required"> Required!</span>
-				<span class="error" ng-show="userForm.lastName.$error.pattern">Only letters</span>
-			</span>
-		</div>  
-	</div>	
-	 <br>
-	 <div class="row">
-		<div class="col-lg-4 col-md-4 col-sm-4">
-			<p>פניה</p>
-		</div>
-		<div class="col-lg-12 col-md-12 col-sm-12">
-		 <textarea type="text" class="form-control" id="exampleTextarea" rows="5" ng-model="user.content" name="" required placeholder="תוכן פניה"></textarea>			  
-	</div>	
-	 </div>
-	<br>	
-	<div class="form-group has-feedback">
-	   <button  ng-disabled="userForm.$invalid  || userForm.$pending " class="btn btn-lg btn-primary btn-block" ng-click="sendEmail(user)" >סיום</button>
+                <span class="error" ng-show="userForm.lastName.$error.pattern">Only letters</span>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <p>פניה</p>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <textarea type="text" class="form-control" id="exampleTextarea" rows="5" ng-model="user.content" name="" required placeholder="תוכן פניה"></textarea>
+            </div>
+        </div>
+        <br>
+        <div class="form-group has-feedback">
+            <button ng-disabled="userForm.$invalid  || userForm.$pending " class="btn btn-lg btn-primary btn-block" ng-click="sendEmail(user)">סיום</button>
 
-	</div>
-	</form>
-<!-- ng-click="sendEmail(em.EmailAdres)"
+        </div>
+    </form>
+    <!-- ng-click="sendEmail(em.EmailAdres)"
 -->
 </section>
-
-
-
-

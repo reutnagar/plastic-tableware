@@ -27,7 +27,7 @@ $form.find('.subscribe').on('click', payWithStripe);
 /* If you're using Stripe for payments */
 function payWithStripe(e) {
     e.preventDefault();
-    
+
     /* Abort if invalid form data */
     if (!validator.form()) {
         return;
@@ -38,16 +38,16 @@ function payWithStripe(e) {
 
     var PublishableKey = 'pk_test_BhOjkKLIAI0WnFdiStLTRHG2 '; // Replace with your API publishable key
     Stripe.setPublishableKey(PublishableKey);
-    
+
     /* Create token */
     var expiry = $form.find('[name=cardExpiry]').payment('cardExpiryVal');
     var ccData = {
-        number: $form.find('[name=cardNumber]').val().replace(/\s/g,''),
+        number: $form.find('[name=cardNumber]').val().replace(/\s/g, ''),
         cvc: $form.find('[name=cardCVC]').val(),
-        exp_month: expiry.month, 
+        exp_month: expiry.month,
         exp_year: expiry.year
     };
-    
+
     Stripe.card.createToken(ccData, function stripeResponseHandler(status, response) {
         if (response.error) {
             /* Visual feedback */
@@ -70,10 +70,10 @@ function payWithStripe(e) {
                     token: token
                 })
                 // Assign handlers immediately after making the request,
-                .done(function(data, textStatus, jqXHR) {
+                .done(function (data, textStatus, jqXHR) {
                     $form.find('.subscribe').html('Payment successful <i class="fa fa-check"></i>');
                 })
-                .fail(function(jqXHR, textStatus, errorThrown) {
+                .fail(function (jqXHR, textStatus, errorThrown) {
                     $form.find('.subscribe').html('There was a problem').removeClass('success').addClass('error');
                     /* Show Stripe errors on the form */
                     $form.find('.payment-errors').text('Try refreshing the page and trying again.');
@@ -88,17 +88,17 @@ $('input[name=cardCVC]').payment('formatCardCVC');
 $('input[name=cardExpiry').payment('formatCardExpiry');
 
 /* Form validation using Stripe client-side validation helpers */
-jQuery.validator.addMethod("cardNumber", function(value, element) {
+jQuery.validator.addMethod("cardNumber", function (value, element) {
     return this.optional(element) || Stripe.card.validateCardNumber(value);
 }, "Please specify a valid credit card number.");
 
-jQuery.validator.addMethod("cardExpiry", function(value, element) {    
+jQuery.validator.addMethod("cardExpiry", function (value, element) {
     /* Parsing month/year uses jQuery.payment library */
     value = $.payment.cardExpiryVal(value);
     return this.optional(element) || Stripe.card.validateExpiry(value.month, value.year);
 }, "Invalid expiration date.");
 
-jQuery.validator.addMethod("cardCVC", function(value, element) {
+jQuery.validator.addMethod("cardCVC", function (value, element) {
     return this.optional(element) || Stripe.card.validateCVC(value);
 }, "Invalid CVC.");
 
@@ -106,7 +106,7 @@ validator = $form.validate({
     rules: {
         cardNumber: {
             required: true,
-            cardNumber: true            
+            cardNumber: true
         },
         cardExpiry: {
             required: true,
@@ -117,18 +117,18 @@ validator = $form.validate({
             cardCVC: true
         }
     },
-    highlight: function(element) {
+    highlight: function (element) {
         $(element).closest('.form-control').removeClass('success').addClass('error');
     },
-    unhighlight: function(element) {
+    unhighlight: function (element) {
         $(element).closest('.form-control').removeClass('error').addClass('success');
     },
-    errorPlacement: function(error, element) {
+    errorPlacement: function (error, element) {
         $(element).closest('.form-group').append(error);
     }
 });
 
-paymentFormReady = function() {
+paymentFormReady = function () {
     if ($form.find('[name=cardNumber]').hasClass("success") &&
         $form.find('[name=cardExpiry]').hasClass("success") &&
         $form.find('[name=cardCVC]').val().length > 1) {
@@ -139,7 +139,7 @@ paymentFormReady = function() {
 }
 
 $form.find('.subscribe').prop('disabled', true);
-var readyInterval = setInterval(function() {
+var readyInterval = setInterval(function () {
     if (paymentFormReady()) {
         $form.find('.subscribe').prop('disabled', false);
         clearInterval(readyInterval);

@@ -1,22 +1,21 @@
-
 <!-- Content -->
 
 <div class="col-lg-12 col-md-12 col-sm-12">
-	<div class="breadcrumbs">
-    	<p><a href="#">עמוד הבית</a> <i class="icons icon-right-dir"></i>עגלת קניות</p>
+    <div class="breadcrumbs">
+        <p><a href="#">עמוד הבית</a> <i class="icons icon-right-dir"></i>עגלת קניות</p>
     </div>
 </div>
 <section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl" ng-hide="empty">
     <div class="row">
-    אין מוצרים בסל הקניות שלך!!
+        אין מוצרים בסל הקניות שלך!!
     </div>
-    </section>
+</section>
 
 <section class="main-content col-lg-9 col-md-9 col-sm-9" ng-controller="cartCtrl" ng-show="empty">
     <div class="row">
-        
 
-  <!--   Main Content 
+
+        <!--   Main Content 
     <div class="row">
     	
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -100,53 +99,64 @@ click ‹‹ Add/Edit shipment address›› button below </p>
     </div>
     
     -->
-    <div class="row">
-    	
-		
-        <div class="col-lg-12 col-md-12 col-sm-12">
-        	
-			<div class="carousel-heading">
-                <h4>עגלת קניות</h4>
+        <div class="row">
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                <div class="carousel-heading">
+                    <h4>עגלת קניות</h4>
+                </div>
+
+                <table class="shopping-table">
+
+                    <tr>
+                        <th colspan="2">שם ותמונת מוצר</th>
+                        <th>מספר קטלוגי</th>
+                        <th>מחיר</th>
+                        <th>כמות</th>
+                        <th>סה"כ</th>
+                    </tr>
+
+                    <tr ng-repeat="item in myList track by $index">
+                        <td class="image-column">
+                            <a href="#"><img src="img/products/sample1.jpg" alt=""></a>
+                        </td>
+                        <td>
+                            <p><a href="#">{{ item.name }}</a></p>
+                        </td>
+                        <td>
+                            <p>{{item._id }}</p>
+                        </td>
+                        <td>
+                            <p>{{item.price }} ש"ח</p>
+                        </td>
+                        <td class="quantity">
+                            <input type="text" value="{{item.quantity}}" ng-model="item.quantity">
+                            <p>
+                                <a href="" ng-click="updateQuantity($index,item.quantity)"><i class="icons icon-ok-3"></i> עדכן</a>
+                                <br>
+                                <a href="" ng-click="removeItem($index)" class="red-hover"><i class="icons icon-cancel-3"></i> מחק</a>
+                            </p>
+                        </td>
+                        <td>
+                            <p>{{ item.price * item.quantity}}</p>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="align-right" colspan="5">עלות כוללת</td>
+                        <td><strong>{{ getTotal() | number: 2 }}</strong></td>
+                    </tr>
+
+                </table>
+
             </div>
-			
-            <table class="shopping-table">
-            	
-                <tr>
-                	<th colspan="2">שם ותמונת מוצר</th>
-                    <th>מספר קטלוגי</th>
-                    <th>מחיר</th>
-                    <th>כמות</th>
-                    <th>סה"כ</th>
-                </tr>
-                
-                <tr ng-repeat="item in myList track by $index">
-                    <td class="image-column"><a href="#"><img src="img/products/sample1.jpg" alt=""></a></td>
-                    <td><p><a href="#">{{ item.name }}</a></p></td>
-                    <td><p>{{item._id }}</p></td>
-                    <td><p>{{item.price }} ש"ח</p></td>
-                    <td class="quantity">
-                    	<input type="text" value="{{item.quantity}}" ng-model="item.quantity">
-                        <p>
-                        	<a href="" ng-click="updateQuantity($index,item.quantity)"><i class="icons icon-ok-3"></i> עדכן</a><br>
-                            <a href=""  ng-click="removeItem($index)"class="red-hover"><i class="icons icon-cancel-3"></i> מחק</a>
-                        </p>
-                    </td>
-                    <td ><p>{{ item.price * item.quantity}}</p></td>
-                </tr> 
-                
-              
-				<tr>
-					<td class="align-right" colspan="5">עלות כוללת</td>
-					<td><strong>{{ getTotal() | number: 2 }}</strong></td>	
-				</tr>
-                
-            </table>
-            
+
         </div>
-        
-    </div>
-    
-    <!--
+
+        <!--
     
     <div class="row">
     	
@@ -206,156 +216,158 @@ click ‹‹ Add/Edit shipment address›› button below </p>
           
     </div>
     -->
-    <form ng-from="userForm" novalidate name="userForm" >
+        <form ng-from="userForm" novalidate name="userForm">
 
-   <div class="col-lg-12 col-md-12 col-sm-12 register-account">
-    
-    <div class="carousel-heading no-margin">
-        <h4>פרטי משלוח</h4>
-    </div>
-    
-    <div class="page-content">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <p><strong>פרטים אשיים</strong></p>
-            </div>
-            <!-- email -->
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <p>*אמייל</p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
-                <input class="form-control" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" name="email"  ng-model="user.email" required>
-                <span style="color:red" ng-show="userForm.email.$dirty && userForm.email.$invalid">
+            <div class="col-lg-12 col-md-12 col-sm-12 register-account">
+
+                <div class="carousel-heading no-margin">
+                    <h4>פרטי משלוח</h4>
+                </div>
+
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <p><strong>פרטים אשיים</strong></p>
+                        </div>
+                        <!-- email -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <p>*אמייל</p>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
+                            <input class="form-control" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" name="email" ng-model="user.email" required>
+                            <span style="color:red" ng-show="userForm.email.$dirty && userForm.email.$invalid">
                     <span ng-show="userForm.email.$error.required"> Required!</span>
-                    <span ng-show="userForm.email.$error.pattern">Invalid email address</span>
-                </span>
-            </div>  
-        </div>
-        <!-- user name -->
-        <div class="row">   
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <p>*שם פרטי</p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
-                <input class="form-control" ng-pattern ="/^[a-zA-Z\s]*$/" type="text" name="firstName" ng-model="user.firstName" required>
-                <span style="color:red" ng-show="userForm.firstName.$dirty && userForm.firstName.$invalid">
+                            <span ng-show="userForm.email.$error.pattern">Invalid email address</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- user name -->
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <p>*שם פרטי</p>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8" class="form-group">
+                            <input class="form-control" ng-pattern="/^[a-zA-Z\s]*$/" type="text" name="firstName" ng-model="user.firstName" required>
+                            <span style="color:red" ng-show="userForm.firstName.$dirty && userForm.firstName.$invalid">
                 <span ng-show="userForm.firstName.$error.required"> Required!</span>
-                </span>
-                    <span class="error" ng-show="userForm.firstName.$error.pattern">Only letters</span>
-            </div>  
-        </div>
-        <!-- last name -->
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <p>*שם משפחה</p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                <input class="form-control" ng-pattern ="/^[a-zA-Z\s]*$/" type="text" name="lastName" ng-model="user.lastName" required>                   
-                <span style="color:red" ng-show="userForm.lastName.$dirty && userForm.lastName.$invalid">
+                            </span>
+                            <span class="error" ng-show="userForm.firstName.$error.pattern">Only letters</span>
+                        </div>
+                    </div>
+                    <!-- last name -->
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <p>*שם משפחה</p>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <input class="form-control" ng-pattern="/^[a-zA-Z\s]*$/" type="text" name="lastName" ng-model="user.lastName" required>
+                            <span style="color:red" ng-show="userForm.lastName.$dirty && userForm.lastName.$invalid">
                     <span ng-show="userForm.lastName.$error.required"> Required!</span>
-                    <span class="error" ng-show="userForm.lastName.$error.pattern">Only letters</span>
-                </span>
-            </div>  
-        </div>
-        <!-- adress -->
-        <div class="row">
-            
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <p>*כתובת</p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8">
-              <input class="form-control" type="text" ng-pattern ="/^[a-zA-Z\s]*$/" name=street ng-model="user.street">
-                <span style="color:red" ng-show="userForm.street.$dirty && userForm.street.$invalid">
+                            <span class="error" ng-show="userForm.lastName.$error.pattern">Only letters</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- adress -->
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <p>*כתובת</p>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <input class="form-control" type="text" ng-pattern="/^[a-zA-Z\s]*$/" name=street ng-model="user.street">
+                            <span style="color:red" ng-show="userForm.street.$dirty && userForm.street.$invalid">
                     <span ng-show="userForm.street.$error.required"> Required!</span>
-                    <span class="error" ng-show="userForm.street.$error.pattern">Only letters</span>
-                </span>
-            </div>  
-        </div>
-        <!-- zip -->
-       <div class="row">
-            
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <p>*מיקוד</p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                <input class="form-control" name="zip" type="text" ng-model="user.zip" ng-pattern="/^[0-9]{1,5}$/" required>
-                <span style="color:red" ng-show="userForm.zip.$dirty && userForm.zip.$invalid">
+                            <span class="error" ng-show="userForm.street.$error.pattern">Only letters</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- zip -->
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <p>*מיקוד</p>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <input class="form-control" name="zip" type="text" ng-model="user.zip" ng-pattern="/^[0-9]{1,5}$/" required>
+                            <span style="color:red" ng-show="userForm.zip.$dirty && userForm.zip.$invalid">
                 <span  ng-show="userForm.zip.$error.required"> Required! </span>
-                <span  class="error" ng-show="userForm.zip.$error.pattern">Only Numbers Allowed, Maximum 5 Characters</span>
-                </span>
-            </div>  
-        </div> 
-        <!-- country -->                
-        <div class="row">
-            
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <p>*עיר</p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                <input class="form-control" name="country" ng-pattern ="/^[a-zA-Z\s]*$/" type="text" ng-model="user.country">
-                 <span style="color:red" ng-show="userForm.country.$dirty && userForm.country.$invalid">
+                            <span class="error" ng-show="userForm.zip.$error.pattern">Only Numbers Allowed, Maximum 5 Characters</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- country -->
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <p>*עיר</p>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <input class="form-control" name="country" ng-pattern="/^[a-zA-Z\s]*$/" type="text" ng-model="user.country">
+                            <span style="color:red" ng-show="userForm.country.$dirty && userForm.country.$invalid">
                     <span ng-show="userForm.country.$error.required"> Required!</span>
-                    <span class="error" ng-show="userForm.country.$error.pattern">Only letters</span>
-                </span>
-            </div>  
-            
-        </div>
-                <!-- telephone -->
-        <div class="row">
-            
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <p>*טלפון</p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                <input class="form-control" name="telephone" type="text" ng-model="user.telephone" ng-pattern="/^[0-9]{9}$/" required>
-                <span style="color:red" ng-show="userForm.telephone.$dirty && userForm.telephone.$invalid">
+                            <span class="error" ng-show="userForm.country.$error.pattern">Only letters</span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <!-- telephone -->
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <p>*טלפון</p>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <input class="form-control" name="telephone" type="text" ng-model="user.telephone" ng-pattern="/^[0-9]{9}$/" required>
+                            <span style="color:red" ng-show="userForm.telephone.$dirty && userForm.telephone.$invalid">
                 <span ng-show="userForm.telephone.$error.required"> Required! </span>
-                <span ng-show="userForm.telephone.$error.pattern">You need to enter 9 Numbers</span>
-                </span>
-            </div>  
-        </div>
-        <!-- cellphone -->
-        <div class="row">
-            
-            <div class="col-lg-4 col-md-4 col-sm-4">
-                <p>*פלאפון</p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8">
-                <input class="form-control" name="cellphone" type="text" ng-model="user.cellephone" ng-pattern="/^[0-9]{10}$/" required>                
-                <span style="color:red" ng-show="userForm.cellphone.$dirty && userForm.cellphone.$invalid">
+                            <span ng-show="userForm.telephone.$error.pattern">You need to enter 9 Numbers</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- cellphone -->
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <p>*פלאפון</p>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <input class="form-control" name="cellphone" type="text" ng-model="user.cellephone" ng-pattern="/^[0-9]{10}$/" required>
+                            <span style="color:red" ng-show="userForm.cellphone.$dirty && userForm.cellphone.$invalid">
                 <span  ng-show="userForm.cellphone.$error.required"> Required! </span>
-                <span  ng-show="userForm.cellphone.$error.pattern">You need to enter 10 Numbers</span>
-                </span>
-            </div>  
-        </div>
+                            <span ng-show="userForm.cellphone.$error.pattern">You need to enter 10 Numbers</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" ng-hide="flag">
-        	<div class="checkout-form">
+            <div class="checkout-form">
                 <table>
                     <tr>
-                    	<td class="empty-cell"></td>
+                        <td class="empty-cell"></td>
                         <td><span class="price">סך הכל:</span></td>
-                        <td><span  class="price">{{ getTotal() | number: 2 }}</span></td>
+                        <td><span class="price">{{ getTotal() | number: 2 }}</span></td>
                     </tr>
                 </table>
-                <input type="checkbox" id="termscheckbox" ng-model="checked"><label for="termscheckbox">לחצו כאן לקריאת תנאי השירות וסמן את התיבה כדי לאשר.</label>
-                <br><br>
-                <button  ng-disabled="userForm.$invalid  || userForm.$pending && !checked"   class="btn" ng-click="validation()" >payment</button>
+                <input type="checkbox" id="termscheckbox" ng-model="checked">
+                <label for="termscheckbox">לחצו כאן לקריאת תנאי השירות וסמן את התיבה כדי לאשר.</label>
+                <br>
+                <br>
+                <button ng-disabled="userForm.$invalid  || userForm.$pending && !checked" class="btn" ng-click="validation()">payment</button>
             </div>
         </div>
     </div>
-    </form>    
+    </form>
 
     <div class="col-lg-12 col-md-12 col-sm-12" ng-show="flag">
-     <div class="row" class="checkout-form">
-        
-        	
-         
+        <div class="row" class="checkout-form">
 
-                            <!--<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+
+
+
+            <!--<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_xclick">
                             <input type="hidden" name="charset" value="utf-8">
                             <input type="hidden" name="business" value="794A8HGCM9P8Y">
@@ -374,32 +386,31 @@ click ‹‹ Add/Edit shipment address›› button below </p>
                         
                         </form>-->
 
-                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_xclick">
-                                <input type="hidden" name="business" value="794A8HGCM9P8Y">
-                                <input type="hidden" name="lc" value="IL">
-                                <input type="hidden" name="item_name" value="hello">
-                                <input type="hidden" name="amount" value={{total}}>
-                                <input type="hidden" name="currency_code" value="ILS">
-                                <input type="hidden" name="button_subtype" value="services">
-                                <input type="hidden" name="no_note" value="0">
-                                <input type="hidden" name="cn" value="Add special instructions to the seller:">
-                                <input type="hidden" name="no_shipping" value="2">
-                                <input type="hidden" name="rm" value="1">
-                                <input type="hidden" name="return" value="http://localhost:8000/#/payment">
-                                <input type="hidden" name="cancel_return" value="http://localhost:8000/#/">
-                                <input type="hidden" name="tax_rate" value="17.000">
-                                <input type="hidden" name="shipping" value="5.00">
-                                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
-                                <input type="image" src="https://www.sandbox.paypal.com/he_IL/IL/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - הדרך הקלה והבטוחה יותר לשלם באינטרנט!">
-                                <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                             </form>
+            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="794A8HGCM9P8Y">
+                <input type="hidden" name="lc" value="IL">
+                <input type="hidden" name="item_name" value="hello">
+                <input type="hidden" name="amount" value={{total}}>
+                <input type="hidden" name="currency_code" value="ILS">
+                <input type="hidden" name="button_subtype" value="services">
+                <input type="hidden" name="no_note" value="0">
+                <input type="hidden" name="cn" value="Add special instructions to the seller:">
+                <input type="hidden" name="no_shipping" value="2">
+                <input type="hidden" name="rm" value="1">
+                <input type="hidden" name="return" value="http://localhost:8000/#/payment">
+                <input type="hidden" name="cancel_return" value="http://localhost:8000/#/">
+                <input type="hidden" name="tax_rate" value="17.000">
+                <input type="hidden" name="shipping" value="5.00">
+                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
+                <input type="image" src="https://www.sandbox.paypal.com/he_IL/IL/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - הדרך הקלה והבטוחה יותר לשלם באינטרנט!">
+                <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
 
-    
-            </div>
+
+        </div>
     </div>
 
 
 </section>
 <!-- /Main Content -->
-
